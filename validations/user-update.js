@@ -1,5 +1,6 @@
 const Validator = require("validator");
 const validText = require("./valid-text");
+const User = require("../models/User");
 
 module.exports = function validateRegisterInput(data) {
   let errors = {};
@@ -14,6 +15,14 @@ module.exports = function validateRegisterInput(data) {
   if (!Validator.isEmail(data.email)) {
     errors.email = "Email is invalid";
   }
+
+  User.findById(data.friends)
+    .then((friend) => {})
+    .catch((err) => {
+      errors.friends = "Can not find this person";
+    });
+
+  // doesn't seem to do what is suppose to do, just show 'No user account found with that ID' msg if id not found
 
   return {
     errors,

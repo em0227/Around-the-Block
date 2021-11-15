@@ -1,9 +1,13 @@
 // import { postUser, deleteSession, postSession } from '../utils/session';
 import * as APIUtil from "../utils/session";
+import jwt_decode from 'jwt-decode';
+
+
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_SIGNIN = "RECEIVE_USER_SIGNIN";
+
 
 const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
@@ -28,10 +32,15 @@ export const signup = (user) => (dispatch) => {
     .catch((error) => dispatch(receiveSessionErrors(error.response)));
 };
 
-// export const login = (formUser) => (dispatch) =>
-//   receiveUserSignIn(formUser).then((user) =>
-//     dispatch(receiveCurrentUser(user))
-//   );
+export const login = (user) => dispatch => {
+  return APIUtil.login(user).then(res => {
+      const { token } = res.data;
+      localStorage.setItem("jwtToken", token);
+      const decoded = jwt_decode(token);
+
+  })
+
+};
 
 // export const logout = () => (dispatch) =>
 //   deleteSession().then(() => dispatch(logoutCurrentUser()));

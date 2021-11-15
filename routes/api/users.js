@@ -144,7 +144,7 @@ router.patch(
       friends: req.body.friends,
     };
 
-    //does structure like means when user create an event, it will trigger event create action and user update action?
+    //does structure like means when user create an event, besides trigger event create action and user update action?
     //also, for friendsRequest, once the friendship is built, both User need to update their friends
 
     User.findByIdAndUpdate({ _id: req.user.id }, updates, { new: true })
@@ -157,6 +157,7 @@ router.patch(
           .json({ notweetsfound: "No user account found with that ID" })
       );
   }
+  //using req.user.id to ensure we are finding the user from the jwt token and even if the user change the id in the route, they won't be able to update info for someone else
 );
 
 module.exports = router;

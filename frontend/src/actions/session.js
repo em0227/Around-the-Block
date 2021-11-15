@@ -27,22 +27,28 @@ const receiveSessionErrors = (errors) => ({
 export const signup = (user) => (dispatch) => {
   return APIUtil.signup(user)
     .then(() => dispatch(receiveUserSignIn()))
-    .catch(error => dispatch(receiveSessionErrors(error.response.data)));
+    .catch((error) => dispatch(receiveSessionErrors(error.response.data)));
 };
 
 export const login = (user) => (dispatch) => {
-  return APIUtil.login(user).then((res) => {
-    const { token } = res.data;//localStorage: save something on the clients side (bwt refresh,close the browser)
-    localStorage.setItem("jwtToken", token); //defaults header for future call?
-    APIUtil.setAuthToken(token);
-    const decoded = jwt_decode(token);
-    dispatch(receiveCurrentUser(decoded));
-  }).catch(err => {
-      dispatch(receiveSessionErrors(err.response.data))
-  });
-}
+  return APIUtil.login(user)
+    .then((res) => {
+      const { token } = res.data; //localStorage: save something on the clients side (bwt refresh,close the browser)
+      localStorage.setItem("jwtToken", token); //defaults header for future call?
+      APIUtil.setAuthToken(token);
+      const decoded = jwt_decode(token);
+      dispatch(receiveCurrentUser(decoded));
+    })
+    .catch((err) => {
+      dispatch(receiveSessionErrors(err.response.data));
+    });
+};
 
-
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("jwtToken"); //defaults header for future call?
+  APIUtil.setAuthToken(false);
+  dispatch(logoutUser());
+};
 
 // export const logout = () => (dispatch) =>
 //   deleteSession().then(() => dispatch(logoutCurrentUser()));

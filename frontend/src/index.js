@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-// import App from './App';
-import axios from 'axios'
 import Root from "./components/root";
 import configureStore from "./store/store";
 import { setAuthToken } from "./utils/session";
 import jwt_decode from "jwt-decode";
-
+import { logout } from "./actions/session"
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore(preloadedState);
     const currentTime = Date.now() / 1000;
     if(decoded.exp < currentTime){
-      console.log("logout");
+      store.dispatch(logout());
     }
   } else {
     store = configureStore();

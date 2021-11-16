@@ -136,6 +136,8 @@ router.patch(
       return res.status(400).json(errors);
     }
 
+    //find the original User's events and friends (array form) and push the new update events
+
     const updates = {
       name: req.body.name,
       email: req.body.email,

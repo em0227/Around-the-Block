@@ -148,16 +148,26 @@ router.patch(
 //how to make these depedent destroy?
 
 router.patch(
-  "/:id/delete",
+  "/:id/unfriend",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    User.findOneAndUpdate(
+      { _id: req.body.friends },
+      {
+        $pull: {
+          friends: req.body.friends,
+        },
+      },
+      { new: true }
+    );
+
     User.findOneAndUpdate(
       { _id: req.user.id },
       {
         $pull: {
           friends: req.body.friends,
-          eventsJoined: req.body.eventsJoined,
-          eventsHosted: req.body.eventsHosted,
+          // eventsJoined: req.body.eventsJoined,
+          // eventsHosted: req.body.eventsHosted,
         },
       },
       { multi: true, new: true }

@@ -116,7 +116,7 @@ router.get(
 //using req.user.id to ensure we are finding the user from the jwt token and even if the user change the id in the route, they won't be able to update info for someone else
 
 router.patch(
-  "/:id/update/name-email",
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateUserUpdate(req.body);
@@ -125,86 +125,45 @@ router.patch(
       return res.status(400).json(errors);
     }
 
-    update = {
-      name: req.body.name,
-      email: req.body.email,
-    };
-
-    User.findOneAndUpdate({ _id: req.user.id }, update, { new: true })
-      .then((updatedUser) => res.json(updatedUser))
-      .catch((err) => res.json(err));
-  }
-);
-
-router.patch(
-  "/:id/update/friends",
-  passport.authenticate("jwt", { session: false }),
-  async (req, res) => {
-    const { errors, isValid } = await validateFriend(req.body);
-    console.log(errors);
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-
     User.findOneAndUpdate(
       { _id: req.user.id },
-      { $addToSet: { friends: req.body.friends } },
-      { new: true }
+      {
+        $set: {
+          name: req.body.name,
+          email: req.body.email,
+        },
+        $addToSet: {
+          friends: req.body.friends,
+          eventsHosted: req.body.eventsHosted,
+          eventsJoined: req.body.eventsJoined,
+        },
+      },
+      { multi: true, new: true }
     )
       .then((updatedUser) => res.json(updatedUser))
       .catch((err) => res.json(err));
   }
 );
 
+//how to make these depedent destroy?
+
 router.patch(
-  "/:id/update/event-joined",
+  "/:id/delete",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     User.findOneAndUpdate(
       { _id: req.user.id },
-      { $addToSet: { eventsJoined: req.body.eventsJoined } },
-      { new: true }
+      {
+        $pull: {
+          friends: req.body.friends,
+          eventsJoined: req.body.eventsJoined,
+          eventsHosted: req.body.eventsHosted,
+        },
+      },
+      { multi: true, new: true }
     )
       .then((updatedUser) => res.json(updatedUser))
       .catch((err) => res.json(err));
-  }
-);
-
-router.patch(
-  "/:id/update/event-hosted",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    User.findOneAndUpdate(
-      { _id: req.user.id },
-      { $addToSet: { eventsHosted: req.body.eventsHosted } },
-      { new: true }
-    )
-      .then((updatedUser) => res.json(updatedUser))
-      .catch((err) => res.json(err));
-  }
-);
-
-router.patch(
-  "/:id/delete-friend",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    //handle unfriend, cancel events here
-  }
-);
-
-router.patch(
-  "/:id/delete-event-joined",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    //handle unfriend, cancel events here
-  }
-);
-
-router.patch(
-  "/:id/delete-event-hosted",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    //handle unfriend, cancel events here
   }
 );
 

@@ -12,3 +12,5 @@ module.exports = async function validateFriend(data) {
     isValid: Object.keys(errors).length === 0,
   };
 };
+
+//if want to apply this validation, need to have async fuct on the (res, req) callback as well

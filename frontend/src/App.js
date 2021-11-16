@@ -6,7 +6,10 @@ import NavBarContainer from "./components/nav_bar/nav_bar_container";
 import LoginFormContainer from "./components/session/login_form_container";
 import SignupFormContainer from "./components/session/signup_form_container";
 import "antd/dist/antd.css";
-import "./assets/stylesheets/application.scss"
+import "./assets/stylesheets/application.scss";
+// import EventContainer from "./components/event/event_show_container";
+import EventShow from "./components/event/event_show";
+// import Mic from './components/voice/mic';
 
 const App = () => (
   <div>
@@ -15,6 +18,8 @@ const App = () => (
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
+      {/* <AuthRoute exact path="/voice" component={Mic} /> */}
+      <AuthRoute exact path="/event" component={EventShow} />
     </Switch>
   </div>
 );

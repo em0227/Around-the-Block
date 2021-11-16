@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -7,8 +6,12 @@ const User = require("../../models/User");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 const validateUserUpdate = require("../../validations/user-update");
+const validateFriend = require("../../validations/friend-validate");
 const passport = require("passport");
 const keys = require("../../config/keys");
+
+//when user create an event, besides trigger event create action also trigger user update action
+//also, for friendsRequest, once the friendship is built, both User need to update their friends
 
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -110,56 +113,99 @@ router.get(
   }
 );
 
-// router.get(
-//   "/:id",
-//   passport.authenticate("jwt", { session: false }),
-//   (req, res) => {
-//     User.findById(req.params.id)
-//       .then((user) => res.json(user))
-//       .catch((err) =>
-//         res
-//           .status(404)
-//           .json({ notweetsfound: "No user account found with that ID" })
-//       );
-//   }
-// );
-//was trying to have a 'ensure logged in' facility but seems unnecessary as the id will be hard to guess?
+//using req.user.id to ensure we are finding the user from the jwt token and even if the user change the id in the route, they won't be able to update info for someone else
 
 router.patch(
-  "/:id",
+  "/:id/update/name-email",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    //verify that the input is in correct format (how to verify the events and friends object?)
     const { errors, isValid } = validateUserUpdate(req.body);
 
     if (!isValid) {
       return res.status(400).json(errors);
     }
 
-    //find the original User's events and friends (array form) and push the new update events
-
-    const updates = {
+    update = {
       name: req.body.name,
       email: req.body.email,
-      eventsPlanned: req.body.eventsPlanned,
-      eventsHosted: req.body.eventsHosted,
-      friends: req.body.friends,
     };
 
-    //does structure like means when user create an event, besides trigger event create action and user update action?
-    //also, for friendsRequest, once the friendship is built, both User need to update their friends
-
-    User.findByIdAndUpdate({ _id: req.user.id }, updates, { new: true })
-      .then((updatedUser) => {
-        res.json(updatedUser);
-      })
-      .catch((err) =>
-        res
-          .status(404)
-          .json({ notweetsfound: "No user account found with that ID" })
-      );
+    User.findOneAndUpdate({ _id: req.user.id }, update, { new: true })
+      .then((updatedUser) => res.json(updatedUser))
+      .catch((err) => res.json(err));
   }
-  //using req.user.id to ensure we are finding the user from the jwt token and even if the user change the id in the route, they won't be able to update info for someone else
+);
+
+router.patch(
+  "/:id/update/friends",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const { errors, isValid } = await validateFriend(req.body);
+    console.log(errors);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    User.findOneAndUpdate(
+      { _id: req.user.id },
+      { $addToSet: { friends: req.body.friends } },
+      { new: true }
+    )
+      .then((updatedUser) => res.json(updatedUser))
+      .catch((err) => res.json(err));
+  }
+);
+
+router.patch(
+  "/:id/update/event-joined",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findOneAndUpdate(
+      { _id: req.user.id },
+      { $addToSet: { eventsJoined: req.body.eventsJoined } },
+      { new: true }
+    )
+      .then((updatedUser) => res.json(updatedUser))
+      .catch((err) => res.json(err));
+  }
+);
+
+router.patch(
+  "/:id/update/event-hosted",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findOneAndUpdate(
+      { _id: req.user.id },
+      { $addToSet: { eventsHosted: req.body.eventsHosted } },
+      { new: true }
+    )
+      .then((updatedUser) => res.json(updatedUser))
+      .catch((err) => res.json(err));
+  }
+);
+
+router.patch(
+  "/:id/delete-friend",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    //handle unfriend, cancel events here
+  }
+);
+
+router.patch(
+  "/:id/delete-event-joined",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    //handle unfriend, cancel events here
+  }
+);
+
+router.patch(
+  "/:id/delete-event-hosted",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    //handle unfriend, cancel events here
+  }
 );
 
 module.exports = router;

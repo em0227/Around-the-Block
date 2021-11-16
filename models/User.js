@@ -15,19 +15,25 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    eventsPlanned: {
-      type: Schema.Types.ObjectId,
-      ref: "events",
-    },
+    eventsJoined: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "events",
+      },
+    ],
 
-    eventsHosted: {
-      type: Schema.Types.ObjectId,
-      ref: "events",
-    },
-    friends: {
-      type: Schema.Types.ObjectId,
-      ref: "users",
-    },
+    eventsHosted: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "events",
+      },
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "users",
+      },
+    ],
   },
   {
     timestamps: true,

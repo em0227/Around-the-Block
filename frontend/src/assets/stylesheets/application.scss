@@ -18,10 +18,14 @@
    License: none (public domain)
 */
 /* pagenotfound Author: Svieta */
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kaushan+Script&family=Pacifico&display=swap');
 @import './reset.scss';
 @import './navbar.scss';
-@import './main.scss';
 
-.arb-carousel{
-  display: none;
-}
+@import './form.scss';
+$Courgette: "Courgette", cursive;
+$KaushanScript: "Kaushan Script", cursive;
+$Pacifico: "Pacifico", cursive;
+$Nunito: 'Nunito', sans-serif;
+
+

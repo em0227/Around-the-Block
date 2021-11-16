@@ -1,44 +1,43 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kaushan+Script&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pacifico&display=swap');
+$Courgette: "Courgette", cursive;
+$KaushanScript: "Kaushan Script", cursive;
+$Pacifico: "Pacifico", cursive;
+$Nunito: 'Nunito', sans-serif;
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Raleway, sans-serif;
-}
-
-body {
-  background: linear-gradient(90deg, #c7c5f4, #776bcc);
+  font-size: 40px;
 }
 
 .form-container {
+  font-size: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(90deg, #5d54a4, #7c78b8);
-  /* align-items: center; */
+  background: linear-gradient(90deg, #dfeeea, #a7c4bc, #89b5af);
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: #aaa4e6;
+  font-family: $Nunito;
 
-  .screen {
+  .form {
+    z-index: 1000;
+    border-radius: 20px;
     background: white;
     position: relative;
-    height: 600px;
-    width: 360px;
-    box-shadow: 0px 0px 24px #5c5696;
-
-    // .screen__content {
-    //   z-index: 1;
-    //   position: relative;
-    //   height: 100%;
-    // }
+    height: 100vh;
+    width: 520px;
+    box-shadow: 0px 0px 24px #5E8B7E;
+    .form__content {
+      height: 100vh;
+    }
   }
 }
-.screen__background {
+.form__background {
   position: absolute;
   top: 0;
   left: 0;
@@ -49,51 +48,26 @@ body {
   clip-path: inset(0 0 0 0);
 }
 
-.screen__background__shape {
+.form__background__shape {
   transform: rotate(45deg);
   position: absolute;
-}
-
-.screen__background__shape1 {
-  height: 520px;
-  width: 520px;
-  background: #fff;
-  top: -50px;
-  right: 120px;
-  border-radius: 0 72px 0 0;
-}
-
-.screen__background__shape2 {
   height: 220px;
   width: 220px;
-  background: #6c63ac;
+}
+
+.form__background__shape2 {
+  height: 220px;
+  width: 220px;
+  background: #57837b;
   top: -172px;
   right: 0;
   border-radius: 32px;
 }
 
-.screen__background__shape3 {
-  height: 540px;
-  width: 190px;
-  background: linear-gradient(270deg, #5d54a4, #6a679e);
-  top: -24px;
-  right: 0;
-  border-radius: 32px;
-}
-
-.screen__background__shape4 {
-  height: 400px;
-  width: 200px;
-  background: #7e7bb9;
-  top: 420px;
-  right: 50px;
-  border-radius: 60px;
-}
-
-.signup {
-  width: 320px;
-  padding: 30px;
-  padding-top: 156px;
+.form-inner {
+  width: 400px;
+  padding-left: 40px;
+  padding-top: 120px;
 }
 
 .input__field {
@@ -104,32 +78,50 @@ body {
 .signup__icon {
   position: absolute;
   top: 30px;
-  color: #7875b5;
+  // color: #7875b5;
 }
 
-.signup__field {
+.form__field {
+  display: flex;
+  align-items: center;
   border: none;
   border-bottom: 2px solid #d1d1d4;
   background: none;
   padding: 10px;
   padding-left: 24px;
+  margin-bottom: 20px;
   font-weight: 700;
-  width: 75%;
+  width: 100%;
   transition: 0.2s;
+  background-color: transparent;
+  .input-holder {
+    z-index: 1000;
+    border: transparent;
+    width: 100%;
+    height: 40px;
+  }
+  .input-holder:focus {
+    outline: none;
+  }
 }
-
-.signup__field:active,
-.signup__field:focus,
-.signup__field:hover {
+.new {
+  margin-bottom: 0px;
+}
+.form__field:active,
+.form__field:focus,
+.form__field:hover {
   outline: none;
-  border-bottom-color: #6a679e;
+  border-bottom-color: #5E8B7E;
 }
 
-.signup__submit {
+.form__submit {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   background: #fff;
-  font-size: 14px;
-  margin-top: 30px;
-  padding: 16px 20px;
+  font-size: 30px;
+  margin-top: 20px;
+  padding: 0 15px;
   border-radius: 26px;
   border: 1px solid #d4d3e8;
   text-transform: uppercase;
@@ -141,17 +133,15 @@ body {
   box-shadow: 0px 2px 2px #5c5696;
   cursor: pointer;
   transition: 0.2s;
+  z-index: 10;
 }
 
-.signup__submit:active,
-.signup__submit:focus,
-.signup__submit:hover {
+.form__submit:active,
+.form__submit:focus,
+.form__submit:hover {
   border-color: #6a679e;
   outline: none;
 }
-
-// .button__icon {
-// 	font-size: 24px;
-// 	margin-left: auto;
-// 	color: #7875B5;
-// }
+.button__text {
+  z-index: 10;
+}

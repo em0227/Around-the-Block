@@ -2,7 +2,9 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { GrLinkNext } from "react-icons/gr";
+import { GrFormNextLink } from "react-icons/gr";
+import { HiOutlineClipboardList } from "react-icons/hi";
+
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -11,7 +13,7 @@ class SignupForm extends React.Component {
       email: "",
       name: "",
       password: "",
-      confirmPassword: "",
+      // confirmPassword: "",
       errors: {},
     };
 
@@ -40,7 +42,7 @@ class SignupForm extends React.Component {
       email: this.state.email,
       name: this.state.name,
       password: this.state.password,
-      confirmPassword: this.state.confirmPassword,
+      // confirmPassword: this.state.confirmPassword,
     };
 
     this.props.signup(user, this.props.history);
@@ -48,9 +50,14 @@ class SignupForm extends React.Component {
 
   renderErrors() {
     return (
-      <ul>
+      <ul className="render-errors">
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
+          <li
+            style={{ marginBottom: 5, fontSize: "20px"}}
+            key={`error-${i}`}
+          >
+            {this.state.errors[error]}
+          </li>
         ))}
       </ul>
     );
@@ -59,12 +66,16 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="form-container">
-        <div className="screen">
-          <div className="screen__content">
-            <form className="signup" onSubmit={this.handleSubmit}>
-              <div className="signup__field">
+        <div className="form">
+          <div className="form__content">
+            <form className="form-inner" onSubmit={this.handleSubmit}>
+              <div className="form__field new">
                 <br />
+                <i>
+                  <HiOutlineClipboardList style={{ marginRight: 10 }} />
+                </i>
                 <input
+                  className="input-holder"
                   type="text"
                   name="name"
                   value={this.state.name}
@@ -73,11 +84,12 @@ class SignupForm extends React.Component {
                 />
               </div>
               <br />
-              <div className="signup__field">
+              <div className="form__field new">
                 <i>
-                  <FaUser />
+                  <FaUser style={{ marginRight: 10 }} />
                 </i>
                 <input
+                  className="input-holder"
                   type="text"
                   name="email"
                   value={this.state.email}
@@ -86,11 +98,12 @@ class SignupForm extends React.Component {
                 />
               </div>
               <br />
-              <div className="signup__field">
-                <i className="signup__icon fas fa-lock">
-                  <RiLockPasswordFill />
+              <div className="form__field new">
+                <i>
+                  <RiLockPasswordFill style={{ marginRight: 10 }} />
                 </i>
                 <input
+                  className="input-holder"
                   type="password"
                   value={this.state.password}
                   onChange={this.update("password")}
@@ -98,29 +111,18 @@ class SignupForm extends React.Component {
                 />
               </div>
               <br />
-              <div className="signup__field">
-                <input
-                  type="password"
-                  value={this.state.confirmPassword}
-                  onChange={this.update("confirmPassword")}
-                  placeholder="Confirm Password"
-                />
-              </div>
-              <br />
               <div>
-                <button className="button signup__submit" type="submit">
-                  <span className="button__text">LOG IN NOW</span>
+                <button className="button form__submit" type="submit">
+                  <span className="button__text">SIGN UP NOW</span>
                   <i>
-                    <GrLinkNext />
+                    <GrFormNextLink />
                   </i>
                 </button>
+                <br/>
                 {this.renderErrors()}
               </div>
-              <div class="screen__background">
-                <span class="screen__background__shape screen__background__shape4"></span>
-                <span class="screen__background__shape screen__background__shape3"></span>
-                <span class="screen__background__shape screen__background__shape2"></span>
-                <span class="screen__background__shape screen__background__shape1"></span>
+              <div class="form__background">
+                <span class="form__background__shape form__background__shape2"></span>
               </div>
             </form>
           </div>

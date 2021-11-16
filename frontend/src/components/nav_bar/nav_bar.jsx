@@ -39,7 +39,7 @@ class NavBar extends React.Component {
     return (
       <div>
         <div className="nav-bar">
-          <h1 className="app-name">Around the Block</h1>
+          <Link to="/" className="app-name">Around the Block</Link>
           {this.getLinks()}
         </div>
       </div>

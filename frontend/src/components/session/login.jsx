@@ -1,5 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { GrFormNextLink } from "react-icons/gr";
+import { HiOutlineClipboardList } from "react-icons/hi";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -18,7 +22,7 @@ class LoginForm extends React.Component {
   // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
-      // this.props.history.push("/events"); 
+      // this.props.history.push("/events");
     }
 
     // Set or clear errors
@@ -50,7 +54,9 @@ class LoginForm extends React.Component {
     return (
       <ul>
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
+          <li style={{ marginBottom: 10 }}  key={`error-${i}`}>
+            {this.state.errors[error]}
+          </li>
         ))}
       </ul>
     );
@@ -58,27 +64,52 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <input
-              type="text"
-              value={this.state.email}
-              onChange={this.update("email")}
-              placeholder="Email"
-            />
-            <br />
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.update("password")}
-              placeholder="Password"
-            />
-            <br />
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
+      <div className="form-container">
+        <div className="form">
+          <div className="form__content">
+            <form className="signup" onSubmit={this.handleSubmit}>
+              <div className="signup__field">
+                <i>
+                  <FaUser style={{ marginRight: 10 }} />
+                </i>
+                <input
+                  className="input-holder"
+                  type="text"
+                  value={this.state.email}
+                  onChange={this.update("email")}
+                  placeholder="Email"
+                />
+              </div>
+              <br />
+              <div className="signup__field">
+                <i>
+                  <RiLockPasswordFill style={{ marginRight: 10 }} />
+                </i>
+                <input
+                  className="input-holder"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.update("password")}
+                  placeholder="Password"
+                />
+              </div>
+              <br />
+              <div>
+                <button className="button signup__submit" type="submit">
+                  <span className="button__text">LOG IN NOW</span>
+                  <i>
+                    <GrFormNextLink />
+                  </i>
+                </button>
+                <br />
+                {this.renderErrors()}
+              </div>
+              <div class="form__background">
+                <span class="form__background__shape form__background__shape2"></span>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     );
   }

@@ -16,7 +16,7 @@ module.exports = function validateEventInput(data) {
       errors.description = 'Description is required';
     }
 
-    if (!Validator.isLength(data.description, { min: 30 })) {
+    if (!Validator.isLength(data.description, { min: 15 })) {
         errors.description = 'Description must be longer';
     }
 

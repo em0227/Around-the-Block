@@ -17,7 +17,7 @@ const receiveUserSignIn = () => ({
 });
 
 const logoutUser = () => ({
-  type: RECEIVE_LOGOUT_USER,
+  type: RECEIVE_USER_LOGOUT,
 });
 
 const receiveSessionErrors = (errors) => ({
@@ -45,10 +45,11 @@ export const login = (user) => (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
+  //// Remove the token from local storage
   localStorage.removeItem("jwtToken"); //defaults header for future call?
+  // Remove the token from the common axios header
   APIUtil.setAuthToken(false);
+  // Dispatch a logout action
   dispatch(logoutUser());
 };
 
-// export const logout = () => (dispatch) =>
-//   deleteSession().then(() => dispatch(logoutCurrentUser()));

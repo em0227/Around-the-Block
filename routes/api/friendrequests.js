@@ -69,7 +69,9 @@ router.patch(
           .catch((err) => res.json(err));
       } else {
         //delete this record
-        FriendRequest.remove();
+        FriendRequest.deleteOne({ _id: record.id })
+          .then((res) => res.json("you are not friends anymore :("))
+          .catch((err) => console.log(err));
       }
     });
   }

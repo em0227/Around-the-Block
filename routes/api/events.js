@@ -5,7 +5,7 @@ const Event = require('../../models/Event');
 const validateEventInput = require('../../validations/event');
 const validateEventUpdate = require('../../validations/event');
 
-router.get("/allevents", (req, res) => {
+router.get("/allEvents", (req, res) => {
   //events are being sent up as an array
     Event.find().then(events => {
         res.send(events); 
@@ -18,7 +18,7 @@ router.get("/:id", (req, res) => {
     event.then(function (doc) {res.send(doc)})
 })
 
-router.post("/newevent", (req, res) => {
+router.post("/newEvent", (req, res) => {
     console.log(req.body)
     const { errors, isValid } = validateEventInput(req.body);
 

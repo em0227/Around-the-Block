@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from "./components/root";
 import configureStore from "./store/store";
-import { setAuthToken } from "./utils/session";
+import { setAuthToken } from "./util/session_api_util";
 import jwt_decode from "jwt-decode";
-import { logout } from "./actions/session"
+import { logout } from "./actions/session_actions"
 
 
 document.addEventListener("DOMContentLoaded", () => {

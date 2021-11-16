@@ -113,6 +113,18 @@ router.get(
   }
 );
 
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const filter = req.body.filter;
+    User.where("name")
+      .all(`${filter}`)
+      .then((users) => res.json(users))
+      .catch((err) => res.json(err));
+  }
+);
+
 //using req.user.id to ensure we are finding the user from the jwt token and even if the user change the id in the route, they won't be able to update info for someone else
 
 router.patch(

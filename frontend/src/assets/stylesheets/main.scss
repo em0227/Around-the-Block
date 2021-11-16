@@ -1,0 +1,45 @@
+
+
+.img-background{
+    display: fixed;
+    width: 100vw;
+    min-width: 500px;
+}
+.img-container{
+    display: fixed;
+    height: 100vh;
+    margin-top: 100px;
+
+}
+
+.event-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.event-container{
+    display: flex;
+    flex-direction: column;
+}
+.event-title{
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+}
+
+.join-button{
+    background-color: #c70a04;
+    border: none;
+    color: rgb(252, 249, 249);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 4px 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100px;
+    width: 300px;
+    margin-top: 30px;
+ }

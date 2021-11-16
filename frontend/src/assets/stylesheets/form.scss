@@ -60,7 +60,7 @@
   border-radius: 32px;
 }
 
-.signup {
+.form-inner {
   width: 400px;
   padding-left: 40px;
   padding-top: 120px;
@@ -77,7 +77,7 @@
   color: #7875b5;
 }
 
-.signup__field {
+.form__field {
   display: flex;
   align-items: center;
   border: none;
@@ -103,14 +103,14 @@
 .new {
   margin-bottom: 0px;
 }
-.signup__field:active,
-.signup__field:focus,
-.signup__field:hover {
+.form__field:active,
+.form__field:focus,
+.form__field:hover {
   outline: none;
   border-bottom-color: #6a679e;
 }
 
-.signup__submit {
+.form__submit {
   display: flex;
   justify-content: space-around;
   background: #fff;
@@ -131,9 +131,9 @@
   z-index: 10;
 }
 
-.signup__submit:active,
-.signup__submit:focus,
-.signup__submit:hover {
+.form__submit:active,
+.form__submit:focus,
+.form__submit:hover {
   border-color: #6a679e;
   outline: none;
 }

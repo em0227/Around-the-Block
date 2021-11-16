@@ -67,8 +67,8 @@ class LoginForm extends React.Component {
       <div className="form-container">
         <div className="form">
           <div className="form__content">
-            <form className="signup" onSubmit={this.handleSubmit}>
-              <div className="signup__field">
+            <form className="form-inner" onSubmit={this.handleSubmit}>
+              <div className="form__field">
                 <i>
                   <FaUser style={{ marginRight: 10 }} />
                 </i>
@@ -81,7 +81,7 @@ class LoginForm extends React.Component {
                 />
               </div>
               <br />
-              <div className="signup__field">
+              <div className="form__field">
                 <i>
                   <RiLockPasswordFill style={{ marginRight: 10 }} />
                 </i>
@@ -95,7 +95,7 @@ class LoginForm extends React.Component {
               </div>
               <br />
               <div>
-                <button className="button signup__submit" type="submit">
+                <button className="button form__submit" type="submit">
                   <span className="button__text">LOG IN NOW</span>
                   <i>
                     <GrFormNextLink />

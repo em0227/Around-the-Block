@@ -27,7 +27,7 @@ const EventSchema = new Schema({
         required: true 
     },
     time: {
-        type: Date,
+        type: String,
         required: true 
     },
     guests: [{

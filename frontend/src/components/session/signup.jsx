@@ -84,7 +84,7 @@ class SignupForm extends React.Component {
                 />
               </div>
               <br />
-              <div className="form_field new">
+              <div className="form__field new">
                 <i>
                   <FaUser style={{ marginRight: 10 }} />
                 </i>
@@ -98,7 +98,7 @@ class SignupForm extends React.Component {
                 />
               </div>
               <br />
-              <div className="form_field new">
+              <div className="form__field new">
                 <i>
                   <RiLockPasswordFill style={{ marginRight: 10 }} />
                 </i>
@@ -113,7 +113,7 @@ class SignupForm extends React.Component {
               <br />
               <div>
                 <button className="button form__submit" type="submit">
-                  <span className="button__text">SING UP NOW</span>
+                  <span className="button__text">SIGN UP NOW</span>
                   <i>
                     <GrFormNextLink />
                   </i>

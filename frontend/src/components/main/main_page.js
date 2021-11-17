@@ -54,8 +54,7 @@ class MainPage extends React.Component {
           ""
         )}
       </div>
-    );
-  }
-}
+    );}
+    };
 
 export default MainPage;

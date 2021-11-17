@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Kaushan+Script&family=Pacifico&display=swap");
+$Courgette: "Courgette", cursive;
+$KaushanScript: "Kaushan Script", cursive;
+$Pacifico: "Pacifico", cursive;
+$Nunito: "Nunito", sans-serif;
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 70px;
+  background: #557571;
+  align-items: center;
+  height: 150px;
+  padding-left: 80px;
+  padding-right: 30px;
+  .app-name {
+    // font-family: $Courgette;
+    font-family: $Pacifico;
+    font-size: 80px;
+    color: #f2a07b;
+    .app-span {
+      font-family: $Pacifico;
+      font-size: 80px;
+      color: #ffd571;
+    }
+  }
+
+  .btn {
+    width: 130px;
+    height: 40px;
+    border-radius: 80px;
+    margin-left: 70px;
+    font-size: 35px;
+    color: white;
+    font-size: 20px;
+    color: rgb(26, 24, 24);
+    padding: 0px 10px;
+    background-color: #f2a07b;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.2s ease-in-out;
+    font-family: $Nunito;
+  }
+  .btn:hover {
+    background-color: #f18867;
+    box-shadow: 1px 1px 1px #a19797;
+    transform: scale(1.1);
+  }
+}

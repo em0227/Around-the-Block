@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kaushan+Script&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pacifico&display=swap');
+$Courgette: "Courgette", cursive;
+$KaushanScript: "Kaushan Script", cursive;
+$Pacifico: "Pacifico", cursive;
+$Nunito: 'Nunito', sans-serif;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 40px;
+}
+
+.form-container {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg, #dfeeea, #a7c4bc, #89b5af);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $Nunito;
+
+  .form {
+    z-index: 1000;
+    border-radius: 20px;
+    background: white;
+    position: relative;
+    height: 100vh;
+    width: 520px;
+    box-shadow: 0px 0px 24px #5E8B7E;
+    .form__content {
+      height: 100vh;
+    }
+  }
+}
+.form__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+}
+
+.form__background__shape {
+  transform: rotate(45deg);
+  position: absolute;
+  height: 220px;
+  width: 220px;
+}
+
+.form__background__shape2 {
+  height: 220px;
+  width: 220px;
+  background: #57837b;
+  top: -172px;
+  right: 0;
+  border-radius: 32px;
+}
+
+.form-inner {
+  width: 400px;
+  padding-left: 40px;
+  padding-top: 120px;
+}
+
+.input__field {
+  padding: 20px 0px;
+  position: relative;
+}
+
+.signup__icon {
+  position: absolute;
+  top: 30px;
+  // color: #7875b5;
+}
+
+.form__field {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-bottom: 2px solid #d1d1d4;
+  background: none;
+  padding: 10px;
+  padding-left: 24px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  width: 100%;
+  transition: 0.2s;
+  background-color: transparent;
+  .input-holder {
+    z-index: 1000;
+    border: transparent;
+    width: 100%;
+    height: 40px;
+  }
+  .input-holder:focus {
+    outline: none;
+  }
+}
+.new {
+  margin-bottom: 0px;
+}
+.form__field:active,
+.form__field:focus,
+.form__field:hover {
+  outline: none;
+  border-bottom-color: #5E8B7E;
+}
+
+.form__submit {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  font-size: 30px;
+  margin-top: 20px;
+  padding: 0 15px;
+  border-radius: 26px;
+  border: 1px solid #d4d3e8;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #4c489d;
+  box-shadow: 0px 2px 2px #5c5696;
+  cursor: pointer;
+  transition: 0.2s;
+  z-index: 10;
+}
+
+.form__submit:active,
+.form__submit:focus,
+.form__submit:hover {
+  border-color: #6a679e;
+  outline: none;
+}
+.button__text {
+  z-index: 10;
+}

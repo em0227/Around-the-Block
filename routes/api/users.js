@@ -38,7 +38,10 @@ router.post("/register", (req, res) => {
           newUser
             .save()
             .then((user) => {
-              const payload = { id: user.id, name: user.name };
+              const payload = {
+                id: user.id,
+                name: user.name,
+              };
 
               jwt.sign(
                 payload,
@@ -165,7 +168,17 @@ router.patch(
       },
       { multi: true, new: true }
     )
-      .then((updatedUser) => res.json(updatedUser))
+      .then((updatedUser) => {
+        const user = {
+          id: updatedUser.id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          eventsJoined: updatedUser.eventsJoined,
+          eventsHosted: updatedUser.eventsHosted,
+          friends: updatedUser.friends,
+        };
+        res.json(user);
+      })
       .catch((err) => res.json(err));
   }
 );
@@ -197,7 +210,17 @@ router.patch(
       },
       { multi: true, new: true }
     )
-      .then((updatedUser) => res.json(updatedUser))
+      .then((updatedUser) => {
+        const user = {
+          id: updatedUser.id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          eventsJoined: updatedUser.eventsJoined,
+          eventsHosted: updatedUser.eventsHosted,
+          friends: updatedUser.friends,
+        };
+        res.json(user);
+      })
       .catch((err) => res.json(err));
   }
 );

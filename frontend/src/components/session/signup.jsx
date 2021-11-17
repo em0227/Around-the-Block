@@ -5,6 +5,13 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { GrFormNextLink } from "react-icons/gr";
 import { HiOutlineClipboardList } from "react-icons/hi";
 
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+const mic = new SpeechRecognition();
+
+mic.continuous = true;
+mic.interimResults = true;
+mic.lang = "en-us";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -15,10 +22,12 @@ class SignupForm extends React.Component {
       password: "",
       // confirmPassword: "",
       errors: {},
+      isListening: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.clearedErrors = false;
+    this.setIsListening = this.setIsListening.bind(this);
+    // this.clearedErrors = false;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,11 +38,49 @@ class SignupForm extends React.Component {
     this.setState({ errors: nextProps.errors });
   }
 
+  handleListen() {
+    if (this.state.isListening) {
+      mic.start();
+      mic.onend = () => {
+        console.log("continue..");
+        mic.start();
+      };
+    } else {
+      mic.stop();
+      mic.onend = () => {
+        console.log("Stopped Mic on Click");
+      };
+    }
+    mic.onstart = () => {
+      console.log("Mics on");
+    };
+
+    mic.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join("");
+      console.log(transcript);
+      this.setState({ email: transcript });
+
+      mic.onerror = (event) => {
+        console.log(event.error);
+      };
+    };
+  }
+
+  setIsListening(e) {
+    // e.preventDefault();
+    this.setState({ isListening: !this.state.isListening });
+  }
+
   update(field) {
-    return (e) =>
+    return (e) => {
+      console.log(this.state);
       this.setState({
         [field]: e.currentTarget.value,
       });
+    };
   }
 
   handleSubmit(e) {
@@ -52,10 +99,7 @@ class SignupForm extends React.Component {
     return (
       <ul className="render-errors">
         {Object.keys(this.state.errors).map((error, i) => (
-          <li
-            style={{ marginBottom: 5, fontSize: "20px"}}
-            key={`error-${i}`}
-          >
+          <li style={{ marginBottom: 5, fontSize: "20px" }} key={`error-${i}`}>
             {this.state.errors[error]}
           </li>
         ))}
@@ -66,8 +110,9 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="form-container">
+        {this.handleListen()}
         <div className="form">
-          <div className="form__content">
+          <div className="form-content">
             <form className="form-inner" onSubmit={this.handleSubmit}>
               <div className="form__field new">
                 <br />
@@ -97,6 +142,7 @@ class SignupForm extends React.Component {
                   placeholder="Email"
                 />
               </div>
+
               <br />
               <div className="form__field new">
                 <i>
@@ -118,15 +164,17 @@ class SignupForm extends React.Component {
                     <GrFormNextLink />
                   </i>
                 </button>
-                <br/>
+                <br />
                 {this.renderErrors()}
               </div>
-              <div class="form__background">
-                <span class="form__background__shape form__background__shape2"></span>
+              <div className="form__background">
+                <span className="form__background__shape form__background__shape2"></span>
               </div>
             </form>
           </div>
         </div>
+        {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
+        <button onClick={this.setIsListening}>Start/Stop</button>
       </div>
     );
   }

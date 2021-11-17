@@ -19,25 +19,25 @@ const receiveEventErrors = (errors) => ({
 })
 export const createEvent = (event) => dispatch => (
     EventAPIUtil.createEvent(event).then(
-        (event) => dispatch(receiveEvent(event)),
+        (event) => dispatch(receiveEvent(event.data)),
         (err) => dispatch(receiveEventErrors(err.response.data))
     )
 )
 export const updateEvent = (event) => dispatch => (
     EventAPIUtil.updateEvent(event).then(
-        (event) => dispatch(receiveEvent(event)),
+        (event) => dispatch(receiveEvent(event.data)),
         (err) => dispatch(receiveEventErrors(err.response.data))
     )
 )
 export const fetchEvent = (eventId) => dispatch => (
     EventAPIUtil.fetchEvent(eventId).then(
-        (event) => dispatch(receiveEvent(event)),
+        (event) => dispatch(receiveEvent(event.data)),
         (err) => dispatch(receiveEventErrors(err.response.data))
     )
 )
 export const fetchEvents = () => dispatch => (
     EventAPIUtil.fetchEvents().then(
-        (events) => dispatch(receiveEvents(events)),
+        (events) => dispatch(receiveEvents(events.data)),
         (err) => dispatch(receiveEventErrors(err.response.data))
     )
 )

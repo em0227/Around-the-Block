@@ -14,7 +14,7 @@ class MainPage extends React.Component {
 
   onChange(a, b, c) {
     console.log(a, b, c);
-  }
+  } 
   render() {
     const img = {
       0: "https://atb-photos.s3.amazonaws.com/shell.jpeg",
@@ -22,15 +22,19 @@ class MainPage extends React.Component {
       2: "https://atb-photos.s3.amazonaws.com/green.jpeg",
     };
     const contents = this.props.events.map((event, idx) => {
+      // debugger 
       return (
         <div className="event-container">
           <div className="inner-container">
             <img className="img" src={img[idx]} />
             <div class="event-content">
               <div class="event-text">{event.time}</div>
-              <div class="event-text">{event.name}</div>
+              <div class="event-text-name">{event.name}</div>
               <div class="event-text">{event.description}</div>
-              <Link to={`/events/${event.id}`}>Show</Link>
+            
+              <Link className="join-button" to={`/events/${event._id}`}>
+                Show
+              </Link>
               {/* <button
                 className="join-button"
                 onClick={() => this.props.fetchEvent(event._id)}

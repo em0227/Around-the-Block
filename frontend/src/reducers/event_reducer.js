@@ -26,19 +26,25 @@ import { RECEIVE_EVENTS, RECEIVE_EVENT} from '../actions/event_actions';
   const EventsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState = Object.assign({}, state);
-    switch(action.type) {
+    switch (action.type) {
       case RECEIVE_EVENTS:
-        return action.events
-        // newState.all = action.events.data;
-        // return newState;
+        // debugger;
+        return action.events;
       case RECEIVE_EVENT:
-        newState[action.event.id] = action.event
-        return newState
-        // newState.event = action.event.data;
-        // return newState;
+        newState[action.event.id] = action.event;
+        return newState;
+   
+
+      // case RECEIVE_TEAS:
+      //   // action.teas.forEach(tea => nextState[tea.id] = tea);
+      //   // return nextState;
+      //   // return Object.assign(nextState, action.teas);
+      //   return { ...state, ...action.teas };
+
       default:
         return state;
     }
   };
   
   export default EventsReducer;
+  

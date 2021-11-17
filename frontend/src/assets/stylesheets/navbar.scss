@@ -2,19 +2,13 @@
 $Courgette: "Courgette", cursive;
 $KaushanScript: "Kaushan Script", cursive;
 $Pacifico: "Pacifico", cursive;
-$Nunito: 'Nunito', sans-serif;
+$Nunito: "Nunito", sans-serif;
 
 .nav-bar {
   display: flex;
-<<<<<<< HEAD
   justify-content: space-between;
   padding: 0 70px;
   background: #557571;
-=======
-  justify-content: space-around;
-  padding: 0 40px;
-  background: #f1ecec;
->>>>>>> a70d7534266220bdee75838227a8b42b56ab0c87
   align-items: center;
   height: 150px;
   padding-left: 80px;
@@ -35,15 +29,11 @@ $Nunito: 'Nunito', sans-serif;
     width: 130px;
     height: 40px;
     border-radius: 80px;
-<<<<<<< HEAD
     margin-left: 70px;
     font-size: 35px;
     color: white;
-=======
-    margin-left: 5px;
     font-size: 20px;
     color: rgb(26, 24, 24);
->>>>>>> a70d7534266220bdee75838227a8b42b56ab0c87
     padding: 0px 10px;
     background-color: #f2a07b;
     padding: 10px 20px;
@@ -52,15 +42,9 @@ $Nunito: 'Nunito', sans-serif;
     transition: all 0.2s ease-in-out;
     font-family: $Nunito;
   }
-<<<<<<< HEAD
   .btn:hover {
     background-color: #f18867;
     box-shadow: 1px 1px 1px #a19797;
     transform: scale(1.1);
   }
-=======
-  // .app-name{
-    
-  // }
->>>>>>> a70d7534266220bdee75838227a8b42b56ab0c87
 }

@@ -70,10 +70,10 @@ class CreateEventForm extends React.Component {
   render() {
     return (
       <div className="event-container">
-        <div className="form">
-          <div className="form__content">
-            <form className="form-inner" onSubmit={this.handleSubmit}>
-              <div className="form__field">
+        <div className="event">
+          <div className="event__content">
+            <form className="event-inner" onSubmit={this.handleSubmit}>
+              <div className="event__field">
                 <input
                   className="input-holder"
                   type="text"
@@ -82,8 +82,7 @@ class CreateEventForm extends React.Component {
                   placeholder="Type..."
                 />
               </div>
-              <br />
-              <div className="form__field">
+              <div className="event__field">
                 <input
                   className="input-holder"
                   type="text"
@@ -92,8 +91,7 @@ class CreateEventForm extends React.Component {
                   placeholder="What to do..."
                 />
               </div>
-              <br />
-              <div className="form__field">
+              <div className="event__field">
                 <input
                   className="input-holder"
                   type="text"
@@ -102,7 +100,34 @@ class CreateEventForm extends React.Component {
                   placeholder="When...."
                 />
               </div>
-              <button className="button form__submit" type="submit">
+              <div className="event__field">
+                <input
+                  className="input-holder"
+                  type="text"
+                  value={this.state.lat}
+                  onChange={this.update("lat")}
+                  placeholder="Your latitude..."
+                />
+              </div>
+              <div className="event__field">
+                <input
+                  className="input-holder"
+                  type="text"
+                  value={this.state.long}
+                  onChange={this.update("long")}
+                  placeholder="Your longtitude..."
+                />
+              </div>
+              <div className="event__field">
+                <input
+                  className="input-holder"
+                  type="text"
+                  value={this.state.imageUrl}
+                  onChange={this.update("imageUrl")}
+                  placeholder="Your pictures go here..."
+                />
+              </div>
+              <button className="button event__submit" type="submit">
                 <span className="button__text">CREATE EVENT</span>
               </button>
               <br />

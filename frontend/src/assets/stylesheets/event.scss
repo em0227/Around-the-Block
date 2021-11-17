@@ -24,7 +24,7 @@ $Nunito: 'Nunito', sans-serif;
   justify-content: space-between;
   font-family: $Nunito;
 
-  .form {
+  .event {
     z-index: 1000;
     border-radius: 20px;
     background: white;
@@ -32,12 +32,12 @@ $Nunito: 'Nunito', sans-serif;
     height: 80vh;
     width: 820px;
     box-shadow: 0px 0px 24px #5E8B7E;
-    .form__content {
+    .event__content {
       height: 100vh;
     }
   }
 }
-.form__background {
+.event__background {
   position: absolute;
   top: 0;
   left: 0;
@@ -49,10 +49,15 @@ $Nunito: 'Nunito', sans-serif;
 }
 
 
-.form-inner {
-  width: 400px;
+.event-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
   padding-left: 40px;
-  padding-top: 120px;
+  padding-top: 45px;
+
 }
 
 .input__field {
@@ -60,30 +65,27 @@ $Nunito: 'Nunito', sans-serif;
   position: relative;
 }
 
-.signup__icon {
-  position: absolute;
-  top: 30px;
-  // color: #7875b5;
-}
 
-.form__field {
+.event__field {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   border: none;
   border-bottom: 2px solid #d1d1d4;
   background: none;
   padding: 10px;
   padding-left: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: 700;
-  width: 100%;
+  width: 80%;
   transition: 0.2s;
   background-color: transparent;
   .input-holder {
     z-index: 1000;
     border: transparent;
-    width: 100%;
-    height: 40px;
+    width: 80%;
+    height: 30px;
   }
   .input-holder:focus {
     outline: none;
@@ -92,14 +94,14 @@ $Nunito: 'Nunito', sans-serif;
 .new {
   margin-bottom: 0px;
 }
-.form__field:active,
-.form__field:focus,
-.form__field:hover {
+.event__field:active,
+.event__field:focus,
+.event__field:hover {
   outline: none;
   border-bottom-color: #5E8B7E;
 }
 
-.form__submit {
+.event__submit {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -112,7 +114,7 @@ $Nunito: 'Nunito', sans-serif;
   border: 1px solid #d4d3e8;
   text-transform: uppercase;
   font-weight: 700;
-  width: 100%;
+  width: 70%;
   height: 70px;
   color: #4c489d;
   box-shadow: 0px 2px 2px #5c5696;
@@ -121,9 +123,9 @@ $Nunito: 'Nunito', sans-serif;
   z-index: 10;
 }
 
-.form__submit:active,
-.form__submit:focus,
-.form__submit:hover {
+.event__submit:active,
+.event__submit:focus,
+.event__submit:hover {
   border-color: #6a679e;
   outline: none;
 }

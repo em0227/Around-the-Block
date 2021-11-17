@@ -150,7 +150,7 @@ class SignupForm extends React.Component {
     return (
       <div className="form-container">
         <div className="form">
-          <div className="form-content">
+          <div className="form__content">
             <form className="form-inner" onSubmit={this.handleSubmit}>
               <div className="form__field new">
                 <br />

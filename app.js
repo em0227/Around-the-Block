@@ -5,7 +5,7 @@ const app = express();
 const users = require("./routes/api/users");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const friendrequests = require("./routes/api/friendrequests");
+const friendrequests = require("./routes/api/friend-requests");
 
 mongoose
   .connect(db, { useNewUrlParser: true })

@@ -3,11 +3,12 @@ const db = require("./config/keys").mongoURI;
 const express = require("express");
 const app = express();
 const users = require("./routes/api/users");
-
+const friendrequests = require("./routes/api/friend-requests");
+const events = require("./routes/api/events");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
-const events = require("./routes/api/events");
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
 }
+
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -29,6 +31,7 @@ require("./config/passport")(passport);
 
 // app.get("/", (req, res) => res.send("Hello World"));
 app.use("/api/users", users);
+app.use("/api/friend-requests", friendrequests);
 app.use("/api/events", events);
 const port = process.env.PORT || 5000;
 

@@ -20,6 +20,12 @@ class MainPage extends React.Component {
       0: "https://atb-photos.s3.amazonaws.com/shell.jpeg",
       1: "https://atb-photos.s3.amazonaws.com/painting.jpeg",
       2: "https://atb-photos.s3.amazonaws.com/green.jpeg",
+      3: "https://atb-photos.s3.amazonaws.com/aniversary.jpeg",
+      4: "https://atb-photos.s3.amazonaws.com/comedy.jpeg",
+      5: "https://atb-photos.s3.amazonaws.com/plants.jpeg",
+      6: "https://atb-photos.s3.amazonaws.com/galary.jpeg",
+      7: "https://atb-photos.s3.amazonaws.com/dating.jpeg",
+      8: "https://atb-photos.s3.amazonaws.com/sidewalk.jpeg",
     };
     const contents = this.props.events.map((event, idx) => {
       // debugger 

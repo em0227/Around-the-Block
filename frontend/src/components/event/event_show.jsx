@@ -18,6 +18,7 @@ class EventShow extends React.Component {
                     <img className="show-img" src="https://atb-photos.s3.amazonaws.com/profile1.png" /> 
                     <div clasName="event-show-detials">
                         <div class="event-details">
+                            {/* <p>{event.time}</p> */}
                             <p>6pm Thur. 11/18/2021</p>
                             <br />
                         </div>

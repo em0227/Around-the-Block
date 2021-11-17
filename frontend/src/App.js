@@ -12,7 +12,8 @@ import "./assets/stylesheets/application.scss";
 import EventShow from "./components/event/event_show";
 // import Mic from './components/voice/mic';
 import MainPageContainer from "./components/main/main_page_container";
-
+import UserProfileContainer from "./components/profile/user_profile_container"
+import CreateEventContainer from "./components/profile/create_event"
 
 const App = () => (
   <div>
@@ -21,7 +22,9 @@ const App = () => (
    </header>
     <Switch>
       <AuthRoute exact path="/" component={MainPageContainer} />
-      <AuthRoute exact path="/events" component={MainPageContainer} />
+      <Route exact path="/events" component={MainPageContainer} />
+      <Route exact path="/events/create" component={CreateEventContainer} />
+      <Route exact path="/profile" component={UserProfileContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       {/* <AuthRoute exact path="/voice" component={Mic} /> */}

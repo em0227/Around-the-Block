@@ -8,12 +8,12 @@
   // justify-content: space-around;
   transform-origin: right;
   width: 300px;
-  height: 180px;
+  height: 280px;
   background: white;
   position: absolute;
   right: 0;
   top: 25px;
-  z-index: 5;
+  z-index: 10000;
   border-radius: 20px;
   font-family: $Nunito;
   // display: none;

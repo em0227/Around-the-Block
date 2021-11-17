@@ -28,7 +28,7 @@ router.post("/newEvent", (req, res) => {
         return res.status(400).json(errors);
     }
     
-    Event.findOne({ name: req.body.name }).then(event => {
+    Event.findOne({ name: req.body.name }).populate({path: 'hostId', model: 'Users', select: 'name email'}).then(event => {
         if (event) {
             errors.name = "This event name has already been taken";
             return res.status(400).json(errors);

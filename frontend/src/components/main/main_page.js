@@ -11,10 +11,10 @@ const contentStyle = {
 const imgSize = {
   width: "100vw",
   height: "100vh",
-}
+};
 class MainPage extends React.Component {
   onChange(a, b, c) {
-    console.log(a, b, c);
+    // console.log(a, b, c);
   }
   render() {
     return (

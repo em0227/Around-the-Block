@@ -2,7 +2,6 @@ import React from "react";
 import { Carousel } from "antd";
 import { Link } from "react-router-dom";
 
-
 const contentStyle = {
   height: "600px",
   color: "#fff",
@@ -41,16 +40,16 @@ class MainPage extends React.Component {
       8: "https://atb-photos.s3.amazonaws.com/sidewalk.jpeg",
     };
     const contents = this.props.events.map((event, idx) => {
-      // debugger 
+      // debugger
       return (
-        <div className="event-container">
+        <div className="event-container" key={idx}>
           <div className="inner-container">
             <img className="img" src={img[idx]} />
-            <div class="event-content">
-              <div class="event-text">{event.time}</div>
-              <div class="event-text-name">{event.name}</div>
-              <div class="event-text">{event.description}</div>
-            
+            <div className="event-content">
+              <div className="event-text">{event.time}</div>
+              <div className="event-text-name">{event.name}</div>
+              <div className="event-text">{event.description}</div>
+
               <Link className="join-button" to={`/events/${event._id}`}>
                 Show
               </Link>
@@ -77,7 +76,8 @@ class MainPage extends React.Component {
           ""
         )}
       </div>
-    );}
-    };
+    );
+  }
+}
 
 export default MainPage;

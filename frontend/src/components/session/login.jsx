@@ -54,7 +54,7 @@ class LoginForm extends React.Component {
     return (
       <ul>
         {Object.keys(this.state.errors).map((error, i) => (
-          <li style={{ marginBottom: 10 }}  key={`error-${i}`}>
+          <li style={{ marginBottom: 10 }} key={`error-${i}`}>
             {this.state.errors[error]}
           </li>
         ))}
@@ -104,8 +104,8 @@ class LoginForm extends React.Component {
                 <br />
                 {this.renderErrors()}
               </div>
-              <div class="form__background">
-                <span class="form__background__shape form__background__shape2"></span>
+              <div className="form__background">
+                <span className="form__background__shape form__background__shape2"></span>
               </div>
             </form>
           </div>

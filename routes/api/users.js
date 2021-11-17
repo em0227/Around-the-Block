@@ -106,7 +106,7 @@ router.get(
       id: req.user.id,
       name: req.user.name,
       email: req.user.email,
-      eventsPlanned: req.body.eventsPlanned,
+      eventsJoined: req.body.eventsJoined,
       eventsHosted: req.body.eventsHosted,
       friends: req.body.friends,
     });
@@ -120,7 +120,20 @@ router.get(
     const filter = req.body.filter;
     User.where("name")
       .all(`${filter}`)
-      .then((users) => res.json(users))
+      .then((users) => {
+        let filteredUser = [];
+        users.forEach((user) => {
+          filteredUser.push({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            eventsJoined: user.eventsJoined,
+            eventsHosted: user.eventsHosted,
+            friends: user.friends,
+          });
+        });
+        res.json(filteredUser);
+      })
       .catch((err) => res.json(err));
   }
 );

@@ -71,6 +71,10 @@ class SignupForm extends React.Component {
         .join("");
       console.log(transcript);
       this.setState({ email: transcript });
+      if (transcript.includes("at")) {
+        let newTranscript = transcript.replace("at", "@");
+        this.setState({ email: newTranscript });
+      }
 
       mic.onerror = (event) => {
         console.log(event.error);

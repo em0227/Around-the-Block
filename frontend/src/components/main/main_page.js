@@ -1,5 +1,6 @@
 import React from "react";
 import { Carousel } from "antd";
+import { Link } from "react-router-dom";
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class MainPage extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     this.props.fetchEvents();
   }
 
@@ -29,7 +30,13 @@ class MainPage extends React.Component {
               <div class="event-text">{event.time}</div>
               <div class="event-text">{event.name}</div>
               <div class="event-text">{event.description}</div>
-              <button className="join-button">SHOW</button>
+              <Link to={`/events/${event.id}`}>Show</Link>
+              {/* <button
+                className="join-button"
+                onClick={() => this.props.fetchEvent(event._id)}
+              >
+                SHOW
+              </button> */}
             </div>
           </div>
         </div>

@@ -35,10 +35,6 @@ class SignupForm extends React.Component {
     this.handleListen();
   }
 
-  // componentDidUpdate() {
-  //   this.handleListen();
-  // }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
       this.props.history.push("/login");
@@ -48,18 +44,7 @@ class SignupForm extends React.Component {
   }
 
   handleListen() {
-    if (this.state.isListening) {
-      // mic.start();
-      mic.onend = () => {
-        console.log("continue..");
-        mic.start();
-      };
-    } else {
-      // mic.stop();
-      mic.onend = () => {
-        console.log("Stopped Mic on Click");
-      };
-    }
+    //
     mic.onstart = () => {
       console.log("Mics on");
     };
@@ -99,6 +84,8 @@ class SignupForm extends React.Component {
         }
       } else if (transcript.includes("name")) {
         let realTranscript = transcript;
+        const last = transcript.indexOf("name is");
+        realTranscript = transcript.slice(last + 7);
         realTranscript = realTranscript.replace("my name is ", "");
         realTranscript = realTranscript.replace("my email", "");
         realTranscript = realTranscript.replace("Mayim", "");
@@ -119,10 +106,9 @@ class SignupForm extends React.Component {
     // e.preventDefault();
     this.setState({ isListening: !this.state.isListening }, () => {
       if (this.state.isListening) {
-        console.log("in new start");
         mic.start();
       } else {
-        console.log("in new stop");
+        console.log("Mic stop");
         mic.stop();
       }
     });
@@ -228,7 +214,7 @@ class SignupForm extends React.Component {
         </div>
         <div className="mic">
           {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
-          <button onClick={this.setIsListening}>Start/Stop</button>
+          <button onClick={this.setIsListening.bind(this)}>Start/Stop</button>
         </div>
       </div>
     );

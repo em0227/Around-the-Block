@@ -38,7 +38,10 @@ router.post("/register", (req, res) => {
           newUser
             .save()
             .then((user) => {
-              const payload = { id: user.id, name: user.name };
+              const payload = {
+                id: user.id,
+                name: user.name,
+              };
 
               jwt.sign(
                 payload,
@@ -106,7 +109,7 @@ router.get(
       id: req.user.id,
       name: req.user.name,
       email: req.user.email,
-      eventsPlanned: req.body.eventsPlanned,
+      eventsJoined: req.body.eventsJoined,
       eventsHosted: req.body.eventsHosted,
       friends: req.body.friends,
     });
@@ -140,7 +143,17 @@ router.patch(
       },
       { multi: true, new: true }
     )
-      .then((updatedUser) => res.json(updatedUser))
+      .then((updatedUser) => {
+        const user = {
+          id: updatedUser.id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          eventsJoined: updatedUser.eventsJoined,
+          eventsHosted: updatedUser.eventsHosted,
+          friends: updatedUser.friends,
+        };
+        res.json(user);
+      })
       .catch((err) => res.json(err));
   }
 );
@@ -162,7 +175,17 @@ router.patch(
       },
       { multi: true, new: true }
     )
-      .then((updatedUser) => res.json(updatedUser))
+      .then((updatedUser) => {
+        const user = {
+          id: updatedUser.id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          eventsJoined: updatedUser.eventsJoined,
+          eventsHosted: updatedUser.eventsHosted,
+          friends: updatedUser.friends,
+        };
+        res.json(user);
+      })
       .catch((err) => res.json(err));
   }
 );

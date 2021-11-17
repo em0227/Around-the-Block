@@ -65,63 +65,54 @@ class SignupForm extends React.Component {
     };
 
     mic.onresult = (event) => {
-      let transcript = Array.from(event.results)
+      const transcript = Array.from(event.results)
         .map((result) => result[0])
         .map((result) => result.transcript)
         .join("");
       console.log(transcript);
 
-      if (transcript.includes("email")) {
-        const last = transcript.indexOf("email");
-        let realTranscript = transcript.slice(last + 5);
-        // realTranscript = realTranscript.replace("email", "");
+      if (transcript.includes("submit")) {
+        const email = this.state.email.replaceAll(" ", "");
+        const user = {
+          email,
+          name: this.state.name,
+          password: this.state.password,
+        };
+        //for now will submit signup twice, could use debounce to solve this
+        this.props.signup(user, this.props.history);
+        mic.stop();
+      } else if (transcript.includes("password")) {
+        const last = transcript.indexOf("word is");
+        let realTranscript = transcript.slice(last + 8);
+        realTranscript = realTranscript.replace("please subm", "");
+        this.setState({ password: realTranscript });
+      } else if (transcript.includes("email")) {
+        const last = transcript.indexOf("email is");
+        let realTranscript = transcript.slice(last + 8);
+        realTranscript = realTranscript.replace("my pas", "");
 
         if (realTranscript.includes("at")) {
-          let newTranscript = realTranscript.replace("at", "@");
-          this.setState({ email: newTranscript });
+          realTranscript = realTranscript.replace("at", "@");
+          this.setState({ email: realTranscript });
         } else {
           this.setState({ email: realTranscript });
         }
-
-        // if (transcript.includes("next")) {
-        //   realTranscript = realTranscript.replace("next", "");
-        //   //not sure if above can work
-        //   this.setState({ email: realTranscript });
-        //   transcript = "";
-        // }
       } else if (transcript.includes("name")) {
         let realTranscript = transcript;
-        console.log("real transcript");
-        console.log(realTranscript);
         realTranscript = realTranscript.replace("my name is ", "");
-        console.log("transcript");
-        console.log(transcript);
-        console.log("real transcript");
-        console.log(realTranscript);
+        realTranscript = realTranscript.replace("my email", "");
+        realTranscript = realTranscript.replace("Mayim", "");
+        // console.log("transcript");
+        // console.log(transcript);
+        // console.log("real transcript");
+        // console.log(realTranscript);
         this.setState({ name: realTranscript });
-
-        // if (transcript.includes("next")) {
-        //   // debugger;
-        //   realTranscript = realTranscript.replace("next", "");
-        //   //not sure if above can work
-        //   transcript = "";
-        //   debugger;
-        //   this.setState({ name: realTranscript });
-        // }
       }
 
       mic.onerror = (event) => {
         console.log(event.error);
       };
     };
-  }
-
-  voiceEmail(transcript) {
-    this.setState({ email: transcript });
-    if (transcript.includes("at")) {
-      let newTranscript = transcript.replace("at", "@");
-      this.setState({ email: newTranscript });
-    }
   }
 
   setIsListening(e) {
@@ -212,7 +203,7 @@ class SignupForm extends React.Component {
                 </i>
                 <input
                   className="input-holder"
-                  type="password"
+                  type="text"
                   value={this.state.password}
                   onChange={this.update("password")}
                   placeholder="Password"
@@ -235,8 +226,10 @@ class SignupForm extends React.Component {
             </form>
           </div>
         </div>
-        {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
-        <button onClick={this.setIsListening}>Start/Stop</button>
+        <div className="mic">
+          {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
+          <button onClick={this.setIsListening}>Start/Stop</button>
+        </div>
       </div>
     );
   }

@@ -31,7 +31,13 @@ $Nunito: "Nunito", sans-serif;
   width: 100%;
 //   z-index: 1000;
   }
-}
+  .event-text-name{
+    font-size: 50px;
+    font-family: $Nunito;
+    text-align: center;
+    width: 100%;
+  }
+} 
 .join-button {
   background-color: #C70A04;
   border: none;
@@ -42,13 +48,13 @@ $Nunito: "Nunito", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
+  font-size: 50px;
   font-weight: bolder;
   margin: 4px 2px;
   border-radius: 5px;
   cursor: pointer;
   height: 100px;
-  width: 300px;
+  width: 400px;
   margin-top: 30px;
 }
 .img {

@@ -27,8 +27,17 @@ class SignupForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setIsListening = this.setIsListening.bind(this);
+    this.handleListen = this.handleListen.bind(this);
     // this.clearedErrors = false;
   }
+
+  componentDidMount() {
+    this.handleListen();
+  }
+
+  // componentDidUpdate() {
+  //   this.handleListen();
+  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
@@ -40,13 +49,13 @@ class SignupForm extends React.Component {
 
   handleListen() {
     if (this.state.isListening) {
-      mic.start();
+      // mic.start();
       mic.onend = () => {
         console.log("continue..");
         mic.start();
       };
     } else {
-      mic.stop();
+      // mic.stop();
       mic.onend = () => {
         console.log("Stopped Mic on Click");
       };
@@ -71,7 +80,15 @@ class SignupForm extends React.Component {
 
   setIsListening(e) {
     // e.preventDefault();
-    this.setState({ isListening: !this.state.isListening });
+    this.setState({ isListening: !this.state.isListening }, () => {
+      if (this.state.isListening) {
+        console.log("in new start");
+        mic.start();
+      } else {
+        console.log("in new stop");
+        mic.stop();
+      }
+    });
   }
 
   update(field) {
@@ -110,7 +127,6 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="form-container">
-        {this.handleListen()}
         <div className="form">
           <div className="form-content">
             <form className="form-inner" onSubmit={this.handleSubmit}>

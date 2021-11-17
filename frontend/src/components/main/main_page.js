@@ -2,181 +2,50 @@ import React from "react";
 import { Carousel } from "antd";
 
 class MainPage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+    this.props.fetchEvents();
+  }
+
   onChange(a, b, c) {
     console.log(a, b, c);
   }
   render() {
+    const img = {
+      0: "https://atb-photos.s3.amazonaws.com/shell.jpeg",
+      1: "https://atb-photos.s3.amazonaws.com/painting.jpeg",
+      2: "https://atb-photos.s3.amazonaws.com/green.jpeg",
+    };
+    const contents = this.props.events.map((event, idx) => {
+      return (
+        <div className="event-container">
+          <div className="inner-container">
+            <img className="img" src={img[idx]} />
+            <div class="event-content">
+              <div class="event-text">{event.time}</div>
+              <div class="event-text">{event.name}</div>
+              <div class="event-text">{event.description}</div>
+              <button className="join-button">SHOW</button>
+            </div>
+          </div>
+        </div>
+      );
+    });
     return (
       <div>
-        <Carousel autoplay dots="arb-carousel" afterChange={this.onChange}>
-          <div className="event-container">
-            <div className="inner-container">
-              <img
-                className="img"
-                src="https://atb-photos.s3.amazonaws.com/shell.jpeg"
-              />
-              <div className="event-content">
-                <div className="event-text">11/17/2021</div>
-                <div className="event-text">Tea Party with FeiFei</div>
-                <button className="join-button">SHOW</button>
-              </div>
-            </div>
+        {this.props.events ? (
+          <div className="img-background">
+            <Carousel autoplay dots="arb-carousel" afterChange={this.onChange}>
+              {contents}
+            </Carousel>
           </div>
-
-          <div className="event-container">
-            <div className="inner-container">
-              <img
-                className="img"
-                src="https://atb-photos.s3.amazonaws.com/green.jpeg"
-              />
-              <div className="event-content">
-                <div className="event-text">11/17/2021</div>
-                <div className="event-text">Walk Dogs with Snigdha</div>
-                <button className="join-button">SHOW</button>
-              </div>
-            </div>
-          </div>
-
-          <div className="event-container">
-            <div className="inner-container">
-              <img
-                className="img"
-                src="https://atb-photos.s3.amazonaws.com/sidewalk.jpeg"
-              />
-              <div className="event-content">
-                <div className="event-text">11/17/2021</div>
-                <div className="event-text">Anniversary with Emily</div>
-                <button className="join-button">SHOW</button>
-              </div>
-            </div>
-          </div>
-
-          <div className="event-container">
-            <div className="inner-container">
-              <img
-                className="img"
-                src="https://atb-photos.s3.amazonaws.com/painting.jpeg"
-              />
-              <div className="event-content">
-                <div className="event-text">11/17/2021</div>
-                <div className="event-text">Story Reading with Hien</div>
-                <button className="join-button">SHOW</button>
-              </div>
-            </div>
-          </div>
-          {/* 
-          <div className="event-container">
-            <div style={contentStyle}>
-              <img
-                style={imgSize}
-                src="https://atb-photos.s3.amazonaws.com/painting.jpeg"
-              />
-            </div>
-            <div>
-              <div className="event-time">11/18/2021</div>
-              <div className="event-title">Tea Party with Hien</div>
-            </div>
-            <button className="join-button">SHOW</button>
-          </div>
-
-          <div className="event-container">
-            <div style={contentStyle}>
-              <img
-                style={imgSize}
-                src="https://atb-photos.s3.amazonaws.com/green.jpeg"
-              />
-            </div>
-            <div>
-              <div className="event-time">11/19/2021</div>
-              <div className="event-title">Anniversary with Emily</div>
-            </div>
-            <button className="join-button">SHOW</button>
-          </div>
-
-          <div className="event-container">
-            <div style={contentStyle}>
-              <img
-                style={imgSize}
-                src="https://atb-photos.s3.amazonaws.com/aniversary.jpeg"
-              />
-            </div>
-            <div>
-              <div className="event-time">11/20/2021</div>
-              <div className="event-title">Concert with Feifei</div>
-            </div>
-            <button className="join-button">SHOW</button>
-          </div>
-
-          <div className="event-container">
-            <div style={contentStyle}>
-              <img
-                style={imgSize}
-                src="https://atb-photos.s3.amazonaws.com/comedy.jpeg"
-              />
-            </div>
-            <div>
-              <div className="event-time">11/21/2021</div>
-              <div className="event-title">Story Reading with Evan</div>
-            </div>
-            <button className="join-button">SHOW</button>
-          </div>
-
-          <div className="event-container">
-            <div style={contentStyle}>
-              <img
-                style={imgSize}
-                src="https://atb-photos.s3.amazonaws.com/plants.jpeg"
-              />
-            </div>
-            <div>
-              <div className="event-time">11/22/2021</div>
-              <div className="event-title">Plating with Taylor</div>
-            </div>
-            <button className="join-button">SHOW</button>
-          </div>
-
-          <div className="event-container">
-            <div style={contentStyle}>
-              <img
-                style={imgSize}
-                src="https://atb-photos.s3.amazonaws.com/galary.jpeg"
-              />
-            </div>
-            <div>
-              <div className="event-time">11/23/2021</div>
-              <div className="event-title">Galary Time with Kevin</div>
-            </div>
-            <button className="join-button">SHOW</button>
-          </div>
-
-          <div className="event-container">
-            <div style={contentStyle}>
-              <img
-                style={imgSize}
-                src="https://atb-photos.s3.amazonaws.com/dating.jpeg"
-              />
-            </div>
-            <div>
-              <div className="event-time">11/24/2021</div>
-              <div className="event-title">Meetup at Raz'</div>
-            </div>
-            <button className="join-button">SHOW</button>
-          </div>
-
-          <div className="event-container">
-            <div style={contentStyle}>
-              <img
-                style={imgSize}
-                src="https://atb-photos.s3.amazonaws.com/sidewalk.jpeg"
-              />
-            </div>
-            <div>
-              <div className="event-time">11/25/2021</div>
-              <div className="event-title">Fishing with Darren</div>
-            </div>
-            <button className="join-button">SHOW</button>
-          </div> */}
-        </Carousel>
+        ) : (
+          ""
+        )}
       </div>
     );}
     };

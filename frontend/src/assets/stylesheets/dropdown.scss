@@ -1,0 +1,56 @@
+.loggedin-drop-down {
+  position: relative;
+}
+.drop-down-profile {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 15px 10px 20px;
+  // justify-content: space-around;
+  transform-origin: right;
+  width: 300px;
+  height: 180px;
+  background: white;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  z-index: 5;
+  border-radius: 20px;
+  font-family: $Nunito;
+  // display: none;
+  .drop-down-list {
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    .drop {
+      color: black;
+       padding-right: 10px;
+    }
+    p {
+      font-size: 25px;
+      cursor: pointer;
+    }
+     .link {
+      text-decoration: none;
+      font-family: $Nunito;
+      font-size: 25px;
+      color: black;
+    }
+  }
+  .drop-down-item {
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+   
+    p {
+      font-size: 25px;
+      cursor: pointer;
+    }
+  }
+}
+.svg {
+      width: 40px;
+      height: 40px;
+      color: #f0e9d2;
+    }

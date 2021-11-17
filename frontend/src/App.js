@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import { AuthRoute } from "./util/route_util";
 import { Switch } from "react-router";
 // import MainPage from "./components/main/main_page";
@@ -15,9 +16,12 @@ import MainPageContainer from "./components/main/main_page_container";
 
 const App = () => (
   <div>
-    <NavBarContainer />
+    <header>
+    <Route path="/" component={NavBarContainer} />
+   </header>
     <Switch>
       <AuthRoute exact path="/" component={MainPageContainer} />
+      <AuthRoute exact path="/events" component={MainPageContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       {/* <AuthRoute exact path="/voice" component={Mic} /> */}

@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.handleRequest = this.handleRequest.bind(this)
-    this.submitFriendRequest = this.submitFriendRequest.bind(this)
-    this.state = {creatingFriendRequest: false,
-    name: "" }
+    this.state = {name: "" }
   }
   componentDidMount() {
     this.props.fetchEvents()
@@ -16,9 +13,6 @@ class UserProfile extends React.Component {
     this.props.fetchUsers()
   }
 
-  handleRequest(){
-    this.setState({creatingFriendRequest: true})
-  }
 
   update(field) {
     return (e) =>
@@ -27,13 +21,28 @@ class UserProfile extends React.Component {
       });
   }
 
+  
+
   submitFriendRequest(name){
-    const user = this.props.users.filter(userName => userName === name)
-    if (user) this.props.createFriendRequest(user._id)
+    // console.log(this.props.users)
+    return (e) => {e.preventDefault();
+    const user = this.props.users.filter(user => user.name === name)[0];
+    if (user) this.props.createFriendRequest({recipient: user._id})
+    }
+  }
+
+  handleApprove(invite){
+    this.props.updateFriend({status: "approved", requester: invite.requester})
+  }
+
+  handleReject(invite){
+    this.props.updateFriend({status: "denied", requester: invite.requester})
   }
 
   render() {
-    const { events, currentUser } = this.props;
+    console.log(this.props.invites)
+    const { events, currentUser, invites, users } = this.props;
+    if (!invites) {return null} 
     const myEvents = events.filter(
       (event) => event.hostId === currentUser.user.id
     );
@@ -55,14 +64,26 @@ class UserProfile extends React.Component {
         <Link className="btn" to="/events/create">
           Create Event
         </Link>
-        <button onClick={this.handleRequest()}>New Friend Request</button>
-        {this.state.creatingFriendRequest ?
-        <form onSubmit={this.submitFriendRequest(this.state.name)}>
+        
+        <h3>Friend Requests From</h3>
+        <ul>
+          {
+          Object.values(this.props.invites).map((invite) => 
+            <li>{Object.values(users).filter(user => user._id === invite.requester)[0].name}
+            <button onClick={this.handleApprove.bind(this, invite)}>Approve</button>
+            <button onClick={this.handleReject.bind(this, invite)}>Deny</button>
+            </li>
+          )}
+        </ul>
+
+
+        <h3>Send a friend request</h3>
+        <form onSubmit={this.submitFriendRequest.bind(this, this.state.name)}>
           <label>Name</label>
           <input type="text" onChange={this.update('name')}/>
+          <button type="submit">Submit</button>
         </form> 
         
-        : ""}
         {this.state.creatingFriendRequest = false}
         <div>{display}</div>
       </div>

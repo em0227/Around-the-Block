@@ -47,7 +47,7 @@ router.post(
         const newRequest = new FriendRequest({
           requester: req.user.id,
           recipient: req.body.recipient,
-          status
+          status: "pending"
         });
         newRequest
           .save()
@@ -64,8 +64,9 @@ router.patch(
   "/updateFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    debugger
     FriendRequest.findOneAndUpdate(
-      { recipient: req.user.id },
+      { recipient: req.user.id, requester: req.body.requester},
       { status: req.body.status },
       { new: true }
     ).then((record) => {

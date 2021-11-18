@@ -22,8 +22,8 @@ const updateAFriend = (record) => ({
     record
 })
 
-export const updateFriend = (status) => dispatch => (
-    FriendRequestAPIUtil.updateFriendRequest(status).then(
+export const updateFriend = (request) => dispatch => (
+    FriendRequestAPIUtil.updateFriendRequest(request).then(
         (record) => dispatch(updateAFriend(record.data)),
         (err) => dispatch(receiveFriendErrors(err.response.data))
     )

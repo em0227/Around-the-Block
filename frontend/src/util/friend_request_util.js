@@ -3,15 +3,15 @@ export const createFriendRequest = (friendId) => {
     return axios.post("/api/friend-requests/newFriendRequest", friendId)
 }
 
-export const updateFriendRequest = (requestId) => {
-    return axios.post("/api/friend-requests/updateFriendRequest", requestId)
+export const updateFriendRequest = (request) => {
+    return axios.patch("/api/friend-requests/updateFriendRequest", request)
 }
 
 export const receiveInvites = () => {
-    return axios.post("/api/friend-requests/friendinvites")
+    return axios.get("/api/friend-requests/friendinvites")
 }
 
 export const receiveRequests = () => {
-    return axios.post("/api/friend-requests")
+    return axios.get("/api/friend-requests/")
 }
 

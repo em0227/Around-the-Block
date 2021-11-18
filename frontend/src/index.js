@@ -6,7 +6,7 @@ import { setAuthToken } from "./util/session_api_util";
 import jwt_decode from "jwt-decode";
 import { logout } from "./actions/session_actions"
 import {fetchEvent, fetchEvents }from "./actions/event_actions"
-
+import {fetchUsers} from './actions/users_actions'
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.store = store;
   window.fetchEvent = fetchEvent;
   window.fetchEvents = fetchEvents;
+  window.fetchUsers = fetchUsers
 
 });
 

@@ -1,6 +1,6 @@
 import * as FriendRequestAPIUtil from "../util/friend_request_util";
 import jwt_decode from "jwt-decode";
-import { RECEIVE_REQUEST, UPDATE_FRIEND} from '../actions/event_actions';
+import { RECEIVE_REQUEST, RECEIVE_REQUESTS, UPDATE_FRIEND} from '../actions/event_actions';
 
 const FriendRequestReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -8,6 +8,8 @@ const FriendRequestReducer = (state = {}, action) => {
     switch (action.type) {
       case RECEIVE_REQUEST:
           nextState[action.request.id] = request
+      case RECEIVE_REQUESTS:
+            return action.requests
         default:
         return state;
     }

@@ -22,6 +22,8 @@ class MainPage extends React.Component {
   componentDidMount() {
     // console.log(this.props);
     this.props.fetchEvents();
+    this.props.receiveInvites(); 
+    this.props.fetchFriendRequests()
   }
 
   onChange(a, b, c) {

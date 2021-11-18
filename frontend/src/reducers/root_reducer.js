@@ -4,6 +4,7 @@ import sessionReducer from "./session_reducer";
 import errorsReducer from "./errors_reducer";
 import EventsReducer from "./event_reducer";
 import FriendRequestReducer from "./requests_reducer";
+import FriendInviteReducer from "./invites_reducer";
 
 
 const RootReducer = combineReducers({
@@ -11,7 +12,8 @@ const RootReducer = combineReducers({
   session: sessionReducer,
   errors: errorsReducer,
   events: EventsReducer,
-  requests: FriendRequestReducer
+  requests: FriendRequestReducer,
+  invites: FriendInviteReducer
 });
   
 export default RootReducer;

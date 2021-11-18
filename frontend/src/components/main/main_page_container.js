@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchEvents, fetchEvent } from '../../actions/event_actions';
+import { receiveInvites } from '../../actions/friend_invites_actions';
+import { fetchFriendRequests } from '../../actions/friend_request_actions';
 import MainPage from './main_page';
 
 const mapStateToProps = (state) => {
@@ -11,6 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     fetchEvents: () => dispatch(fetchEvents()),
+    receiveInvites: () => dispatch(receiveInvites()),
+    fetchFriendRequests: () => dispatch(fetchFriendRequests())
     // fetchEvent: (eventId) => dispatch(fetchEvent(eventId))
 
 });

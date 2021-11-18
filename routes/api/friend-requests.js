@@ -10,11 +10,22 @@ router.get("/test", (req, res) => {
 });
 
 router.get(
-  "/",
+  "/friendinvites",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     //only want to get the invites
     FriendRequest.find({ recipient: req.user.id })
+      .then((results) => res.json(results))
+      .catch((err) => res.json(err));
+  }
+);
+
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    //only want to get the invites
+    FriendRequest.find({ requester: req.user.id })
       .then((results) => res.json(results))
       .catch((err) => res.json(err));
   }

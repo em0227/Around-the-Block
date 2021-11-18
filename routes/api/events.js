@@ -63,10 +63,10 @@ router.patch("/:id", (req, res) => {
         { _id: req.params.id },
         {$set: {
             name: req.body.name,
-            lat: req.body.lat,
-            long: req.body.long, 
             description: req.body.description,
-            time: req.body.time,
+            location: req.body.location,
+            imageUrl: req.body.imageUrl,
+            time: req.body.time
 
         },
         $addToSet: {

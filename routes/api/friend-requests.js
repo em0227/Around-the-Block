@@ -10,7 +10,7 @@ router.get("/test", (req, res) => {
 });
 
 router.post(
-  "/",
+  "/newFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     errors = {};
@@ -35,7 +35,7 @@ router.post(
 );
 
 router.patch(
-  "/",
+  "/newFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     FriendRequest.findOneAndUpdate(

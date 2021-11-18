@@ -12,8 +12,8 @@ const mapStateToProps = (state) => ({
         date: new Date(),
         time
     },
-    
-    formType: "Create Event",
+    currentUser: state.session.user._id,
+    formType: "Create An Event",
 
 })
 

@@ -22,8 +22,8 @@ class EventShow extends React.Component {
                             <p>6pm Thur. 11/18/2021</p>
                             <br />
                         </div>
-                        <div className="event-title">Cooking Party with EVEN!</div>
-                        <div className="description">We are going to cook with GAS!</div>
+                        <div className="event-title">Cooking Party with EVAN!</div>
+                        <div className="description">We are going to cook with GASSS</div>
                         <Link className="join-button" to="/signup">JOIN!</Link>
                         </div>
                 </div>

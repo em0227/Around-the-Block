@@ -28,7 +28,7 @@ router.post("/newEvent", (req, res) => {
         return res.status(400).json(errors);
     }
     
-    Event.findOne({ name: req.body.name }).populate({path: 'hostId', model: 'Users', select: 'name email'}).then(event => {
+    Event.findOne({ name: req.body.name }).then(event => {
         if (event) {
             errors.name = "This event name has already been taken";
             return res.status(400).json(errors);
@@ -36,8 +36,7 @@ router.post("/newEvent", (req, res) => {
           const newEvent = new Event({
             name: req.body.name,
             description: req.body.description,
-            lat: req.body.lat,
-            long: req.body.long,
+            location: req.body.location,
             imageUrl: req.body.imageUrl,
             time: req.body.time
         })

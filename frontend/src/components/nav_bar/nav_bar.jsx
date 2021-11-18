@@ -2,11 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CgProfile, CgLogOut } from "react-icons/cg";
 import { AiOutlineSetting } from "react-icons/ai";
-import { BiDownArrow } from "react-icons/bi";
-import { MdFavoriteBorder } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { BsShop } from "react-icons/bs";
 import { GrNotes } from "react-icons/gr";
+import { RiBluetoothConnectLine } from "react-icons/ri";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -17,6 +15,7 @@ class NavBar extends React.Component {
 
     this.logoutUser = this.logoutUser.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.profileHandler = this.profileHandler.bind(this);
   }
 
   logoutUser(e) {
@@ -29,8 +28,27 @@ class NavBar extends React.Component {
     this.setState({ isDropdown: !this.state.isDropdown });
   }
   // Selectively render links dependent on whether the user is logged in
-
+  profileHandler(){
+    <Link to={"/profile"}></Link>
+  }
   render() {
+     const { events, currentUser } = this.props;
+    // const myrequests = requests.filter(
+    //   (request) => request.recepientId === currentUser.user.id
+    // );
+    // let display = myrequests.map((request, requestId) => (
+    //   <div key={requestId}>
+    //     <div>
+    //       <div>
+    //         <div>{request.requester}</div>
+    //         <div>
+      // <button>Accept</button>
+      // <button>Cancel</button>
+    //          </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // )
     const { isDropdown } = this.state;
     let dropdownMenu;
     if (isDropdown && this.props.loggedIn) {
@@ -43,8 +61,8 @@ class NavBar extends React.Component {
                 style={{ width: 45, height: 55 }}
               />
               <div className="drop-down-item">
-                <p> Hi there!</p>
-                <Link className="link" to={"/profile"}>
+                <p> Friend Request!</p>
+                <Link style={{textDecoration: "none", backgroundColor: "white"}} to={"/profile"}>
                   View Your Profile
                 </Link>
               </div>
@@ -74,25 +92,21 @@ class NavBar extends React.Component {
     const getLinks = this.props.loggedIn ? (
       <div className="logged-in">
         <div className="logged-in-profile-icon">
-          <MdFavoriteBorder className="svg" />
-          <IoMdNotificationsOutline className="svg" />
-          <div>
-            <CgProfile className="svg" />
-            <BiDownArrow
-              onClick={this.toggleDropdown}
-              style={{
-                position: "relative",
-                marginLeft: 0,
-                width: 20,
-                height: 20,
-                color: "#F0E9D2"
-              }}
-            />
-            <div>{dropdownMenu}</div>
-          </div>
+          <button className="btn" onClick={this.logoutUser}>
+            Logout
+          </button>
+          <IoMdNotificationsOutline
+            className="svg"
+            onClick={this.toggleDropdown}
+          />
+          <div>{dropdownMenu}</div>
+          <Link className="link" to={"/profile"}>
+            <CgProfile/>
+          </Link>
         </div>
       </div>
     ) : (
+      // </div>
       <div className="nav-bar-btn">
         <Link className="btn" to={"/signup"}>
           Signup
@@ -114,5 +128,6 @@ class NavBar extends React.Component {
     );
   }
 }
+
 
 export default NavBar;

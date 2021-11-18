@@ -15,16 +15,16 @@ import CreateEventContainer from "./components/profile/create_event"
 const App = () => (
   <div>
     <header>
-    <Route path="/" component={NavBarContainer} />
-   </header>
+      <Route path="/" component={NavBarContainer} />
+    </header>
     <Switch>
-      <AuthRoute exact path="/" component={MainPageContainer} />
       <Route exact path="/events" component={MainPageContainer} />
       <Route exact path="/events/create" component={CreateEventContainer} />
       <Route exact path="/profile" component={UserProfileContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
-      <AuthRoute exact path="/events/:eventId" component={EventShowContainer} />
+      <Route exact path="/events/:eventId" component={EventShowContainer} />
+      <Route exact path="/" component={MainPageContainer} />
     </Switch>
   </div>
 );

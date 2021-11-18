@@ -1,8 +1,8 @@
 import axios from "axios";
-export const createFriendRequest = (request) => {
-    return axios.post("/api/events/newEvent", event)
+export const createFriendRequest = (friendId) => {
+    return axios.post("/api/friend-requests/newFriendRequest", friendId)
 }
 
 export const updateFriendRequest = (requestId) => {
-    return axios.post("/api/events/newEvent", event)
+    return axios.post("/api/friend-requests/updateFriendRequest", requestId)
 }

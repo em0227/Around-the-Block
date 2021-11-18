@@ -22,6 +22,7 @@ router.post(
         const newRequest = new FriendRequest({
           requester: req.user.id,
           recipient: req.body.recipient,
+          status
         });
         newRequest
           .save()
@@ -35,7 +36,7 @@ router.post(
 );
 
 router.patch(
-  "/newFriendRequest",
+  "/updateFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     FriendRequest.findOneAndUpdate(
@@ -65,13 +66,13 @@ router.patch(
           },
           { new: true }
         )
-          .then((updatedUser) => res.json("Success"))
+          .then((updatedUser) => res.json(updatedUser))
           .catch((err) => res.json(err));
       } else {
         //delete this record
         FriendRequest.deleteOne({ _id: record.id })
           .then((res) => res.json("you are not friends anymore :("))
-          .catch((err) => console.log(err));
+          .catch((err) => res.json(err));
       }
     });
   }

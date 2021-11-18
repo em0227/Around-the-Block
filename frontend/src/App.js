@@ -8,6 +8,7 @@ import "antd/dist/antd.css";
 import "./assets/stylesheets/application.scss";
 import EventShowContainer from "./components/event/event_show_container";
 import MainPageContainer from "./components/main/main_page_container";
+import FutureEvent from "./components/user_profile/future_event"
 
 
 const App = () => (
@@ -18,6 +19,7 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <AuthRoute exact path="/events/:eventId" component={EventShowContainer} />
+      <AuthRoute exact path="/profile" component={FutureEvent} />
     </Switch>
   </div>
 );

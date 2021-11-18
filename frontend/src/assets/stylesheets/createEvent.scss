@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kaushan+Script&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pacifico&display=swap');
+$Courgette: "Courgette", cursive;
+$KaushanScript: "Kaushan Script", cursive;
+$Pacifico: "Pacifico", cursive;
+$Nunito: 'Nunito', sans-serif;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 40px;
+}
+
+.event-container {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg, #dfeeea, #a7c4bc, #89b5af);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $Nunito;
+
+  .event {
+    z-index: 1000;
+    border-radius: 20px;
+    background: white;
+    position: relative;
+    height: 80vh;
+    width: 820px;
+    box-shadow: 0px 0px 24px #5E8B7E;
+    .event__content {
+      height: 100vh;
+    }
+  }
+}
+.event__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+}
+
+
+.event-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  padding-left: 40px;
+  padding-top: 45px;
+
+}
+
+.input__field {
+  padding: 20px 0px;
+  position: relative;
+}
+
+
+.event__field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-bottom: 2px solid #d1d1d4;
+  background: none;
+  padding: 10px;
+  padding-left: 24px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  width: 80%;
+  transition: 0.2s;
+  background-color: transparent;
+  .input-holder {
+    z-index: 1000;
+    border: transparent;
+    width: 80%;
+    height: 30px;
+  }
+  .input-holder:focus {
+    outline: none;
+  }
+}
+.new {
+  margin-bottom: 0px;
+}
+.event__field:active,
+.event__field:focus,
+.event__field:hover {
+  outline: none;
+  border-bottom-color: #5E8B7E;
+}
+
+.event__submit {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #FF865E;
+  color: white;
+  font-size: 30px;
+  margin-top: 30px;
+  padding: 0 15px;
+  border-radius: 26px;
+  border: 1px solid #d4d3e8;
+  text-transform: uppercase;
+  font-weight: 700;
+  width: 70%;
+  height: 70px;
+  color: #4c489d;
+  box-shadow: 0px 2px 2px #5c5696;
+  cursor: pointer;
+  transition: 0.2s;
+  z-index: 10;
+}
+
+.event__submit:active,
+.event__submit:focus,
+.event__submit:hover {
+  border-color: #6a679e;
+  outline: none;
+}
+.button__text {
+  z-index: 10;
+}

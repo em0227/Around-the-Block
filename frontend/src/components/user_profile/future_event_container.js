@@ -23,6 +23,7 @@ const mapStateToProps = (state) => ({
   users: state.users,
   invites: state.invites,
   preJoinedEvent: state.ui.preJoinedEvent,
+  requests: state.requests,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -116,6 +116,31 @@ router.get(
   }
 );
 
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const filter = req.body.filter;
+    User.where("name")
+      .all(`${filter}`)
+      .then((users) => {
+        let filteredUser = [];
+        users.forEach((user) => {
+          filteredUser.push({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            eventsJoined: user.eventsJoined,
+            eventsHosted: user.eventsHosted,
+            friends: user.friends,
+          });
+        });
+        res.json(filteredUser);
+      })
+      .catch((err) => res.json(err));
+  }
+);
+
 //using req.user.id to ensure we are finding the user from the jwt token and even if the user change the id in the route, they won't be able to update info for someone else
 
 router.patch(
@@ -161,16 +186,26 @@ router.patch(
 //how to make these depedent destroy?
 
 router.patch(
-  "/:id/delete",
+  "/:id/unfriend",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    User.findOneAndUpdate(
+      { _id: req.body.friends },
+      {
+        $pull: {
+          friends: req.body.friends,
+        },
+      },
+      { new: true }
+    );
+
     User.findOneAndUpdate(
       { _id: req.user.id },
       {
         $pull: {
           friends: req.body.friends,
-          eventsJoined: req.body.eventsJoined,
-          eventsHosted: req.body.eventsHosted,
+          // eventsJoined: req.body.eventsJoined,
+          // eventsHosted: req.body.eventsHosted,
         },
       },
       { multi: true, new: true }

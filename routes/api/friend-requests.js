@@ -10,7 +10,7 @@ router.get("/test", (req, res) => {
 });
 
 router.get(
-  "/",
+  "/friendinvites",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     //only want to get the invites
@@ -20,8 +20,19 @@ router.get(
   }
 );
 
-router.post(
+router.get(
   "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    //only want to get the invites
+    FriendRequest.find({ requester: req.user.id })
+      .then((results) => res.json(results))
+      .catch((err) => res.json(err));
+  }
+);
+
+router.post(
+  "/newFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     errors = {};
@@ -36,6 +47,7 @@ router.post(
         const newRequest = new FriendRequest({
           requester: req.user.id,
           recipient: req.body.recipient,
+          status: "pending"
         });
         newRequest
           .save()
@@ -49,11 +61,12 @@ router.post(
 );
 
 router.patch(
-  "/",
+  "/updateFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    debugger
     FriendRequest.findOneAndUpdate(
-      { recipient: req.user.id },
+      { recipient: req.user.id, requester: req.body.requester},
       { status: req.body.status },
       { new: true }
     ).then((record) => {
@@ -79,13 +92,13 @@ router.patch(
           },
           { new: true }
         )
-          .then((updatedUser) => res.json("Success"))
+          .then((updatedUser) => res.json(updatedUser))
           .catch((err) => res.json(err));
       } else {
         //delete this record
         FriendRequest.deleteOne({ _id: record.id })
           .then((res) => res.json("you are not friends anymore :("))
-          .catch((err) => console.log(err));
+          .catch((err) => res.json(err));
       }
     });
   }

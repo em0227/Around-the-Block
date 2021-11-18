@@ -27,8 +27,10 @@ class UserProfile extends React.Component {
     ));
     return (
       <div>
-        <Link>Friend Request</Link>
-        <Link to="/events/create">Create Event</Link>
+        <Link className="btn">Friend Request</Link>
+        <Link className="btn" to="/events/create">
+          Create Event
+        </Link>
         <div>{display}</div>
       </div>
     );

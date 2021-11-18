@@ -225,4 +225,11 @@ router.patch(
   }
 );
 
+router.get("/allUsers", (req, res) => {
+  //events are being sent up as an array
+    User.find().then(users => {
+        res.send(users); 
+    }).catch(error => res.status(400).json({error: error}));
+});
+
 module.exports = router;

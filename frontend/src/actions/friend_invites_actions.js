@@ -1,29 +1,30 @@
-import * as FriendRequestAPIUtil from "../util/event_api_util";
+import * as FriendRequestAPIUtil from "../util/friend_request_util";
+import {receiveFriendErrors} from './friend_request_actions'
 export const RECEIVE_INVITES = "RECEIVE_INVITES";
 export const UPDATE_FRIEND = "UPDATE_FRIEND";
 
 
 
-const receiveInvites = (invites) => ({
+const getInvites = (invites) => ({
     type: RECEIVE_INVITES,
     invites
 })
 
 export const receiveInvites = () => dispatch => (
     FriendRequestAPIUtil.receiveInvites().then(
-        (invites) => dispatch(receiveInvites(invites.data)),
+        (invites) => dispatch(getInvites(invites.data)),
         (err) => dispatch(receiveFriendErrors(err.response.data))
     )
 )
 
-const updateFriend = (record) => ({
+const updateAFriend = (record) => ({
     type: UPDATE_FRIEND,
     record
 })
 
 export const updateFriend = (status) => dispatch => (
     FriendRequestAPIUtil.updateFriendRequest(status).then(
-        (record) => dispatch(updateFriend(record.data)),
+        (record) => dispatch(updateAFriend(record.data)),
         (err) => dispatch(receiveFriendErrors(err.response.data))
     )
 )

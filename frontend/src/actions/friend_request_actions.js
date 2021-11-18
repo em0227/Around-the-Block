@@ -1,4 +1,4 @@
-import * as FriendRequestAPIUtil from "../util/event_api_util";
+import * as FriendRequestAPIUtil from "../util/friend_request_util";
 export const RECEIVE_REQUEST = "RECEIVE_REQUEST";
 export const RECEIVE_REQUESTS = "RECEIVE_REQUESTS";
 export const RECEIVE_FRIEND_ERRORS = "RECEIVE_FRIEND_ERRORS";
@@ -16,8 +16,8 @@ const receiveRequests = (requests) => ({
 
 
 
-const receiveFriendErrors = (errors) => ({
-    type: RECEIVE_EVENT_ERRORS,
+export const receiveFriendErrors = (errors) => ({
+    type: RECEIVE_FRIEND_ERRORS,
     errors 
 })
 

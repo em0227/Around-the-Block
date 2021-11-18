@@ -9,7 +9,7 @@ class EventShow extends React.Component {
     this.props.fetchEvent(this.props.match.params.eventId);
   }
 
-  handleJoin(e) {
+  handleJoin() {
     this.props.updateCurrentUser({
       id: this.props.currentUser.id,
       eventsJoined: this.props.match.params.eventId,
@@ -18,6 +18,10 @@ class EventShow extends React.Component {
       id: this.props.match.params.eventId,
       guests: this.props.currentUser.id,
     });
+  }
+
+  handlePreJoin(e) {
+    this.props.joinPreJoinedEvent(this.props.match.params.eventId);
   }
 
   render() {
@@ -31,7 +35,11 @@ class EventShow extends React.Component {
         JOIN!
       </Link>
     ) : (
-      <Link className="join-button" to="/signup">
+      <Link
+        className="join-button"
+        to="/signup"
+        onClick={this.handlePreJoin.bind(this)}
+      >
         JOIN!
       </Link>
     );

@@ -21,6 +21,7 @@ class NavBar extends React.Component {
   logoutUser(e) {
     e.preventDefault();
     this.props.logout();
+    this.props.history.push("/");
   }
 
   toggleDropdown(e) {
@@ -28,11 +29,11 @@ class NavBar extends React.Component {
     this.setState({ isDropdown: !this.state.isDropdown });
   }
   // Selectively render links dependent on whether the user is logged in
-  profileHandler(){
-    <Link to={"/profile"}></Link>
+  profileHandler() {
+    <Link to="/profile"></Link>;
   }
   render() {
-     const { events, currentUser } = this.props;
+    const { events, currentUser } = this.props;
     // const myrequests = requests.filter(
     //   (request) => request.recepientId === currentUser.user.id
     // );
@@ -42,8 +43,8 @@ class NavBar extends React.Component {
     //       <div>
     //         <div>{request.requester}</div>
     //         <div>
-      // <button>Accept</button>
-      // <button>Cancel</button>
+    // <button>Accept</button>
+    // <button>Cancel</button>
     //          </div>
     //       </div>
     //     </div>
@@ -62,7 +63,10 @@ class NavBar extends React.Component {
               />
               <div className="drop-down-item">
                 <p> Friend Request!</p>
-                <Link style={{textDecoration: "none", backgroundColor: "white"}} to={"/profile"}>
+                <Link
+                  style={{ textDecoration: "none", backgroundColor: "white" }}
+                  to="/profile"
+                >
                   View Your Profile
                 </Link>
               </div>
@@ -72,11 +76,11 @@ class NavBar extends React.Component {
                 className="svg drop"
                 style={{ width: 50, height: 50 }}
               />
-              <Link className="link"> Settings </Link>
+              <div className="link"> Settings </div>
             </div>
             <div className="drop-down-list">
               <GrNotes className="svg drop" style={{ width: 45, height: 45 }} />
-              <Link className="link"> Feedback </Link>
+              <div className="link"> Feedback </div>
             </div>
             <div className="drop-down-list">
               <CgLogOut
@@ -100,18 +104,18 @@ class NavBar extends React.Component {
             onClick={this.toggleDropdown}
           />
           <div>{dropdownMenu}</div>
-          <Link className="link" to={"/profile"}>
-            <CgProfile/>
+          <Link className="link" to="/profile">
+            <CgProfile />
           </Link>
         </div>
       </div>
     ) : (
       // </div>
       <div className="nav-bar-btn">
-        <Link className="btn" to={"/signup"}>
+        <Link className="btn" to="/signup">
           Signup
         </Link>
-        <Link className="btn" to={"/login"}>
+        <Link className="btn" to="/login">
           Login
         </Link>
       </div>
@@ -128,6 +132,5 @@ class NavBar extends React.Component {
     );
   }
 }
-
 
 export default NavBar;

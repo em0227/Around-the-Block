@@ -1,4 +1,4 @@
-import { RECEIVE_INVITES} from '../actions/friend_invites_actions';
+import { RECEIVE_INVITES, UPDATE_FRIEND} from '../actions/friend_invites_actions';
 
 const FriendInviteReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -6,6 +6,8 @@ const FriendInviteReducer = (state = {}, action) => {
     switch (action.type) {
       case RECEIVE_INVITES:
           return action.invites
+      case UPDATE_FRIEND:
+            return nextState[action.record._id] = action.record
         default:
         return state;
     }

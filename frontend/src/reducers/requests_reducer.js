@@ -7,7 +7,7 @@ const FriendRequestReducer = (state = {}, action) => {
     let nextState = Object.assign({}, state);
     switch (action.type) {
       case RECEIVE_REQUEST:
-          nextState[action.request.id] = request
+          nextState[action.request._id] = request
       case RECEIVE_REQUESTS:
             return action.requests
         default:

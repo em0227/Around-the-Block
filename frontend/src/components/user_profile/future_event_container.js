@@ -14,6 +14,7 @@ const mapStateToProps = (state) => ({
   currentUser: state.session,
   users: state.users,
   invites: state.invites,
+  requests: state.requests
 
 });
 

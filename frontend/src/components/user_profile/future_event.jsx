@@ -7,10 +7,13 @@ class FutureEvent extends React.Component {
     this.state = {name: "" }
   }
   componentDidMount() {
+    
     this.props.fetchEvents();
     this.props.receiveInvites(); 
+    
     this.props.fetchFriendRequests();
     this.props.fetchUsers()
+    
   }
 
   update(field) {
@@ -123,7 +126,7 @@ class FutureEvent extends React.Component {
                   <ul>
                     {
                     Object.values(this.props.invites).map((invite) => 
-                      <li>{Object.values(users).filter(user => user._id === invite.requester[0]).name}
+                      <li>{Object.values(users).filter(user => user._id === invite.requester)[0].name}
                       <button onClick={this.handleApprove.bind(this, invite)}>Approve</button>
                       <button onClick={this.handleReject.bind(this, invite)}>Deny</button>
                       </li>

@@ -1,12 +1,12 @@
 import * as FriendRequestAPIUtil from "../util/event_api_util";
-export const RECEIVE_FRIEND = "RECEIVE_FRIEND";
+export const RECEIVE_REQUEST = "RECEIVE_REQUEST";
 export const UPDATE_FRIEND = "UPDATE_FRIEND";
 export const RECEIVE_FRIEND_ERRORS = "RECEIVE_FRIEND_ERRORS";
 
 
-const receiveFriend = (friend) => ({
-    type: RECEIVE_FRIEND,
-    friend
+const receiveRequest = (request) => ({
+    type: RECEIVE_REQUEST,
+    request
 })
 
 const updateFriend = (friend) => ({
@@ -22,7 +22,7 @@ const receiveFriendErrors = (errors) => ({
 
 export const createFriendRequest = (friendId) => dispatch => (
     FriendRequestAPIUtil.createFriendRequest(friendId).then(
-        (friend) => dispatch(receiveFriend(friend.data)),
+        (request) => dispatch(receiveRequest(request.data)),
         (err) => dispatch(receiveFriendErrors(err.response.data))
     )
 )

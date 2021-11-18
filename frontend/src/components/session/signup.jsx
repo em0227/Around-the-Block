@@ -131,7 +131,7 @@ class SignupForm extends React.Component {
       // confirmPassword: this.state.confirmPassword,
     };
 
-    this.props.signup(user, this.props.history);
+    this.props.signup(user);
   }
 
   renderErrors() {

@@ -5,6 +5,7 @@ import { AiOutlineSetting } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GrNotes } from "react-icons/gr";
 import { RiBluetoothConnectLine } from "react-icons/ri";
+import CreateEventForm from "../user_profile/create_event"
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -14,8 +15,6 @@ class NavBar extends React.Component {
     };
 
     this.logoutUser = this.logoutUser.bind(this);
-    // this.toggleDropdown = this.toggleDropdown.bind(this);
-    // this.profileHandler = this.profileHandler.bind(this);
   }
 
   logoutUser(e) {
@@ -94,17 +93,26 @@ class NavBar extends React.Component {
     const getLinks = this.props.loggedIn ? (
       <div className="logged-in">
         <div className="logged-in-profile-icon">
-          <button className="btn" onClick={this.logoutUser}>
-            Logout
-          </button>
-          {/* <button className="btn" onClick={this.logoutUser}>
-            CREATE EVENT
-          </button> */}
-          <IoMdNotificationsOutline className="svg" />
+        
+            <button className="btn" onClick={this.logoutUser}>
+              Log out
+            </button>
+         
+
+        
+            <Link className="btn" style={{width: 300, height: 30}} to="/events/create">
+              Create
+            </Link>
+
+        
+            <IoMdNotificationsOutline className="svg" />
+         
+        
+            <Link className="link svg" to="/profile">
+              <CgProfile />
+            </Link>
+
           {/* <div>{dropdownMenu}</div> */}
-          <Link className="link" to="/profile">
-            <CgProfile />
-          </Link>
         </div>
       </div>
     ) : (

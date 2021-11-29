@@ -65,7 +65,7 @@ router.post(
             )
 
             User.findOneAndUpdate(
-              { _id: newRequest.requester },
+              { _id: newRequest.recipient },
               {
                 $addToSet: {
                   requestsReceived: newRequest.id

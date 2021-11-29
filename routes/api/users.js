@@ -115,6 +115,8 @@ router.get(
       eventsJoined: req.user.eventsJoined,
       eventsHosted: req.user.eventsHosted,
       friends: req.user.friends,
+      requestsSent: req.user.requestsSent,
+      requestsReceived: req.user.requestsReceived
     });
   }
 );

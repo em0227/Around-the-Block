@@ -150,10 +150,12 @@ router.patch(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateUserUpdate(req.body);
+    if (req.body.email) {
+      const { errors, isValid } = validateUserUpdate(req.body);
 
-    if (!isValid) {
-      return res.status(400).json(errors);
+      if (!isValid) {
+        return res.status(400).json(errors);
+      }
     }
 
     User.findOneAndUpdate(
@@ -229,10 +231,11 @@ router.patch(
 );
 
 router.get("/allUsers", (req, res) => {
-  
-    User.find().then(users => {
-        res.send(users); 
-    }).catch(error => res.status(400).json({error: error}));
+  User.find()
+    .then((users) => {
+      res.send(users);
+    })
+    .catch((error) => res.status(400).json({ error: error }));
 });
 
 module.exports = router;

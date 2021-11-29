@@ -35,7 +35,7 @@ router.post(
   "/newFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    debugger
+    // debugger
     errors = {};
     FriendRequest.findOne({
       requester: req.user.id,
@@ -65,7 +65,7 @@ router.patch(
   "/updateFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    debugger
+    // debugger
     FriendRequest.findOneAndUpdate(
       { recipient: req.user.id, requester: req.body.requester},
       { status: req.body.status },

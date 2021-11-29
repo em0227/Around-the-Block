@@ -90,34 +90,53 @@ class NavBar extends React.Component {
     //     </div>
     //   );
     // }
+    // const getLinks = this.props.loggedIn ? (
+    //   <div className="logged-in">
+    //     <div className="logged-in-profile-icon">
+    //       <Link
+    //         className="btn"
+    //         style={{ width: 230, height: 40 }}
+    //         to="/events/create"
+    //       >
+    //         Create Event
+    //       </Link>
+    //       <button
+    //         className="btn"
+    //         style={{ width: 200, height: 40 }}
+    //         onClick={this.logoutUser}
+    //       >
+    //         Log out
+    //       </button>
+    //       <div style={{ width: 80, height: 40 }}>
+    //         <IoMdNotificationsOutline
+    //           style={{ width: 40, height: 40, paddingLeft: "40px" }}
+    //         />
+    //       </div>
+
+    //       <Link className="link svg" to="/profile">
+    //         <CgProfile />
+    //       </Link>
+
+    //       {/* <div>{dropdownMenu}</div> */}
+    //     </div>
+    //   </div>
     const getLinks = this.props.loggedIn ? (
       <div className="logged-in">
         <div className="logged-in-profile-icon">
-          <Link
-            className="btn"
-            style={{ width: 230, height: 40 }}
-            to="/events/create"
-          >
+          <button className="btn" onClick={this.logoutUser}>
+            Logout
+          </button>
+          <Link className="btn nav-button" to="/events/create">
             Create Event
           </Link>
-          <button
-            className="btn"
-            style={{ width: 200, height: 40 }}
-            onClick={this.logoutUser}
-          >
-            Log out
-          </button>
-          <div style={{ width: 80, height: 40 }}>
-            <IoMdNotificationsOutline
-              style={{ width: 40, height: 40, paddingLeft: "40px" }}
-            />
-          </div>
-
-          <Link className="link svg" to="/profile">
+          <IoMdNotificationsOutline
+            style={{ width: 40, height: 40, color: "#40AAFF" }}
+            // onClick={this.toggleDropdown}
+          />
+          {/* <div>{dropdownMenu}</div> */}
+          <Link className="link" to="/profile">
             <CgProfile />
           </Link>
-
-          {/* <div>{dropdownMenu}</div> */}
         </div>
       </div>
     ) : (

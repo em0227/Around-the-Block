@@ -15,11 +15,15 @@ const removeEvent = () => ({
     type: REMOVE_EVENT
 })
 const receiveEventErrors = (errors) => ({
-    type: RECEIVE_EVENT_ERRORS
+    type: RECEIVE_EVENT_ERRORS,
+    errors
 })
-export const createEvent = (event) => dispatch => (
+export const createEvent = (event, history) => dispatch => (
     EventAPIUtil.createEvent(event).then(
-        (event) => dispatch(receiveEvent(event.data)),
+        (event) => {
+            dispatch(receiveEvent(event.data))
+            history && history.push("/") //history.push("/") if history exist
+        },
         (err) => dispatch(receiveEventErrors(err.response.data))
     )
 )

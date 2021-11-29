@@ -90,7 +90,6 @@ class LoginForm extends React.Component {
       if (this.state.isListening) {
         mic.start();
       } else {
-        console.log("Mic stop");
         mic.stop();
       }
     });

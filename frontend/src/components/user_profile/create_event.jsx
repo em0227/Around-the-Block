@@ -8,8 +8,7 @@ class CreateEventForm extends React.Component {
     this.state = {
       name: "",
       description: "",
-      lat: "",
-      long: "",
+      locaton: "",
       imageUrl: "",
       time: "",
     };
@@ -43,8 +42,7 @@ class CreateEventForm extends React.Component {
     let event = {
       name: this.state.name,
       description: this.state.description,
-      lat: this.state.lat,
-      long: this.state.long,
+      location: this.state.location,
       imageUrl: this.state.imageUrl,
       time: this.state.time,
     };
@@ -77,7 +75,7 @@ class CreateEventForm extends React.Component {
                   type="text"
                   value={this.state.name}
                   onChange={this.update("name")}
-                  placeholder="Type..."
+                  placeholder="Event title..."
                 />
               </div>
               <div className="event__field">
@@ -102,20 +100,12 @@ class CreateEventForm extends React.Component {
                 <input
                   className="input-holder"
                   type="text"
-                  value={this.state.lat}
-                  onChange={this.update("lat")}
-                  placeholder="Your latitude..."
+                  value={this.state.location}
+                  onChange={this.update("location")}
+                  placeholder="Your location..."
                 />
               </div>
-              <div className="event__field">
-                <input
-                  className="input-holder"
-                  type="text"
-                  value={this.state.long}
-                  onChange={this.update("long")}
-                  placeholder="Your longtitude..."
-                />
-              </div>
+        
               <div className="event__field">
                 <input
                   className="input-holder"

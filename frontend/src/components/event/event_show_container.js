@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => ({
   isAuthenticated: state.session.isAuthenticated,
   currentUser: state.session.user,
   preJoinedEvent: state.ui.preJoinedEvent,
-  
+
+  // users: state.users
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
   updateCurrentUser: (data) => dispatch(updateCurrentUser(data)),
   updateEvent: (event) => dispatch(updateEvent(event)),
   joinPreJoinedEvent: (eventId) => dispatch(joinPreJoinedEvent(eventId)),
+
+  // fetchUsers: () => dispatch(fetchUsers())
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventShow);

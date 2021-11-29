@@ -53,7 +53,27 @@ router.post(
         newRequest
           .save()
           .then((request) => {
-            res.json(request);
+            res.json(request)
+            User.findOneAndUpdate(
+              { _id: newRequest.requester },
+              {
+                $addToSet: {
+                  requestsSent: newRequest.id
+                },
+              },
+              { new: true }
+            )
+
+            User.findOneAndUpdate(
+              { _id: newRequest.requester },
+              {
+                $addToSet: {
+                  requestsReceived: newRequest.id
+                },
+              },
+              { new: true }
+            )
+            
           })
           .catch((err) => res.json(err));
       }

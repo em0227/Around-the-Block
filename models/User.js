@@ -34,6 +34,18 @@ const UserSchema = new Schema(
         ref: "users",
       },
     ],
+    requestsReceived: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "requests"
+      }
+    ],
+    requestsSent: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "requests"
+      }
+    ]
   },
   {
     timestamps: true,

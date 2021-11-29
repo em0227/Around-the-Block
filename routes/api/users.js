@@ -136,6 +136,8 @@ router.get(
             eventsJoined: user.eventsJoined,
             eventsHosted: user.eventsHosted,
             friends: user.friends,
+            requestsReceived: user.requestsReceived,
+            requestsSent: user.requestsSent
           });
         });
         res.json(filteredUser);

@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GrFormNextLink } from "react-icons/gr";
-import { HiOutlineClipboardList } from "react-icons/hi";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;

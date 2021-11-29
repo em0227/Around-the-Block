@@ -7,6 +7,7 @@ class EventShow extends React.Component {
   }
   componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId);
+    this.props.fetchUsers()
   }
 
   handleJoin() {
@@ -43,6 +44,12 @@ class EventShow extends React.Component {
         JOIN!
       </Link>
     );
+
+    const guestsId = this.props.event.guests
+    const users = this.props.users
+    const user = users.filter( user => guestsId.includes(user._id))
+
+
     return (
       <div className="event-show-page">
         <div className="event-show-content">
@@ -58,7 +65,7 @@ class EventShow extends React.Component {
             </div>
             <div className="event-title">{this.props.event.name}</div>
             <div className="description">{this.props.event.description}</div>
-            {/* <div className="guests">{this.props.event.guests}</div> */}
+            <div className="guests">{user.name}</div>
             {joinButton}
           </div>
         </div>

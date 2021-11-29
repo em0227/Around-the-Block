@@ -43,11 +43,6 @@ class LoginForm extends React.Component {
   }
 
   handleListen() {
-    //
-    mic.onstart = () => {
-      console.log("Mics on");
-    };
-
     mic.onresult = (event) => {
       const transcript = Array.from(event.results)
         .map((result) => result[0])
@@ -57,17 +52,18 @@ class LoginForm extends React.Component {
 
       if (transcript.includes("submit")) {
         const email = this.state.email.replaceAll(" ", "");
+        const password = this.state.password.replace(" submit", "");
         const user = {
           email,
-          password: this.state.password,
+          password,
         };
-        //for now will submit signup twice, could use debounce to solve this
+
         this.props.login(user);
         mic.stop();
       } else if (transcript.includes("password")) {
         const last = transcript.indexOf("word is");
         let realTranscript = transcript.slice(last + 8);
-        realTranscript = realTranscript.replace("please subm", "");
+        realTranscript = realTranscript.replace(" submit", "");
         this.setState({ password: realTranscript });
       } else if (transcript.includes("email")) {
         const last = transcript.indexOf("email is");

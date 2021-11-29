@@ -93,24 +93,29 @@ class NavBar extends React.Component {
     const getLinks = this.props.loggedIn ? (
       <div className="logged-in">
         <div className="logged-in-profile-icon">
-        
-            <button className="btn" onClick={this.logoutUser}>
-              Log out
-            </button>
-         
+          <Link
+            className="btn"
+            style={{ width: 230, height: 40 }}
+            to="/events/create"
+          >
+            Create Event
+          </Link>
+          <button
+            className="btn"
+            style={{ width: 200, height: 40 }}
+            onClick={this.logoutUser}
+          >
+            Log out
+          </button>
+          <div style={{ width: 80, height: 40 }}>
+            <IoMdNotificationsOutline
+              style={{ width: 40, height: 40, paddingLeft: "40px" }}
+            />
+          </div>
 
-        
-            <Link className="btn" style={{width: 300, height: 30}} to="/events/create">
-              Create
-            </Link>
-
-        
-            <IoMdNotificationsOutline className="svg" />
-         
-        
-            <Link className="link svg" to="/profile">
-              <CgProfile />
-            </Link>
+          <Link className="link svg" to="/profile">
+            <CgProfile />
+          </Link>
 
           {/* <div>{dropdownMenu}</div> */}
         </div>

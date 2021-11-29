@@ -41,6 +41,8 @@ class LoginForm extends React.Component {
     this.setState({ errors: nextProps.errors });
   }
 
+  
+
   handleListen() {
     mic.onresult = (event) => {
       const transcript = Array.from(event.results)
@@ -115,6 +117,7 @@ class LoginForm extends React.Component {
     this.props.login(user);
   }
 
+  
   // Render the session errors if there are any
   renderErrors() {
     return (

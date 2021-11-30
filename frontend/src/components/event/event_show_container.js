@@ -10,7 +10,6 @@ const mapStateToProps = (state, ownProps) => ({
   )[0],
   isAuthenticated: state.session.isAuthenticated,
   currentUser: state.session.user,
-  preJoinedEvent: state.ui.preJoinedEvent,
 });
 
 const mapDispatchToProps = (dispatch) => ({

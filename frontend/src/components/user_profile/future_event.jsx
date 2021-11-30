@@ -10,35 +10,16 @@ class FutureEvent extends React.Component {
     this.props.receiveInvites();
     this.props.fetchFriendRequests();
     this.props.fetchUsers();
-    // if (this.props.preJoinedEvent !== "") {
-    //   this.props.updateCurrentUser({
-    //     id: this.props.currentUser.id,
-    //     eventsJoined: this.props.preJoinedEvent,
-    //   });
-    //   this.props.updateEvent({
-    //     id: this.props.preJoinedEvent,
-    //     guests: this.props.currentUser.id,
-    //   });
-    // }
-  }
-
-  componentDidUpdate() {
-    // if (
-    //   this.props.preJoinedEvent !== "" &&
-    //   !this.props.currentUser.eventsJoined.includes(this.props.preJoinedEvent)
-    // ) {
-    //   this.props.updateCurrentUser({
-    //     id: this.props.currentUser.id,
-    //     eventsJoined: this.props.preJoinedEvent,
-    //   });
-    //   this.props.updateEvent({
-    //     id: this.props.preJoinedEvent,
-    //     guests: this.props.currentUser.id,
-    //   });
-    // }
-    // this.props.receiveInvites();
-    // this.props.fetchFriendRequests();
-    // this.props.fetchUsers()
+    if (this.props.preJoinedEvent !== "") {
+      this.props.updateCurrentUser({
+        id: this.props.currentUser.user.id,
+        eventsJoined: this.props.preJoinedEvent,
+      });
+      this.props.updateEvent({
+        id: this.props.preJoinedEvent,
+        guests: this.props.currentUser.user.id,
+      });
+    }
   }
 
   update(field) {

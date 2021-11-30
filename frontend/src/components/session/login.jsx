@@ -123,7 +123,7 @@ class LoginForm extends React.Component {
         email: "feifei.erhu@gmail.com",
         password: "password",
       })
-      .then(() => this.props.history.push("/"));
+      .then(() => this.props.history.push("/profile"));
   }
 
   // Render the session errors if there are any

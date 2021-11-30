@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId);
@@ -23,6 +25,11 @@ class EventShow extends React.Component {
 
   handlePreJoin(e) {
     this.props.joinPreJoinedEvent(this.props.match.params.eventId);
+  }
+
+  handleClick(){
+    console.log(this.props.event.guests.slice(5))
+
   }
 
   render() {
@@ -45,9 +52,10 @@ class EventShow extends React.Component {
       </Link>
     );
 
-    const guestsId = this.props.event.guests
-    const users = this.props.users
-    const user = users.filter( user => guestsId.includes(user._id))
+    // const guestsId = this.props.event.guests
+    // const users = this.props.users
+    // const user = users.filter( user => guestsId.includes(user._id))
+    const guests = this.props.event.guests
 
 
     return (
@@ -65,7 +73,10 @@ class EventShow extends React.Component {
             </div>
             <div className="event-title">{this.props.event.name}</div>
             <div className="description">{this.props.event.description}</div>
-            <div className="guests">{user.name}</div>
+            {/* <div className="guests">{guests.slice(0, 5)}</div> */}
+            <div className="guests">{guests.slice(0, 5)} 
+            <button className="read-more-button" onClick={this.handleClick}>Read More...</button>
+            </div>
             {joinButton}
           </div>
         </div>

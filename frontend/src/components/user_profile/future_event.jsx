@@ -24,7 +24,6 @@ class FutureEvent extends React.Component {
     }
   }
 
-  // timerId not in state
 
   update(field) {
     return (e) =>{

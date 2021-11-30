@@ -24,6 +24,15 @@ class FutureEvent extends React.Component {
     }
   }
 
+  debounce(){
+    const {name} = this.state
+    console.log(name)
+    const {fetchFilteredUsers} = this.props
+    clearTimeout(this.timerId)
+   this.timerId = setTimeout(() => fetchFilteredUsers(name), 200)
+    
+  }
+
 
   update(field) {
     return (e) =>{

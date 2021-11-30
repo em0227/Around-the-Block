@@ -46,22 +46,28 @@ class CreateEventForm extends React.Component {
       imageUrl: this.state.imageUrl,
       time: this.state.time,
     };
-
+  
     this.props.createEvent(event, this.props.history);
+    //   this.props.updateCurrentUser({
+    //   id: this.props.currentUser.id,
+      // eventsJoined: this.props.match.params.eventId,
+    // });
   }
 
   // Render the session errors if there are any
-  renderErrors() {
-    return (
-      <ul>
-        {Object.keys(this.state.errors || {}).map((error, i) => (
-          <li style={{ marginBottom: 10 }} key={`error-${i}`}>
-            {this.state.errors[error]}
+  // renderErrors() {
+    //  console.log("this.prop.errors", this.props.errors);
+    // return (
+    //   <div>
+        /* {Object.values(this.props.errors || {}).map((error, i) => (
+          <li style={{ marginBottom: 10 }} key={i}>
+            {this.props.errors[error]}
           </li>
-        ))}
-      </ul>
+         ))} */
+        /* {Object.values(this.props.errors)}
+      </div>
     );
-  }
+  } */
 
   render() {
     return (
@@ -119,16 +125,16 @@ class CreateEventForm extends React.Component {
                 <span className="button__text">CREATE EVENT</span>
               </button>
               <br />
-              {this.renderErrors()}
+              {/* {this.renderErrors()} */}
             </form>
           </div>
         </div>
       </div>
     );
   }
+
+
 }
-
-
 
 
 export default CreateEventForm;

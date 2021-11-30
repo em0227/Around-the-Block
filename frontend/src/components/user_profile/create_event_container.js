@@ -5,7 +5,7 @@ import { createEvent } from "../../actions/event_actions";
 import CreateEventForm from "./create_event";
 
 const mapStateToProps = (state) => ({
-  errors: state.errors.session,
+  errors: state.errors.events.message,
 });
 
 const mapDispatchToProps = () => (dispatch) => ({

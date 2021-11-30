@@ -3,7 +3,7 @@ import {
   fetchCurrentUser,
   updateCurrentUser,
 } from "../../actions/users_actions";
-import { fetchEvents, updateEvent } from "../../actions/event_actions";
+import { fetchEvents, updateEvent, deleteEvent } from "../../actions/event_actions";
 import {
   receiveInvites,
   updateFriend,
@@ -13,6 +13,7 @@ import {
   createFriendRequest,
 } from "../../actions/friend_request_actions";
 import { fetchUsers } from "../../actions/users_actions";
+
 
 import FutureEvent from "./future_event";
 

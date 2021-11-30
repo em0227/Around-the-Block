@@ -1,9 +1,10 @@
 import React from "react";
-
+import CreateEventForm from "./create_event"
 class FutureEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = { name: "" };
+    this.handleOpenForm = this.handleOpenForm.bind(this);
   }
   componentDidMount() {
     this.props.fetchEvents();
@@ -61,6 +62,10 @@ class FutureEvent extends React.Component {
       requester: invite.requester,
     });
   }
+  handleOpenForm(event) {
+    // this.props.updateEvent(event);
+
+  }
 
   handleReject(invite) {
     this.props.updateFriend({ status: "denied", requester: invite.requester });
@@ -93,6 +98,22 @@ class FutureEvent extends React.Component {
                 <div className="p-event-desc">
                   <div className="p-e-d">{event.description}</div>
                 </div>
+                <div className="p-event-desc">
+                  <button
+                    className="p-e-d"
+                    onClick={() => this.handleOpenForm(event)}
+                  >
+                    update
+                  </button>
+                </div>
+                <div className="p-event-desc">
+                  <button
+                    className="p-e-d"
+                    onClick={() => this.props.deleteEvent(eventId)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -119,6 +140,17 @@ class FutureEvent extends React.Component {
                   <div className="p-event-desc">
                     <div className="p-e-d">{event.description}</div>
                   </div>
+                  <div className="p-event-desc">
+                    <button className="p-e-d" onClick={() => this.handleOpenForm(event)}>update</button>
+                  </div>
+                  <div className="p-event-desc">
+                    <button
+                      className="p-e-d"
+                      onClick={() => this.props.deleteEvent(joinedId)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -128,6 +160,7 @@ class FutureEvent extends React.Component {
     });
     return (
       <div>
+        {/* <Modalabc event={event}/> */}
         <div className="p-event-container-title">
           UPCOMING EVENTS
           {displayMyJoinedEvents}

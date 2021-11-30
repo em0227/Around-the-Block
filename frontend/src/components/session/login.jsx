@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GrFormNextLink } from "react-icons/gr";
-import { HiOutlineClipboardList } from "react-icons/hi";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -42,12 +41,9 @@ class LoginForm extends React.Component {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleListen() {
-    //
-    mic.onstart = () => {
-      console.log("Mics on");
-    };
+  
 
+  handleListen() {
     mic.onresult = (event) => {
       const transcript = Array.from(event.results)
         .map((result) => result[0])
@@ -57,17 +53,18 @@ class LoginForm extends React.Component {
 
       if (transcript.includes("submit")) {
         const email = this.state.email.replaceAll(" ", "");
+        const password = this.state.password.replace(" submit", "");
         const user = {
           email,
-          password: this.state.password,
+          password,
         };
-        //for now will submit signup twice, could use debounce to solve this
+
         this.props.login(user);
         mic.stop();
       } else if (transcript.includes("password")) {
         const last = transcript.indexOf("word is");
         let realTranscript = transcript.slice(last + 8);
-        realTranscript = realTranscript.replace("please subm", "");
+        realTranscript = realTranscript.replace(" submit", "");
         this.setState({ password: realTranscript });
       } else if (transcript.includes("email")) {
         const last = transcript.indexOf("email is");
@@ -95,7 +92,6 @@ class LoginForm extends React.Component {
       if (this.state.isListening) {
         mic.start();
       } else {
-        console.log("Mic stop");
         mic.stop();
       }
     });
@@ -121,6 +117,7 @@ class LoginForm extends React.Component {
     this.props.login(user);
   }
 
+  
   // Render the session errors if there are any
   renderErrors() {
     return (

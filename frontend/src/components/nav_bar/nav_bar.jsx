@@ -5,6 +5,7 @@ import { AiOutlineSetting } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GrNotes } from "react-icons/gr";
 import { RiBluetoothConnectLine } from "react-icons/ri";
+import CreateEventForm from "../user_profile/create_event"
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -14,8 +15,6 @@ class NavBar extends React.Component {
     };
 
     this.logoutUser = this.logoutUser.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.profileHandler = this.profileHandler.bind(this);
   }
 
   logoutUser(e) {
@@ -24,14 +23,12 @@ class NavBar extends React.Component {
     this.props.history.push("/");
   }
 
-  toggleDropdown(e) {
-    e.stopPropagation();
-    this.setState({ isDropdown: !this.state.isDropdown });
-  }
+  // toggleDropdown(e) {
+  //   e.stopPropagation();
+  //   this.setState({ isDropdown: !this.state.isDropdown });
+  // }
   // Selectively render links dependent on whether the user is logged in
-  profileHandler() {
-    <Link to="/profile"></Link>;
-  }
+ 
   render() {
     const { events, currentUser } = this.props;
     // const myrequests = requests.filter(
@@ -50,60 +47,93 @@ class NavBar extends React.Component {
     //     </div>
     //   </div>
     // )
-    const { isDropdown } = this.state;
-    let dropdownMenu;
-    if (isDropdown && this.props.loggedIn) {
-      dropdownMenu = (
-        <div className="loggedin-drop-down">
-          <div className="drop-down-profile">
-            <div className="drop-down-list">
-              <CgProfile
-                className="svg drop"
-                style={{ width: 45, height: 55 }}
-              />
-              <div className="drop-down-item">
-                <p> Friend Request!</p>
-                <Link
-                  style={{ textDecoration: "none", backgroundColor: "white" }}
-                  to="/profile"
-                >
-                  View Your Profile
-                </Link>
-              </div>
-            </div>
-            <div className="drop-down-list">
-              <AiOutlineSetting
-                className="svg drop"
-                style={{ width: 50, height: 50 }}
-              />
-              <div className="link"> Settings </div>
-            </div>
-            <div className="drop-down-list">
-              <GrNotes className="svg drop" style={{ width: 45, height: 45 }} />
-              <div className="link"> Feedback </div>
-            </div>
-            <div className="drop-down-list">
-              <CgLogOut
-                className="svg drop"
-                style={{ width: 45, height: 45 }}
-              />
-              <p onClick={this.logoutUser}>Logout</p>
-            </div>
-          </div>
-        </div>
-      );
-    }
+    // const { isDropdown } = this.state;
+    // let dropdownMenu;
+    // if (isDropdown && this.props.loggedIn) {
+    //   dropdownMenu = (
+    //     <div className="loggedin-drop-down">
+    //       <div className="drop-down-profile">
+    //         <div className="drop-down-list">
+    //           <CgProfile
+    //             className="svg drop"
+    //             style={{ width: 45, height: 55 }}
+    //           />
+    //           <div className="drop-down-item">
+    //             <p> Friend Request!</p>
+    //             <Link
+    //               style={{ textDecoration: "none", backgroundColor: "white" }}
+    //               to="/profile"
+    //             >
+    //               View Your Profile
+    //             </Link>
+    //           </div>
+    //         </div>
+    //         <div className="drop-down-list">
+    //           <AiOutlineSetting
+    //             className="svg drop"
+    //             style={{ width: 50, height: 50 }}
+    //           />
+    //           <div className="link"> Settings </div>
+    //         </div>
+    //         <div className="drop-down-list">
+    //           <GrNotes className="svg drop" style={{ width: 45, height: 45 }} />
+    //           <div className="link"> Feedback </div>
+    //         </div>
+    //         <div className="drop-down-list">
+    //           <CgLogOut
+    //             className="svg drop"
+    //             style={{ width: 45, height: 45 }}
+    //           />
+    //           <p onClick={this.logoutUser}>Logout</p>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    // }
+    // const getLinks = this.props.loggedIn ? (
+    //   <div className="logged-in">
+    //     <div className="logged-in-profile-icon">
+    //       <Link
+    //         className="btn"
+    //         style={{ width: 230, height: 40 }}
+    //         to="/events/create"
+    //       >
+    //         Create Event
+    //       </Link>
+    //       <button
+    //         className="btn"
+    //         style={{ width: 200, height: 40 }}
+    //         onClick={this.logoutUser}
+    //       >
+    //         Log out
+    //       </button>
+    //       <div style={{ width: 80, height: 40 }}>
+    //         <IoMdNotificationsOutline
+    //           style={{ width: 40, height: 40, paddingLeft: "40px" }}
+    //         />
+    //       </div>
+
+    //       <Link className="link svg" to="/profile">
+    //         <CgProfile />
+    //       </Link>
+
+    //       {/* <div>{dropdownMenu}</div> */}
+    //     </div>
+    //   </div>
     const getLinks = this.props.loggedIn ? (
       <div className="logged-in">
         <div className="logged-in-profile-icon">
           <button className="btn" onClick={this.logoutUser}>
             Logout
           </button>
+          <Link className="btn nav-button" to="/events/create">
+            Create Event
+          </Link>
           <IoMdNotificationsOutline
-            className="svg"
-            onClick={this.toggleDropdown}
+            style={{ width: 40, height: 40, color: "#40AAFF" }}
+            // onClick={this.toggleDropdown}
           />
-          <div>{dropdownMenu}</div>
+          {/* <div>{dropdownMenu}</div> */}
           <Link className="link" to="/profile">
             <CgProfile />
           </Link>

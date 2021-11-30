@@ -20,14 +20,15 @@ class SignupForm extends React.Component {
       email: "",
       name: "",
       password: "",
-      // confirmPassword: "",
       errors: {},
       isListening: false,
+      timerId: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setIsListening = this.setIsListening.bind(this);
     this.handleListen = this.handleListen.bind(this);
+    this.debounce = this.debounce.bind(this);
     // this.clearedErrors = false;
   }
 
@@ -43,12 +44,20 @@ class SignupForm extends React.Component {
     this.setState({ errors: nextProps.errors });
   }
 
-  handleListen() {
-    //
-    mic.onstart = () => {
-      console.log("Mics on");
-    };
+  debounce(user) {
+    // debugger;
+    clearTimeout(this.state.timerId);
 
+    const timerId = setTimeout(() => {
+      // debugger;
+      this.props.signup(user, this.props.history);
+      mic.stop();
+    }, 100);
+
+    this.setState({ timerId });
+  }
+
+  handleListen() {
     mic.onresult = (event) => {
       const transcript = Array.from(event.results)
         .map((result) => result[0])
@@ -58,18 +67,18 @@ class SignupForm extends React.Component {
 
       if (transcript.includes("submit")) {
         const email = this.state.email.replaceAll(" ", "");
+        const password = this.state.password.replace("submit", "");
         const user = {
           email,
           name: this.state.name,
-          password: this.state.password,
+          password,
         };
+
+        this.debounce(user);
         //for now will submit signup twice, could use debounce to solve this
-        this.props.signup(user, this.props.history);
-        mic.stop();
       } else if (transcript.includes("password")) {
         const last = transcript.indexOf("word is");
         let realTranscript = transcript.slice(last + 8);
-        realTranscript = realTranscript.replace("please subm", "");
         this.setState({ password: realTranscript });
       } else if (transcript.includes("email")) {
         const last = transcript.indexOf("email is");
@@ -89,10 +98,6 @@ class SignupForm extends React.Component {
         realTranscript = realTranscript.replace("my name is ", "");
         realTranscript = realTranscript.replace("my email", "");
         realTranscript = realTranscript.replace("Mayim", "");
-        // console.log("transcript");
-        // console.log(transcript);
-        // console.log("real transcript");
-        // console.log(realTranscript);
         this.setState({ name: realTranscript });
       }
 
@@ -103,12 +108,10 @@ class SignupForm extends React.Component {
   }
 
   setIsListening(e) {
-    // e.preventDefault();
     this.setState({ isListening: !this.state.isListening }, () => {
       if (this.state.isListening) {
         mic.start();
       } else {
-        console.log("Mic stop");
         mic.stop();
       }
     });
@@ -128,7 +131,6 @@ class SignupForm extends React.Component {
       email: this.state.email,
       name: this.state.name,
       password: this.state.password,
-      // confirmPassword: this.state.confirmPassword,
     };
 
     this.props.signup(user);

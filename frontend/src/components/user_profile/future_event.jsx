@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class FutureEvent extends React.Component {
   constructor(props) {
@@ -110,12 +111,12 @@ class FutureEvent extends React.Component {
     return (
       <div>
         <div className="p-event-container-title">
-          UPCOMING EVENTS
+          <Link to="/">UPCOMING EVENTS</Link>
           {displayMyJoinedEvents}
         </div>
 
         <div className="p-event-container-title">
-          HOST EVENTS
+          <Link to="/events/create">HOST EVENTS</Link>
           {displayMyEvents}
         </div>
 

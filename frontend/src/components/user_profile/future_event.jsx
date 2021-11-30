@@ -70,6 +70,10 @@ class FutureEvent extends React.Component {
     this.props.updateFriend({ status: "denied", requester: invite.requester });
   }
 
+  populateSearchBar(name){
+    this.setState({name: name})
+  }
+
   render() {
 
     const { events, currentUser, invites, users } = this.props;
@@ -161,7 +165,24 @@ class FutureEvent extends React.Component {
             <h3>Send a friend request</h3>
                 <form onSubmit={this.submitFriendRequest.bind(this, this.state.name)}>
                   <label>Name</label>
-                  <input type="text" onChange={this.update('name')}/>
+                  <div>
+                  <input placeholder="Enter Name" type="text" onChange={this.update('name')}/>
+                  
+
+                  {Object.values(users)
+                  .filter((user) => {
+                  if (this.state.name = ""){
+                    return user 
+                  }
+                  else if (user.name.toLowerCase().includes(this.state.name.toLowerCase()))
+                  {
+                    return user; 
+                  }
+                  }).map((user) => {
+                    <div onClick={this.populateSearchBar.bind(this, user.name)}>{user.name}</div>})}
+
+
+                  </div>
                   <button type="submit">Submit</button>
                 </form> 
                 

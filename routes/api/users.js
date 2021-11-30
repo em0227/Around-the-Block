@@ -232,6 +232,34 @@ router.patch(
   }
 );
 
+router.get(
+  "/getFilteredUsers",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const filter = req.body.filter;
+    User.where("name")
+      .find({ $text: {$search: filter} }, {name: 1} )
+      .then((users) => {
+        let filteredUser = [];
+        users.forEach((user) => {
+          filteredUser.push({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            eventsJoined: user.eventsJoined,
+            eventsHosted: user.eventsHosted,
+            friends: user.friends,
+            requestsSent: user.requestsSent,
+            requestsReceived: user.requestsReceived
+          });
+        });
+        res.json(filteredUser);
+      })
+      .catch((err) => res.json(err));
+  }
+);
+
+
 router.get("/allUsers", (req, res) => {
   
     User.find().then(users => {

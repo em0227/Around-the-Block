@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./util/route_util";
 import { Switch } from "react-router";
 import NavBarContainer from "./components/nav_bar/nav_bar_container";
+import SecondNavBar from "./components/nav_bar/second_nav_bar";
 import LoginFormContainer from "./components/session/login_form_container";
 import SignupFormContainer from "./components/session/signup_form_container";
 import "antd/dist/antd.css";
@@ -18,10 +19,15 @@ const App = () => (
   <div>
     <header>
       <Route path="/" component={NavBarContainer} />
+      <Route path="/" component={SecondNavBar} />
     </header>
     <Switch>
       <Route exact path="/events" component={MainPageContainer} />
-      <ProtectedRoute exact path="/events/create" component={CreateEventContainer}/>
+      <ProtectedRoute
+        exact
+        path="/events/create"
+        component={CreateEventContainer}
+      />
       {/* <Route exact path="/profile" component={UserProfileContainer} /> */}
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />

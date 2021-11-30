@@ -69,11 +69,16 @@ class EventShow extends React.Component {
     return (
       <div className="event-show-page">
         <div className="event-show-content">
-          <img
-            className="show-img"
-            src="https://atb-photos.s3.amazonaws.com/profile1.png"
-            alt="event"
-          />
+
+          {/* <div className="img-and-button"> */}
+            <img
+              className="show-img"
+              src="https://atb-photos.s3.amazonaws.com/profile1.png"
+              alt="event"
+            />
+            {/* <div>{joinButton} </div>
+          </div> */}
+
           <div className="event-show-detials">
             <div className="event-details">
               <p>{this.props.event.time}</p>
@@ -81,8 +86,15 @@ class EventShow extends React.Component {
             </div>
             <div className="event-title">{this.props.event.name}</div>
             <div className="description">{this.props.event.description}</div>
-            <div className="description"> <span className="event-guests">Guests: </span>{guests.map(guest => (" " + guest + " ,  "))}<span className="event-guests" onClick={() => this.handleClick()}>Read More...</span></div>
-           
+            <div className="description">
+              <span className="event-guests">Guests: </span>
+              {guests.map((guest) => (
+                <li style={{ listStyleType: "none" }}>{guest}</li>
+              ))}
+            </div>
+
+            {/* <div className="description"> <span className="event-guests">Guests: </span>{firstGuests.map(guest => ({guest} + ",  ")) }<span className="event-guests" onClick={() => this.handleClick()}>Read More...</span></div> */}
+
             {joinButton}
           </div>
         </div>

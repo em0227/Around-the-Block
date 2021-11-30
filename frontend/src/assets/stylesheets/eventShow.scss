@@ -16,6 +16,11 @@
     align-items: center;
     // justify-content: space-between;
 }
+.img-and-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .event-show-details{
     margin-right: 100px;
 }

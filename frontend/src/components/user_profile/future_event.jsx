@@ -1,9 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
-=======
 import debounce from 'lodash.debounce';
->>>>>>> 63bf2ef495274ae53c377861feb29a8454df8bc8
 
 class FutureEvent extends React.Component {
   constructor(props) {

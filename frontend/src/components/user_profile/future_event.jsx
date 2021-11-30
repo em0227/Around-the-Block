@@ -69,12 +69,16 @@ class FutureEvent extends React.Component {
   }
 
   changeSearchBar(user){
+   
     if (this.state.name !== user.name) {
+      console.log("changing state name")
       this.setState({name: user.name, user: user})
     }
     else {
+      console.log("clearing state name")
       this.setState({name: "", user: {}})
     }
+    
     
   }
   

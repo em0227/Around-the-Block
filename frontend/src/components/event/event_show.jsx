@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleClick = this.handleClick.bind(this)
+    // this.toggleIsTruncated = this.toggleIsTruncated.bind(this)
+    //  const guests = this.props.event.guests;
+    //  const [isTruncated, setIsTruncated] = useState(true);
+    //  const resultString = isTruncated ? guests.slice(0, 3) : guests;
   }
+  
   componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId);
     this.props.fetchUsers()
@@ -28,10 +32,14 @@ class EventShow extends React.Component {
   }
 
   handleClick(){
-    console.log(this.props.event.guests.slice(5))
+    this.props.event.guests()
 
   }
 
+  // toggleIsTruncated() {
+  //   setIsTruncated(!isTruncated);
+  // }
+  
   render() {
     if (!this.props.event) return null;
     const joinButton = this.props.isAuthenticated ? (
@@ -52,11 +60,11 @@ class EventShow extends React.Component {
       </Link>
     );
 
-    // const guestsId = this.props.event.guests
-    // const users = this.props.users
-    // const user = users.filter( user => guestsId.includes(user._id))
     const guests = this.props.event.guests
-
+    const firstGuests = guests.slice(0, 3)
+    // const [isTruncated, setIsTruncated] = useState(true)
+    // const resultString = isTruncated ? firstGuests : guests;
+  
 
     return (
       <div className="event-show-page">
@@ -73,10 +81,8 @@ class EventShow extends React.Component {
             </div>
             <div className="event-title">{this.props.event.name}</div>
             <div className="description">{this.props.event.description}</div>
-            {/* <div className="guests">{guests.slice(0, 5)}</div> */}
-            <div className="guests">{guests.slice(0, 5)} 
-            <button className="read-more-button" onClick={this.handleClick}>Read More...</button>
-            </div>
+            <div className="description"> <span className="event-guests">Guests: </span>{guests.map(guest => (" " + guest + " ,  "))}<span className="event-guests" onClick={() => this.handleClick()}>Read More...</span></div>
+           
             {joinButton}
           </div>
         </div>

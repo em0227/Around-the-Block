@@ -2,7 +2,8 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { GrFormNextLink } from "react-icons/gr";
+import { GrFormNextLink} from "react-icons/gr";
+
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -26,6 +27,7 @@ class LoginForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
     this.handleListen = this.handleListen.bind(this);
+    this.loginDemo = this.loginDemo.bind(this);
   }
 
   componentDidMount() {
@@ -40,8 +42,6 @@ class LoginForm extends React.Component {
     // Set or clear errors
     this.setState({ errors: nextProps.errors });
   }
-
-  
 
   handleListen() {
     mic.onresult = (event) => {
@@ -117,7 +117,15 @@ class LoginForm extends React.Component {
     this.props.login(user);
   }
 
-  
+  loginDemo() {
+    this.props
+      .login({
+        email: "feifei.erhu@gmail.com",
+        password: "password",
+      })
+      .then(() => this.props.history.push("/profile"));
+  }
+
   // Render the session errors if there are any
   renderErrors() {
     return (
@@ -176,6 +184,13 @@ class LoginForm extends React.Component {
               <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>
               </div>
+
+              <button className="button form__submit" type="submit" onClick={this.loginDemo}>
+                <span className="button__text">Demo User</span>
+                <i>
+                  <GrFormNextLink />
+                </i>
+              </button>
             </form>
           </div>
         </div>

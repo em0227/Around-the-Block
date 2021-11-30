@@ -58,6 +58,7 @@ class EventShow extends React.Component {
             </div>
             <div className="event-title">{this.props.event.name}</div>
             <div className="description">{this.props.event.description}</div>
+            {/* <div className="guests">{this.props.event.guests}</div> */}
             {joinButton}
           </div>
         </div>

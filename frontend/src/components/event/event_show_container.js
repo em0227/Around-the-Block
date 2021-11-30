@@ -7,9 +7,12 @@ import { joinPreJoinedEvent } from "../../actions/ui_actions";
 const mapStateToProps = (state, ownProps) => ({
   event: Object.values(state.events).filter(
     (event) => event._id === ownProps.match.params.eventId
-  )[0],
+  )[0], 
   isAuthenticated: state.session.isAuthenticated,
   currentUser: state.session.user,
+  preJoinedEvent: state.ui.preJoinedEvent,
+
+  // users: state.users
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -17,6 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
   updateCurrentUser: (data) => dispatch(updateCurrentUser(data)),
   updateEvent: (event) => dispatch(updateEvent(event)),
   joinPreJoinedEvent: (eventId) => dispatch(joinPreJoinedEvent(eventId)),
+
+  // fetchUsers: () => dispatch(fetchUsers())
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventShow);

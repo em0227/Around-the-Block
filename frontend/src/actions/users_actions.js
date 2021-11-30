@@ -4,6 +4,8 @@ import * as SessionAPIUtil from "../util/session_api_util";
 
 export const RECEIVE_USER_ERROR = "RECEIVE_USER_ERROR";
 export const RECEIVE_USERS = "RECEIVE_USERS";
+export const RECEIVE_FILTERED_USERS = "RECEIVE_FILTERED_USERS";
+
 
 export const receiveUserErrors = (errors) => ({
   type: RECEIVE_USER_ERROR,
@@ -12,6 +14,11 @@ export const receiveUserErrors = (errors) => ({
 
 export const receiveUsers = (users) => ({
   type: RECEIVE_USERS,
+  users
+});
+
+export const receiveFilteredUsers = (users) => ({
+  type: RECEIVE_FILTERED_USERS,
   users
 });
 
@@ -32,3 +39,11 @@ export const fetchUsers = () => dispatch => (
         (users) => dispatch(receiveUsers(users.data))
     )
 )
+
+export const fetchFilteredUsers = (name) => dispatch => (
+  UserAPIUtil.getFilteredUsers(name).then(
+      (users) => dispatch(receiveFilteredUsers(users.data)))
+  )
+
+
+

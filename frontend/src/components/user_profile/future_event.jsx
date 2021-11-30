@@ -1,16 +1,18 @@
 import React from "react";
+import debounce from 'lodash.debounce';
 
 class FutureEvent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "" };
+    this.state = {name: "", user: {}}
+    this.timerId = 0
   }
   componentDidMount() {
     
     this.props.fetchEvents();
     this.props.receiveInvites();
     this.props.fetchFriendRequests();
-    this.props.fetchUsers();
+    // this.props.fetchUsers();
     // if (this.props.preJoinedEvent !== "") {
     //   this.props.updateCurrentUser({
     //     id: this.props.currentUser.id,
@@ -37,25 +39,40 @@ class FutureEvent extends React.Component {
     //     guests: this.props.currentUser.id,
     //   });
     // }
-    this.props.receiveInvites(); 
+    // this.props.receiveInvites(); 
     
-    this.props.fetchFriendRequests();
-    this.props.fetchUsers()
+    // this.props.fetchFriendRequests();
+    // this.props.fetchUsers()
     
   }
+
+  debounce(){
+    const {name} = this.state
+    console.log(name)
+    const {fetchFilteredUsers} = this.props
+    clearTimeout(this.timerId)
+   this.timerId = setTimeout(() => fetchFilteredUsers(name), 200)
+    
+  }
+
+  // timerId not in state
 
   update(field) {
-    return (e) =>
+    return (e) =>{
       this.setState({
         [field]: e.currentTarget.value,
-      });
+      }, () => this.debounce())
+    }
   }
 
-  submitFriendRequest(name) {
+
+  submitFriendRequest() {
     // return (e) => {e.preventDefault();
     
-    const user = this.props.users.filter(user => user.name === name)[0];
-    if (user) this.props.createFriendRequest({recipient: user._id})
+    // const user = this.props.users.filter(user => user.name === name)[0];
+    // if (user) 
+    // if (Object.values(this.props.filters).filter(user => user.name)
+    this.props.createFriendRequest(this.state.user)
     
   }
 
@@ -70,13 +87,20 @@ class FutureEvent extends React.Component {
     this.props.updateFriend({ status: "denied", requester: invite.requester });
   }
 
-  populateSearchBar(name){
-    this.setState({name: name})
+  changeSearchBar(user){
+    if (this.state.name !== user.name) {
+      this.setState({name: user.name, user: user})
+    }
+    else {
+      this.setState({name: "", user: {}})
+    }
+    
   }
+  
 
   render() {
 
-    const { events, currentUser, invites, users } = this.props;
+    const { events, currentUser, invites, users, filters } = this.props;
     const myEvents = events.filter(
       (event) => event.hostId === currentUser.user.id
     );
@@ -163,13 +187,19 @@ class FutureEvent extends React.Component {
                     )}
                   </ul>
             <h3>Send a friend request</h3>
-                <form onSubmit={this.submitFriendRequest.bind(this, this.state.name)}>
+                <form onSubmit={this.submitFriendRequest.bind(this)}>
                   <label>Name</label>
                   <div>
-                  <input placeholder="Enter Name" type="text" onChange={this.update('name')}/>
+                  <input value={this.state.name} placeholder="Enter Name" type="text" onChange={this.update('name')}/>
                   
+                  {Object.values(filters).length > 0  ? filters.map(user =>
+                    <div onClick={this.changeSearchBar.bind(this, user)}>
+                    <p>{user.name}</p>
+                    <p>{user.email}</p>
+                    </div>
+                  ) : ""}
 
-                  {Object.values(users)
+                  {/* {Object.values(users)
                   .filter((user) => {
                   if (this.state.name = ""){
                     return user 
@@ -179,7 +209,7 @@ class FutureEvent extends React.Component {
                     return user; 
                   }
                   }).map((user) => {
-                    <div onClick={this.populateSearchBar.bind(this, user.name)}>{user.name}</div>})}
+                    <div onClick={this.populateSearchBar.bind(this, user.name)}>{user.name}</div>})} */}
 
 
                   </div>

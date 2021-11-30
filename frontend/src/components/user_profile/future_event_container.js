@@ -13,7 +13,7 @@ import {
   createFriendRequest,
 } from "../../actions/friend_request_actions";
 import { fetchUsers } from "../../actions/users_actions";
-
+import { fetchFilteredUsers } from "../../actions/users_actions";
 import FutureEvent from "./future_event";
 
 const mapStateToProps = (state) => ({
@@ -24,6 +24,7 @@ const mapStateToProps = (state) => ({
   invites: state.invites,
   preJoinedEvent: state.ui.preJoinedEvent,
   requests: state.requests,
+  filters: state.filters
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -36,6 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => dispatch(fetchUsers()),
   updateCurrentUser: (data) => dispatch(updateCurrentUser(data)),
   updateEvent: (event) => dispatch(updateEvent(event)),
+  fetchFilteredUsers: (filter) => dispatch(fetchFilteredUsers(filter))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FutureEvent);

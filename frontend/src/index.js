@@ -6,7 +6,7 @@ import { setAuthToken } from "./util/session_api_util";
 import jwt_decode from "jwt-decode";
 import { logout } from "./actions/session_actions";
 import { fetchEvent, fetchEvents } from "./actions/event_actions";
-import { fetchCurrentUser, updateCurrentUser } from "./actions/users_actions";
+import { fetchCurrentUser, fetchFilteredUsers, updateCurrentUser } from "./actions/users_actions";
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -44,4 +44,5 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchEvents = fetchEvents;
   window.fetchCurrentUser = fetchCurrentUser;
   window.updateCurrentUser = updateCurrentUser;
+  window.fetchFilteredUsers = fetchFilteredUsers;
 });

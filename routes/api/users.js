@@ -233,12 +233,11 @@ router.patch(
 );
 
 router.get(
-  "/getFilteredUsers",
+  "/getFilteredUsers/:filter",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const filter = req.body.filter;
-    User.where("name")
-      .find({ $text: {$search: filter} }, {name: 1} )
+    const filter = req.params.filter
+    User.find({"name": {$regex : `${filter}`, $options: "i"} })
       .then((users) => {
         let filteredUser = [];
         users.forEach((user) => {

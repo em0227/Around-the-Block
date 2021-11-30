@@ -8,6 +8,6 @@ export const updateCurrentUser = (userData) => {
   return axios.patch(`/api/users/${userData.userId}`, userData);
 };
 
-export const getFilteredUsers = (userName) => {
-  return axios.get("/api/users/getFilteredUsers")
+export const getFilteredUsers = (name) => {
+  return axios.get(`/api/users/getFilteredUsers/${name}`)
 }

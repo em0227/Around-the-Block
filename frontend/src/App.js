@@ -21,11 +21,7 @@ const App = () => (
     </header>
     <Switch>
       <Route exact path="/events" component={MainPageContainer} />
-      <ProtectedRoute
-        exact
-        path="/events/create"
-        component={CreateEventContainer}
-      />
+      <ProtectedRoute exact path="/events/create" component={CreateEventContainer}/>
       {/* <Route exact path="/profile" component={UserProfileContainer} /> */}
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />

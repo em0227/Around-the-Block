@@ -1,0 +1,95 @@
+.footer {
+    flex-direction: column;
+    background-color: #316B83;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 40vh;
+    padding-top: 30px;
+    .web-footer {
+      display: flex;
+      justify-content: space-around;
+      color: white;
+      width: 100%;
+      margin-right: 20px;
+      .footer-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        h2 {
+          font-weight: 700;
+          padding-bottom: 10px;
+        }
+        a {
+          color: white;
+          text-decoration: none;
+          line-height: 1.5;
+          font-weight: 200;
+          font-size: 12px;
+        }
+      }
+    }
+    .social-media-footer {
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+      .social-media-container {
+        display: flex;
+        justify-content: center;
+        .contact-icon {
+          width: 70px;
+          height: 50px;
+          padding-right: 20px;
+        }
+        .contact-icon:hover{
+          transform: scale(1.05);
+        }
+      }
+    }
+    .footer-img{
+        border-radius: 100%;
+        width: 110px;
+        height: 110px;
+        margin-left: 15px;
+        transition: all 0.2s ease-in-out;
+    }
+    .footer-img:hover{
+      transform: scale(1.15);
+    }
+    .footer-member{
+    
+        display: flex;
+        justify-content: space-around;
+        margin-top: 40px;
+        .member{
+            align-items: center;
+            width: 150px;
+        }
+    .footer-link{
+        display: flex;
+        // margin-left: 20px;
+        margin-top: 20px;
+        justify-content: space-between;
+        a {
+          color: powderblue;
+          text-decoration: none;
+          line-height: 1.5;
+          font-weight: 150;
+          font-size: 18px;
+        }
+        a:hover{
+          color: white;
+        }
+    }
+    }
+    p{
+      text-align: center;
+      padding-top: 20px;
+      font-size: 16px;
+      color: powderblue;
+    }
+    p:hover{
+      color: orchid;
+    }
+  }

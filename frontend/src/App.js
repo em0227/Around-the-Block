@@ -12,7 +12,7 @@ import EventShowContainer from "./components/event/event_show_container";
 import MainPageContainer from "./components/main/main_page_container";
 import FutureEventContainer from "./components/user_profile/future_event_container";
 
-// import UserProfileContainer from "./components/profile/user_profile_container"
+import Footer from "./components/footer";
 import CreateEventContainer from "./components/user_profile/create_event_container";
 
 const App = () => (
@@ -40,6 +40,7 @@ const App = () => (
       <Route exact path="/events/:eventId" component={EventShowContainer} />
       <Route exact path="/" component={MainPageContainer} />
     </Switch>
+    <Footer className="footer" />
   </div>
 );
 

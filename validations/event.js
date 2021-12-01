@@ -2,13 +2,18 @@ const Validator = require('validator');
 const validText = require('./valid-text');
 
 module.exports = function validateEventInput(data) {
+  console.log("data", data);
+  if(!data){
+    errors.all = "Can't leave it blank"
+  }
     let errors = {};
   
     data.name = validText(data.name) ? data.name : '';
     data.description = validText(data.description) ? data.description : '';
   
-    
+    console.log("before validator", data.name)
     if (Validator.isEmpty(data.name)) {
+      console.log("after validator",data.name);
       errors.name = 'Name is required';
     }
   
@@ -27,7 +32,8 @@ module.exports = function validateEventInput(data) {
     // if (!Validator.isFloat(data.long)) {
     //     errors.description = 'Coordinates are not valid';
     // }
-  
+  console.log("errors", errors)
+  console.log("isValid", Object.keys(errors).length === 0);
     return {
       errors,
       isValid: Object.keys(errors).length === 0
@@ -53,17 +59,17 @@ module.exports = function validateEventUpdate(data) {
         }
     }
    
-    if (data.lat){
-        if (!Validator.isFloat(data.lat)) {
-            errors.description = 'Coordinates are not valid';
-        }
-    }
+    // if (data.lat){
+    //     if (!Validator.isFloat(data.lat)) {
+    //         errors.description = 'Coordinates are not valid';
+    //     }
+    // }
     
-    if (data.long){
-        if (!Validator.isFloat(data.long)) {
-            errors.description = 'Coordinates are not valid';
-        }
-    }
+    // if (data.long){
+    //     if (!Validator.isFloat(data.long)) {
+    //         errors.description = 'Coordinates are not valid';
+    //     }
+    // }
   
     return {
       errors,

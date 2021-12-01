@@ -7,6 +7,7 @@ class FutureEvent extends React.Component {
     super(props);
     this.state = {name: "", user: {}}
     this.timerId = 0
+    this.handleOpenForm = this.handleOpenForm.bind(this);
   }
   componentDidMount() {
     this.props.fetchEvents();
@@ -23,6 +24,7 @@ class FutureEvent extends React.Component {
         guests: this.props.currentUser.user.id,
       });
     }
+    
   }
 
   debounce(){
@@ -44,6 +46,7 @@ class FutureEvent extends React.Component {
   }
 
 
+
   submitFriendRequest() {
     // return (e) => {e.preventDefault();
     
@@ -59,6 +62,10 @@ class FutureEvent extends React.Component {
       status: "approved",
       requester: invite.requester,
     });
+  }
+  handleOpenForm(event) {
+    // this.props.updateEvent(event);
+
   }
 
   handleReject(invite) {
@@ -105,6 +112,22 @@ class FutureEvent extends React.Component {
                 <div className="p-event-desc">
                   <div className="p-e-d">{event.description}</div>
                 </div>
+                <div className="p-event-desc">
+                  <button
+                    className="p-e-d"
+                    onClick={() => this.handleOpenForm(event)}
+                  >
+                    update
+                  </button>
+                </div>
+                <div className="p-event-desc">
+                  <button
+                    className="p-e-d"
+                    onClick={() => this.props.deleteEvent(eventId)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -130,6 +153,17 @@ class FutureEvent extends React.Component {
                   </div>
                   <div className="p-event-desc">
                     <div className="p-e-d">{event.description}</div>
+                  </div>
+                  <div className="p-event-desc">
+                    <button className="p-e-d" onClick={() => this.handleOpenForm(event)}>update</button>
+                  </div>
+                  <div className="p-event-desc">
+                    <button
+                      className="p-e-d"
+                      onClick={() => this.props.deleteEvent(joinedId)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               </div>
@@ -227,7 +261,7 @@ class FutureEvent extends React.Component {
                 className="p-e-i"
                 src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
               />
-              <img
+              <img 
                 className="p-e-i"
                 src="https://atb-photos.s3.amazonaws.com/hien.png"
               />

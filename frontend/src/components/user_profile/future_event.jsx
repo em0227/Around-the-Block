@@ -113,12 +113,9 @@ class FutureEvent extends React.Component {
                   <div className="p-e-d">{event.description}</div>
                 </div>
                 <div className="p-event-desc">
-                  <button
-                    className="p-e-d"
-                    onClick={() => this.handleOpenForm(event)}
-                  >
-                    update
-                  </button>
+                  <Link className="p-e-d" to={`/events/update/${event._id}`}>
+                    Update
+                  </Link>
                 </div>
                 <div className="p-event-desc">
                   <button

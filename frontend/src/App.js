@@ -14,6 +14,7 @@ import FutureEventContainer from "./components/user_profile/future_event_contain
 
 import Footer from "./components/footer";
 import CreateEventContainer from "./components/user_profile/create_event_container";
+import UpdateEventContainer from "./components/user_profile/update_event_container";
 
 const App = () => (
   <div>

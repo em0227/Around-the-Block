@@ -36,6 +36,7 @@ const App = () => (
       <Route exact path="/events/:eventId" component={EventShowContainer} />
       <Route exact path="/" component={MainPageContainer} />
     </Switch>
+
   </div>
 );
 

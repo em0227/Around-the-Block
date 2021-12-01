@@ -24,7 +24,6 @@ class FutureEvent extends React.Component {
         guests: this.props.currentUser.user.id,
       });
     }
-    
   }
 
   debounce(){
@@ -65,6 +64,7 @@ class FutureEvent extends React.Component {
   }
   handleOpenForm(event) {
     // this.props.updateEvent(event);
+    
 
   }
 
@@ -96,7 +96,7 @@ class FutureEvent extends React.Component {
     const myJoinedEvents = events.filter((event) =>
       event.guests.includes(currentUser.user.id)
     );
-    let displayMyEvents = myEvents.map((event, eventId) => {
+    let displayMyEvents = (myEvents || []).map((event, eventId) => {
       return (
         <div key={eventId} className="profile-event-page">
           <div className="p-event-container-title"></div>
@@ -116,12 +116,9 @@ class FutureEvent extends React.Component {
                   <div className="p-e-d">{event.description}</div>
                 </div>
                 <div className="p-event-desc">
-                  <button
-                    className="p-e-d"
-                    onClick={() => this.handleOpenForm(event)}
-                  >
-                    update
-                  </button>
+                  <Link className="p-e-d" to={`/events/update/${event._id}`}>
+                    Update
+                  </Link>
                 </div>
                 <div className="p-event-desc">
                   <button
@@ -156,9 +153,6 @@ class FutureEvent extends React.Component {
                   </div>
                   <div className="p-event-desc">
                     <div className="p-e-d">{event.description}</div>
-                  </div>
-                  <div className="p-event-desc">
-                    <button className="p-e-d" onClick={() => this.handleOpenForm(event)}>update</button>
                   </div>
                   <div className="p-event-desc">
                     <button

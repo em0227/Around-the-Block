@@ -1,25 +1,21 @@
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { createEvent, fetchEvent } from "../../actions/event_actions";
+import { updateEvent, fetchEvent } from "../../actions/event_actions";
 import CreateEventForm from "./create_event";
 import { clearEventErrors } from "../../actions/event_actions";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   errors: Object.values(state.errors.events),
-  formType: "create",
-  event: {
-    name: "",
-    description: "",
-    location: "",
-    imageUrl: "",
-    time: "",
-  },
+  event: Object.values(state.events).filter(
+    (event) => event._id === ownProps.match.params.eventId
+  )[0], 
+  formType: "update"
 });
 
 const mapDispatchToProps = () => (dispatch) => ({
-  createEvent: (event, history) => dispatch(createEvent(event, history)),
+  updateEvent: (event, history) => dispatch(updateEvent(event, history)),
   clearErrors: () => dispatch(clearEventErrors()),
-  // fetchEvent: (eventId) => dispatch(fetchEvent(eventId)),
+  fetchEvent: (eventId) => dispatch(fetchEvent(eventId)),
 });
 
 export default withRouter(

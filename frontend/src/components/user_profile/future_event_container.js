@@ -37,7 +37,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => dispatch(fetchUsers()),
   updateCurrentUser: (data) => dispatch(updateCurrentUser(data)),
   updateEvent: (event) => dispatch(updateEvent(event)),
-  fetchFilteredUsers: (filter) => dispatch(fetchFilteredUsers(filter))
+  fetchFilteredUsers: (filter) => dispatch(fetchFilteredUsers(filter)),
+  
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FutureEvent);

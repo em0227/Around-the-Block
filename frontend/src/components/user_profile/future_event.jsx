@@ -24,6 +24,7 @@ class FutureEvent extends React.Component {
         guests: this.props.currentUser.user.id,
       });
     }
+    
   }
 
   debounce(){
@@ -43,6 +44,7 @@ class FutureEvent extends React.Component {
       }, () => this.debounce())
     }
   }
+
 
 
   submitFriendRequest() {

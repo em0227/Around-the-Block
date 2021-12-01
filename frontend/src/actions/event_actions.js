@@ -3,6 +3,7 @@ export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const REMOVE_EVENT = "REMOVE_EVENT";
 export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
+export const CLEAR_EVENT_ERRORS = "CLEAR_EVENT_ERRORS";
 const receiveEvent = (event) => ({
     type: RECEIVE_EVENT,
     event
@@ -18,6 +19,10 @@ const receiveEventErrors = (errors) => ({
     type: RECEIVE_EVENT_ERRORS,
     errors
 })
+export const clearEventErrors = (errors) => ({
+  type: CLEAR_EVENT_ERRORS,
+});
+
 export const createEvent = (event, history) => dispatch => (
     EventAPIUtil.createEvent(event).then(
         (event) => {

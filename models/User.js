@@ -27,18 +27,6 @@ const UserSchema = new Schema(
     ],
     requestsReceived: [
       {
-<<<<<<< HEAD
-        type: Schema.Types.ObjectId,
-        ref: "requests",
-      },
-    ],
-    requestsSent: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "requests",
-      },
-    ],
-=======
         requesterId: Schema.Types.ObjectId,
         requesterName: String,
         requesterEmail: String,
@@ -53,7 +41,6 @@ const UserSchema = new Schema(
         status: String
       }
     ]
->>>>>>> snigdha_finishing_friend_requests
   },
   {
     timestamps: true,

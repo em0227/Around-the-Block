@@ -2,13 +2,29 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const FriendRequestSchema = new Schema({
-  requester: {
+  requesterId: {
     type: Schema.Types.ObjectId,
     ref: "users",
   },
-  recipient: {
+  requesterName:{
+    type: String,
+    required: true
+  },
+  requesterEmail:{
+    type: String,
+    required: true
+  },
+  recipientId: {
     type: Schema.Types.ObjectId,
     ref: "users",
+  },
+  recipientName: {
+    type: String,
+    required: true
+  },
+  recipientEmail: {
+    type: String,
+    required: true 
   },
   status: {
     type: String,

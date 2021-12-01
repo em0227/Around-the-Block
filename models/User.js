@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 //consider doing the events, friends in the []
+
 const UserSchema = new Schema(
   {
     name: {
@@ -18,12 +19,15 @@ const UserSchema = new Schema(
     },
     friends: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "users",
+        friendId: Schema.Types.ObjectId,
+        friendName: String,
+        friendEmail: String,
+        status: String
       },
     ],
     requestsReceived: [
       {
+<<<<<<< HEAD
         type: Schema.Types.ObjectId,
         ref: "requests",
       },
@@ -34,6 +38,22 @@ const UserSchema = new Schema(
         ref: "requests",
       },
     ],
+=======
+        requesterId: Schema.Types.ObjectId,
+        requesterName: String,
+        requesterEmail: String,
+        status: String
+      }
+    ],
+    requestsSent: [
+      {
+        recipientId: Schema.Types.ObjectId,
+        recipientName: String,
+        recipientEmail: String,
+        status: String
+      }
+    ]
+>>>>>>> snigdha_finishing_friend_requests
   },
   {
     timestamps: true,

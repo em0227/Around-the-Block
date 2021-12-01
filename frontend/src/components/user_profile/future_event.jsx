@@ -11,9 +11,9 @@ class FutureEvent extends React.Component {
   }
   componentDidMount() {
     this.props.fetchEvents();
-    this.props.receiveInvites();
-    this.props.fetchFriendRequests();
-    this.props.fetchUsers();
+    // this.props.receiveInvites();
+    // this.props.fetchFriendRequests();
+    // this.props.fetchUsers();
     if (this.props.preJoinedEvent !== "") {
       this.props.updateEvent({
         id: this.props.preJoinedEvent,
@@ -22,23 +22,20 @@ class FutureEvent extends React.Component {
     }
   }
 
-  debounce() {
-    const { name } = this.state;
-    console.log(name);
-    const { fetchFilteredUsers } = this.props;
-    clearTimeout(this.timerId);
-    this.timerId = setTimeout(() => fetchFilteredUsers(name), 200);
+  debounce(){
+    const {name} = this.state
+    const {fetchFilteredUsers} = this.props
+    clearTimeout(this.timerId)
+   this.timerId = setTimeout(() => fetchFilteredUsers(name), 200)
+    
   }
 
   update(field) {
-    return (e) => {
-      this.setState(
-        {
-          [field]: e.currentTarget.value,
-        },
-        () => this.debounce()
-      );
-    };
+    return (e) =>{
+      this.setState({
+        [field]: e.currentTarget.value,
+      }, () => {this.debounce()})
+    }
   }
 
   submitFriendRequest() {
@@ -47,21 +44,25 @@ class FutureEvent extends React.Component {
     // const user = this.props.users.filter(user => user.name === name)[0];
     // if (user)
     // if (Object.values(this.props.filters).filter(user => user.name)
-    this.props.createFriendRequest(this.state.user);
+    this.props.createFriendRequest({recipient: this.state.user})
+    
   }
 
-  handleApprove(invite) {
+  handleApprove(requestId) {
     this.props.updateFriend({
-      status: "approved",
-      requester: invite.requester,
+      request: requestId,
+      status: "approved"
     });
   }
   handleOpenForm(event) {
     // this.props.updateEvent(event);
   }
 
-  handleReject(invite) {
-    this.props.updateFriend({ status: "denied", requester: invite.requester });
+  handleReject(requestId) {
+    this.props.updateFriend({ 
+      request: requestId,
+      status: "denied"
+    });
   }
 
   changeSearchBar(user) {
@@ -88,8 +89,11 @@ class FutureEvent extends React.Component {
   }
 
   render() {
-    const { events, currentUser, invites, users, filters } = this.props;
-    const myEvents = events.filter((event) => event.hostId === currentUser.id);
+    
+    const { events, errors, currentUser, invites, users, filters } = this.props;
+    const myEvents = events.filter(
+      (event) => event.hostId === currentUser.user.id
+    );
     const myJoinedEvents = events.filter((event) =>
       event.guests.includes(currentUser.id)
     );
@@ -183,65 +187,45 @@ class FutureEvent extends React.Component {
         </div>
 
         <div className="profile-event-page">
-          <div className="p-event-container-title" id="friends">
-            <div className="session-titles">FRIENDS </div>
-          </div>
+          <div className="p-event-container-title">FRIENDS</div>
+          <h3>Friends</h3>
+                  {currentUser.user.friends.map((friend) => 
+                    <div>
+                      <li>{friend.friendName}</li>
+                      <li>{friend.friendEmail}</li>
+                    </div>
+                    )}
           <h3>Friend Requests From</h3>
-          {/* <ul>
-            {Object.values(this.props.invites).map((invite) => {
-              if (invite.status === "pending") {
-                <li>
-                  {
-                    Object.values(users).filter(
-                      (user) => user._id === invite.requester
-                    )[0].name
-                  }
-                  <button onClick={this.handleApprove.bind(this, invite)}>
-                    Approve
-                  </button>
-                  <button onClick={this.handleReject.bind(this, invite)}>
-                    Deny
-                  </button>
-                </li>;
-              }
-            })}
-          </ul> */}
-          <h3>Send a friend request</h3>
-          <form onSubmit={this.submitFriendRequest.bind(this)}>
-            <label>Name</label>
-            <div>
-              <input
-                value={this.state.name}
-                placeholder="Enter Name"
-                type="text"
-                onChange={this.update("name")}
-              />
-
-              {Object.values(filters).length > 0
-                ? filters.map((user) => (
+                  {currentUser.user.requestsReceived.map((request) => 
+                    <div>
+                      <li>{request.requesterName}</li>
+                      <li>{request.requesterEmail}</li>
+                      <button onClick={this.handleApprove.bind(this, request._id)}>Approve</button>
+                      <button onClick={this.handleReject.bind(this, request._id)}>Deny</button>
+                    </div>
+                    )}
+                  
+            <h3>Send a friend request</h3>
+                <form onSubmit={this.submitFriendRequest.bind(this)}>
+                  <label>Name</label>
+                  <div>
+                  <input value={this.state.name} placeholder="Enter Name" type="text" onChange={this.update('name')}/>
+                  
+                  {this.state.name.length > 0  ? filters.map(user =>
                     <div onClick={this.changeSearchBar.bind(this, user)}>
                       <p>{user.name}</p>
                       <p>{user.email}</p>
                     </div>
-                  ))
+                  )
                 : ""}
 
-              {/* {Object.values(users)
-                  .filter((user) => {
-                  if (this.state.name = ""){
-                    return user 
-                  }
-                  else if (user.name.toLowerCase().includes(this.state.name.toLowerCase()))
-                  {
-                    return user; 
-                  }
-                  }).map((user) => {
-                    <div onClick={this.populateSearchBar.bind(this, user.name)}>{user.name}</div>})} */}
-            </div>
-            <button type="submit">Submit</button>
-          </form>
+                  </div>
+                  <button type="submit">Submit</button>
+                </form> 
+              <div>{errors.recipient}</div>
+                
+          
 
-          {/* <div>{display}</div> */}
 
           <div className="profile-friends-container">
             <div className="profile-event-content">

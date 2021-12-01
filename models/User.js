@@ -16,19 +16,6 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    eventsJoined: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "events",
-      },
-    ],
-
-    eventsHosted: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "events",
-      },
-    ],
     friends: [
       {
         type: Schema.Types.ObjectId,
@@ -38,15 +25,15 @@ const UserSchema = new Schema(
     requestsReceived: [
       {
         type: Schema.Types.ObjectId,
-        ref: "requests"
-      }
+        ref: "requests",
+      },
     ],
     requestsSent: [
       {
         type: Schema.Types.ObjectId,
-        ref: "requests"
-      }
-    ]
+        ref: "requests",
+      },
+    ],
   },
   {
     timestamps: true,

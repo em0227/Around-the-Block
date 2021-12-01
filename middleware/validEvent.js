@@ -11,7 +11,7 @@ function isValidEvent(req, res, next) {
   imageUrl = validText(imageUrl) ? imageUrl : "";
 
   if (name === "") {
-    errors.name = "Name is required";
+    errors.name = "Event title is required";
   }
 
   if (description === "") {
@@ -40,4 +40,27 @@ function isValidEvent(req, res, next) {
 
   next();
 }
-module.exports = { isValidEvent };
+
+function updateValidEvent(req, res, next) {
+  const errors = {};
+
+  if (req.body.name && req.body.name === "") {
+    errors.name = "Event title is required";
+  }
+
+  if (req.body.description && req.body.description === "") {
+    errors.description = "Description must be longer";
+  }
+
+  if (req.body.time && req.body.time === "") {
+    errors.time = "Time is required";
+  }
+
+  if (Object.values(errors).length > 0) {
+    return res.status(422).json(errors);
+  }
+
+  next();
+}
+
+module.exports = { isValidEvent, updateValidEvent };

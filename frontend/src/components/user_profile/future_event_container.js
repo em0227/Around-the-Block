@@ -1,9 +1,11 @@
 import { connect } from "react-redux";
+import { fetchCurrentUser } from "../../actions/users_actions";
 import {
-  fetchCurrentUser,
-  updateCurrentUser,
-} from "../../actions/users_actions";
-import { fetchEvents, updateEvent, deleteEvent } from "../../actions/event_actions";
+  fetchEvents,
+  updateEvent,
+  deleteEvent,
+  leaveEvent,
+} from "../../actions/event_actions";
 import {
   receiveInvites,
   updateFriend,
@@ -17,14 +19,13 @@ import { fetchFilteredUsers } from "../../actions/users_actions";
 import FutureEvent from "./future_event";
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session,
   events: Object.values(state.events),
-  currentUser: state.session,
+  currentUser: state.session.user,
   users: state.users,
   invites: state.invites,
   preJoinedEvent: state.ui.preJoinedEvent,
   requests: state.requests,
-  filters: state.filters
+  filters: state.filters,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -35,10 +36,10 @@ const mapDispatchToProps = (dispatch) => ({
   createFriendRequest: (friendId) => dispatch(createFriendRequest(friendId)),
   updateFriend: (request) => dispatch(updateFriend(request)),
   fetchUsers: () => dispatch(fetchUsers()),
-  updateCurrentUser: (data) => dispatch(updateCurrentUser(data)),
   updateEvent: (event) => dispatch(updateEvent(event)),
   fetchFilteredUsers: (filter) => dispatch(fetchFilteredUsers(filter)),
-  
+  deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
+  leaveEvent: (event) => dispatch(leaveEvent(event)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FutureEvent);

@@ -143,45 +143,61 @@ class FutureEvent extends React.Component {
     });
     return (
       <div>
-        <div className="p-event-container-title">
+        <div className="p-event-container-title" id="upcoming-event">
           <Link to="/">UPCOMING EVENTS</Link>
           {displayMyJoinedEvents}
         </div>
 
-        <div className="p-event-container-title">
+        <div className="p-event-container-title" id="host-event">
           <Link to="/events/create">HOST EVENTS</Link>
           {displayMyEvents}
         </div>
 
         <div className="profile-event-page">
-          <div className="p-event-container-title">FRIENDS</div>
+          <div className="p-event-container-title" id="friends">
+            FRIENDS
+          </div>
           <h3>Friend Requests From</h3>
-                  <ul>
-                    {
-                    Object.values(this.props.invites).map((invite) => 
-                      {if (invite.status === "pending"){
-                        <li>{Object.values(users).filter(user => user._id === invite.requester)[0].name}
-                        <button onClick={this.handleApprove.bind(this, invite)}>Approve</button>
-                        <button onClick={this.handleReject.bind(this, invite)}>Deny</button>
-                        </li>
-                      }}
-                     
-                    )}
-                  </ul>
-            <h3>Send a friend request</h3>
-                <form onSubmit={this.submitFriendRequest.bind(this)}>
-                  <label>Name</label>
-                  <div>
-                  <input value={this.state.name} placeholder="Enter Name" type="text" onChange={this.update('name')}/>
-                  
-                  {Object.values(filters).length > 0  ? filters.map(user =>
-                    <div onClick={this.changeSearchBar.bind(this, user)}>
-                    <p>{user.name}</p>
-                    <p>{user.email}</p>
-                    </div>
-                  ) : ""}
+          <ul>
+            {Object.values(this.props.invites).map((invite) => {
+              if (invite.status === "pending") {
+                <li>
+                  {
+                    Object.values(users).filter(
+                      (user) => user._id === invite.requester
+                    )[0].name
+                  }
+                  <button onClick={this.handleApprove.bind(this, invite)}>
+                    Approve
+                  </button>
+                  <button onClick={this.handleReject.bind(this, invite)}>
+                    Deny
+                  </button>
+                </li>;
+              }
+            })}
+          </ul>
+          <h3>Send a friend request</h3>
+          <form onSubmit={this.submitFriendRequest.bind(this)}>
+            <label>Name</label>
+            <div>
+              <input
+                value={this.state.name}
+                placeholder="Enter Name"
+                type="text"
+                onChange={this.update("name")}
+              />
 
-                  {/* {Object.values(users)
+              {Object.values(filters).length > 0
+                ? filters.map((user) => (
+                    <div onClick={this.changeSearchBar.bind(this, user)}>
+                      <p>{user.name}</p>
+                      <p>{user.email}</p>
+                    </div>
+                  ))
+                : ""}
+
+              {/* {Object.values(users)
                   .filter((user) => {
                   if (this.state.name = ""){
                     return user 
@@ -192,15 +208,11 @@ class FutureEvent extends React.Component {
                   }
                   }).map((user) => {
                     <div onClick={this.populateSearchBar.bind(this, user.name)}>{user.name}</div>})} */}
+            </div>
+            <button type="submit">Submit</button>
+          </form>
 
-
-                  </div>
-                  <button type="submit">Submit</button>
-                </form> 
-                
-                {/* <div>{display}</div> */}
-          
-
+          {/* <div>{display}</div> */}
 
           <div className="profile-friends-container">
             <div className="profile-event-content">

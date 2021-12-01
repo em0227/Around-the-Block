@@ -38,9 +38,9 @@ const SessionReducer = (state = initialState, action) => {
       // nextState.user.name = action.user.data.name
       // nextState.user.email = action.user.data.email
       // nextState.user.eventsHosted = action.user.data.eventsJoined
-      // nextState.user.friends = action.user.data.friends
+      nextState.user.friends = action.user.data.friends
       nextState.user.requestsSent = action.user.data.requestsSent
-      // nextState.user.requestsReceived = action.user.data.requestsReceived
+      nextState.user.requestsReceived = action.user.data.requestsReceived
       return nextState; 
     default:
       return state;

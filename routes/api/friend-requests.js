@@ -35,8 +35,7 @@ router.post(
   "/newFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // debugger
-    // console.log(req)
+    
     errors = {};
     FriendRequest.findOne({
       requesterId: req.user.id,
@@ -45,8 +44,12 @@ router.post(
       if (record) {
         errors.recipient = "Already sent friend request to this person";
         return res.status(400).json(errors);
-      } else {
-        // console.log(req.user.id, req.user.name, req.user.email, req.body.recipient.id, req.body.recipient.name,req.user.email)
+      } 
+      // else if (record.requesterId === record.recipientId) {
+      //   errors.recipient = "This is you! You cannot friend yourself.";
+      //   return res.status(400).json(errors);
+      // }
+      else {
         const newRequest = new FriendRequest({
           requesterId: req.user.id,
           requesterName: req.user.name,
@@ -59,8 +62,7 @@ router.post(
         newRequest
           .save()
           .then((request) => {
-            // console.log(request)
-            // console.log("req", req)
+      
             User.findOneAndUpdate(
               { _id: request.requesterId },
               {
@@ -70,6 +72,7 @@ router.post(
                     recipientId: request.recipientId,
                     recipientName: request.recipientName,
                     recipientEmail: request.recipientEmail,
+                    _id: request._id,
                     status: "pending"}]
                   }
                   
@@ -80,23 +83,23 @@ router.post(
               (user) => res.json(user))
               .catch((err) => res.json(err));
               
-            
-
+      
             User.findOneAndUpdate(
               { _id: request.recipientId },
               {
                 $push: {
                   requestsReceived: {
                     $each: [{
-                    rquesterId: request.requesterId,
+                    requesterId: request.requesterId,
                     requesterName: request.requesterName,
                     requesterEmail: request.requesterEmail,
+                    _id: request._id,
                     status: "pending"}]
                   }
               }
             },
               { new: true }
-            )
+            ).then(user => console.log(""))
             
           })
           .catch((err) => res.json(err));
@@ -109,41 +112,90 @@ router.patch(
   "/updateFriendRequest",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // debugger
     FriendRequest.findOneAndUpdate(
-      { recipient: req.user.id, requester: req.body.requester},
-      { status: req.body.status },
-      { new: true }
+      { _id: req.body.request},
+      {status: req.body.status},
+      { new: true}
     ).then((record) => {
       if (record.status === "approved") {
-        // trigger update requester
-        // trigger update recipient
         User.findOneAndUpdate(
-          { _id: record.requester },
+          { _id: record.recipientId },
           {
-            $addToSet: {
-              friends: record.recipient,
+            $push: {
+              friends: {
+                $each: [{
+                friendId: record.requesterId,
+                friendName: record.requesterName,
+                friendEmail: record.requesterEmail,
+                status: record.status
+                }]
+              }
             },
+            $pull: {
+              requestsReceived: {
+                requesterId: record.requesterId
+              }
+            }
           },
           { new: true }
-        );
+        ).then(user => res.json(user))
+          .catch(err => res.json(err))
 
         User.findOneAndUpdate(
-          { _id: record.recipient },
+          { _id: record.requesterId },
           {
-            $addToSet: {
-              friends: record.requester,
+            $push: {
+              friends: {
+                $each: [{
+                friendId: record.recipientId,
+                friendName: record.recipientName,
+                friendEmail: record.recipientEmail,
+                status: record.status
+                }]
+              }
             },
+            $pull: {
+              requestsSent: {
+                recipientId: record.recipientId
+                }
+              }
           },
           { new: true }
-        )
-          .then((updatedUser) => res.json(updatedUser))
-          .catch((err) => res.json(err));
+        ).then(user => console.log(""))
+       
       } else {
         //delete this record
-        FriendRequest.deleteOne({ _id: record.id })
-          .then((res) => res.json("you are not friends anymore :("))
-          .catch((err) => res.json(err));
+        FriendRequest.deleteOne({ _id: record._id })
+          .then((res) => console.log(""))
+          
+        
+        User.findOneAndUpdate(
+            { _id: record.recipientId },
+            {
+              $pull: {
+                requestsReceived: {
+                  requesterId: record.requesterId
+                }
+              }
+            },
+            {new: true})
+            .then(user => res.json(user))
+            .catch(err => res.json(err))
+
+        User.findOneAndUpdate(
+          { _id: record.requesterId },
+          {
+            $pull: {
+              requestsReceived: {
+                recipientId: record.recipientId
+              }
+            }
+          },
+          {new: true})
+          .then(user => console.log(""))
+          
+        
+        
       }
     });
   }

@@ -4,8 +4,6 @@ import sessionReducer from "./session_reducer";
 import errorsReducer from "./errors_reducer";
 import EventsReducer from "./event_reducer";
 import UiReducer from "./ui_reducer";
-import FriendRequestReducer from "./requests_reducer";
-import FriendInviteReducer from "./invites_reducer";
 import UsersReducer from "./users_reducer";
 import FiltersReducer from "./filters_reducer"
 
@@ -15,7 +13,6 @@ const RootReducer = combineReducers({
   errors: errorsReducer,
   events: EventsReducer,
   ui: UiReducer,
-  // invites: FriendInviteReducer,
   // users: UsersReducer,
   filters: FiltersReducer
 });

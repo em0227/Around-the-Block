@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
@@ -6,8 +5,7 @@ const jwt = require("jsonwebtoken");
 const Event = require("../../models/Event");
 const passport = require("passport");
 const validateEventInput = require("../../validations/event");
-const validateEventUpdate = require("../../validations/event");
-const {isValidEvent} = require("../../middleware/validEvent")
+const { isValidEvent } = require("../../middleware/validEvent");
 
 router.get("/allEvents", (req, res) => {
   //events are being sent up as an array
@@ -29,57 +27,46 @@ router.get("/:id", (req, res) => {
 
 router.post(
   "/newEvent",
-  passport.authenticate("jwt", { session: false }), isValidEvent,
+  passport.authenticate("jwt", { session: false }),
+  isValidEvent,
   (req, res) => {
-    // console.log(req.body)
-    const { errors, isValid } = validateEventInput(req.body);
-    console.log("isValid", isValid);
-    if (!isValid) {
-        console.log("errors", errors);
-        debugger
-      return res.status(400).json(errors);
-    }
 
-    Event.findOne({ name: req.body.name })
-      .then((event) => {
-        if (event) {
-          errors.name = "This event name has already been taken";
-          return res.status(400).json(errors);
-        } else {
-          const newEvent = new Event({
-            name: req.body.name,
-            description: req.body.description,
-            location: req.body.location,
-            imageUrl: req.body.imageUrl,
-            time: req.body.time,
-          });
-          newEvent
-            .save()
-            .then((newEvent) => {
-              User.findOneAndUpdate(
-                { _id: req.user.id },
-                {
-                  $addToSet: {
-                    eventsHosted: newEvent._id,
-                  },
+    Event.findOne({ name: req.body.name }).then((event) => {
+      if (event) {
+        errors.name = "This event name has already been taken";
+        return res.status(400).json(errors);
+      } else {
+        const newEvent = new Event({
+          name: req.body.name,
+          description: req.body.description,
+          location: req.body.location,
+          imageUrl: req.body.imageUrl,
+          time: req.body.time,
+        });
+        newEvent
+          .save()
+          .then((newEvent) => {
+            User.findOneAndUpdate(
+              { _id: req.user.id },
+              {
+                $addToSet: {
+                  eventsHosted: newEvent._id,
                 },
-                { new: true }
-              )
-              .then(user => res.json(newEvent))
-            })
-            // .catch((errors) => {
-                
-            //   res.status(400).json(error);
-            // });
-        }
-      })
+              },
+              { new: true }
+            ).then((user) => res.json(newEvent));
+          })
+          .catch((errors) => {
+            res.status(400).json(error);
+          });
+      }
+    });
     //   .catch((error) => res.status(400).json({ error: error }));
-    
-    }
+  }
 );
 
 router.patch("/:id", (req, res) => {
-//   console.log(req.body);
+  //   console.log(req.body);
 
   const { errors, isValid } = validateEventInput(req.body);
 

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 class CreateEventForm extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +13,6 @@ class CreateEventForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    
   }
 
   // Once the user has been authenticated, redirect to the Tweets page
@@ -46,24 +44,22 @@ class CreateEventForm extends React.Component {
       imageUrl: this.state.imageUrl,
       time: this.state.time,
     };
-  
+
     this.props.createEvent(event, this.props.history);
   }
 
   // Render the session errors if there are any
   renderErrors() {
-     console.log("this.prop.errors", this.props.errors);
     return (
       <div>
-        {Object.values(this.props.errors || {}).map((error, i) => (
-          <li style={{ marginBottom: 10 }} key={i}>
-            {this.props.errors[error]}
+        {(this.props.errors || []).map((error, i) => (
+          <li style={{ marginBottom: 10, color: "red" }} key={i}>
+            {error}
           </li>
-         ))} 
-        {/* {Object.values(this.props.errors)} */}
+        ))}
       </div>
     );
-  } 
+  }
 
   render() {
     return (
@@ -107,7 +103,7 @@ class CreateEventForm extends React.Component {
                   placeholder="Your location..."
                 />
               </div>
-        
+
               <div className="event__field">
                 <input
                   className="input-holder"
@@ -128,9 +124,6 @@ class CreateEventForm extends React.Component {
       </div>
     );
   }
-
-
 }
-
 
 export default CreateEventForm;

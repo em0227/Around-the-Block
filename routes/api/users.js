@@ -197,6 +197,8 @@ router.patch(
           eventsJoined: updatedUser.eventsJoined,
           eventsHosted: updatedUser.eventsHosted,
           friends: updatedUser.friends,
+          requestsSent: req.user.requestsSent,
+          requestsReceived: req.user.requestsReceived
         };
         res.json(user);
       })
@@ -239,6 +241,8 @@ router.patch(
           eventsJoined: updatedUser.eventsJoined,
           eventsHosted: updatedUser.eventsHosted,
           friends: updatedUser.friends,
+          requestsSent: req.user.requestsSent,
+          requestsReceived: req.user.requestsReceived
         };
         res.json(user);
       })

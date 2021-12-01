@@ -28,9 +28,9 @@ export const receiveFriendErrors = (errors) => ({
 })
 
 
-export const createFriendRequest = (friendId) => dispatch => (
+export const createFriendRequest = (friend) => dispatch => (
     
-    FriendRequestAPIUtil.createFriendRequest(friendId).then(
+    FriendRequestAPIUtil.createFriendRequest(friend).then(
         (user) => dispatch(receiveUpdatedUser(user)),
         (err) => dispatch(receiveFriendErrors(err.response.data))
         

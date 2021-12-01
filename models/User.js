@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 //consider doing the events, friends in the []
+
 const UserSchema = new Schema(
   {
     name: {
@@ -37,14 +38,18 @@ const UserSchema = new Schema(
     ],
     requestsReceived: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "requests"
+        requesterId: Schema.Types.ObjectId,
+        requesterName: String,
+        requesterEmail: String,
+        status: String
       }
     ],
     requestsSent: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "requests"
+        recipientId: Schema.Types.ObjectId,
+        recipientName: String,
+        recipientEmail: String,
+        status: String
       }
     ]
   },

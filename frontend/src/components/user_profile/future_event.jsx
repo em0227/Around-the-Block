@@ -50,11 +50,11 @@ class FutureEvent extends React.Component {
     // if (user) 
     // if (Object.values(this.props.filters).filter(user => user.name)
     console.log(this.state)
-    this.props.createFriendRequest({recipient: this.state.user.id})
+    this.props.createFriendRequest({recipient: this.state.user})
     
   }
 
-  handleApprove(invite) {
+  handleApprove(requestId) {
     this.props.updateFriend({
       status: "approved",
       requester: invite.requester,
@@ -156,6 +156,14 @@ class FutureEvent extends React.Component {
         <div className="profile-event-page">
           <div className="p-event-container-title">FRIENDS</div>
           <h3>Friend Requests From</h3>
+                  {currentUser.user.requestsReceived.map((request) => 
+                    <div>
+                      <li>{request.requesterName}</li>
+                      <li>{request.requesterEmail}</li>
+                      <button onClick={this.handleApprove.bind(this, request._id)}>Approve</button>
+                      <button onClick={this.handleReject.bind(this, request._id)}>Deny</button>
+                    </div>
+                    )}
                   {/* <ul>
                     {
                     Object.values(this.props.invites).map((invite) => 

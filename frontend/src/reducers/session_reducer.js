@@ -34,7 +34,14 @@ const SessionReducer = (state = initialState, action) => {
         isSignedIn: true,
       };
     case RECEIVE_UPDATED_USER:
-      console.log(action.user)
+      // nextState.user.id = action.user.data._id
+      // nextState.user.name = action.user.data.name
+      // nextState.user.email = action.user.data.email
+      // nextState.user.eventsHosted = action.user.data.eventsJoined
+      // nextState.user.friends = action.user.data.friends
+      nextState.user.requestsSent = action.user.data.requestsSent
+      // nextState.user.requestsReceived = action.user.data.requestsReceived
+      return nextState; 
     default:
       return state;
   }

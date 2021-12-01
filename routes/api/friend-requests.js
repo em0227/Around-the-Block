@@ -36,47 +36,65 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // debugger
+    // console.log(req)
     errors = {};
-    console.log(req)
     FriendRequest.findOne({
-      requester: req.user.id,
-      recipient: req.body.recipient,
+      requesterId: req.user.id,
+      recipientId: req.body.recipient.id,
     }).then((record) => {
       if (record) {
         errors.recipient = "Already sent friend request to this person";
         return res.status(400).json(errors);
       } else {
+        // console.log(req.user.id, req.user.name, req.user.email, req.body.recipient.id, req.body.recipient.name,req.user.email)
         const newRequest = new FriendRequest({
-          requester: req.user.id,
+          requesterId: req.user.id,
           requesterName: req.user.name,
-          recipient: req.body.recipient,
-          recipientName: req.body.recipient,
+          requesterEmail: req.user.email,
+          recipientId: req.body.recipient.id,
+          recipientName: req.body.recipient.name,
+          recipientEmail: req.body.recipient.email,
           status: "pending"
         });
         newRequest
           .save()
           .then((request) => {
-            console.log(request)
+            // console.log(request)
+            // console.log("req", req)
             User.findOneAndUpdate(
-              { _id: request.requester },
+              { _id: request.requesterId },
               {
-                $addToSet: {
-                  requestsSent: request.id
+                $push: {
+                  requestsSent: {
+                    $each: [{
+                    recipientId: request.recipientId,
+                    recipientName: request.recipientName,
+                    recipientEmail: request.recipientEmail,
+                    status: "pending"}]
+                  }
+                  
                 },
               },
               { new: true }
             ).then(
-              (user) => res.json({
-              }))
+              (user) => res.json(user))
+              .catch((err) => res.json(err));
+              
             
 
             User.findOneAndUpdate(
-              { _id: request.recipient },
+              { _id: request.recipientId },
               {
-                $addToSet: {
-                  requestsReceived: request.id
-                },
-              },
+                $push: {
+                  requestsReceived: {
+                    $each: [{
+                    rquesterId: request.requesterId,
+                    requesterName: request.requesterName,
+                    requesterEmail: request.requesterEmail,
+                    status: "pending"}]
+                  }
+              }
+            },
               { new: true }
             )
             

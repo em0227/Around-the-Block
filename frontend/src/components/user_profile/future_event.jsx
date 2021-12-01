@@ -79,7 +79,12 @@ class FutureEvent extends React.Component {
       id: eventId,
       guests: this.props.currentUser.id,
     });
-    this.props.fetchEvents();
+    // this.props.fetchEvents();
+  }
+
+  deleteEvent(eventId) {
+    this.props.deleteEvent(eventId);
+    // this.props.fetchEvents();
   }
 
   render() {
@@ -118,7 +123,7 @@ class FutureEvent extends React.Component {
                 <div className="p-event-desc">
                   <button
                     className="p-e-d"
-                    onClick={() => this.props.deleteEvent(event._id)}
+                    onClick={() => this.deleteEvent(event._id)}
                   >
                     Cancel Event
                   </button>

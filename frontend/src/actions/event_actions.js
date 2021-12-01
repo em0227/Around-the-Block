@@ -11,8 +11,9 @@ const receiveEvents = (events) => ({
   type: RECEIVE_EVENTS,
   events,
 });
-const removeEvent = () => ({
+const removeEvent = (eventId) => ({
   type: REMOVE_EVENT,
+  eventId,
 });
 const receiveEventErrors = (errors) => ({
   type: RECEIVE_EVENT_ERRORS,
@@ -22,7 +23,7 @@ export const createEvent = (event, history) => (dispatch) =>
   EventAPIUtil.createEvent(event).then(
     (event) => {
       dispatch(receiveEvent(event.data));
-      history && history.push("/"); //history.push("/") if history exist
+      history && history.push("/profile"); //history.push("/") if history exist
     },
     (err) => dispatch(receiveEventErrors(err.response.data))
   );
@@ -50,6 +51,6 @@ export const fetchEvents = () => (dispatch) =>
   );
 export const deleteEvent = (eventId) => (dispatch) =>
   EventAPIUtil.deleteEvent(eventId).then(
-    () => dispatch(removeEvent()),
+    (eventId) => dispatch(removeEvent(eventId.data)),
     (err) => dispatch(receiveEventErrors(err.response.data))
   );

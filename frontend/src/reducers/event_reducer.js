@@ -21,30 +21,27 @@
 
 // src/reducers/tweets_reducer.js
 
-import { RECEIVE_EVENTS, RECEIVE_EVENT} from '../actions/event_actions';
-  
-  const EventsReducer = (state = {}, action) => {
-    Object.freeze(state);
-    let newState = Object.assign({}, state);
-    switch (action.type) {
-      case RECEIVE_EVENTS:
-        // debugger;
-        return action.events;
-      case RECEIVE_EVENT:
-        newState[action.event.id] = action.event;
-        return newState;
-   
+import {
+  RECEIVE_EVENTS,
+  RECEIVE_EVENT,
+  REMOVE_EVENT,
+} from "../actions/event_actions";
 
-      // case RECEIVE_TEAS:
-      //   // action.teas.forEach(tea => nextState[tea.id] = tea);
-      //   // return nextState;
-      //   // return Object.assign(nextState, action.teas);
-      //   return { ...state, ...action.teas };
+const EventsReducer = (state = {}, action) => {
+  Object.freeze(state);
+  let newState = Object.assign({}, state);
+  switch (action.type) {
+    case RECEIVE_EVENTS:
+      return action.events;
+    case RECEIVE_EVENT:
+      newState[action.event._id] = action.event;
+      return newState;
+    case REMOVE_EVENT:
+      delete newState[action.eventId];
+      return newState;
+    default:
+      return state;
+  }
+};
 
-      default:
-        return state;
-    }
-  };
-  
-  export default EventsReducer;
-  
+export default EventsReducer;

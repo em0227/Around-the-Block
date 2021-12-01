@@ -14,9 +14,15 @@ router.get("/allEvents", (req, res) => {
   //events are being sent up as an array
   Event.find()
     .then((events) => {
-      res.send(events);
+      const results = {};
+      events.forEach((event) => {
+        results[event._id.toString()] = event;
+      });
+      res.send(results);
     })
-    .catch((error) => res.status(400).json({ error: error }));
+    .catch((error) => {
+      res.status(400).json({ error });
+    });
 });
 
 router.get("/:id", (req, res) => {
@@ -112,7 +118,7 @@ router.patch("/:id/guestLeave", (req, res) => {
 router.delete("/:id", (req, res) => {
   Event.deleteOne({ _id: req.params.id })
     .then(() => {
-      res.status(200).json({ message: "Event has been deleted!" });
+      res.json(req.params.id);
     })
     .catch((error) => res.status(400).json({ error: error }));
 });

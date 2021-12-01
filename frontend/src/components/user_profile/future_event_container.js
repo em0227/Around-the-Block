@@ -19,7 +19,6 @@ import { fetchFilteredUsers } from "../../actions/users_actions";
 import FutureEvent from "./future_event";
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session,
   events: Object.values(state.events),
   currentUser: state.session.user,
   users: state.users,

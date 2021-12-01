@@ -212,7 +212,7 @@ class FutureEvent extends React.Component {
                 className="p-e-i"
                 src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
               />
-              <img
+              <img 
                 className="p-e-i"
                 src="https://atb-photos.s3.amazonaws.com/hien.png"
               />

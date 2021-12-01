@@ -17,7 +17,7 @@
 
 .session-titles {
     margin-top:  50px;
-     transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 .session-titles:hover{
     transform: scale(1.1);
@@ -53,7 +53,7 @@
     margin-left: 200px;
     margin-right: 50px;
      box-shadow: 10px 10px 5px 12px grey;
-}
+} 
 
 .profile-event-detials{
     // margin-right: 100px;
@@ -106,4 +106,45 @@
      border-radius: 50%;
 
 }
+
+.friend-request-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(250, 229, 236);
+    flex-direction: column;
+
+}
+
+.friend-search-form{
+    display: flex;
+    // font-size: 60px;
+    margin-top: 30px;
+  
+    // align-items: center;
+    // background-color: rgb(250, 229, 236);
+    // margin-left: 50%;
+    // margin-right: 50%;
+
+}
+.friend-search-bar{
+    font-size: 50px;
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 1000px;
+    height: 100px;
+    border: 1px solid rgb(126, 124, 124);
+    border-radius: 10px;
+}
+
+.friend-search-button{
+    font-size: 60px;
+    width: 200px;
+    height: 100px;
+    color: rgb(126, 124, 124);
+}
+.user-info{
+    font-size: 30px;
+
+}
+
 

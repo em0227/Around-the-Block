@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import debounce from 'lodash.debounce';
+// import { AiOutlineSearch} from "react-icons/ai";
 
 class FutureEvent extends React.Component {
   constructor(props) {
@@ -192,7 +193,7 @@ class FutureEvent extends React.Component {
           <div className="p-event-container-title" id="friends">
             <div className="session-titles">FRIENDS </div>
           </div>
-          <h3>Friend Requests From</h3>
+          {/* <h3>Friend Requests From</h3> */}
           <ul>
             {Object.values(this.props.invites).map((invite) => {
               if (invite.status === "pending") {
@@ -213,28 +214,38 @@ class FutureEvent extends React.Component {
             })}
           </ul>
 
+          {/* <h3>Send a friend request</h3> */}
+          <div className="friend-request-container">
+            <form
+              className="friend-search-form"
+              onSubmit={this.submitFriendRequest.bind(this)}
+            >
+              {/* <label>Name</label> */}
+              <div>
+                <input
+                  className="friend-search-bar"
+                  value={this.state.name}
+                  placeholder="search"
+                  type="text"
+                  onChange={this.update("name")}
+                />
+                {/* <AiOutlineSearch className="search-icon" /> */}
 
-          <h3>Send a friend request</h3>
-          <form onSubmit={this.submitFriendRequest.bind(this)}>
-            <label>Name</label>
-            <div>
-              <input
-                value={this.state.name}
-                placeholder="Search Around the Block"
-                type="text"
-                onChange={this.update("name")}
-              />
+                {Object.values(filters).length > 0
+                  ? filters.map((user) => (
+                      <div onClick={this.changeSearchBar.bind(this, user)}>
+                        <p className="user-info">{user.name}</p>
+                        <p className="user-info">{user.email}</p>
+                      </div>
+                    ))
+                  : ""}
+                  
+                    <button className="friend-search-button" type="submit">
+                      Submit
+                    </button>
+               
 
-              {Object.values(filters).length > 0
-                ? filters.map((user) => (
-                    <div onClick={this.changeSearchBar.bind(this, user)}>
-                      <p>{user.name}</p>
-                      <p>{user.email}</p>
-                    </div>
-                  ))
-                : ""}
-
-              {/* {Object.values(users)
+                {/* {Object.values(users)
                   .filter((user) => {
                   if (this.state.name = ""){
                     return user 
@@ -245,9 +256,11 @@ class FutureEvent extends React.Component {
                   }
                   }).map((user) => {
                     <div onClick={this.populateSearchBar.bind(this, user.name)}>{user.name}</div>})} */}
-            </div>
-            <button type="submit">Submit</button>
-          </form>
+              </div>
+
+              {/* <button classsName="friend-search-button" type="submit">Submit</button> */}
+            </form>
+          </div>
 
           {/* <div>{display}</div> */}
 
@@ -261,7 +274,7 @@ class FutureEvent extends React.Component {
                 className="p-e-i"
                 src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
               />
-              <img 
+              <img
                 className="p-e-i"
                 src="https://atb-photos.s3.amazonaws.com/hien.png"
               />

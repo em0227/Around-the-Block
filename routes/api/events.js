@@ -7,7 +7,7 @@ const Event = require("../../models/Event");
 const passport = require("passport");
 const validateEventInput = require("../../validations/event");
 const validateEventUpdate = require("../../validations/event");
-const User = require("../../models/User");
+const {isValidEvent} = require("../../middleware/validEvent")
 
 router.get("/allEvents", (req, res) => {
   //events are being sent up as an array
@@ -29,12 +29,14 @@ router.get("/:id", (req, res) => {
 
 router.post(
   "/newEvent",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }), isValidEvent,
   (req, res) => {
     // console.log(req.body)
     const { errors, isValid } = validateEventInput(req.body);
-
+    console.log("isValid", isValid);
     if (!isValid) {
+        console.log("errors", errors);
+        debugger
       return res.status(400).json(errors);
     }
 
@@ -55,29 +57,29 @@ router.post(
             .save()
             .then((newEvent) => {
               User.findOneAndUpdate(
-                { id: req.user.id },
+                { _id: req.user.id },
                 {
                   $addToSet: {
                     eventsHosted: newEvent._id,
                   },
                 },
                 { new: true }
-              );
-            //   console.log(newEvent, req || "abc");
-              res.json(newEvent);
+              )
+              .then(user => res.json(newEvent))
             })
-            .catch((error) => {
-              console.log("error", error);
-              res.status(400).json(error);
-            });
+            // .catch((errors) => {
+                
+            //   res.status(400).json(error);
+            // });
         }
       })
-      .catch((error) => res.status(400).json({ error: error }));
-  }
+    //   .catch((error) => res.status(400).json({ error: error }));
+    
+    }
 );
 
 router.patch("/:id", (req, res) => {
-  console.log(req.body);
+//   console.log(req.body);
 
   const { errors, isValid } = validateEventInput(req.body);
 

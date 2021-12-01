@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer-title">
-        <p style={{ textAlign: "center", paddingTop: 20 }} id="developer">
+        <p id="developer" style={{ textAlign: "center", paddingTop: 20, fontSize: "16px" }}>
           © 2021 Designed and Developed by Around the Block Team
         </p>
       </div>
@@ -28,7 +28,7 @@ const Footer = () => {
 
             <a
               className="contact_linkedin"
-              href="https://www.linkedin.com/in/hien-nguyen-a7045b70/"
+              href="https://www.linkedin.com/in/emilyawu/"
               target="_blank"
             >
               LinkedIn
@@ -53,7 +53,7 @@ const Footer = () => {
 
             <a
               className="contact_linkedin"
-              href="https://www.linkedin.com/in/hien-nguyen-a7045b70/"
+              href="https://www.linkedin.com/in/feifei-yang-6990bb38/"
               target="_blank"
             >
               LinkedIn
@@ -76,10 +76,10 @@ const Footer = () => {
             >
               Github
             </a>
-
+            
             <a
               className="contact_linkedin"
-              href="https://www.linkedin.com/in/hien-nguyen-a7045b70/"
+              href="https://www.linkedin.com/in/snigdhabanda0/"
               target="_blank"
             >
               LinkedIn

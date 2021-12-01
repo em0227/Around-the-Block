@@ -48,26 +48,22 @@ class CreateEventForm extends React.Component {
     };
   
     this.props.createEvent(event, this.props.history);
-    //   this.props.updateCurrentUser({
-    //   id: this.props.currentUser.id,
-      // eventsJoined: this.props.match.params.eventId,
-    // });
   }
 
   // Render the session errors if there are any
-  // renderErrors() {
-    //  console.log("this.prop.errors", this.props.errors);
-    // return (
-    //   <div>
-        /* {Object.values(this.props.errors || {}).map((error, i) => (
+  renderErrors() {
+     console.log("this.prop.errors", this.props.errors);
+    return (
+      <div>
+        {Object.values(this.props.errors || {}).map((error, i) => (
           <li style={{ marginBottom: 10 }} key={i}>
             {this.props.errors[error]}
           </li>
-         ))} */
-        /* {Object.values(this.props.errors)}
+         ))} 
+        {/* {Object.values(this.props.errors)} */}
       </div>
     );
-  } */
+  } 
 
   render() {
     return (
@@ -125,7 +121,7 @@ class CreateEventForm extends React.Component {
                 <span className="button__text">CREATE EVENT</span>
               </button>
               <br />
-              {/* {this.renderErrors()} */}
+              {this.renderErrors()}
             </form>
           </div>
         </div>

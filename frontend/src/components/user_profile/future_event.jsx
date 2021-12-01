@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import debounce from 'lodash.debounce';
+import debounce from "lodash.debounce";
 
 class FutureEvent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {name: "", user: {}}
-    this.timerId = 0
+    this.state = { name: "", user: {} };
+    this.timerId = 0;
     this.handleOpenForm = this.handleOpenForm.bind(this);
   }
   componentDidMount() {
@@ -15,46 +15,39 @@ class FutureEvent extends React.Component {
     this.props.fetchFriendRequests();
     this.props.fetchUsers();
     if (this.props.preJoinedEvent !== "") {
-      this.props.updateCurrentUser({
-        id: this.props.currentUser.user.id,
-        eventsJoined: this.props.preJoinedEvent,
-      });
       this.props.updateEvent({
         id: this.props.preJoinedEvent,
-        guests: this.props.currentUser.user.id,
+        guests: this.props.currentUser.id,
       });
     }
-    
   }
 
-  debounce(){
-    const {name} = this.state
-    console.log(name)
-    const {fetchFilteredUsers} = this.props
-    clearTimeout(this.timerId)
-   this.timerId = setTimeout(() => fetchFilteredUsers(name), 200)
-    
+  debounce() {
+    const { name } = this.state;
+    console.log(name);
+    const { fetchFilteredUsers } = this.props;
+    clearTimeout(this.timerId);
+    this.timerId = setTimeout(() => fetchFilteredUsers(name), 200);
   }
-
 
   update(field) {
-    return (e) =>{
-      this.setState({
-        [field]: e.currentTarget.value,
-      }, () => this.debounce())
-    }
+    return (e) => {
+      this.setState(
+        {
+          [field]: e.currentTarget.value,
+        },
+        () => this.debounce()
+      );
+    };
   }
-
-
 
   submitFriendRequest() {
     // return (e) => {e.preventDefault();
-    
+
     // const user = this.props.users.filter(user => user.name === name)[0];
-    // if (user) 
+    // if (user)
     // if (Object.values(this.props.filters).filter(user => user.name)
-    this.props.createFriendRequest(this.state.user)
-    
+    this.props.createFriendRequest(this.state.user);
   }
 
   handleApprove(invite) {
@@ -65,40 +58,44 @@ class FutureEvent extends React.Component {
   }
   handleOpenForm(event) {
     // this.props.updateEvent(event);
-
   }
 
   handleReject(invite) {
     this.props.updateFriend({ status: "denied", requester: invite.requester });
   }
 
-  changeSearchBar(user){
-   
+  changeSearchBar(user) {
     if (this.state.name !== user.name) {
-      console.log("changing state name")
-      this.setState({name: user.name, user: user})
+      console.log("changing state name");
+      this.setState({ name: user.name, user: user });
+    } else {
+      console.log("clearing state name");
+      this.setState({ name: "", user: {} });
     }
-    else {
-      console.log("clearing state name")
-      this.setState({name: "", user: {}})
-    }
-    
-    
   }
-  
+
+  leaveEvent(eventId) {
+    this.props.leaveEvent({
+      id: eventId,
+      guests: this.props.currentUser.id,
+    });
+    // this.props.fetchEvents();
+  }
+
+  deleteEvent(eventId) {
+    this.props.deleteEvent(eventId);
+    // this.props.fetchEvents();
+  }
 
   render() {
-
     const { events, currentUser, invites, users, filters } = this.props;
-    const myEvents = events.filter(
-      (event) => event.hostId === currentUser.user.id
-    );
+    const myEvents = events.filter((event) => event.hostId === currentUser.id);
     const myJoinedEvents = events.filter((event) =>
-      event.guests.includes(currentUser.user.id)
+      event.guests.includes(currentUser.id)
     );
-    let displayMyEvents = myEvents.map((event, eventId) => {
+    let displayMyEvents = myEvents.map((event, index) => {
       return (
-        <div key={eventId} className="profile-event-page">
+        <div key={index} className="profile-event-page">
           <div className="p-event-container-title"></div>
 
           <div className="profile-event-container">
@@ -126,9 +123,9 @@ class FutureEvent extends React.Component {
                 <div className="p-event-desc">
                   <button
                     className="p-e-d"
-                    onClick={() => this.props.deleteEvent(eventId)}
+                    onClick={() => this.deleteEvent(event._id)}
                   >
-                    Delete
+                    Cancel Event
                   </button>
                 </div>
               </div>
@@ -137,10 +134,10 @@ class FutureEvent extends React.Component {
         </div>
       );
     });
-    let displayMyJoinedEvents = myJoinedEvents.map((event, joinedId) => {
+    let displayMyJoinedEvents = myJoinedEvents.map((event, index) => {
       return (
         <div>
-          <div key={joinedId} className="profile-event-page">
+          <div key={index} className="profile-event-page">
             <div className="p-event-container-title"></div>
 
             <div className="profile-event-container">
@@ -158,14 +155,11 @@ class FutureEvent extends React.Component {
                     <div className="p-e-d">{event.description}</div>
                   </div>
                   <div className="p-event-desc">
-                    <button className="p-e-d" onClick={() => this.handleOpenForm(event)}>update</button>
-                  </div>
-                  <div className="p-event-desc">
                     <button
                       className="p-e-d"
-                      onClick={() => this.props.deleteEvent(joinedId)}
+                      onClick={() => this.leaveEvent(event._id)}
                     >
-                      Delete
+                      Can't Make It
                     </button>
                   </div>
                 </div>
@@ -191,32 +185,46 @@ class FutureEvent extends React.Component {
         <div className="profile-event-page">
           <div className="p-event-container-title">FRIENDS</div>
           <h3>Friend Requests From</h3>
-                  <ul>
-                    {
-                    Object.values(this.props.invites).map((invite) => 
-                      {if (invite.status === "pending"){
-                        <li>{Object.values(users).filter(user => user._id === invite.requester)[0].name}
-                        <button onClick={this.handleApprove.bind(this, invite)}>Approve</button>
-                        <button onClick={this.handleReject.bind(this, invite)}>Deny</button>
-                        </li>
-                      }}
-                     
-                    )}
-                  </ul>
-            <h3>Send a friend request</h3>
-                <form onSubmit={this.submitFriendRequest.bind(this)}>
-                  <label>Name</label>
-                  <div>
-                  <input value={this.state.name} placeholder="Enter Name" type="text" onChange={this.update('name')}/>
-                  
-                  {Object.values(filters).length > 0  ? filters.map(user =>
-                    <div onClick={this.changeSearchBar.bind(this, user)}>
-                    <p>{user.name}</p>
-                    <p>{user.email}</p>
-                    </div>
-                  ) : ""}
+          {/* <ul>
+            {Object.values(this.props.invites).map((invite) => {
+              if (invite.status === "pending") {
+                <li>
+                  {
+                    Object.values(users).filter(
+                      (user) => user._id === invite.requester
+                    )[0].name
+                  }
+                  <button onClick={this.handleApprove.bind(this, invite)}>
+                    Approve
+                  </button>
+                  <button onClick={this.handleReject.bind(this, invite)}>
+                    Deny
+                  </button>
+                </li>;
+              }
+            })}
+          </ul> */}
+          <h3>Send a friend request</h3>
+          <form onSubmit={this.submitFriendRequest.bind(this)}>
+            <label>Name</label>
+            <div>
+              <input
+                value={this.state.name}
+                placeholder="Enter Name"
+                type="text"
+                onChange={this.update("name")}
+              />
 
-                  {/* {Object.values(users)
+              {Object.values(filters).length > 0
+                ? filters.map((user) => (
+                    <div onClick={this.changeSearchBar.bind(this, user)}>
+                      <p>{user.name}</p>
+                      <p>{user.email}</p>
+                    </div>
+                  ))
+                : ""}
+
+              {/* {Object.values(users)
                   .filter((user) => {
                   if (this.state.name = ""){
                     return user 
@@ -227,15 +235,11 @@ class FutureEvent extends React.Component {
                   }
                   }).map((user) => {
                     <div onClick={this.populateSearchBar.bind(this, user.name)}>{user.name}</div>})} */}
+            </div>
+            <button type="submit">Submit</button>
+          </form>
 
-
-                  </div>
-                  <button type="submit">Submit</button>
-                </form> 
-                
-                {/* <div>{display}</div> */}
-          
-
+          {/* <div>{display}</div> */}
 
           <div className="profile-friends-container">
             <div className="profile-event-content">
@@ -247,7 +251,7 @@ class FutureEvent extends React.Component {
                 className="p-e-i"
                 src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
               />
-              <img 
+              <img
                 className="p-e-i"
                 src="https://atb-photos.s3.amazonaws.com/hien.png"
               />

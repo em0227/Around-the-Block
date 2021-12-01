@@ -37,10 +37,9 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   isValidEvent,
   (req, res) => {
-
     Event.findOne({ name: req.body.name }).then((event) => {
       if (event) {
-        errors.name = "This event name has already been taken";
+        let errors = { name: "This event name has already been taken" };
         return res.status(400).json(errors);
       } else {
         const newEvent = new Event({
@@ -49,6 +48,7 @@ router.post(
           location: req.body.location,
           imageUrl: req.body.imageUrl,
           time: req.body.time,
+          hostId: req.user.id,
         });
         newEvent
           .save()

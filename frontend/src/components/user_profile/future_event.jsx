@@ -65,8 +65,7 @@ class FutureEvent extends React.Component {
     this.props.updateFriend({ status: "denied", requester: invite.requester });
   }
 
-  changeSearchBar(user){
-   
+  changeSearchBar(user){ 
     if (this.state.name !== user.name) {
       console.log("changing state name")
       this.setState({name: user.name, user: user})
@@ -74,9 +73,7 @@ class FutureEvent extends React.Component {
     else {
       console.log("clearing state name")
       this.setState({name: "", user: {}})
-    }
-    
-    
+    }   
   }
   
 
@@ -144,18 +141,22 @@ class FutureEvent extends React.Component {
     return (
       <div>
         <div className="p-event-container-title" id="upcoming-event">
-          <Link to="/">UPCOMING EVENTS</Link>
+          <Link className="session-titles" to="/">
+            UPCOMING EVENTS
+          </Link>
           {displayMyJoinedEvents}
         </div>
 
         <div className="p-event-container-title" id="host-event">
-          <Link to="/events/create">HOST EVENTS</Link>
+          <Link className="session-titles" to="/events/create">
+            HOST EVENTS
+          </Link>
           {displayMyEvents}
         </div>
 
         <div className="profile-event-page">
           <div className="p-event-container-title" id="friends">
-            FRIENDS
+            <div className="session-titles">FRIENDS </div>
           </div>
           <h3>Friend Requests From</h3>
           <ul>
@@ -177,13 +178,15 @@ class FutureEvent extends React.Component {
               }
             })}
           </ul>
+
+
           <h3>Send a friend request</h3>
           <form onSubmit={this.submitFriendRequest.bind(this)}>
             <label>Name</label>
             <div>
               <input
                 value={this.state.name}
-                placeholder="Enter Name"
+                placeholder="Search Around the Block"
                 type="text"
                 onChange={this.update("name")}
               />

@@ -19,7 +19,7 @@ const App = () => (
   <div>
     <header>
       <Route path="/" component={NavBarContainer} />
-      <Route path="/" component={SecondNavBar} />
+      <Route path="/profile" component={SecondNavBar} />
     </header>
     <Switch>
       <Route exact path="/events" component={MainPageContainer} />
@@ -32,11 +32,14 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       {/* <AuthRoute exact path="/events/:eventId" component={EventShowContainer} /> */}
-      <ProtectedRoute exact path="/profile" component={FutureEventContainer} />
+      <ProtectedRoute
+        exact
+        path="/profile"
+        component={FutureEventContainer}
+      />
       <Route exact path="/events/:eventId" component={EventShowContainer} />
       <Route exact path="/" component={MainPageContainer} />
     </Switch>
-
   </div>
 );
 

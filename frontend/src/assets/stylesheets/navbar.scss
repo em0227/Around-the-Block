@@ -95,11 +95,15 @@ $Nunito: "Nunito", sans-serif;
 }
 
 .nav-icon{
-  width: 90px; 
+  width: 80px; 
     height: 200px;
     // margin-bottom: 20px;
-    color: rgb(2, 0, 0); 
+    color: rgb(87, 85, 85); 
     transition: all 0.1s ease-in-out;
     margin-bottom: 3px;
     margin-left: 18px;
+}
+.nav-icon:hover{
+    transform: scale(1.2);
+    color: black;
 }

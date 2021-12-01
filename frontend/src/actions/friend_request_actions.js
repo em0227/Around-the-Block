@@ -1,9 +1,8 @@
 import * as FriendRequestAPIUtil from "../util/friend_request_util";
-import {receiveCurrentUser} from "./session_actions"
 export const RECEIVE_REQUEST = "RECEIVE_REQUEST";
 export const RECEIVE_REQUESTS = "RECEIVE_REQUESTS";
 export const RECEIVE_FRIEND_ERRORS = "RECEIVE_FRIEND_ERRORS";
-
+export const RECEIVE_UPDATED_USER = "RECEIVE_UPDATED_USER"
 
 const receiveRequest = (request) => ({
     
@@ -14,6 +13,11 @@ const receiveRequest = (request) => ({
 const receiveRequests = (requests) => ({
     type: RECEIVE_REQUESTS,
     requests
+})
+
+const receiveUpdatedUser = (user) => ({
+    type: RECEIVE_UPDATED_USER,
+    user 
 })
 
 
@@ -27,7 +31,7 @@ export const receiveFriendErrors = (errors) => ({
 export const createFriendRequest = (friendId) => dispatch => (
     
     FriendRequestAPIUtil.createFriendRequest(friendId).then(
-        (user) => dispatch(receiveCurrentUser(user)),
+        (user) => dispatch(receiveUpdatedUser(user)),
         (err) => dispatch(receiveFriendErrors(err.response.data))
         
     )

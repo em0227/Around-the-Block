@@ -5,27 +5,35 @@ const jwt = require("jsonwebtoken");
 const Event = require("../../models/Event");
 const User = require("../../models/User");
 const passport = require("passport");
-const { isValidEvent } = require("../../middleware/validEvent");
-const validateEventInput = require("../../validations/event");
-const validateEventUpdate = require("../../validations/event");
-const { restart } = require("nodemon");
+const {
+  isValidEvent,
+  updateValidEvent,
+} = require("../../middleware/validEvent");
 
 router.get("/allEvents", (req, res) => {
   //events are being sent up as an array
   Event.find()
     .then((events) => {
-      res.send(events);
+      const results = {};
+      events.forEach((event) => {
+        results[event._id.toString()] = event;
+      });
+      res.send(results);
     })
-    .catch((error) => res.status(400).json({ error: error }));
+    .catch((error) => {
+      res.status(400).json({ error });
+    });
 });
 
 router.get("/:id", (req, res) => {
   Event.findOne({ _id: req.params.id })
     .then((event) => {
-      User.find({ eventsJoined: event._id }).then((guests) => {
-        const guestNames = guests.map((guest) => guest.name);
+      const promises = [];
+      event.guests.forEach((guest) => {
+        promises.push(User.findOne({ _id: guest }).then((user) => user.name));
+      });
+      Promise.all(promises).then((guestNames) => {
         event._doc.guests = guestNames;
-        //could look up res.send later as it shorten the 'event' sent back and couldn't just do event.guests = guestNames
         res.send(event);
       });
     })
@@ -72,15 +80,7 @@ router.post(
   }
 );
 
-router.patch("/:id", (req, res) => {
-  //   console.log(req.body);
-
-  const { errors, isValid } = validateEventInput(req.body);
-
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-
+router.patch("/:id", updateValidEvent, (req, res) => {
   Event.findOneAndUpdate(
     { _id: req.params.id },
     {
@@ -101,10 +101,24 @@ router.patch("/:id", (req, res) => {
     .catch((error) => res.status(400).json({ error: error }));
 });
 
+router.patch("/:id/guestLeave", (req, res) => {
+  Event.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      $pull: {
+        guests: req.body.guests,
+      },
+    },
+    { new: true }
+  )
+    .then((updatedEvent) => res.json(updatedEvent))
+    .catch((error) => res.status(400).json({ error: "something went wrong" }));
+});
+
 router.delete("/:id", (req, res) => {
   Event.deleteOne({ _id: req.params.id })
     .then(() => {
-      res.status(200).json({ message: "Event has been deleted!" });
+      res.json(req.params.id);
     })
     .catch((error) => res.status(400).json({ error: error }));
 });

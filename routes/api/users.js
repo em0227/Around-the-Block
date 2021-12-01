@@ -112,11 +112,9 @@ router.get(
       id: req.user.id,
       name: req.user.name,
       email: req.user.email,
-      eventsJoined: req.user.eventsJoined,
-      eventsHosted: req.user.eventsHosted,
       friends: req.user.friends,
       requestsSent: req.user.requestsSent,
-      requestsReceived: req.user.requestsReceived
+      requestsReceived: req.user.requestsReceived,
     });
   }
 );
@@ -135,11 +133,9 @@ router.get(
             id: user.id,
             name: user.name,
             email: user.email,
-            eventsJoined: user.eventsJoined,
-            eventsHosted: user.eventsHosted,
             friends: user.friends,
             requestsReceived: user.requestsReceived,
-            requestsSent: user.requestsSent
+            requestsSent: user.requestsSent,
           });
         });
         res.json(filteredUser);
@@ -171,8 +167,6 @@ router.patch(
         },
         $addToSet: {
           friends: req.body.friends,
-          eventsHosted: req.body.eventsHosted,
-          eventsJoined: req.body.eventsJoined,
         },
       },
       { multi: true, new: true }
@@ -182,8 +176,6 @@ router.patch(
           id: updatedUser.id,
           name: updatedUser.name,
           email: updatedUser.email,
-          eventsJoined: updatedUser.eventsJoined,
-          eventsHosted: updatedUser.eventsHosted,
           friends: updatedUser.friends,
         };
         res.json(user);
@@ -213,8 +205,6 @@ router.patch(
       {
         $pull: {
           friends: req.body.friends,
-          // eventsJoined: req.body.eventsJoined,
-          // eventsHosted: req.body.eventsHosted,
         },
       },
       { multi: true, new: true }
@@ -224,8 +214,6 @@ router.patch(
           id: updatedUser.id,
           name: updatedUser.name,
           email: updatedUser.email,
-          eventsJoined: updatedUser.eventsJoined,
-          eventsHosted: updatedUser.eventsHosted,
           friends: updatedUser.friends,
         };
         res.json(user);
@@ -238,8 +226,8 @@ router.get(
   "/getFilteredUsers/:filter",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const filter = req.params.filter
-    User.find({"name": {$regex : `${filter}`, $options: "i"} })
+    const filter = req.params.filter;
+    User.find({ name: { $regex: `${filter}`, $options: "i" } })
       .then((users) => {
         let filteredUser = [];
         users.forEach((user) => {
@@ -247,11 +235,9 @@ router.get(
             id: user.id,
             name: user.name,
             email: user.email,
-            eventsJoined: user.eventsJoined,
-            eventsHosted: user.eventsHosted,
             friends: user.friends,
             requestsSent: user.requestsSent,
-            requestsReceived: user.requestsReceived
+            requestsReceived: user.requestsReceived,
           });
         });
         res.json(filteredUser);
@@ -259,7 +245,6 @@ router.get(
       .catch((err) => res.json(err));
   }
 );
-
 
 router.get("/allUsers", (req, res) => {
   User.find()

@@ -14,7 +14,7 @@ const RootReducer = combineReducers({
   session: sessionReducer,
   errors: errorsReducer,
   events: EventsReducer,
-  ui: UiReducer,
+  ui: UiReducer, 
   requests: FriendRequestReducer,
   invites: FriendInviteReducer,
   users: UsersReducer,

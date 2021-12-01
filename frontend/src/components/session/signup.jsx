@@ -133,7 +133,7 @@ class SignupForm extends React.Component {
       password: this.state.password,
     };
 
-    this.props.signup(user);
+    this.props.signup(user).then(() => this.props.history.push('/profile'));
   }
 
   renderErrors() {

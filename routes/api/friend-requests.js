@@ -37,6 +37,7 @@ router.post(
   (req, res) => {
     // debugger
     errors = {};
+    console.log(req)
     FriendRequest.findOne({
       requester: req.user.id,
       recipient: req.body.recipient,
@@ -47,28 +48,33 @@ router.post(
       } else {
         const newRequest = new FriendRequest({
           requester: req.user.id,
+          requesterName: req.user.name,
           recipient: req.body.recipient,
+          recipientName: req.body.recipient,
           status: "pending"
         });
         newRequest
           .save()
           .then((request) => {
-            res.json(request)
+            console.log(request)
             User.findOneAndUpdate(
-              { _id: newRequest.requester },
+              { _id: request.requester },
               {
                 $addToSet: {
-                  requestsSent: newRequest.id
+                  requestsSent: request.id
                 },
               },
               { new: true }
-            )
+            ).then(
+              (user) => res.json({
+              }))
+            
 
             User.findOneAndUpdate(
-              { _id: newRequest.recipient },
+              { _id: request.recipient },
               {
                 $addToSet: {
-                  requestsReceived: newRequest.id
+                  requestsReceived: request.id
                 },
               },
               { new: true }

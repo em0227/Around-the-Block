@@ -9,9 +9,9 @@ class FutureEvent extends React.Component {
   }
   componentDidMount() {
     this.props.fetchEvents();
-    this.props.receiveInvites();
-    this.props.fetchFriendRequests();
-    this.props.fetchUsers();
+    // this.props.receiveInvites();
+    // this.props.fetchFriendRequests();
+    // this.props.fetchUsers();
     if (this.props.preJoinedEvent !== "") {
       this.props.updateCurrentUser({
         id: this.props.currentUser.user.id,
@@ -49,7 +49,8 @@ class FutureEvent extends React.Component {
     // const user = this.props.users.filter(user => user.name === name)[0];
     // if (user) 
     // if (Object.values(this.props.filters).filter(user => user.name)
-    this.props.createFriendRequest(this.state.user)
+    console.log(this.state)
+    this.props.createFriendRequest({recipient: this.state.user.id})
     
   }
 
@@ -155,7 +156,7 @@ class FutureEvent extends React.Component {
         <div className="profile-event-page">
           <div className="p-event-container-title">FRIENDS</div>
           <h3>Friend Requests From</h3>
-                  <ul>
+                  {/* <ul>
                     {
                     Object.values(this.props.invites).map((invite) => 
                       {if (invite.status === "pending"){
@@ -166,7 +167,7 @@ class FutureEvent extends React.Component {
                       }}
                      
                     )}
-                  </ul>
+                  </ul> */}
             <h3>Send a friend request</h3>
                 <form onSubmit={this.submitFriendRequest.bind(this)}>
                   <label>Name</label>

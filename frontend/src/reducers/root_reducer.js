@@ -15,9 +15,8 @@ const RootReducer = combineReducers({
   errors: errorsReducer,
   events: EventsReducer,
   ui: UiReducer,
-  requests: FriendRequestReducer,
-  invites: FriendInviteReducer,
-  users: UsersReducer,
+  // invites: FriendInviteReducer,
+  // users: UsersReducer,
   filters: FiltersReducer
 });
 

@@ -115,6 +115,8 @@ router.get(
       eventsJoined: req.user.eventsJoined,
       eventsHosted: req.user.eventsHosted,
       friends: req.user.friends,
+      requestsSent: req.user.requestsSent,
+      requestsReceived: req.user.requestsReceived
     });
   }
 );
@@ -136,6 +138,8 @@ router.get(
             eventsJoined: user.eventsJoined,
             eventsHosted: user.eventsHosted,
             friends: user.friends,
+            requestsReceived: user.requestsReceived,
+            requestsSent: user.requestsSent
           });
         });
         res.json(filteredUser);
@@ -229,6 +233,33 @@ router.patch(
       .catch((err) => res.json(err));
   }
 );
+
+router.get(
+  "/getFilteredUsers/:filter",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const filter = req.params.filter
+    User.find({"name": {$regex : `${filter}`, $options: "i"} })
+      .then((users) => {
+        let filteredUser = [];
+        users.forEach((user) => {
+          filteredUser.push({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            eventsJoined: user.eventsJoined,
+            eventsHosted: user.eventsHosted,
+            friends: user.friends,
+            requestsSent: user.requestsSent,
+            requestsReceived: user.requestsReceived
+          });
+        });
+        res.json(filteredUser);
+      })
+      .catch((err) => res.json(err));
+  }
+);
+
 
 router.get("/allUsers", (req, res) => {
   User.find()

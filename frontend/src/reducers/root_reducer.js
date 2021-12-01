@@ -7,6 +7,7 @@ import UiReducer from "./ui_reducer";
 import FriendRequestReducer from "./requests_reducer";
 import FriendInviteReducer from "./invites_reducer";
 import UsersReducer from "./users_reducer";
+import FiltersReducer from "./filters_reducer"
 
 const RootReducer = combineReducers({
   // entities: entitiesReducer,
@@ -17,6 +18,7 @@ const RootReducer = combineReducers({
   requests: FriendRequestReducer,
   invites: FriendInviteReducer,
   users: UsersReducer,
+  filters: FiltersReducer
 });
 
 export default RootReducer;

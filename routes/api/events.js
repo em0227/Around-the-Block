@@ -3,9 +3,12 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const Event = require("../../models/Event");
+const User = require("../../models/User");
 const passport = require("passport");
-const validateEventInput = require("../../validations/event");
 const { isValidEvent } = require("../../middleware/validEvent");
+const validateEventInput = require("../../validations/event");
+const validateEventUpdate = require("../../validations/event");
+const { restart } = require("nodemon");
 
 router.get("/allEvents", (req, res) => {
   //events are being sent up as an array
@@ -17,10 +20,14 @@ router.get("/allEvents", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  const event = Event.findOne({ _id: req.params.id }).exec();
-  event
-    .then(function (doc) {
-      res.send(doc);
+  Event.findOne({ _id: req.params.id })
+    .then((event) => {
+      User.find({ eventsJoined: event._id }).then((guests) => {
+        const guestNames = guests.map((guest) => guest.name);
+        event._doc.guests = guestNames;
+        //could look up res.send later as it shorten the 'event' sent back and couldn't just do event.guests = guestNames
+        res.send(event);
+      });
     })
     .catch((error) => res.status(400).json({ error: error }));
 });

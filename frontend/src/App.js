@@ -11,7 +11,7 @@ import EventShowContainer from "./components/event/event_show_container";
 import MainPageContainer from "./components/main/main_page_container";
 import FutureEventContainer from "./components/user_profile/future_event_container";
 
-import Footer from "./components/footer"
+import Footer from "./components/footer";
 import CreateEventContainer from "./components/user_profile/create_event_container";
 
 const App = () => (

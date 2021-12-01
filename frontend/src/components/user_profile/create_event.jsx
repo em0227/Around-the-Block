@@ -18,6 +18,9 @@ class CreateEventForm extends React.Component {
 
   componentDidMount() {
     this.props.clearErrors();
+    if (this.props.formType === "update") {
+    this.props.fetchEvent(this.props.match.params.eventId);
+    }
   }
   // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
@@ -55,6 +58,7 @@ class CreateEventForm extends React.Component {
   handleUpdate(e) {
     e.preventDefault();
     let event = {
+      id: this.props.event._id,
       name: this.state.name,
       description: this.state.description,
       location: this.state.location,

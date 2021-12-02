@@ -123,10 +123,10 @@ class NavBar extends React.Component {
     const getLinks = this.props.loggedIn ? (
       <div className="logged-in">
         <div className="logged-in-profile-icon">
-          <button className="btn" onClick={this.logoutUser}>
+          <button className="btn logout" onClick={this.logoutUser}>
             Logout
           </button>
-          <Link className="btn nav-button" to="/events/create">
+          <Link className="btn" to="/events/create">
             Create Event
           </Link>
           <IoMdNotificationsOutline

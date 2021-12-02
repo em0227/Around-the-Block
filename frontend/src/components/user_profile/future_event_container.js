@@ -9,18 +9,21 @@ import {
 import {
   fetchFriendRequests,
   createFriendRequest,
-  updateFriend
+  updateFriend,
 } from "../../actions/friend_request_actions";
-import { fetchFilteredUsers, updateCurrentUser } from "../../actions/users_actions";
+import {
+  fetchFilteredUsers,
+  updateCurrentUser,
+} from "../../actions/users_actions";
 import FutureEvent from "./future_event";
 
 const mapStateToProps = (state) => ({
   events: Object.values(state.events),
-  currentUser: state.session,
+  currentUser: state.session.user,
   preJoinedEvent: state.ui.preJoinedEvent,
   requests: state.requests,
   filters: state.filters,
-  errors: state.errors.friends
+  errors: state.errors.friends,
 });
 
 const mapDispatchToProps = (dispatch) => ({

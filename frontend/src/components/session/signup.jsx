@@ -133,7 +133,7 @@ class SignupForm extends React.Component {
       password: this.state.password,
     };
 
-    this.props.signup(user).then(() => this.props.history.push('/profile'));
+    this.props.signup(user).then(() => this.props.history.push("/profile"));
   }
 
   renderErrors() {
@@ -214,8 +214,32 @@ class SignupForm extends React.Component {
           </div>
         </div>
         <div className="mic">
-          {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
-          <button onClick={this.setIsListening.bind(this)}>Start/Stop</button>
+          {this.state.isListening ? (
+            <div className="mic-on">
+              <div class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span id="mic">🎙️</span>
+              <span
+                className="button form__submit"
+                onClick={this.setIsListening.bind(this)}
+              >
+                Stop Voice Input
+              </span>
+            </div>
+          ) : (
+            <span
+              className="button form__submit"
+              onClick={this.setIsListening.bind(this)}
+            >
+              Voice Input
+            </span>
+          )}
+
+          {/* <button onClick={this.setIsListening.bind(this)}>Start</button> */}
         </div>
       </div>
     );

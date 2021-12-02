@@ -3,6 +3,7 @@ $Courgette: "Courgette", cursive;
 $KaushanScript: "Kaushan Script", cursive;
 $Pacifico: "Pacifico", cursive;
 $Nunito: "Nunito", sans-serif;
+//voice spinner from https://codepen.io/AdamDipinto/pen/eYOaGvY
 
 * {
   box-sizing: border-box;
@@ -36,13 +37,17 @@ $Nunito: "Nunito", sans-serif;
     }
   }
   .mic {
-    font-size: 50px;
+    font-size: 40px;
     display: flex;
     flex-direction: column;
     padding: 380px 0 0 100px;
-    button {
-      border-radius: 0.3rem;
-      padding: 5px;
+    .button {
+      padding: 10px;
+      text-align: center;
+      width: 300px;
+      color: orange;
+      position: relative;
+      top: 30px;
     }
   }
 }
@@ -153,4 +158,71 @@ $Nunito: "Nunito", sans-serif;
 }
 .button__text {
   z-index: 10;
+}
+
+.mic-on {
+  position: relative;
+  bottom: 110px;
+}
+
+.loader {
+  position: relative;
+  top: 80px;
+  left: 90px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(#d4ec4d, #84cdfa, #5ad1cd);
+  animation: animate 1.2s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(#d4ec4d, #84cdfa, #5ad1cd);
+}
+
+.loader span:nth-child(1) {
+  filter: blur(5px);
+}
+
+.loader span:nth-child(2) {
+  filter: blur(10px);
+}
+
+#mic {
+  position: relative;
+  top: 15px;
+  left: 120px;
+}
+
+.loader span:nth-child(4) {
+  filter: blur(25px);
+}
+
+.loader span:nth-child(5) {
+  filter: blur(50px);
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: transparent;
+  border: solid white 3px;
+  border-radius: 50%;
 }

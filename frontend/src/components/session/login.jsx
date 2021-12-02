@@ -2,8 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { GrFormNextLink} from "react-icons/gr";
-
+import { GrFormNextLink } from "react-icons/gr";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -120,13 +119,13 @@ class LoginForm extends React.Component {
   loginDemo() {
     this.setState({
       email: "feifei.erhu@gmail.com",
-      password: "password"
+      password: "password",
     });
 
     this.props
       .login({
         email: "feifei.erhu@gmail.com",
-        password: "password"
+        password: "password",
       })
       .then(() => this.props.history.push("/profile"));
   }
@@ -190,7 +189,11 @@ class LoginForm extends React.Component {
                 <span className="form__background__shape form__background__shape2"></span>
               </div>
 
-              <button className="button form__submit" type="submit" onClick={this.loginDemo}>
+              <button
+                className="button form__submit"
+                type="submit"
+                onClick={this.loginDemo}
+              >
                 <span className="button__text">Demo User</span>
                 <i>
                   <GrFormNextLink />
@@ -200,8 +203,30 @@ class LoginForm extends React.Component {
           </div>
         </div>
         <div className="mic">
-          {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
-          <button onClick={this.setIsListening.bind(this)}>Start/Stop</button>
+          {this.state.isListening ? (
+            <div className="mic-on">
+              <div class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span id="mic">🎙️</span>
+              <span
+                className="button form__submit"
+                onClick={this.setIsListening.bind(this)}
+              >
+                Stop Voice Input
+              </span>
+            </div>
+          ) : (
+            <span
+              className="button form__submit"
+              onClick={this.setIsListening.bind(this)}
+            >
+              Voice Input
+            </span>
+          )}
         </div>
       </div>
     );

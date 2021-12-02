@@ -130,11 +130,14 @@ class NavBar extends React.Component {
           <Link className="link" to="/profile">
             <CgProfile className="nav-icon" />
           </Link>
-          <IoMdNotificationsOutline
-            className="nav-icon"
-            style={{ width: 60, height: 60, marginRight: 0, color: "" }}
-            onClick={this.toggleDropdown}
-          />
+          <div>
+            <IoMdNotificationsOutline
+              className="nav-icon bell"
+              style={{ width: 60, height: 60, marginRight: 0, color: "" }}
+              onClick={this.toggleDropdown}
+            />
+            <div className="counter">{currentUser.user.requestsReceived.length}</div>
+          </div>
           <div>{dropdownMenu}</div>
         </div>
       </div>

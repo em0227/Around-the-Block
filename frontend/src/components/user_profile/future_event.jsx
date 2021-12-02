@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import debounce from 'lodash.debounce';
-// import { AiOutlineSearch} from "react-icons/ai";
+import { FaUserCircle } from "react-icons/fa";
 
 class FutureEvent extends React.Component {
   constructor(props) {
@@ -119,7 +119,7 @@ class FutureEvent extends React.Component {
                 </div>
 
 
-                    <div className="p-event-desc">
+                    <div className="p-event-buttons">
                       <Link className="p-e-l" to={`/events/update/${event._id}`}>
                         Update
                       </Link>
@@ -127,7 +127,7 @@ class FutureEvent extends React.Component {
                         className="p-e-l"
                         onClick={() => this.deleteEvent(event._id)}
                       >
-                        Cancel Event
+                        Cancel
                       </button>
                     </div>   
 
@@ -160,10 +160,10 @@ class FutureEvent extends React.Component {
                   </div>
                   <div className="p-event-desc">
                     <button
-                      className="p-e-d"
+                      className="p-e-l"
                       onClick={() => this.leaveEvent(event._id)}
                     >
-                      Can't Make It
+                      Cancel
                     </button>
                   </div>
                 </div>
@@ -175,97 +175,109 @@ class FutureEvent extends React.Component {
     });
 
 return (
-      <div>
-        <div className="p-event-container-title" id="upcoming-event">
-          <Link className="session-titles" to="/">
-            UPCOMING EVENTS
-          </Link>
-          {displayMyJoinedEvents}
-        </div>
+  <div>
+    <div className="p-event-container-title" id="upcoming-event">
+      <Link className="session-titles" to="/">
+        UPCOMING EVENTS
+      </Link>
+      {displayMyJoinedEvents}
+    </div>
 
-        <div className="p-event-container-title" id="host-event">
-          <Link className="session-titles" to="/events/create">
-            HOST EVENTS
-          </Link>
-          {displayMyEvents}
-        </div>
+    <div className="p-event-container-title" id="host-event">
+      <Link className="session-titles" to="/events/create">
+        HOST EVENTS
+      </Link>
+      {displayMyEvents}
+    </div>
 
-        <div className="profile-event-page" id="friends">
-          <div className="p-event-container-title">FRIENDS</div>
-          <h3>Friends</h3>
-          {currentUser.user.friends.length > 0
-            ? currentUser.user.friends.map((friend) => (
-                <div>
-                  <li>{friend.friendName}</li>
-                  <li>{friend.friendEmail}</li>
-                </div>
-              ))
-            : ""}
-          <h3>Friend Requests From</h3>
-          {currentUser.user.requestsReceived.map((request) => (
+    <div className="profile-event-page" id="friends">
+      <div className="p-event-container-title">FRIENDS</div>
+      {/* <h3>Friends</h3> */}
+      {currentUser.user.friends.length > 0
+        ? currentUser.user.friends.map((friend) => (
             <div>
-              <li>{request.requesterName}</li>
-              <li>{request.requesterEmail}</li>
-              <button onClick={this.handleApprove.bind(this, request._id)}>
-                Approve
-              </button>
-              <button onClick={this.handleReject.bind(this, request._id)}>
-                Deny
-              </button>
+              <li>{friend.friendName}</li>
+              <li>{friend.friendEmail}</li>
             </div>
-          ))}
+          ))
+        : ""}
+      {/* <h3>Friend Requests From</h3> */}
+      {currentUser.user.requestsReceived.map((request) => (
+        <div>
+          <li>{request.requesterName}</li>
+          <li>{request.requesterEmail}</li>
+          <button onClick={this.handleApprove.bind(this, request._id)}>
+            Approve
+          </button>
+          <button onClick={this.handleReject.bind(this, request._id)}>
+            Deny
+          </button>
+        </div>
+      ))}
 
-          {/* <h3>Send a friend request</h3> */}
-          <div className="friend-request-container">
-          <form className="friend-search-form"
-          onSubmit={this.submitFriendRequest.bind(this)}>
-            {/* <label>Name</label> */}
-            <div>
-              <input
-                value={this.state.name}
-                className="friend-search-bar"
-                placeholder="Enter Friend's Name"
-                type="text"
-                onChange={this.update("name")}
-              />
+      {/* <h3>Send a friend request</h3> */}
+      <div className="friend-request-container">
+        <form
+          className="friend-search-form"
+          onSubmit={this.submitFriendRequest.bind(this)}
+        >
+          {/* <label>Name</label> */}
+          <div>
+            <input
+              value={this.state.name}
+              className="friend-search-bar"
+              placeholder="Enter Friend's Name"
+              type="text"
+              onChange={this.update("name")}
+            />
 
-              {this.state.name.length > 0 && filters.length > 0
-                ? filters.map((user) => (
-                    <div onClick={this.changeSearchBar.bind(this, user)}>
-                      <p className="user-info">{user.name}</p>
-                      <p className="user-info">{user.email}</p>
+            {this.state.name.length > 0 && filters.length > 0
+              ? filters.map((user) => (
+                  <div className="user-info-1" onClick={this.changeSearchBar.bind(this, user)}>
+                    <div className="user-info-">
+                      <FaUserCircle className="user-info-icon" />
+                      <div className="user-info-content">
+                        <div className="user-info-content-input">{user.name}</div>
+                        <div className="user-info-content-input">{user.email}</div>
+                      </div>
                     </div>
-                  ))
-                : ""}
-            </div>
-            <button className="friend-search-button" type="submit">Submit</button>
-          </form>
-          <div>{errors.recipient}</div>
+                  </div>
+                 
+                ))
+              : ""}
           </div>
+          <button className="friend-search-button" type="submit">
+            Find Friend
+          </button>
+        </form>
+        <div className="friend-search-bar-error">{errors.recipient}</div>
+      </div>
 
-          <div className="profile-friends-container">
-            <div className="profile-event-content">
-              <img
-                className="p-e-i"
-                src="https://atb-photos.s3.amazonaws.com/emily.png"
-              />
-              <img
-                className="p-e-i"
-                src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
-              />
-              <img
-                className="p-e-i"
-                src="https://atb-photos.s3.amazonaws.com/hien.png"
-              />
-              <img
-                className="p-e-i"
-                src="https://atb-photos.s3.amazonaws.com/sigdha.png"
-              />
-            </div>
-          </div>
+      <div className="profile-friends-container">
+        <div className="profile-event-content">
+          <img
+            className="p-e-i"
+            src="https://atb-photos.s3.amazonaws.com/emily.png"
+          />
+          {/* <div>{this.state.user}</div> */}
+
+          <img
+            className="p-e-i"
+            src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
+          />
+          <img
+            className="p-e-i"
+            src="https://atb-photos.s3.amazonaws.com/hien.png"
+          />
+          <img
+            className="p-e-i"
+            src="https://atb-photos.s3.amazonaws.com/sigdha.png"
+          />
         </div>
       </div>
-    );
+    </div>
+  </div>
+);
   }
 }
 

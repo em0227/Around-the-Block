@@ -12,9 +12,9 @@ class FutureEvent extends React.Component {
   }
   componentDidMount() {
     this.props.fetchEvents();
-    this.props.receiveInvites();
-    this.props.fetchFriendRequests();
-    this.props.fetchUsers();
+    // this.props.receiveInvites();
+    // this.props.fetchFriendRequests();
+    // this.props.fetchUsers();
     if (this.props.preJoinedEvent !== "") {
       this.props.updateEvent({
         id: this.props.preJoinedEvent,
@@ -23,23 +23,20 @@ class FutureEvent extends React.Component {
     }
   }
 
-  debounce() {
-    const { name } = this.state;
-    console.log(name);
-    const { fetchFilteredUsers } = this.props;
-    clearTimeout(this.timerId);
-    this.timerId = setTimeout(() => fetchFilteredUsers(name), 200);
+  debounce(){
+    const {name} = this.state
+    const {fetchFilteredUsers} = this.props
+    clearTimeout(this.timerId)
+   this.timerId = setTimeout(() => fetchFilteredUsers(name), 200)
+    
   }
 
   update(field) {
-    return (e) => {
-      this.setState(
-        {
-          [field]: e.currentTarget.value,
-        },
-        () => this.debounce()
-      );
-    };
+    return (e) =>{
+      this.setState({
+        [field]: e.currentTarget.value,
+      }, () => {this.debounce()})
+    }
   }
 
   submitFriendRequest() {
@@ -48,21 +45,25 @@ class FutureEvent extends React.Component {
     // const user = this.props.users.filter(user => user.name === name)[0];
     // if (user)
     // if (Object.values(this.props.filters).filter(user => user.name)
-    this.props.createFriendRequest(this.state.user);
+    this.props.createFriendRequest({recipient: this.state.user})
+    
   }
 
-  handleApprove(invite) {
+  handleApprove(requestId) {
     this.props.updateFriend({
-      status: "approved",
-      requester: invite.requester,
+      request: requestId,
+      status: "approved"
     });
   }
   handleOpenForm(event) {
     // this.props.updateEvent(event);
   }
 
-  handleReject(invite) {
-    this.props.updateFriend({ status: "denied", requester: invite.requester });
+  handleReject(requestId) {
+    this.props.updateFriend({ 
+      request: requestId,
+      status: "denied"
+    });
   }
 
   changeSearchBar(user) {
@@ -89,8 +90,11 @@ class FutureEvent extends React.Component {
   }
 
   render() {
-    const { events, currentUser, invites, users, filters } = this.props;
-    const myEvents = events.filter((event) => event.hostId === currentUser.id);
+    
+    const { events, errors, currentUser, invites, users, filters } = this.props;
+    const myEvents = events.filter(
+      (event) => event.hostId === currentUser.user.id
+    );
     const myJoinedEvents = events.filter((event) =>
       event.guests.includes(currentUser.id)
     );
@@ -114,12 +118,9 @@ class FutureEvent extends React.Component {
                   <div className="p-e-d">{event.description}</div>
                 </div>
                 <div className="p-event-desc">
-                  <button
-                    className="p-e-d"
-                    onClick={() => this.handleOpenForm(event)}
-                  >
-                    update
-                  </button>
+                  <Link className="p-e-d" to={`/events/update/${event._id}`}>
+                    Update
+                  </Link>
                 </div>
                 <div className="p-event-desc">
                   <button
@@ -259,7 +260,6 @@ class FutureEvent extends React.Component {
             </form>
           </div>
 
-          {/* <div>{display}</div> */}
 
           <div className="profile-friends-container">
             <div className="profile-event-content">

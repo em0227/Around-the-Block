@@ -14,6 +14,7 @@ import FutureEventContainer from "./components/user_profile/future_event_contain
 
 import Footer from "./components/footer";
 import CreateEventContainer from "./components/user_profile/create_event_container";
+import UpdateEventContainer from "./components/user_profile/update_event_container";
 
 const App = () => (
   <div>
@@ -31,7 +32,7 @@ const App = () => (
       {/* <Route exact path="/profile" component={UserProfileContainer} /> */}
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
-      {/* <AuthRoute exact path="/events/:eventId" component={EventShowContainer} /> */}
+      <ProtectedRoute exact path="/events/update/:eventId" component={UpdateEventContainer} />
       <ProtectedRoute
         exact
         path="/profile"

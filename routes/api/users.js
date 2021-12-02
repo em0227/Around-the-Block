@@ -41,6 +41,12 @@ router.post("/register", (req, res) => {
               const payload = {
                 id: user.id,
                 name: user.name,
+                email: user.email,
+                eventsJoined: user.eventsJoined,
+                eventsHosted: user.eventsHosted,
+                friends: user.friends,
+                requestsSent: user.requestsSent,
+                requestsReceived: user.requestsReceived
               };
 
               jwt.sign(
@@ -83,6 +89,12 @@ router.post("/login", (req, res) => {
         const payload = {
           id: user.id,
           email: user.email,
+          name: user.name,
+          eventsJoined: user.eventsJoined,
+          eventsHosted: user.eventsHosted,
+          friends: user.friends,
+          requestsSent: user.requestsSent,
+          requestsReceived: user.requestsReceived
         };
 
         jwt.sign(
@@ -177,6 +189,8 @@ router.patch(
           name: updatedUser.name,
           email: updatedUser.email,
           friends: updatedUser.friends,
+          requestsSent: req.user.requestsSent,
+          requestsReceived: req.user.requestsReceived
         };
         res.json(user);
       })
@@ -215,6 +229,8 @@ router.patch(
           name: updatedUser.name,
           email: updatedUser.email,
           friends: updatedUser.friends,
+          requestsSent: req.user.requestsSent,
+          requestsReceived: req.user.requestsReceived
         };
         res.json(user);
       })

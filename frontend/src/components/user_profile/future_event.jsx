@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import debounce from "lodash.debounce";
+import debounce from 'lodash.debounce';
+import { FaUserCircle } from "react-icons/fa";
 
 class FutureEvent extends React.Component {
   constructor(props) {
@@ -112,20 +113,22 @@ class FutureEvent extends React.Component {
                 <div className="p-event-desc">
                   <div className="p-e-d">{event.description}</div>
                 </div>
-                <div className="p-event-desc">
-                  <Link className="p-e-d" to={`/events/update/${event._id}`}>
-                    Update
-                  </Link>
-                </div>
-                <div className="p-event-desc">
-                  <button
-                    className="p-e-d"
-                    onClick={() => this.deleteEvent(event._id)}
-                  >
-                    Cancel Event
-                  </button>
-                </div>
-              </div>
+
+
+                    <div className="p-event-buttons">
+                      <Link className="p-e-l" to={`/events/update/${event._id}`}>
+                        Update
+                      </Link>
+                      <button
+                        className="p-e-l"
+                        onClick={() => this.deleteEvent(event._id)}
+                      >
+                        Cancel
+                      </button>
+                    </div>   
+
+
+                   </div>
             </div>
           </div>
         </div>
@@ -153,10 +156,10 @@ class FutureEvent extends React.Component {
                   </div>
                   <div className="p-event-desc">
                     <button
-                      className="p-e-d"
+                      className="p-e-l"
                       onClick={() => this.leaveEvent(event._id)}
                     >
-                      Can't Make It
+                      Cancel
                     </button>
                   </div>
                 </div>
@@ -166,74 +169,110 @@ class FutureEvent extends React.Component {
         </div>
       );
     });
-    return (
-      <div>
-        <div className="p-event-container-title" id="upcoming-event">
-          <Link className="session-titles" to="/">
-            UPCOMING EVENTS
-          </Link>
-          {displayMyJoinedEvents}
-        </div>
 
-        <div className="p-event-container-title" id="host-event">
-          <Link className="session-titles" to="/events/create">
-            HOST EVENTS
-          </Link>
-          {displayMyEvents}
-        </div>
+return (
+  <div>
+    <div className="p-event-container-title" id="upcoming-event">
+      <Link className="session-titles" to="/">
+        UPCOMING EVENTS
+      </Link>
+      {displayMyJoinedEvents}
+    </div>
 
-        <div className="profile-event-page" id="friends">
+    <div className="profile-event-page" id="friends">
+    <div className="p-event-container-title" id="host-event">
+      <Link className="session-titles" to="/events/create">
+        HOST EVENTS
+      </Link>
+      {displayMyEvents}
+    </div>
+
+    <div className="profile-event-page" id="friends">
           <div className="p-event-container-title">FRIENDS</div>
-          <h3>Friends</h3>
+          {/* <h3>Friends</h3> */}
                   {currentUser.friends.length > 0 ? currentUser.friends.map((friend) => 
                     <div>
                       <li>{friend.friendName}</li>
                       <li>{friend.friendEmail}</li>
                     </div>
                     ) : ""}
-                  
-            <h3>Send a friend request</h3>
-                <form onSubmit={this.submitFriendRequest.bind(this)}>
-                  <label>Name</label>
-                  <div>
-                  <input value={this.state.name} placeholder="Enter Name" type="text" onChange={this.update('name')}/>
-                  
-                  {this.state.name.length > 0 && filters.length > 0  ? filters.map(user =>
-                    <div onClick={this.changeSearchBar.bind(this, user)}>
-                      <p>{user.name}</p>
-                      <p>{user.email}</p>
+
+      {/* <h3>Send a friend request</h3> */}
+      <div className="friend-request-container">
+        <form
+          className="friend-search-form"
+          onSubmit={this.submitFriendRequest.bind(this)}
+        >
+          {/* <label>Name</label> */}
+          <div>
+            <input
+              value={this.state.name}
+              className="friend-search-bar"
+              placeholder="Enter Friend's Name"
+              type="text"
+              onChange={this.update("name")}
+            />
+            <div className="entire-dropdown">
+              {this.state.name.length > 0 && filters.length > 0
+                ? filters.map((user) => (
+                    <div
+                      className="user-info-1"
+                      onClick={this.changeSearchBar.bind(this, user)}
+                    >
+                      <div className="user-info-">
+                        <FaUserCircle className="user-info-icon" />
+                        <div className="user-info-content">
+                          <div className="user-info-content-input">
+                            {user.name}
+                          </div>
+                          <div className="user-info-content-input">
+                            {user.email}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  )
+                  ))
                 : ""}
             </div>
-            <button type="submit">Submit</button>
-          </form>
-          <div>{errors.recipient}</div>
-
-          <div className="profile-friends-container">
-            <div className="profile-event-content">
-              <img
-                className="p-e-i"
-                src="https://atb-photos.s3.amazonaws.com/emily.png"
-              />
-              <img
-                className="p-e-i"
-                src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
-              />
-              <img
-                className="p-e-i"
-                src="https://atb-photos.s3.amazonaws.com/hien.png"
-              />
-              <img
-                className="p-e-i"
-                src="https://atb-photos.s3.amazonaws.com/sigdha.png"
-              />
-            </div>
           </div>
+          <button className="friend-search-button" type="submit">
+            Find Friend
+          </button>
+        </form>
+        <div className="friend-search-bar-error">{errors.recipient}</div>
+      </div>
+
+      
+
+      <div className="profile-friends-container">
+        <div className="profile-event-content">
+          <img
+            className="p-e-i"
+            src="https://atb-photos.s3.amazonaws.com/emily.png"
+          />
+          {/* <div>{this.state.user}</div> */}
+
+          <img
+            className="p-e-i"
+            src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
+          />
+          <img
+            className="p-e-i"
+            src="https://atb-photos.s3.amazonaws.com/hien.png"
+          />
+          <img
+            className="p-e-i"
+            src="https://atb-photos.s3.amazonaws.com/sigdha.png"
+          />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+
+
+  </div>
+  </div>
+);
+  
+}}
 
 export default FutureEvent;

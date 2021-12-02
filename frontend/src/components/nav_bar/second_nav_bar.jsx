@@ -73,6 +73,9 @@ class SecondNavBar extends React.Component {
                 <button className="submit-updated-user" type="Submit">Submit</button>
                 </form>
                 : ""}
+               <Link1 to="upcoming-event" smooth={true} duration={1000}> <MdOutlineUpcoming className="nav-icon" /> </Link1>
+                <Link1 to="host-event" smooth={true} duration={1000}><MdEventSeat className="nav-icon" /> </Link1>
+                <Link1 to="friends" smooth={true} duration={1000}><GiThreeFriends className="nav-icon" /> </Link1>
             </div>
           </div>
         );

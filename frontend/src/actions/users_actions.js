@@ -1,7 +1,7 @@
 import * as Session from "./session_actions";
 import * as UserAPIUtil from "../util/user_api_util";
 import * as SessionAPIUtil from "../util/session_api_util";
-
+import {receiveUpdatedUser} from "./friend_request_actions"
 export const RECEIVE_USER_ERROR = "RECEIVE_USER_ERROR";
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_FILTERED_USERS = "RECEIVE_FILTERED_USERS";
@@ -30,7 +30,7 @@ export const fetchCurrentUser = () => (dispatch) =>
 
 export const updateCurrentUser = (userData) => (dispatch) =>
   UserAPIUtil.updateCurrentUser(userData).then(
-    (user) => dispatch(Session.receiveCurrentUser(user.data)),
+    (user) => dispatch(receiveUpdatedUser(user)),
     (err) => dispatch(receiveUserErrors(err.response.data))
   );
 

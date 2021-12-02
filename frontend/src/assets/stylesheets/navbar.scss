@@ -44,9 +44,7 @@ $Nunito: "Nunito", sans-serif;
   .btn {
     // width: 180px;
     height: 40px;
-    border-radius: 80px;
     margin-right: 15px;
-   
     font-size: 20px;
     color: rgb(26, 24, 24);
     background-color: #f2a07b;
@@ -60,6 +58,8 @@ $Nunito: "Nunito", sans-serif;
     max-width: max-content;
     max-height: max-content;
     color: rgb(27, 27, 27);
+    outline: none;
+    border: none;  
   }
   // .nav-button{
   //   width: 170px;
@@ -96,6 +96,31 @@ $Nunito: "Nunito", sans-serif;
   align-items: center;
   width: 50%;
   margin: 35%;
+}
+
+.profile-button{
+  max-width: max-content;
+  max-height: max-content; 
+}
+
+.close-modal:hover{
+  cursor: pointer; 
+}
+
+.name-and-email{
+  display: flex;
+  flex-direction: column;
+}
+
+.modal{
+  position: absolute; 
+  height: 300px; 
+  padding: 10px 15px 15px 10px; 
+  top: 200px; 
+  left: 500px; 
+  border: 1px solid black; 
+  background-color: white;
+  border-radius: 5px; 
 }
 
 .nav-icon{

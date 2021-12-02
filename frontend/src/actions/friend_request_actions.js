@@ -17,7 +17,7 @@ const receiveRequests = (requests) => ({
     requests
 })
 
-const receiveUpdatedUser = (user) => ({
+export const receiveUpdatedUser = (user) => ({
     type: RECEIVE_UPDATED_USER,
     user 
 })

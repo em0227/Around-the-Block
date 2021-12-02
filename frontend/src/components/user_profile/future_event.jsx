@@ -88,7 +88,7 @@ class FutureEvent extends React.Component {
     
     const { events, errors, currentUser, invites, users, filters } = this.props;
     const myEvents = events.filter(
-      (event) => event.hostId === currentUser.user.id
+      (event) => event.hostId === currentUser.id
     );
     const myJoinedEvents = events.filter((event) =>
       event.guests.includes(currentUser.id)
@@ -185,7 +185,7 @@ class FutureEvent extends React.Component {
         <div className="profile-event-page">
           <div className="p-event-container-title">FRIENDS</div>
           <h3>Friends</h3>
-                  {currentUser.user.friends.length > 0 ? currentUser.user.friends.map((friend) => 
+                  {currentUser.friends.length > 0 ? currentUser.friends.map((friend) => 
                     <div>
                       <li>{friend.friendName}</li>
                       <li>{friend.friendEmail}</li>

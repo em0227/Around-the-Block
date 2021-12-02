@@ -80,39 +80,6 @@ class NavBar extends React.Component {
                 </div>
               </div>
             ))}
-            {/* <div className="drop-down-list">
-              <CgProfile
-                className="svg drop"
-                style={{ width: 45, height: 55 }}
-              />
-              <div className="drop-down-item">
-                <p> Friend Request!</p>
-                <Link
-                  style={{ textDecoration: "none", backgroundColor: "white" }}
-                  to="/profile"
-                >
-                  View Your Profile
-                </Link>
-              </div>
-            </div>
-            <div className="drop-down-list">
-              <AiOutlineSetting
-                className="svg drop"
-                style={{ width: 50, height: 50 }}
-              />
-              <div className="link"> Settings </div>
-            </div>
-            <div className="drop-down-list">
-              <GrNotes className="svg drop" style={{ width: 45, height: 45 }} />
-              <div className="link"> Feedback </div>
-            </div>
-            <div className="drop-down-list">
-              <CgLogOut
-                className="svg drop"
-                style={{ width: 45, height: 45 }}
-              />
-              <p onClick={this.logoutUser}>Logout</p>
-            </div> */}
           </div>
         </div>
       );
@@ -124,7 +91,7 @@ class NavBar extends React.Component {
           <button className="btn logout-button" onClick={this.logoutUser}>
             Logout
           </button>
-          <Link className="btn" to="/events/create">
+          <Link className="btn create-button" to="/events/create">
             Create Event
           </Link>
           <Link className="link" to="/profile">
@@ -136,7 +103,9 @@ class NavBar extends React.Component {
               style={{ width: 60, height: 60, marginRight: 0, color: "" }}
               onClick={this.toggleDropdown}
             />
-            <div className="counter">{currentUser.user.requestsReceived.length}</div>
+            <div className="counter">
+              {currentUser.user.requestsReceived.length}
+            </div>
           </div>
           <div>{dropdownMenu}</div>
         </div>

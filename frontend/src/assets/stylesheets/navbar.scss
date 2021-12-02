@@ -11,7 +11,7 @@ $Nunito: "Nunito", sans-serif;
   padding: 0 70px; 
   background: #175245;
   align-items: center;
-  height: 100px;  
+  height: 120px;  
   padding-left: 80px;
   padding-right: 10px;
   .app-name {
@@ -21,17 +21,22 @@ $Nunito: "Nunito", sans-serif;
     text-transform: bold;
     font-size: 60px;
     color: #f2a07b;
-    .app-span {
-      // font-family: $Pacifico;
+    .app-span {  
       font-family: $Pacifico;
       font-size: 70px;
       color: #ffd571;
+      // transition: all 0.2s ease-in-out;
     }
+    // .app-span:hover {
+    // cursor: pointer; 
+    // transform: scale(1.2)
+    // }
   }
   .logged-in {
     display: flex;
     align-items: center;
     // justify-content: space-around;
+     max-width: max-content; 
     margin: 0 10px;
     .logged-in-profile-icon{
     display: flex;
@@ -68,6 +73,9 @@ $Nunito: "Nunito", sans-serif;
   .btn:hover {
     font-family: $Nunito;
   }
+  .create-button{
+     width: 180px;
+  }
   .logout-button{
     height: 50px;
   }
@@ -88,7 +96,7 @@ $Nunito: "Nunito", sans-serif;
   justify-content: space-between;
   // padding: 0 70px; 
   align-items: center;
-  height: 60px; 
+  height: 70px; 
   width: 100%; 
   padding-left: 10px;
   padding-right: 10px;
@@ -182,7 +190,7 @@ $Nunito: "Nunito", sans-serif;
 }
 
 .nav-icon{
-  width: 30px; 
+  width: 50px; 
     height: auto;
     // margin-bottom: 20px;
     color: black; 
@@ -250,8 +258,8 @@ $Nunito: "Nunito", sans-serif;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 71px;
-  right: 95px;
+  top: 21px;
+  right: 25px;
 }
 .nav-icon:hover{
     transform: scale(1.05);

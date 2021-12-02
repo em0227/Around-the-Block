@@ -35,8 +35,8 @@ const SessionReducer = (state = initialState, action) => {
       };
     case RECEIVE_UPDATED_USER:
       // nextState.user.id = action.user.data._id
-      // nextState.user.name = action.user.data.name
-      // nextState.user.email = action.user.data.email
+      nextState.user.name = action.user.data.name
+      nextState.user.email = action.user.data.email
       // nextState.user.eventsHosted = action.user.data.eventsJoined
       nextState.user.friends = action.user.data.friends
       nextState.user.requestsSent = action.user.data.requestsSent

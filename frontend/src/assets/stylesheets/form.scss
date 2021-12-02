@@ -14,9 +14,10 @@ $Nunito: "Nunito", sans-serif;
 
 .form-container {
   font-size: 30px;
-  display: flex;
+  // display: flex;
   // align-items: center;
   // justify-content: space-between;
+  position: relative;
   width: 100vw;
   height: 100vh;
   background: linear-gradient(90deg, #dfeeea, #a7c4bc, #89b5af);
@@ -28,26 +29,39 @@ $Nunito: "Nunito", sans-serif;
     z-index: 1000;
     border-radius: 20px;
     background: white;
-    position: relative;
+    // position: relative;
     height: 100vh;
-    width: 520px;
+    width: 45vw;
     box-shadow: 0px 0px 24px #5e8b7e;
     .form__content {
-      height: 100vh;
+      height: 100%;
     }
   }
   .mic {
     font-size: 40px;
     display: flex;
-    flex-direction: column;
-    padding: 380px 0 0 100px;
-    .button {
-      padding: 10px;
-      text-align: center;
-      width: 300px;
-      color: orange;
-      position: relative;
-      top: 30px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 50px;
+    position: absolute;
+    margin-top: -180px;
+    z-index: 500;
+    
+    width: 45%;
+    button {
+      border-radius: 0.3rem;
+      padding: 5px;
+    }
+    .micro{
+      width: 180px;
+      margin-top: 0;
+      background-color: #C84B31;
+      border-radius: 20px;
+      height: 55px;
+      color: white;
+    }
+    span{
+      margin-left: 20px;
     }
   }
 }
@@ -72,27 +86,28 @@ $Nunito: "Nunito", sans-serif;
 .form__background__shape2 {
   height: 220px;
   width: 220px;
-  background: #57837b;
+  background: #175245;
   top: -172px;
   right: 0;
   border-radius: 32px;
+  margin-right: 450px;
 }
 
 .form-inner {
-  width: 400px;
-  padding-left: 40px;
+  width: 80%;
+  padding-left: 60px;
   padding-top: 120px;
 }
 
 .input__field {
-  padding: 20px 0px;
+  padding: 20px 40px;
   position: relative;
+  margin: 0 20px;
 }
 
 .signup__icon {
   position: absolute;
   top: 30px;
-  // color: #7875b5;
 }
 
 .form__field {
@@ -120,6 +135,7 @@ $Nunito: "Nunito", sans-serif;
 }
 .new {
   margin-bottom: 0px;
+  margin: 0 20px 0 40px;
 }
 .form__field:active,
 .form__field:focus,
@@ -134,7 +150,7 @@ $Nunito: "Nunito", sans-serif;
   align-items: center;
   background: #fff;
   font-size: 30px;
-  margin-top: 20px;
+  margin: 20px 20px 0 30px;
   padding: 0 15px;
   border-radius: 26px;
   border: 1px solid #d4d3e8;
@@ -148,6 +164,7 @@ $Nunito: "Nunito", sans-serif;
   cursor: pointer;
   transition: 0.2s;
   z-index: 10;
+  position: relative;
 }
 
 .form__submit:active,

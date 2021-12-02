@@ -224,7 +224,7 @@ class SignupForm extends React.Component {
               </div>
               <span id="mic">🎙️</span>
               <span
-                className="button form__submit"
+                className="button form__submit micro"
                 onClick={this.setIsListening.bind(this)}
               >
                 Stop Voice Input
@@ -232,7 +232,7 @@ class SignupForm extends React.Component {
             </div>
           ) : (
             <span
-              className="button form__submit"
+              className="button form__submit micro"
               onClick={this.setIsListening.bind(this)}
             >
               Voice Input
@@ -240,6 +240,22 @@ class SignupForm extends React.Component {
           )}
 
           {/* <button onClick={this.setIsListening.bind(this)}>Start</button> */}
+          {/* {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
+          {this.state.isListening ? (
+            <button
+              className="button form__submit micro"
+              onClick={this.setIsListening.bind(this)}
+            >
+              Stop
+            </button>
+          ) : (
+            <button
+              className="button form__submit micro"
+              onClick={this.setIsListening.bind(this)}
+            >
+              Start
+            </button>
+          )} */}
         </div>
       </div>
     );

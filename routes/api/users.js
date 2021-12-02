@@ -177,24 +177,23 @@ router.patch(
           name: req.body.name,
           email: req.body.email,
         },
-        $addToSet: {
-          friends: req.body.friends,
-        },
+        // $addToSet: {
+        //   friends: req.body.friends,
+        // },
       },
-      { multi: true, new: true }
+      {new: true }
     )
-      .then((updatedUser) => {
-        const user = {
-          id: updatedUser.id,
-          name: updatedUser.name,
-          email: updatedUser.email,
-          friends: updatedUser.friends,
-          requestsSent: req.user.requestsSent,
-          requestsReceived: req.user.requestsReceived
-        };
-        res.json(user);
-      })
-      .catch((err) => res.json(err));
+      .then((updatedUser) => 
+        // const user = {
+        //   id: updatedUser.id,
+        //   name: updatedUser.name,
+        //   email: updatedUser.email,
+        //   friends: updatedUser.friends,
+        //   requestsSent: req.user.requestsSent,
+        //   requestsReceived: req.user.requestsReceived
+        // };
+        res.json(updatedUser)
+      ).catch((err) => res.json(err));
   }
 );
 

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { MdOutlineUpcoming, MdUpcoming } from "react-icons/md";
 import { GiThreeFriends } from "react-icons/gi";
 import {MdEventSeat} from "react-icons/md";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faPen} from '@fortawesome/fontawesome-free-solid'
-// import {Link as Link1} from "react-scroll";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen} from '@fortawesome/free-solid-svg-icons';
+import {Link as Link1} from "react-scroll";
 
 class SecondNavBar extends React.Component {
   
@@ -34,7 +34,7 @@ class SecondNavBar extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     this.props.updateCurrentUser({name: this.state.name, email: this.state.email})
-    this.setState({name: "", email: ""})
+    this.setState({showModal: false, name: "", email: ""})
   }
 
   render() {
@@ -43,13 +43,22 @@ class SecondNavBar extends React.Component {
           
           <div className="second-nav-bar">
               <div className="icons">
-               {/* <Link1 to="upcoming-event" smooth={true} duration={1000}> <MdOutlineUpcoming className="nav-icon" /> </Link1>
+                <div className="text-and-icon">
+               <Link1 to="upcoming-event" smooth={true} duration={1000}> <MdOutlineUpcoming className="nav-icon" /> </Link1>
+                <p className="text">Upcoming Events</p>
+                </div>
+                <div className="text-and-icon">
                 <Link1 to="host-event" smooth={true} duration={1000}><MdEventSeat className="nav-icon" /> </Link1>
+                <p className="text">Hosted Events</p>
+                </div>
+                <div className="text-and-icon">
                 <Link1 to="friends" smooth={true} duration={1000}><GiThreeFriends className="nav-icon" /> </Link1>
-                
-                */}
-                <button className="profile-button" onClick={this.profileModalAppears.bind(this)}><MdOutlineUpcoming className="nav-icon" /> </button>
-                {/* <FontAwesomeIcon className="pen-icon" icon={faPen} /> */}
+                <p className="text">Friends</p>
+                </div>
+                <div className="text-and-icon">
+                <button className="profile-button" onClick={this.profileModalAppears.bind(this)}><FontAwesomeIcon className="pen-icon" icon={faPen} /> </button>
+                <p className="text">Update profile</p>
+                </div>
                 {this.state.showModal ? 
                 <form className="modal" onSubmit={this.handleSubmit.bind(this)}>
                   

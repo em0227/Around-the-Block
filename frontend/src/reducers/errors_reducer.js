@@ -8,9 +8,6 @@ import FriendErrorsReducer from "./friend_errors_reducer"
 export default combineReducers({
   session: SessionErrorsReducer,
   users,
-<<<<<<< HEAD
   events: EventErrorsReducer,
-=======
   friends: FriendErrorsReducer
->>>>>>> snigdha_finishing_friend_requests
 });

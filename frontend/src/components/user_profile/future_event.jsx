@@ -203,7 +203,7 @@ class FutureEvent extends React.Component {
                       <p>{user.name}</p>
                       <p>{user.email}</p>
                     </div>
-                  ))
+                  )
                 : ""}
             </div>
             <button type="submit">Submit</button>

@@ -104,15 +104,53 @@ $Nunito: "Nunito", sans-serif;
 }
 .close-modal{
   text-align: right;
+  margin-top: 5px; 
+  margin-right: 5px; 
+  font-size: 18px; 
+  text-transform: bold; 
 }
+
 
 .close-modal:hover{
   cursor: pointer; 
+  color: gray; 
+  
 }
 
 .name-and-email{
   display: flex;
   flex-direction: column;
+
+  .name-header, .email-header{
+    margin-bottom: 10px;
+  }
+
+  .name-input, .email-input{
+    margin-bottom: 18px; 
+    padding: 2px 8px 2px 8px ; 
+    border: 1px solid black;
+    border-radius: 3px; 
+    outline: none;
+    width: 350px;  
+  
+  }
+}
+
+.submit-updated-user{
+  position: absolute; 
+  left: 305px; 
+  box-sizing: border-box;
+  background-color: #1890FF; 
+  border: none; 
+  outline: none; 
+  border-radius: 3px; 
+  color: white;
+  padding: 3px 6px 3px 6px;  
+}
+
+.submit-updated-user:hover{
+  cursor: pointer; 
+  transform: scale(1.2)
 }
 
 .modal{
@@ -120,12 +158,20 @@ $Nunito: "Nunito", sans-serif;
   font-family: "Open Sans", sans-serif;
   height: 300px; 
   width: 400px; 
-  padding: 10px 15px 15px 10px; 
+  padding: 10px 15px 15px 20px; 
   top: 200px; 
   left: 500px; 
   border: 1px solid black; 
   background-color: white;
   border-radius: 5px; 
+  background-color: bisque;
+}
+
+.update-profile-header{
+  font-size: 30px; 
+  margin-bottom: 30px; 
+  text-align: center; 
+  margin-top: 10px; 
 }
 
 .nav-icon{

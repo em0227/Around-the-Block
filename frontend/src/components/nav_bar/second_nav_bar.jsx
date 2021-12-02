@@ -54,14 +54,14 @@ class SecondNavBar extends React.Component {
                 <form className="modal" onSubmit={this.handleSubmit.bind(this)}>
                   
                   <div className= "close-modal" onClick={this.clearModal.bind(this)}>X</div>
-                  <h2>Update Your Profile</h2>
+                  <h2 className="update-profile-header">Update Your Profile</h2>
                   <div className="name-and-email">
-                  <label>Name</label>
-                  <input type="text" value={this.state.name} onChange={this.update('name')} />
-                  <label>Email</label>
-                  <input type="text" value={this.state.email} onChange={this.update('email')} />
+                  <label className="name-header">Name</label>
+                  <input className="name-input" type="text" value={this.state.name} onChange={this.update('name')} />
+                  <label className="email-header">Email</label>
+                  <input className="email-input" type="text" value={this.state.email} onChange={this.update('email')} />
                   </div>
-                <button type="Submit">Submit</button>
+                <button className="submit-updated-user" type="Submit">Submit</button>
                 </form>
                 : ""}
             </div>

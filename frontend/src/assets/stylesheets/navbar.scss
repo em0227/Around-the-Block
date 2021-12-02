@@ -102,6 +102,9 @@ $Nunito: "Nunito", sans-serif;
   max-width: max-content;
   max-height: max-content; 
 }
+.close-modal{
+  text-align: right;
+}
 
 .close-modal:hover{
   cursor: pointer; 
@@ -114,7 +117,9 @@ $Nunito: "Nunito", sans-serif;
 
 .modal{
   position: absolute; 
+  font-family: "Open Sans", sans-serif;
   height: 300px; 
+  width: 400px; 
   padding: 10px 15px 15px 10px; 
   top: 200px; 
   left: 500px; 

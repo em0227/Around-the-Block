@@ -52,7 +52,9 @@ class SecondNavBar extends React.Component {
                 {/* <FontAwesomeIcon className="pen-icon" icon={faPen} /> */}
                 {this.state.showModal ? 
                 <form className="modal" onSubmit={this.handleSubmit.bind(this)}>
+                  
                   <div className= "close-modal" onClick={this.clearModal.bind(this)}>X</div>
+                  <h2>Update Your Profile</h2>
                   <div className="name-and-email">
                   <label>Name</label>
                   <input type="text" value={this.state.name} onChange={this.update('name')} />

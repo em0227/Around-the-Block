@@ -199,10 +199,10 @@ class LoginForm extends React.Component {
             </form>
           </div>
         </div>
-        <div className="mic">
+        {/* <div className="mic">
           {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
           <button onClick={this.setIsListening.bind(this)}>Start/Stop</button>
-        </div>
+        </div> */}
       </div>
     );
   }

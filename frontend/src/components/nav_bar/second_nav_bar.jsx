@@ -73,6 +73,7 @@ class SecondNavBar extends React.Component {
                 <button className="submit-updated-user" type="Submit">Submit</button>
                 </form>
                 : ""}
+    
             </div>
           </div>
         );

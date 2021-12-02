@@ -7,7 +7,6 @@ class FutureEvent extends React.Component {
     super(props);
     this.state = { name: "", user: {} };
     this.timerId = 0;
-    this.handleOpenForm = this.handleOpenForm.bind(this);
   }
   componentDidMount() {
     this.props.fetchEvents();
@@ -48,22 +47,20 @@ class FutureEvent extends React.Component {
     
   }
 
-  handleApprove(requestId) {
-    this.props.updateFriend({
-      request: requestId,
-      status: "approved"
-    });
-  }
-  handleOpenForm(event) {
-    // this.props.updateEvent(event);
-  }
+  // handleApprove(requestId) {
+  //   this.props.updateFriend({
+  //     request: requestId,
+  //     status: "approved"
+  //   });
+  // }
+ 
 
-  handleReject(requestId) {
-    this.props.updateFriend({ 
-      request: requestId,
-      status: "denied"
-    });
-  }
+  // handleReject(requestId) {
+  //   this.props.updateFriend({ 
+  //     request: requestId,
+  //     status: "denied"
+  //   });
+  // }
 
   changeSearchBar(user) {
     if (this.state.name !== user.name) {
@@ -85,7 +82,6 @@ class FutureEvent extends React.Component {
 
   deleteEvent(eventId) {
     this.props.deleteEvent(eventId);
-    // this.props.fetchEvents();
   }
 
   render() {
@@ -195,15 +191,6 @@ class FutureEvent extends React.Component {
                       <li>{friend.friendEmail}</li>
                     </div>
                     ) : ""}
-          <h3>Friend Requests From</h3>
-                  {currentUser.user.requestsReceived.map((request) => 
-                    <div>
-                      <li>{request.requesterName}</li>
-                      <li>{request.requesterEmail}</li>
-                      <button onClick={this.handleApprove.bind(this, request._id)}>Approve</button>
-                      <button onClick={this.handleReject.bind(this, request._id)}>Deny</button>
-                    </div>
-                    )}
                   
             <h3>Send a friend request</h3>
                 <form onSubmit={this.submitFriendRequest.bind(this)}>

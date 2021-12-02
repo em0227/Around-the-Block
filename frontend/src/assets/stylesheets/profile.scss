@@ -166,6 +166,12 @@
 .friend-search-button:hover{
     color: black;
 }
+.entire-dropdown{
+  height: 600px;
+  overflow-y: scroll;
+}
+
+
 .user-info-1 {
   display: flex;
   flex-direction: column;
@@ -173,7 +179,7 @@
   height: 120px;
   background-color: white;
   border: 1px solid rgb(214, 211, 211);
-  overflow: hidden;
+  overflow-y: scroll;
   color: rgb(7, 0, 0);
   font-size: 40px;
 }
@@ -206,8 +212,9 @@
  
 }
 .friend-search-bar-error{
-    font-size: 10px;
+    font-size: 50px;
     color: red;
+
 }
 
 

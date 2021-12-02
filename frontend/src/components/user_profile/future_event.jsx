@@ -222,7 +222,7 @@ return (
           onSubmit={this.submitFriendRequest.bind(this)}
         >
           {/* <label>Name</label> */}
-          <div>
+          <div >
             <input
               value={this.state.name}
               className="friend-search-bar"
@@ -230,21 +230,28 @@ return (
               type="text"
               onChange={this.update("name")}
             />
-
-            {this.state.name.length > 0 && filters.length > 0
-              ? filters.map((user) => (
-                  <div className="user-info-1" onClick={this.changeSearchBar.bind(this, user)}>
-                    <div className="user-info-">
-                      <FaUserCircle className="user-info-icon" />
-                      <div className="user-info-content">
-                        <div className="user-info-content-input">{user.name}</div>
-                        <div className="user-info-content-input">{user.email}</div>
+            <div className="entire-dropdown">
+              {this.state.name.length > 0 && filters.length > 0
+                ? filters.map((user) => (
+                    <div
+                      className="user-info-1"
+                      onClick={this.changeSearchBar.bind(this, user)}
+                    >
+                      <div className="user-info-">
+                        <FaUserCircle className="user-info-icon" />
+                        <div className="user-info-content">
+                          <div className="user-info-content-input">
+                            {user.name}
+                          </div>
+                          <div className="user-info-content-input">
+                            {user.email}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                 
-                ))
-              : ""}
+                  ))
+                : ""}
+            </div>
           </div>
           <button className="friend-search-button" type="submit">
             Find Friend

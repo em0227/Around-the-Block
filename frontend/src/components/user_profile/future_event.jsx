@@ -171,7 +171,126 @@ class FutureEvent extends React.Component {
         </div>
       );
     });
-    return (
+//     return (
+//       <div>
+//         <div className="p-event-container-title" id="upcoming-event">
+//           <Link className="session-titles" to="/">
+//             UPCOMING EVENTS
+//           </Link>
+//           {displayMyJoinedEvents}
+//         </div>
+
+//         <div className="p-event-container-title" id="host-event">
+//           <Link className="session-titles" to="/events/create">
+//             HOST EVENTS
+//           </Link>
+//           {displayMyEvents}
+//         </div>
+
+//         <div className="profile-event-page">
+//           <div className="p-event-container-title" id="friends">
+//             <div className="session-titles">FRIENDS </div>
+//           </div>
+
+//           {/* <h3>Friend Requests From</h3> */}
+//           <ul>
+//             {Object.values(this.props.invites).map((invite) => {
+//               if (invite.status === "pending") {
+//                 <li>
+//                   {
+//                     Object.values(users).filter(
+//                       (user) => user._id === invite.requester
+//                     )[0].name
+//                   }
+//                   <button onClick={this.handleApprove.bind(this, invite)}>
+//                     Approve
+//                   </button>
+//                   <button onClick={this.handleReject.bind(this, invite)}>
+//                     Deny
+//                   </button>
+//                 </li>;
+//               }
+//             })}
+//           </ul>
+
+//           {/* <h3>Send a friend request</h3> */}
+//           <div className="friend-request-container">
+//             <form
+//               className="friend-search-form"
+//               onSubmit={this.submitFriendRequest.bind(this)}
+//             >
+//               {/* <label>Name</label> */}
+//               <div>
+//                 <input
+//                   className="friend-search-bar"
+//                   value={this.state.name}
+//                   placeholder="search"
+//                   type="text"
+//                   onChange={this.update("name")}
+//                 />
+//                 {/* <AiOutlineSearch className="search-icon" /> */}
+
+//                 {Object.values(filters).length > 0
+//                   ? filters.map((user) => (
+//                       <div onClick={this.changeSearchBar.bind(this, user)}>
+//                         <p className="user-info">{user.name}</p>
+//                         <p className="user-info">{user.email}</p>
+//                       </div>
+//                     ))
+//                   : ""}
+                  
+//                     <button className="friend-search-button" type="submit">
+//                       Submit
+//                     </button>
+               
+
+//                 {/* {Object.values(users)
+//                   .filter((user) => {
+//                   if (this.state.name = ""){
+//                     return user 
+//                   }
+//                   else if (user.name.toLowerCase().includes(this.state.name.toLowerCase()))
+//                   {
+//                     return user; 
+//                   }
+//                   }).map((user) => {
+//                     <div onClick={this.populateSearchBar.bind(this, user.name)}>{user.name}</div>})} */}
+//               </div>
+
+//               {/* <button classsName="friend-search-button" type="submit">Submit</button> */}
+//             </form>
+//           </div>
+
+
+//           <div className="profile-friends-container">
+//             <div className="profile-event-content">
+//               <img
+//                 className="p-e-i"
+//                 src="https://atb-photos.s3.amazonaws.com/emily.png"
+//               />
+//               <img
+//                 className="p-e-i"
+//                 src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
+//               />
+//               <img
+//                 className="p-e-i"
+//                 src="https://atb-photos.s3.amazonaws.com/hien.png"
+//               />
+//               <img
+//                 className="p-e-i"
+//                 src="https://atb-photos.s3.amazonaws.com/sigdha.png"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+// export default FutureEvent;
+
+return (
       <div>
         <div className="p-event-container-title" id="upcoming-event">
           <Link className="session-titles" to="/">
@@ -187,79 +306,58 @@ class FutureEvent extends React.Component {
           {displayMyEvents}
         </div>
 
-        <div className="profile-event-page">
-          <div className="p-event-container-title" id="friends">
-            <div className="session-titles">FRIENDS </div>
-          </div>
-          {/* <h3>Friend Requests From</h3> */}
-          <ul>
-            {Object.values(this.props.invites).map((invite) => {
-              if (invite.status === "pending") {
-                <li>
-                  {
-                    Object.values(users).filter(
-                      (user) => user._id === invite.requester
-                    )[0].name
-                  }
-                  <button onClick={this.handleApprove.bind(this, invite)}>
-                    Approve
-                  </button>
-                  <button onClick={this.handleReject.bind(this, invite)}>
-                    Deny
-                  </button>
-                </li>;
-              }
-            })}
-          </ul>
+        <div className="profile-event-page" id="friends">
+          <div className="p-event-container-title">FRIENDS</div>
+          <h3>Friends</h3>
+          {currentUser.user.friends.length > 0
+            ? currentUser.user.friends.map((friend) => (
+                <div>
+                  <li>{friend.friendName}</li>
+                  <li>{friend.friendEmail}</li>
+                </div>
+              ))
+            : ""}
+          <h3>Friend Requests From</h3>
+          {currentUser.user.requestsReceived.map((request) => (
+            <div>
+              <li>{request.requesterName}</li>
+              <li>{request.requesterEmail}</li>
+              <button onClick={this.handleApprove.bind(this, request._id)}>
+                Approve
+              </button>
+              <button onClick={this.handleReject.bind(this, request._id)}>
+                Deny
+              </button>
+            </div>
+          ))}
 
           {/* <h3>Send a friend request</h3> */}
           <div className="friend-request-container">
-            <form
-              className="friend-search-form"
-              onSubmit={this.submitFriendRequest.bind(this)}
-            >
-              {/* <label>Name</label> */}
-              <div>
-                <input
-                  className="friend-search-bar"
-                  value={this.state.name}
-                  placeholder="search"
-                  type="text"
-                  onChange={this.update("name")}
-                />
-                {/* <AiOutlineSearch className="search-icon" /> */}
+          <form className="friend-search-form"
+          onSubmit={this.submitFriendRequest.bind(this)}>
+            {/* <label>Name</label> */}
+            <div>
+              <input
+                value={this.state.name}
+                className="friend-search-bar"
+                placeholder="Enter Friend's Name"
+                type="text"
+                onChange={this.update("name")}
+              />
 
-                {Object.values(filters).length > 0
-                  ? filters.map((user) => (
-                      <div onClick={this.changeSearchBar.bind(this, user)}>
-                        <p className="user-info">{user.name}</p>
-                        <p className="user-info">{user.email}</p>
-                      </div>
-                    ))
-                  : ""}
-                  
-                    <button className="friend-search-button" type="submit">
-                      Submit
-                    </button>
-               
-
-                {/* {Object.values(users)
-                  .filter((user) => {
-                  if (this.state.name = ""){
-                    return user 
-                  }
-                  else if (user.name.toLowerCase().includes(this.state.name.toLowerCase()))
-                  {
-                    return user; 
-                  }
-                  }).map((user) => {
-                    <div onClick={this.populateSearchBar.bind(this, user.name)}>{user.name}</div>})} */}
-              </div>
-
-              {/* <button classsName="friend-search-button" type="submit">Submit</button> */}
-            </form>
+              {this.state.name.length > 0 && filters.length > 0
+                ? filters.map((user) => (
+                    <div onClick={this.changeSearchBar.bind(this, user)}>
+                      <p className="user-info">{user.name}</p>
+                      <p className="user-info">{user.email}</p>
+                    </div>
+                  ))
+                : ""}
+            </div>
+            <button className="friend-search-button" type="submit">Submit</button>
+          </form>
+          <div>{errors.recipient}</div>
           </div>
-
 
           <div className="profile-friends-container">
             <div className="profile-event-content">

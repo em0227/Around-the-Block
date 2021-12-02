@@ -26,12 +26,14 @@ class LoginForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+
     this.handleListen = this.handleListen.bind(this);
     this.loginDemo = this.loginDemo.bind(this);
   }
 
   componentDidMount() {
     this.handleListen();
+    this.props.clearSessionErrors();
   }
   // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
@@ -114,7 +116,7 @@ class LoginForm extends React.Component {
       password: this.state.password,
     };
 
-    this.props.login(user).then(() => this.props.history.push("/profile"));
+    this.props.login(user, this.props.history)
   }
 
   loginDemo() {
@@ -135,6 +137,7 @@ class LoginForm extends React.Component {
   renderErrors() {
     return (
       <ul>
+        {console.log("errors", this.state.errors)}
         {Object.keys(this.state.errors).map((error, i) => (
           <li style={{ marginBottom: 10 }} key={`error-${i}`}>
             {this.state.errors[error]}
@@ -145,6 +148,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
+     const { errors, clearSessionErrors } = this.props;
     return (
       <div className="form-container">
         <div className="form">
@@ -154,26 +158,44 @@ class LoginForm extends React.Component {
                 <i>
                   <FaUser style={{ marginRight: 10 }} />
                 </i>
-                <input
-                  className="input-holder"
-                  type="text"
-                  value={this.state.email}
-                  onChange={this.update("email")}
-                  placeholder="Email"
-                />
+                <div className="input-container">
+                  <input
+                    onClick={errors.email ? () => clearSessionErrors() : ""}
+                    className="input-holder"
+                    type="text"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.update("email")}
+                    placeholder="Enter your email"
+                  />
+                  {errors.email ? (
+                    <p className="error-text">{errors.email}</p>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
               <br />
               <div className="form__field">
                 <i>
                   <RiLockPasswordFill style={{ marginRight: 10 }} />
                 </i>
-                <input
-                  className="input-holder"
-                  type="text"
-                  value={this.state.password}
-                  onChange={this.update("password")}
-                  placeholder="Password"
-                />
+                <div className="input-container">
+                  <input
+                    onClick={errors.name ? () => clearSessionErrors() : ""}
+                    className="input-holder"
+                    type="text"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.update("password")}
+                    placeholder="Enter your email"
+                  />
+                  {errors.password ? (
+                    <p className="error-text">{errors.password}</p>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
               <br />
               <div>
@@ -184,13 +206,16 @@ class LoginForm extends React.Component {
                   </i>
                 </button>
                 <br />
-                {this.renderErrors()}
               </div>
               <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>
               </div>
 
-              <button className="button form__submit" type="submit" onClick={this.loginDemo}>
+              <button
+                className="button form__submit"
+                type="submit"
+                onClick={this.loginDemo}
+              >
                 <span className="button__text">Demo User</span>
                 <i>
                   <GrFormNextLink />

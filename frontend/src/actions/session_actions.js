@@ -3,6 +3,7 @@ import jwt_decode from "jwt-decode";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 
@@ -23,7 +24,9 @@ export const receiveErrors = (errors) => ({
   type: RECEIVE_SESSION_ERRORS,
   errors,
 });
-
+export const clearSessionErrors = (errors) => ({
+  type: CLEAR_SESSION_ERRORS,
+});
 
 // When our user is logged out, we will dispatch this action to set isAuthenticated to false
 export const logoutUser = () => ({
@@ -31,7 +34,7 @@ export const logoutUser = () => ({
 });
 
 // Upon signup, dispatch the approporiate action depending on which type of response we receieve from the backend
-export const signup = (user) => (dispatch) =>
+export const signup = (user, history) => (dispatch) =>
 //login after sign up
   APIUtil.signup(user).then(
     (res) => {
@@ -40,12 +43,14 @@ export const signup = (user) => (dispatch) =>
        APIUtil.setAuthToken(token);
        const decoded = jwt_decode(token);
        dispatch(receiveCurrentUser(decoded));
+       history && history.push("/profile");
     },
+    
     (err) => dispatch(receiveErrors(err.response.data))
   );
 
 // Upon login, set the session token and dispatch the current user. Dispatch errors on failure.
-export const login = (user) => (dispatch) =>
+export const login = (user, history) => (dispatch) =>
   APIUtil.login(user)
     .then((res) => {
       const { token } = res.data;
@@ -53,6 +58,7 @@ export const login = (user) => (dispatch) =>
       APIUtil.setAuthToken(token);
       const decoded = jwt_decode(token);
       dispatch(receiveCurrentUser(decoded));
+      history && history.push("/profile");
     })
     .catch((err) => {
       dispatch(receiveErrors(err.response.data));

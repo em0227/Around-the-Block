@@ -122,6 +122,14 @@ $Nunito: "Nunito", sans-serif;
   width: 100%;
   transition: 0.2s;
   background-color: transparent;
+  .input-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .error-text{
+    font-size: 10px;
+    color: red;
+  }
   .input-holder {
     z-index: 1000;
     border: transparent;

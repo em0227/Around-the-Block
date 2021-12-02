@@ -34,6 +34,7 @@ class SignupForm extends React.Component {
 
   componentDidMount() {
     this.handleListen();
+    this.props.clearSessionErrors();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -133,22 +134,25 @@ class SignupForm extends React.Component {
       password: this.state.password,
     };
 
-    this.props.signup(user).then(() => this.props.history.push('/profile'));
+    this.props.signup(user, this.props.history);
+   
   }
 
-  renderErrors() {
-    return (
-      <ul className="render-errors">
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li style={{ marginBottom: 5, fontSize: "20px" }} key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  // renderErrors() {
+  //   return (
+  //     <ul className="render-errors">
+  //       {console.log("error", this.state.errors)}
+  //       {Object.keys(this.state.errors).map((error, i) => (
+  //         <li style={{ marginBottom: 5, fontSize: "20px" }} key={`error-${i}`}>
+  //           {this.state.errors[error]}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
 
   render() {
+    const {errors, clearSessionErrors} = this.props
     return (
       <div className="form-container">
         <div className="form">
@@ -159,28 +163,44 @@ class SignupForm extends React.Component {
                 <i>
                   <HiOutlineClipboardList style={{ marginRight: 10 }} />
                 </i>
-                <input
-                  className="input-holder"
-                  type="text"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.update("name")}
-                  placeholder="Name"
-                />
+                <div className="input-container">
+                  <input
+                    onClick={errors.name ? () => clearSessionErrors() : ""}
+                    className="input-holder"
+                    type="text"
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.update("name")}
+                    placeholder="Name"
+                  />
+                  {errors.name ? (
+                    <p className="error-text">{errors.name}</p>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
               <br />
               <div className="form__field new">
                 <i>
                   <FaUser style={{ marginRight: 10 }} />
                 </i>
-                <input
-                  className="input-holder"
-                  type="text"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.update("email")}
-                  placeholder="Email"
-                />
+                <div className="input-container">
+                  <input
+                    onClick={errors.name ? () => clearSessionErrors() : ""}
+                    className="input-holder"
+                    type="text"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.update("email")}
+                    placeholder="Email"
+                  />
+                  {errors.email ? (
+                    <p className="error-text">{errors.email}</p>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
 
               <br />
@@ -188,13 +208,20 @@ class SignupForm extends React.Component {
                 <i>
                   <RiLockPasswordFill style={{ marginRight: 10 }} />
                 </i>
-                <input
-                  className="input-holder"
-                  type="text"
-                  value={this.state.password}
-                  onChange={this.update("password")}
-                  placeholder="Password"
-                />
+                <div className="input-container">
+                  <input
+                    className="input-holder"
+                    type="text"
+                    value={this.state.password}
+                    onChange={this.update("password")}
+                    placeholder="Password"
+                  />
+                  {errors.password ? (
+                    <p className="error-text">{errors.password}</p>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
               <br />
               <div>
@@ -205,7 +232,7 @@ class SignupForm extends React.Component {
                   </i>
                 </button>
                 <br />
-                {this.renderErrors()}
+                {/* {this.renderErrors()} */}
               </div>
               <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>

@@ -117,20 +117,22 @@ class FutureEvent extends React.Component {
                 <div className="p-event-desc">
                   <div className="p-e-d">{event.description}</div>
                 </div>
-                <div className="p-event-desc">
-                  <Link className="p-e-d" to={`/events/update/${event._id}`}>
-                    Update
-                  </Link>
-                </div>
-                <div className="p-event-desc">
-                  <button
-                    className="p-e-d"
-                    onClick={() => this.deleteEvent(event._id)}
-                  >
-                    Cancel Event
-                  </button>
-                </div>
-              </div>
+
+
+                    <div className="p-event-desc">
+                      <Link className="p-e-l" to={`/events/update/${event._id}`}>
+                        Update
+                      </Link>
+                      <button
+                        className="p-e-l"
+                        onClick={() => this.deleteEvent(event._id)}
+                      >
+                        Cancel Event
+                      </button>
+                    </div>   
+
+
+                   </div>
             </div>
           </div>
         </div>

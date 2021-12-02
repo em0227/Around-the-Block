@@ -31,8 +31,6 @@
     align-items: center;
     margin-top: 0px;
     padding-bottom: 1px solid gray;
-
-
 }
 
 .profile-event-content{
@@ -83,6 +81,24 @@
     font-family: 'Nunito';
     color: rgb(104, 105, 105);
 
+}
+.p-e-l {
+  background-color: #C70A04;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 80px;
+  width: 300px;
+  margin-top: 30px;
 }
 
 

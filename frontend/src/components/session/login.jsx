@@ -198,7 +198,7 @@ class LoginForm extends React.Component {
                 </div>
               </div>
               <br />
-              <div>
+              <div className="button-container">
                 <button className="button form__submit" type="submit">
                   <span className="button__text">LOG IN NOW</span>
                   <i>
@@ -206,12 +206,22 @@ class LoginForm extends React.Component {
                   </i>
                 </button>
                 <br />
+                <button
+                  className="button form__submit"
+                  type="submit"
+                  onClick={this.loginDemo}
+                >
+                  <span className="button__text">Demo User</span>
+                  <i>
+                    <GrFormNextLink />
+                  </i>
+                </button>
               </div>
               <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>
               </div>
 
-              <button
+              {/* <button
                 className="button form__submit"
                 type="submit"
                 onClick={this.loginDemo}
@@ -220,7 +230,7 @@ class LoginForm extends React.Component {
                 <i>
                   <GrFormNextLink />
                 </i>
-              </button>
+              </button> */}
             </form>
           </div>
         </div>

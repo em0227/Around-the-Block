@@ -80,13 +80,20 @@ class UserPhoto extends React.Component {
       </div>
     )
     return (
-      <div className="UserPhoto">
+      <div className="user-photo">
         <center>
-          <h1>UPLOAD A FILE</h1>
-          {this.state.success ? <SuccessMessage/> : null}
-          {this.state.error ? <ErrorMessage/> : null}
-          <input onChange={this.handleChange} ref={(ref) => { this.uploadInput = ref; }} type="file"/>
-          <br/>
+          <h1 className="photo-text">Change profile</h1>
+          {this.state.success ? <SuccessMessage /> : null}
+          {this.state.error ? <ErrorMessage /> : null}
+          <input
+            className="name-input"
+             onChange={this.handleChange}
+            ref={(ref) => {
+              this.uploadInput = ref;
+            }}
+            type="file"
+          />
+          <br />
           <button onClick={this.handleUpload}>UPLOAD</button>
         </center>
       </div>

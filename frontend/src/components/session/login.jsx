@@ -132,10 +132,9 @@ class LoginForm extends React.Component {
     //     email: "feifei.erhu@gmail.com",
     //     password: "password"
     //   })
-      // .then(() => this.props.history.push("/profile"));
-      e.preventDefault()
-      this.props.fetchDemoUser().then(() => this.props.history.push("/profile"))
-      
+    // .then(() => this.props.history.push("/profile"));
+    e.preventDefault();
+    this.props.fetchDemoUser().then(() => this.props.history.push("/profile"));
   }
 
   // Render the session errors if there are any
@@ -193,7 +192,7 @@ class LoginForm extends React.Component {
                     name="password"
                     value={this.state.password}
                     onChange={this.update("password")}
-                    placeholder="Enter your email"
+                    placeholder="Enter your password"
                   />
                   {errors.password ? (
                     <p className="error-text">{errors.password}</p>

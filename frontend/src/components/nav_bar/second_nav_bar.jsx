@@ -64,6 +64,7 @@ class SecondNavBar extends React.Component {
             </Link1>
             <p className="text">Friends</p>
           </div>
+          
           {this.state.showModal ? (
             <div className="modal-background">
               <form className="modal" onSubmit={this.handleSubmit.bind(this)}>

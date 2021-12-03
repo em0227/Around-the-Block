@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import { FaUserCircle } from "react-icons/fa";
 
-class FutureEvent extends React.Component {
+class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { name: "", user: {} };
@@ -180,99 +180,100 @@ return (
     </div>
 
     <div className="profile-event-page" id="friends">
-    <div className="p-event-container-title" id="host-event">
-      <Link className="session-titles" to="/events/create">
-        HOST EVENTS
-      </Link>
-      {displayMyEvents}
-    </div>
+      <div className="p-event-container-title" id="host-event">
+        <Link className="session-titles" to="/events/create">
+          HOST EVENTS
+        </Link>
+        {displayMyEvents}
+      </div>
 
-    <div className="profile-event-page" id="friends">
-          <div className="p-event-container-title">FRIENDS</div>
-          {/* <h3>Friends</h3> */}
-                  {currentUser.friends.length > 0 ? currentUser.friends.map((friend) => 
-                    <div>
-                      <li>{friend.friendName}</li>
-                      <li>{friend.friendEmail}</li>
-                    </div>
-                    ) : ""}
+      <div className="profile-event-page" id="friends">
+        <div className="p-event-container-title">
+          <div className="session-titles">FRIENDS</div>
+          {currentUser.friends.length > 0
+            ? currentUser.friends.map((friend) => (
+                <div>
+                  <li>{friend.friendName}</li>
+                  <li>{friend.friendEmail}</li>
+                </div>
+              ))
+            : ""}
+          
+        {/* </div> */}
+        {/* friend's section end div*/}
 
-      {/* <h3>Send a friend request</h3> */}
-      <div className="friend-request-container">
-        <form
-          className="friend-search-form"
-          onSubmit={this.submitFriendRequest.bind(this)}
-        >
-          {/* <label>Name</label> */}
-          <div>
-            <input
-              value={this.state.name}
-              className="friend-search-bar"
-              placeholder="Enter Friend's Name"
-              type="text"
-              onChange={this.update("name")}
-            />
-            <div className="entire-dropdown">
-              {this.state.name.length > 0 && filters.length > 0
-                ? filters.map((user) => (
-                    <div
-                      className="user-info-1"
-                      onClick={this.changeSearchBar.bind(this, user)}
-                    >
-                      <div className="user-info-">
-                        <FaUserCircle className="user-info-icon" />
-                        <div className="user-info-content">
-                          <div className="user-info-content-input">
-                            {user.name}
-                          </div>
-                          <div className="user-info-content-input">
-                            {user.email}
+        <div className="friend-request-container">
+          <form
+            className="friend-search-form"
+            onSubmit={this.submitFriendRequest.bind(this)}
+          >
+            <div>
+              <input
+                value={this.state.name}
+                className="friend-search-bar"
+                placeholder="Enter Friend's Name"
+                type="text"
+                onChange={this.update("name")}
+              />
+              <div className="entire-dropdown">
+                {this.state.name.length > 0 && filters.length > 0
+                  ? filters.map((user) => (
+                      <div
+                        className="user-info-1"
+                        onClick={this.changeSearchBar.bind(this, user)}
+                      >
+                        <div className="user-info-">
+                          <FaUserCircle className="user-info-icon" />
+                          <div className="user-info-content">
+                            <div className="user-info-content-input">
+                              {user.name}
+                            </div>
+                            <div className="user-info-content-input">
+                              {user.email}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))
-                : ""}
+                    ))
+                  : ""}
+              </div>
             </div>
-          </div>
-          <button className="friend-search-button" type="submit">
-            Find Friend
-          </button>
-        </form>
-        <div className="friend-search-bar-error">{errors.recipient}</div>
-      </div>
-
-      
-
-      <div className="profile-friends-container">
-        <div className="profile-event-content">
-          <img
-            className="p-e-i"
-            src="https://atb-photos.s3.amazonaws.com/emily.png"
-          />
-          {/* <div>{this.state.user}</div> */}
-
-          <img
-            className="p-e-i"
-            src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
-          />
-          <img
-            className="p-e-i"
-            src="https://atb-photos.s3.amazonaws.com/hien.png"
-          />
-          <img
-            className="p-e-i"
-            src="https://atb-photos.s3.amazonaws.com/sigdha.png"
-          />
+            <button className="friend-search-button" type="submit">
+              Find Friend
+            </button>
+          </form>
+          <div className="friend-search-bar-error">{errors.recipient}</div>
         </div>
+
+        <div className="profile-friends-container">
+          <div className="profile-event-content">
+            <img
+              className="p-e-i"
+              src="https://atb-photos.s3.amazonaws.com/emily.png"
+            />
+            <img
+              className="p-e-i"
+              src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
+            />
+            <img
+              className="p-e-i"
+              src="https://atb-photos.s3.amazonaws.com/hien.png"
+            />
+            <img
+              className="p-e-i"
+              src="https://atb-photos.s3.amazonaws.com/sigdha.png"
+            />
+          </div>
+        </div>
+</div>
+{/* friend's section end div */}
+
+
       </div>
     </div>
-
-
-  </div>
   </div>
 );
   
 }}
 
-export default FutureEvent;
+export default ProfilePage;

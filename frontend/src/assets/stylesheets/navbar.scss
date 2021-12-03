@@ -152,7 +152,7 @@ $Nunito: "Nunito", sans-serif;
 .modal {
   position: absolute;
   font-family: "Open Sans", sans-serif;
-  height: 400px;
+  height: 420px;
   width: 400px;
   padding: 10px 15px 15px 20px;
   top: 200px;
@@ -204,9 +204,18 @@ $Nunito: "Nunito", sans-serif;
   }
 }
 
+.upload-picture-button{
+  width: 130px;
+  height: 25px;
+  background-color: #E5E5E5;
+  border-radius: 3px;
+}
+.upload-picture-button:hover{
+  background-color: #d6cece;
+}
 .submit-updated-user {
   position: absolute;
-  left: 305px;
+  left: 280px;
   box-sizing: border-box;
   background-color: #1890ff;
   border: none;
@@ -214,12 +223,15 @@ $Nunito: "Nunito", sans-serif;
   border-radius: 3px;
   color: white;
   padding: 3px 6px 3px 6px;
+  margin-top: 20px;
+  font-size: 25px;
 }
 
 .submit-updated-user:hover {
   cursor: pointer;
   transform: scale(1.2);
 }
+
 
 .nav-icon {
   width: 50px;

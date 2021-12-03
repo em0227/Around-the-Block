@@ -6,7 +6,7 @@ import {MdEventSeat} from "react-icons/md";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen} from '@fortawesome/free-solid-svg-icons';
 import {Link as Link1} from "react-scroll";
-import UserPhoto from "./user_photo"
+// import UserPhoto from "./user_photo"
 import axios from "axios";
 
 
@@ -182,9 +182,11 @@ class SecondNavBar extends React.Component {
                     this.uploadInput = ref;
                   }}
                 />
-                <span onClick={this.handleUpload}>Upload</span>
+                <button className="upload-picture-button" onClick={this.handleUpload}>
+                  Upload Profile
+                </button>
               </div>
-              <UserPhoto />
+
               <button className="submit-updated-user" type="Submit">
                 Submit
               </button>

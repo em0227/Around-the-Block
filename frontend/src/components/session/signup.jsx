@@ -242,12 +242,12 @@ class SignupForm extends React.Component {
                 <div className="mic">
                   {this.state.isListening ? (
                     <div className="mic-on">
-                      <div
+                      <span
                         className="button form__submit micro"
                         onClick={this.setIsListening.bind(this)}
                       >
                         Stop Voice Input
-                      </div>
+                      </span>
                       <div className="loader">
                         <span></span>
                         <span></span>
@@ -267,12 +267,12 @@ class SignupForm extends React.Component {
                           type="audio/mp3"
                         />
                       </audio>
-                      <div
+                      <span
                         className="button form__submit micro"
                         onClick={this.playAudio.bind(this)}
                       >
                         Sign Up with Voice
-                      </div>
+                      </span>
                       {this.state.isPlayingAudio ? (
                         <div className="mic-on">
                           <div className="loader">

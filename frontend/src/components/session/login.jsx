@@ -236,13 +236,13 @@ class LoginForm extends React.Component {
                       <span id="mic">🎙️</span>
                     </div>
                   ) : (
-                    <div
+                    <span
                       className="button form__submit micro"
                       onClick={this.setIsListening.bind(this)}
                       style={{ marginLeft: 0 }}
                     >
                       Log in with Voice
-                    </div>
+                    </span>
                   )}
                 </div>
                 {/* <br /> */}

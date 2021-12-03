@@ -15,7 +15,7 @@ import {
   fetchFilteredUsers,
   updateCurrentUser,
 } from "../../actions/users_actions";
-import FutureEvent from "./future_event";
+import ProfilePage from "./profile_page";
 
 const mapStateToProps = (state) => ({
   events: Object.values(state.events),
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch) => ({
   leaveEvent: (event) => dispatch(leaveEvent(event)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FutureEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

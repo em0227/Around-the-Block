@@ -119,19 +119,20 @@ class LoginForm extends React.Component {
   }
 
   loginDemo() {
-    // this.setState({
-    //   email: "feifei.erhu@gmail.com",
-    //   password: "password"
-    // });
+    this.setState({
+      email: "feifei.erhu@gmail.com",
+      password: "password"
+    });
 
-    // this.props
-    //   .login({
-    //     email: "feifei.erhu@gmail.com",
-    //     password: "password"
-    //   })
-      // .then(() => this.props.history.push("/profile"));
-      this.props.fetchDemoUser.then(() => this.props.history.push("/profile"))
-      .catch(error => console.log(error));
+    this.props
+      .login({
+        email: "feifei.erhu@gmail.com",
+        password: "password"
+      })
+      .then(() => this.props.history.push("/profile"));
+
+      // this.props.fetchDemoUser.then(() => this.props.history.push("/profile"))
+      // .catch(error => console.log(error));
   }
 
   // Render the session errors if there are any

@@ -22,7 +22,7 @@ class MainPage extends React.Component {
   componentDidMount() {
     // console.log(this.props);
     this.props.fetchEvents();
-    this.props.fetchUsers()
+    // this.props.fetchUsers()
   }
 
   onChange(a, b, c) {

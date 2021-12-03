@@ -53,7 +53,7 @@ class LoginForm extends React.Component {
       if (transcript.includes("submit")) {
         const email = this.state.email.replaceAll(" ", "");
         let password = this.state.password.replace(" submit", "");
-        password = this.setState.passwrod.replace(" something", "");
+        password = password.replace(" something", "");
         const user = {
           email,
           password,
@@ -64,7 +64,7 @@ class LoginForm extends React.Component {
       } else if (transcript.includes("password")) {
         const last = transcript.indexOf("word is");
         let realTranscript = transcript.slice(last + 8);
-        realTranscript = transcript.replace(" something", "");
+        realTranscript = realTranscript.replace(" something", "");
         realTranscript = realTranscript.replace(" submit", "");
         this.setState({ password: realTranscript });
       } else if (transcript.includes("email")) {

@@ -69,7 +69,7 @@ class SignupForm extends React.Component {
       if (transcript.includes("submit")) {
         const email = this.state.email.replaceAll(" ", "");
         let password = this.state.password.replace("submit", "");
-        password = this.setState.passwrod.replace(" something", "");
+        password = password.replace(" something", "");
         const user = {
           email,
           name: this.state.name,
@@ -81,7 +81,7 @@ class SignupForm extends React.Component {
       } else if (transcript.includes("password")) {
         const last = transcript.indexOf("word is");
         let realTranscript = transcript.slice(last + 8);
-        realTranscript = transcript.replace(" something", "");
+        realTranscript = realTranscript.replace(" something", "");
         this.setState({ password: realTranscript });
       } else if (transcript.includes("email")) {
         const last = transcript.indexOf("email is");
@@ -90,6 +90,13 @@ class SignupForm extends React.Component {
 
         if (realTranscript.includes("at")) {
           realTranscript = realTranscript.replace("at", "@");
+          this.setState({ email: realTranscript });
+        } else {
+          this.setState({ email: realTranscript });
+        }
+
+        if (realTranscript.includes("dot")) {
+          realTranscript = realTranscript.replace("at", ".");
           this.setState({ email: realTranscript });
         } else {
           this.setState({ email: realTranscript });

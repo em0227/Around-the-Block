@@ -5,7 +5,10 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer-title">
-        <p id="developer" style={{ textAlign: "center", paddingTop: 20, fontSize: "16px" }}>
+        <p
+          id="developer"
+          style={{ textAlign: "center", paddingTop: 20, fontSize: "16px" }}
+        >
           © 2021 Designed and Developed by Around the Block Team
         </p>
       </div>
@@ -38,7 +41,7 @@ const Footer = () => {
         <div className="member">
           <img
             className="footer-img"
-            src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
+            src="https://atb-photos.s3.amazonaws.com/feifei_headshot.JPG"
             alt=""
           />
 
@@ -76,7 +79,7 @@ const Footer = () => {
             >
               Github
             </a>
-            
+
             <a
               className="contact_linkedin"
               href="https://www.linkedin.com/in/snigdhabanda0/"

@@ -26,6 +26,9 @@ mongoose
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const sign_s3 = require("./controllers/sign_s3");
+app.use("/sign_s3", sign_s3.sign_s3);
+
 app.use(passport.initialize());
 require("./config/passport")(passport);
 

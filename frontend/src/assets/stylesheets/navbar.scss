@@ -222,10 +222,7 @@ $Nunito: "Nunito", sans-serif;
 }
 
 .nav-icon {
-  width: 100px;
-  height: auto;
   color: black;
-  // transition: all 0.1s ease-in-out;
   margin-bottom: 3px;
   border: none;
   transition: all 0.2s ease-in-out;
@@ -233,12 +230,12 @@ $Nunito: "Nunito", sans-serif;
 
 .nav-icon-second-nav-bar{
   width: 80px; 
-  height: 40px; 
+  height: 80px; 
   color: black;
 }
 
 .nav-icon-second-nav-bar:hover{
-  color: gray; 
+  color: #40aaff;
 }
 
 .text-and-icon {
@@ -281,7 +278,7 @@ $Nunito: "Nunito", sans-serif;
   font-size: 50px;
   color: black;
   margin-bottom: 12px;
-  margin-top: 21px;
+  margin-top: 19px;
 }
 
 .pen-icon:hover {
@@ -315,7 +312,3 @@ $Nunito: "Nunito", sans-serif;
 .nav-icon:hover {
   transform: scale(1.05);
 }
-// .nav-icon:hover {
-//   transform: scale(1.05);
-//   // color: rgb(184, 87, 87);
-// }

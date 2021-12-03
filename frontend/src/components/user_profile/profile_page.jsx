@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { FaUserCircle } from "react-icons/fa";
+import { Link as Link1 } from "react-scroll";
 
 class ProfilePage extends React.Component {
   constructor(props) {
@@ -175,7 +176,7 @@ class ProfilePage extends React.Component {
           {displayMyJoinedEvents}
         </div>
 
-        <div className="profile-event-page" id="friends">
+        <div className="profile-event-page" id="host-event">
           <div className="p-event-container-title" id="host-event">
             <Link className="session-titles" to="/events/create">
               HOST EVENTS
@@ -185,7 +186,16 @@ class ProfilePage extends React.Component {
 
           <div className="profile-event-page" id="friends">
             <div className="p-event-container-title">
-              <div className="session-titles">FRIENDS</div>
+              {/* <div className="session-titles">FRIENDS</div> */}
+              <Link1
+                to="upcoming-event"
+                smooth={true}
+                duration={1000}
+                className="session-titles"
+              >
+                FRIENDS
+              </Link1>
+            
               {currentUser.friends.length > 0
                 ? currentUser.friends.map((friend) => (
                     <div>
@@ -194,10 +204,8 @@ class ProfilePage extends React.Component {
                     </div>
                   ))
                 : ""}
-
               {/* </div> */}
               {/* friend's section end div*/}
-
               <div className="friend-request-container">
                 <form
                   className="friend-search-form"
@@ -241,9 +249,9 @@ class ProfilePage extends React.Component {
                 <div className="friend-search-bar-error">
                   {errors.recipient}
                 </div>
-              {/* </div> */}
+                {/* </div> */}
 
-              {/* <div className="profile-friends-container"> */}
+                {/* <div className="profile-friends-container"> */}
                 <div className="profile-page-friends">
                   <img
                     className="p-e-i"
@@ -267,8 +275,7 @@ class ProfilePage extends React.Component {
             {/* friend's section end div */}
           </div>
         </div>
-      {/* // </div> */}
-
+        {/* // </div> */}
       </div>
     );
   

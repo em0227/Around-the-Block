@@ -6,7 +6,6 @@ import {MdEventSeat} from "react-icons/md";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen} from '@fortawesome/free-solid-svg-icons';
 import {Link as Link1} from "react-scroll";
-// import UserPhoto from "./user_photo"
 import axios from "axios";
 
 

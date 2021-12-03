@@ -45,5 +45,8 @@ export const fetchFilteredUsers = (name) => dispatch => (
       (users) => dispatch(receiveFilteredUsers(users.data)))
   )
 
-
+export const fetchDemoUser = () => (dispatch) =>
+  UserAPIUtil.getDemoUser().then(
+    (user) => dispatch(Session.receiveCurrentUser(user.data))  
+  );
 

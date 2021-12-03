@@ -78,6 +78,8 @@ $Nunito: "Nunito", sans-serif;
 
   .btn:hover {
     font-family: $Nunito;
+    cursor: pointer;
+    color: #1890ff; 
   }
   .create-button {
     width: 180px;
@@ -92,7 +94,7 @@ $Nunito: "Nunito", sans-serif;
   .nav-button:hover {
     background-color: #f18867;
     box-shadow: 1px 1px 1px #a19797;
-    transform: scale(1.1);
+    // transform: scale(1.1);
     cursor: pointer;
   }
 
@@ -216,7 +218,7 @@ $Nunito: "Nunito", sans-serif;
 
 .submit-updated-user:hover {
   cursor: pointer;
-  transform: scale(1.2);
+  // transform: scale(1.2);
 }
 
 .nav-icon {
@@ -227,6 +229,16 @@ $Nunito: "Nunito", sans-serif;
   margin-bottom: 3px;
   border: none;
   transition: all 0.2s ease-in-out;
+}
+
+.nav-icon-second-nav-bar{
+  width: 40px; 
+  height: 40px; 
+  color: black;
+}
+
+.nav-icon-second-nav-bar:hover{
+  color: gray; 
 }
 
 .text-and-icon {
@@ -273,7 +285,6 @@ $Nunito: "Nunito", sans-serif;
 }
 
 .pen-icon:hover {
-  transform: scale(1.1);
   cursor: pointer;
   color: gray;
   width: 50px;
@@ -304,3 +315,7 @@ $Nunito: "Nunito", sans-serif;
 .nav-icon:hover {
   transform: scale(1.05);
 }
+// .nav-icon:hover {
+//   transform: scale(1.05);
+//   // color: rgb(184, 87, 87);
+// }

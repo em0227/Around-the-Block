@@ -46,19 +46,19 @@ class SecondNavBar extends React.Component {
               <div className="text-and-icon">
                 <Link1 to="upcoming-event" smooth={true} duration={1000}>
                   {" "}
-                  <MdOutlineUpcoming className="nav-icon" />{" "}
+                  <MdOutlineUpcoming className="nav-icon-second-nav-bar" />{" "}
                 </Link1>
                 <p className="text">Upcoming Events</p>
               </div>
               <div className="text-and-icon">
                 <Link1 to="host-event" smooth={true} duration={1000}>
-                  <MdEventSeat className="nav-icon" />{" "}
+                  <MdEventSeat className="nav-icon-second-nav-bar" />{" "}
                 </Link1>
                 <p className="text">Hosted Events</p>
               </div>
               <div className="text-and-icon">
                 <Link1 to="friends" smooth={true} duration={1000}>
-                  <GiThreeFriends className="nav-icon" />{" "}
+                  <GiThreeFriends className="nav-icon-second-nav-bar" />{" "}
                 </Link1>
                 <p className="text">Friends</p>
               </div>

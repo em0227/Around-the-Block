@@ -22,6 +22,7 @@ class SignupForm extends React.Component {
       password: "",
       errors: {},
       isListening: false,
+      isPlayingAudio: false,
       timerId: "",
     };
 
@@ -107,9 +108,21 @@ class SignupForm extends React.Component {
     };
   }
 
+  playAudio(e) {
+    this.setState({ isPlayingAudio: !this.state.isPlayingAudio }, () => {
+      const audio = document.getElementById("myAudio");
+      if (this.state.isPlayingAudio) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+  }
+
   setIsListening(e) {
     this.setState({ isListening: !this.state.isListening }, () => {
       if (this.state.isListening) {
+        this.setState({ isPlayingAudio: !this.state.isPlayingAudio });
         mic.start();
       } else {
         mic.stop();
@@ -204,16 +217,67 @@ class SignupForm extends React.Component {
                     <GrFormNextLink />
                   </i>
                 </button>
+                <div className="mic">
+                  {this.state.isListening ? (
+                    <div className="mic-on">
+                      <div
+                        className="button form__submit micro"
+                        onClick={this.setIsListening.bind(this)}
+                      >
+                        Stop Voice Input
+                      </div>
+                      <div className="loader">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <span id="mic">🎙️</span>
+                    </div>
+                  ) : (
+                    <div
+                      style={{ width: "100%" }}
+                      onEnded={this.setIsListening.bind(this)}
+                    >
+                      <audio id="myAudio">
+                        <source
+                          src="https://atb-photos.s3.amazonaws.com/session_form_intro.mp3"
+                          type="audio/mp3"
+                        />
+                      </audio>
+                      <div
+                        className="button form__submit micro"
+                        onClick={this.playAudio.bind(this)}
+                      >
+                        Voice Input
+                      </div>
+                      {this.state.isPlayingAudio ? (
+                        <div className="mic-on">
+                          <div className="loader">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                          <span id="mic">👂</span>
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
+                  )}
+                </div>
                 <br />
                 {this.renderErrors()}
               </div>
+
               <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>
               </div>
             </form>
           </div>
         </div>
-        <div className="mic">
+        {/* <div className="mic">
           {this.state.isListening ? (
             <div className="mic-on">
               <div class="loader">
@@ -237,10 +301,10 @@ class SignupForm extends React.Component {
             >
               Voice Input
             </span>
-          )}
+          )} */}
 
-          {/* <button onClick={this.setIsListening.bind(this)}>Start</button> */}
-          {/* {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
+        {/* <button onClick={this.setIsListening.bind(this)}>Start</button> */}
+        {/* {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
           {this.state.isListening ? (
             <button
               className="button form__submit micro"
@@ -256,7 +320,6 @@ class SignupForm extends React.Component {
               Start
             </button>
           )} */}
-        </div>
       </div>
     );
   }

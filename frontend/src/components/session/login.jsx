@@ -199,34 +199,34 @@ class LoginForm extends React.Component {
                   <GrFormNextLink />
                 </i>
               </button>
+              <div className="mic">
+                {this.state.isListening ? (
+                  <div className="mic-on" style={{ marginTop: "5%" }}>
+                    <span
+                      className="button form__submit micro"
+                      onClick={this.setIsListening.bind(this)}
+                    >
+                      Stop Voice Input
+                    </span>
+                    <div class="loader">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <span id="mic">🎙️</span>
+                  </div>
+                ) : (
+                  <span
+                    className="button form__submit micro"
+                    onClick={this.setIsListening.bind(this)}
+                  >
+                    Voice Input
+                  </span>
+                )}
+              </div>
             </form>
           </div>
-        </div>
-        <div className="mic">
-          {this.state.isListening ? (
-            <div className="mic-on">
-              <div class="loader">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <span id="mic">🎙️</span>
-              <span
-                className="button form__submit"
-                onClick={this.setIsListening.bind(this)}
-              >
-                Stop Voice Input
-              </span>
-            </div>
-          ) : (
-            <span
-              className="button form__submit"
-              onClick={this.setIsListening.bind(this)}
-            >
-              Voice Input
-            </span>
-          )}
         </div>
       </div>
     );

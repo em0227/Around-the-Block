@@ -14,22 +14,22 @@ $Nunito: "Nunito", sans-serif;
 
 .form-container {
   font-size: 30px;
-  // display: flex;
-  // align-items: center;
+  display: flex;
+  align-items: center;
   // justify-content: space-between;
   position: relative;
   width: 100vw;
   height: 100vh;
   background: linear-gradient(90deg, #dfeeea, #a7c4bc, #89b5af);
-  // flex-direction: column;
-  // align-items: center;
+  flex-direction: column;
   font-family: $Nunito;
   padding: 0 400px 0 400px;
   .form {
     z-index: 1000;
     border-radius: 20px;
     background: white;
-    // position: relative;
+    position: absolute;
+    top: 0;
     height: 100vh;
     width: 45vw;
     box-shadow: 0px 0px 24px #5e8b7e;
@@ -38,30 +38,29 @@ $Nunito: "Nunito", sans-serif;
     }
   }
   .mic {
-    font-size: 40px;
+    font-size: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 0 50px;
-    position: absolute;
-    margin-top: -180px;
-    z-index: 500;
-    
-    width: 45%;
+    // padding: 0 50px;
+    z-index: 1000;
+    margin-top: 30px;
+    width: 100%;
+
     button {
       border-radius: 0.3rem;
       padding: 5px;
     }
-    .micro{
-      width: 180px;
-      margin-top: 0;
-      background-color: #C84B31;
+    .micro {
+      width: 100%;
+      margin-top: 5%;
+      background-color: #f48d18;
       border-radius: 20px;
-      height: 55px;
+      padding: 8px;
       color: white;
-    }
-    span{
-      margin-left: 20px;
+      border-radius: 26px;
+      justify-content: flex-start;
+      padding-left: 15%;
     }
   }
 }
@@ -178,14 +177,13 @@ $Nunito: "Nunito", sans-serif;
 }
 
 .mic-on {
-  position: relative;
-  bottom: 110px;
+  width: 100%;
 }
 
 .loader {
   position: relative;
-  top: 80px;
-  left: 90px;
+  top: 30px;
+  left: 50%;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -220,8 +218,8 @@ $Nunito: "Nunito", sans-serif;
 
 #mic {
   position: relative;
-  top: 15px;
-  left: 120px;
+  top: -40px;
+  left: 55%;
 }
 
 .loader span:nth-child(4) {

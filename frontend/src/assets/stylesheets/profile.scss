@@ -19,7 +19,7 @@
     transition: all 0.1s ease-in-out;
     font-weight: bold;
     font-family: $Nunito;;
-    font-size: 70px;
+    font-size: 80px;
     margin-bottom: 10px;
 
 }
@@ -33,13 +33,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 0px;
+  
     padding-bottom: 1px solid gray;
 }
 
 .profile-event-content{
     background-color: rgb(250, 229, 236);
-    margin-top: 0px;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -59,7 +58,6 @@
 } 
 
 .profile-event-detials{
-    // margin-right: 100px;
     display: flex;
     flex-direction: column;
 }

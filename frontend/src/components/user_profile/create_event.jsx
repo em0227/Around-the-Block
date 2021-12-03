@@ -10,6 +10,7 @@ class CreateEventForm extends React.Component {
       location: this.props.event.location,
       imageUrl: this.props.event.imageUrl,
       time: this.props.event.time,
+      image: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,7 +20,7 @@ class CreateEventForm extends React.Component {
   componentDidMount() {
     this.props.clearErrors();
     if (this.props.formType === "update") {
-    this.props.fetchEvent(this.props.match.params.eventId);
+      this.props.fetchEvent(this.props.match.params.eventId);
     }
   }
   // Once the user has been authenticated, redirect to the Tweets page
@@ -34,10 +35,12 @@ class CreateEventForm extends React.Component {
 
   // Handle field updates (called in the render method)
   update(field) {
-    return (e) =>
+    return (e) => {
+      e.preventDefault();
       this.setState({
         [field]: e.currentTarget.value,
       });
+    };
   }
 
   // Handle form submission
@@ -66,8 +69,9 @@ class CreateEventForm extends React.Component {
       time: this.state.time,
     };
 
-    this.props.updateEvent(event).then(() => this.props.history.push('/profile'));
-    
+    this.props
+      .updateEvent(event)
+      .then(() => this.props.history.push("/profile"));
   }
 
   // Render the session errors if there are any
@@ -84,7 +88,7 @@ class CreateEventForm extends React.Component {
   }
 
   render() {
-    let { event } = this.props
+    let { event } = this.props;
     console.log(event);
     if (this.props.formType === "create") {
       return (
@@ -107,16 +111,15 @@ class CreateEventForm extends React.Component {
                     type="text"
                     value={this.state.description}
                     onChange={this.update("description")}
-                    placeholder="What to do..."
+                    placeholder="What's the event about ..."
                   />
                 </div>
                 <div className="event__field">
                   <input
                     className="input-holder"
-                    type="text"
+                    type="datetime-local"
                     value={this.state.time}
                     onChange={this.update("time")}
-                    placeholder="When...."
                   />
                 </div>
                 <div className="event__field">
@@ -125,7 +128,7 @@ class CreateEventForm extends React.Component {
                     type="text"
                     value={this.state.location}
                     onChange={this.update("location")}
-                    placeholder="Your location..."
+                    placeholder="Event location ..."
                   />
                 </div>
 
@@ -135,9 +138,99 @@ class CreateEventForm extends React.Component {
                     type="text"
                     value={this.state.imageUrl}
                     onChange={this.update("imageUrl")}
-                    placeholder="Your pictures go here..."
+                    placeholder="Upload your event image ..."
                   />
                 </div>
+                <br />
+                <div className="event-image-buttons">
+                  <label>Or choose a template image:</label>
+                  <br />
+                  <div>
+                    <button
+                      style={{
+                        backgroundImage:
+                          "url('https://atb-photos.s3.amazonaws.com/cook.jpeg')",
+                      }}
+                      value="https://atb-photos.s3.amazonaws.com/cook.jpeg"
+                      onClick={this.update("imageUrl")}
+                      className="image-buttons"
+                    ></button>
+                    <button
+                      style={{
+                        backgroundImage:
+                          "url('https://atb-photos.s3.amazonaws.com/sing.jpeg')",
+                      }}
+                      value="https://atb-photos.s3.amazonaws.com/sing.jpeg"
+                      onClick={this.update("imageUrl")}
+                      className="image-buttons"
+                    ></button>
+                    <button
+                      style={{
+                        backgroundImage:
+                          "url('https://atb-photos.s3.amazonaws.com/paint.jpeg')",
+                      }}
+                      value="https://atb-photos.s3.amazonaws.com/paint.jpeg"
+                      onClick={this.update("imageUrl")}
+                      className="image-buttons"
+                    ></button>
+                    <button
+                      style={{
+                        backgroundImage:
+                          "url('https://atb-photos.s3.amazonaws.com/read.jpeg')",
+                        backgroundImageSize: "260px 180px",
+                      }}
+                      value="https://atb-photos.s3.amazonaws.com/read.jpeg"
+                      onClick={this.update("imageUrl")}
+                      className="image-buttons"
+                    ></button>
+                    <button
+                      style={{
+                        backgroundImage:
+                          "url('https://atb-photos.s3.amazonaws.com/dog.jpeg')",
+                      }}
+                      value="https://atb-photos.s3.amazonaws.com/dog.jpeg"
+                      onClick={this.update("imageUrl")}
+                      className="image-buttons"
+                    ></button>
+                    <button
+                      style={{
+                        backgroundImage:
+                          "url('https://atb-photos.s3.amazonaws.com/dance.jpeg')",
+                      }}
+                      value="https://atb-photos.s3.amazonaws.com/dance.jpeg"
+                      onClick={this.update("imageUrl")}
+                      className="image-buttons"
+                    ></button>
+                    <button
+                      style={{
+                        backgroundImage:
+                          "url('https://atb-photos.s3.amazonaws.com/nature.jpeg')",
+                      }}
+                      value="https://atb-photos.s3.amazonaws.com/nature.jpeg"
+                      onClick={this.update("imageUrl")}
+                      className="image-buttons"
+                    ></button>
+                    <button
+                      style={{
+                        backgroundImage:
+                          "url('https://atb-photos.s3.amazonaws.com/shop.jpg')",
+                      }}
+                      value="https://atb-photos.s3.amazonaws.com/shop.jpg"
+                      onClick={this.update("imageUrl")}
+                      className="image-buttons"
+                    ></button>
+                    <button
+                      style={{
+                        backgroundImage:
+                          "url('https://atb-photos.s3.amazonaws.com/exercise.jpg')",
+                      }}
+                      value="https://atb-photos.s3.amazonaws.com/exercise.jpg"
+                      onClick={this.update("imageUrl")}
+                      className="image-buttons"
+                    ></button>
+                  </div>
+                </div>
+
                 <button className="button event__submit" type="submit">
                   <span className="button__text">CREATE EVENT</span>
                 </button>

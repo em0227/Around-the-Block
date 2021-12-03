@@ -13,25 +13,31 @@ $Nunito: "Nunito", sans-serif;
   height: 120px;
   padding-left: 80px;
   padding-right: 10px;
+}
   .app-name {
-    // font-family: $Courgette;
-    // font-family: $Pacifico;
     font-family: "Open Sans", sans-serif;
     text-transform: bold;
     font-size: 60px;
     color: #f2a07b;
+    transition: all 0.2s ease-in-out;
+  }
     .app-span {
       font-family: $Pacifico;
       font-size: 70px;
       color: #ffd571;
-      // transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
     }
-    // .app-span:hover {
-    // cursor: pointer;
-    // transform: scale(1.2)
-    // }
-    }   
-  }
+    .app-span:hover {
+    cursor: pointer;
+    transform: scale(1.2)
+    }
+    .app-name:hover{
+      cursor: pointer;
+      transform: scale(1.2);
+      color: #f2a07b;
+    }
+   
+  
 
   .logged-in {
     display: flex;

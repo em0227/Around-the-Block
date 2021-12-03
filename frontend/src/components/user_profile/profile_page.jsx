@@ -175,100 +175,102 @@ class ProfilePage extends React.Component {
           {displayMyJoinedEvents}
         </div>
 
-    <div className="profile-event-page" id="friends">
-      <div className="p-event-container-title" id="host-event">
-        <Link className="session-titles" to="/events/create">
-          HOST EVENTS
-        </Link>
-        {displayMyEvents}
-      </div>
+        <div className="profile-event-page" id="friends">
+          <div className="p-event-container-title" id="host-event">
+            <Link className="session-titles" to="/events/create">
+              HOST EVENTS
+            </Link>
+            {displayMyEvents}
+          </div>
 
-      <div className="profile-event-page" id="friends">
-        <div className="p-event-container-title">
-          <div className="session-titles">FRIENDS</div>
-          {currentUser.friends.length > 0
-            ? currentUser.friends.map((friend) => (
-                <div>
-                  <li>{friend.friendName}</li>
-                  <li>{friend.friendEmail}</li>
+          <div className="profile-event-page" id="friends">
+            <div className="p-event-container-title">
+              <div className="session-titles">FRIENDS</div>
+              {currentUser.friends.length > 0
+                ? currentUser.friends.map((friend) => (
+                    <div>
+                      <li>{friend.friendName}</li>
+                      <li>{friend.friendEmail}</li>
+                    </div>
+                  ))
+                : ""}
+
+              {/* </div> */}
+              {/* friend's section end div*/}
+
+              <div className="friend-request-container">
+                <form
+                  className="friend-search-form"
+                  onSubmit={this.submitFriendRequest.bind(this)}
+                >
+                  <div>
+                    <input
+                      value={this.state.name}
+                      className="friend-search-bar"
+                      placeholder="Enter Friend's Name"
+                      type="text"
+                      onChange={this.update("name")}
+                    />
+                    <div className="entire-dropdown">
+                      {this.state.name.length > 0 && filters.length > 0
+                        ? filters.map((user) => (
+                            <div
+                              className="user-info-1"
+                              onClick={this.changeSearchBar.bind(this, user)}
+                            >
+                              <div className="user-info-">
+                                <FaUserCircle className="user-info-icon" />
+                                <div className="user-info-content">
+                                  <div className="user-info-content-input">
+                                    {user.name}
+                                  </div>
+                                  <div className="user-info-content-input">
+                                    {user.email}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        : ""}
+                    </div>
+                  </div>
+                  <button className="friend-search-button" type="submit">
+                    Send
+                  </button>
+                </form>
+                <div className="friend-search-bar-error">
+                  {errors.recipient}
                 </div>
-              ))
-            : ""}
-          
-        {/* </div> */}
-        {/* friend's section end div*/}
+              {/* </div> */}
 
-        <div className="friend-request-container">
-          <form
-            className="friend-search-form"
-            onSubmit={this.submitFriendRequest.bind(this)}
-          >
-            <div>
-              <input
-                value={this.state.name}
-                className="friend-search-bar"
-                placeholder="Enter Friend's Name"
-                type="text"
-                onChange={this.update("name")}
-              />
-              <div className="entire-dropdown">
-                {this.state.name.length > 0 && filters.length > 0
-                  ? filters.map((user) => (
-                      <div
-                        className="user-info-1"
-                        onClick={this.changeSearchBar.bind(this, user)}
-                      >
-                        <div className="user-info-">
-                          <FaUserCircle className="user-info-icon" />
-                          <div className="user-info-content">
-                            <div className="user-info-content-input">
-                              {user.name}
-                            </div>
-                            <div className="user-info-content-input">
-                              {user.email}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))
-                  : ""}
+              {/* <div className="profile-friends-container"> */}
+                <div className="profile-page-friends">
+                  <img
+                    className="p-e-i"
+                    src="https://atb-photos.s3.amazonaws.com/emily.png"
+                  />
+                  <img
+                    className="p-e-i"
+                    src="https://atb-photos.s3.amazonaws.com/feifei_headshot.JPG"
+                  />
+                  <img
+                    className="p-e-i"
+                    src="https://atb-photos.s3.amazonaws.com/hien.png"
+                  />
+                  <img
+                    className="p-e-i"
+                    src="https://atb-photos.s3.amazonaws.com/sigdha.png"
+                  />
+                </div>
               </div>
             </div>
-            <button className="friend-search-button" type="submit">
-              Find Friend
-            </button>
-          </form>
-          <div className="friend-search-bar-error">{errors.recipient}</div>
-        </div>
-
-        <div className="profile-friends-container">
-          <div className="profile-event-content">
-            <img
-              className="p-e-i"
-              src="https://atb-photos.s3.amazonaws.com/emily.png"
-            />
-            <img
-              className="p-e-i"
-              src="https://atb-photos.s3.amazonaws.com/feifei2.JPG"
-            />
-            <img
-              className="p-e-i"
-              src="https://atb-photos.s3.amazonaws.com/hien.png"
-            />
-            <img
-              className="p-e-i"
-              src="https://atb-photos.s3.amazonaws.com/sigdha.png"
-            />
+            {/* friend's section end div */}
           </div>
         </div>
-</div>
-{/* friend's section end div */}
-
+      {/* // </div> */}
 
       </div>
-    </div>
-  </div>
-);
+    );
   
 }}
 

@@ -13,5 +13,5 @@ export const getFilteredUsers = (name) => {
 }
 
 export const getDemoUser = () => {
-  return axios.get("/api/users/demoUser");
+  return axios.post("/api/users/demoUser");
 };

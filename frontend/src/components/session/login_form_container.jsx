@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
-import { login } from "../../actions/session_actions";
+import { login} from "../../actions/session_actions";
 import LoginForm from "./login";
+import {fetchDemoUser} from "../../actions/users_actions"
 
 const mapStateToProps = (state) => {
   return {
@@ -11,6 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     login: (user) => dispatch(login(user)),
+    fetchDemoUser: () => dispatch(fetchDemoUser())
   };
 };
 

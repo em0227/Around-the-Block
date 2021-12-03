@@ -120,7 +120,7 @@ class LoginForm extends React.Component {
 
   loginDemo() {
     // this.setState({
-    //   email: "feifei.erhu@gmail.com",
+    //   email: "feifei.erhu@gmailom",
     //   password: "password"
     // });
 
@@ -130,8 +130,8 @@ class LoginForm extends React.Component {
     //     password: "password"
     //   })
       // .then(() => this.props.history.push("/profile"));
-      this.props.fetchDemoUser.then(() => this.props.history.push("/profile"))
-      .catch(error => console.log(error));
+      this.props.fetchDemoUser().then(() => this.props.history.push("/profile"))
+      
   }
 
   // Render the session errors if there are any

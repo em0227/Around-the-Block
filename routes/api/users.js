@@ -131,10 +131,9 @@ router.get(
   }
 );
 
-router.get(
-  "/demoUser",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
+router.post(
+  "/demoUser", (req, res) => {
+  
     User.findOne({_id:"61a5313a1f71a2b478a0f829"}).then((user) => {
         const payload = {
           id: user.id,
@@ -146,14 +145,15 @@ router.get(
           requestsSent: user.requestsSent,
           requestsReceived: user.requestsReceived
         };
-    jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+    
+      jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
       res.json({
         success: true,
         token: "Bearer " + token,
       });
     });
-  }}
-  )
+  }
+  )})
 
 router.get(
   "/",

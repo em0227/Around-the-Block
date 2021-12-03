@@ -11,6 +11,7 @@ class SecondNavBar extends React.Component {
   
   constructor (props){
     super(props)
+    console.log(this.props.currentUser)
     this.state = {
       showModal: false,
       name: this.props.currentUser.name,

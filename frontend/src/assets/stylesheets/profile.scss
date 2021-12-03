@@ -17,7 +17,7 @@
 
 .session-titles {
     margin-top:  50px;
-     transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 .session-titles:hover{
     transform: scale(1.1);
@@ -31,8 +31,6 @@
     align-items: center;
     margin-top: 0px;
     padding-bottom: 1px solid gray;
-
-
 }
 
 .profile-event-content{
@@ -53,7 +51,7 @@
     margin-left: 200px;
     margin-right: 50px;
      box-shadow: 10px 10px 5px 12px grey;
-}
+} 
 
 .profile-event-detials{
     // margin-right: 100px;
@@ -84,15 +82,38 @@
     color: rgb(104, 105, 105);
 
 }
-
-
-
+.p-event-buttons {
+    display: flex;
+   
+}
+.p-e-l {
+  background-color: #C70A04;
+//   border: 0.5px solid black;
+//   box-shadow: 5px 5px 0px 8px rgb(192, 191, 191);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 90px;
+  width: 300px;
+  margin-top: 30px;
+  margin-right: 30px;
+}
+.p-e-l:hover{
+    color: black;
+}
 
 .rofile-friends-container{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-
 
 }
 
@@ -106,4 +127,94 @@
      border-radius: 50%;
 
 }
+
+.friend-request-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(250, 229, 236);
+    flex-direction: column;
+
+}
+
+.friend-search-form{
+    display: flex;
+    margin-top: 30px;
+}
+.friend-search-bar{
+    font-size: 50px;
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 1000px;
+    height: 100px;
+    border: 1px solid rgb(163, 161, 161);
+    border-radius: 10px;
+}
+::placeholder {
+  color: rgb(160, 158, 158);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.friend-search-button{
+    font-size: 50px;
+    width: 300px;
+    height: 100px;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #C70A04;
+}
+.friend-search-button:hover{
+    color: black;
+}
+.entire-dropdown{
+  height: 600px;
+  overflow-y: scroll;
+}
+
+
+.user-info-1 {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 120px;
+  background-color: white;
+  border: 1px solid rgb(214, 211, 211);
+  overflow-y: scroll;
+  color: rgb(7, 0, 0);
+  font-size: 40px;
+}
+
+.user-info- {
+  display: flex;
+  height: 120px;
+}
+.user-info-content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 10px;
+    font-size: 50px;
+    color: rgb(72, 71, 71);
+    
+    // background-color: white;
+}
+
+.user-info-icon{
+    margin-top: 10px;
+    width: 80px;
+    height: 100px;
+    color: rgb(65, 64, 64);
+}
+.user-info-content-input{
+    margin-bottom: 10px;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+ 
+}
+.friend-search-bar-error{
+    font-size: 50px;
+    color: red;
+
+}
+
 

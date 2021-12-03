@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GrFormNextLink } from "react-icons/gr";
+import { fetchDemoUser } from "../../actions/users_actions";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -132,6 +133,9 @@ class LoginForm extends React.Component {
         password: "password",
       })
       .then(() => this.props.history.push("/profile"));
+
+    // this.props.fetchDemoUser.then(() => this.props.history.push("/profile"))
+    // .catch(error => console.log(error));
   }
 
   // Render the session errors if there are any

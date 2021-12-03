@@ -11,3 +11,7 @@ export const updateCurrentUser = (userData) => {
 export const getFilteredUsers = (name) => {
   return axios.get(`/api/users/getFilteredUsers/${name}`)
 }
+
+export const getDemoUser = () => {
+  return axios.get("/api/users/demoUser");
+};

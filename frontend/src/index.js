@@ -8,6 +8,7 @@ import { logout } from "./actions/session_actions";
 import { fetchEvent, fetchEvents } from "./actions/event_actions";
 import {
   fetchCurrentUser,
+  fetchDemoUser,
   fetchFilteredUsers,
   updateCurrentUser,
 } from "./actions/users_actions";
@@ -47,4 +48,5 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchEvent = fetchEvent;
   window.fetchEvents = fetchEvents;
   window.fetchFilteredUsers = fetchFilteredUsers;
+  window.fetchDemoUser = fetchDemoUser;
 });

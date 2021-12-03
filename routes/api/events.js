@@ -19,6 +19,7 @@ router.get("/allEvents", (req, res) => {
         results[event._id.toString()] = event;
       });
       res.send(results);
+      
     })
     .catch((error) => {
       res.status(400).json({ error });

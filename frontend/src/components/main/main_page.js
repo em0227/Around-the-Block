@@ -1,18 +1,7 @@
 import React from "react";
 import { Carousel } from "antd";
 import { Link } from "react-router-dom";
-
-const contentStyle = {
-  height: "600px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-};
-const imgSize = {
-  width: "100vw",
-  height: "100vh",
-};
+import Typewriter from "typewriter-effect"
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -20,9 +9,9 @@ class MainPage extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(this.props);
+ 
     this.props.fetchEvents();
-    this.props.fetchUsers()
+    // this.props.fetchUsers()
   }
 
   onChange(a, b, c) {
@@ -34,18 +23,19 @@ class MainPage extends React.Component {
       1: "https://atb-photos.s3.amazonaws.com/painting.jpeg",
       2: "https://atb-photos.s3.amazonaws.com/green.jpeg",
       3: "https://atb-photos.s3.amazonaws.com/aniversary.jpeg",
-      //start here
       4: "https://atb-photos.s3.amazonaws.com/comedy.jpeg",
       5: "https://atb-photos.s3.amazonaws.com/plants.jpeg",
       6: "https://atb-photos.s3.amazonaws.com/galary.jpeg",
       7: "https://atb-photos.s3.amazonaws.com/dating.jpeg",
       8: "https://atb-photos.s3.amazonaws.com/sidewalk.jpeg",
+      9: "https://atb-photos.s3.amazonaws.com/dashboard_bg.jpeg",
     };
     const contents = this.props.events.map((event, idx) => {
-      // debugger
       return (
         <div className="event-container" key={idx}>
+
           <div className="inner-container">
+          
             <img className="img" src={img[idx]} />
             <div className="event-content">
               <div className="event-text">{event.time}</div>
@@ -55,12 +45,6 @@ class MainPage extends React.Component {
               <Link className="join-button" to={`/events/${event._id}`}>
                 Show
               </Link>
-              {/* <button
-                className="join-button"
-                onClick={() => this.props.fetchEvent(event._id)}
-              >
-                SHOW
-              </button> */}
             </div>
           </div>
         </div>
@@ -68,6 +52,28 @@ class MainPage extends React.Component {
     });
     return (
       <div>
+        <div className="app-description"> 
+        <Typewriter 
+        onInit={(typewriter) => {
+          typewriter
+            .typeString("We are here to help the elderly make friends!")
+            .pauseFor(500)
+            .deleteAll()
+            .typeString("Our voice recognition makes sign up easy. Try it now!")
+            .pauseFor(500)
+            .deleteAll()
+            .typeString("We are here to help the elderly make friends!")
+            .pauseFor(500)
+            .deleteAll()
+            .typeString("Our voice recognition makes sign up easy. Try it now!")
+            .pauseFor(1000)
+            .deleteAll()
+            .start();
+        }
+        } 
+        />
+      
+        </div>
         {this.props.events ? (
           <div className="img-background">
             <Carousel autoplay dots="arb-carousel" afterChange={this.onChange}>

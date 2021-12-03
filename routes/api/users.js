@@ -131,6 +131,30 @@ router.get(
   }
 );
 
+// router.get(
+//   "/demoUser",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     User.findOne({_id:"61a5313a1f71a2b478a0f829"}).then((user) => {
+//         const payload = {
+//           id: user.id,
+//           email: user.email,
+//           name: user.name,
+//           eventsJoined: user.eventsJoined,
+//           eventsHosted: user.eventsHosted,
+//           friends: user.friends,
+//           requestsSent: user.requestsSent,
+//           requestsReceived: user.requestsReceived
+//         };
+//     jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+//       res.json({
+//         success: true,
+//         token: "Bearer " + token,
+//       });
+//     });
+//   }}
+//   )
+
 router.get(
   "/",
   passport.authenticate("jwt", { session: false }),

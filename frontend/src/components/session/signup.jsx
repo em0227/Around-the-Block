@@ -22,6 +22,7 @@ class SignupForm extends React.Component {
       password: "",
       errors: {},
       isListening: false,
+      isPlayingAudio: false,
       timerId: "",
     };
 
@@ -68,7 +69,8 @@ class SignupForm extends React.Component {
 
       if (transcript.includes("submit")) {
         const email = this.state.email.replaceAll(" ", "");
-        const password = this.state.password.replace("submit", "");
+        let password = this.state.password.replace("submit", "");
+        password = password.replace(" something", "");
         const user = {
           email,
           name: this.state.name,
@@ -80,6 +82,7 @@ class SignupForm extends React.Component {
       } else if (transcript.includes("password")) {
         const last = transcript.indexOf("word is");
         let realTranscript = transcript.slice(last + 8);
+        realTranscript = realTranscript.replace(" something", "");
         this.setState({ password: realTranscript });
       } else if (transcript.includes("email")) {
         const last = transcript.indexOf("email is");
@@ -88,6 +91,13 @@ class SignupForm extends React.Component {
 
         if (realTranscript.includes("at")) {
           realTranscript = realTranscript.replace("at", "@");
+          this.setState({ email: realTranscript });
+        } else {
+          this.setState({ email: realTranscript });
+        }
+
+        if (realTranscript.includes("dot")) {
+          realTranscript = realTranscript.replace("at", ".");
           this.setState({ email: realTranscript });
         } else {
           this.setState({ email: realTranscript });
@@ -108,9 +118,21 @@ class SignupForm extends React.Component {
     };
   }
 
+  playAudio(e) {
+    this.setState({ isPlayingAudio: !this.state.isPlayingAudio }, () => {
+      const audio = document.getElementById("myAudio");
+      if (this.state.isPlayingAudio) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+  }
+
   setIsListening(e) {
     this.setState({ isListening: !this.state.isListening }, () => {
       if (this.state.isListening) {
+        this.setState({ isPlayingAudio: !this.state.isPlayingAudio });
         mic.start();
       } else {
         mic.stop();
@@ -135,24 +157,10 @@ class SignupForm extends React.Component {
     };
 
     this.props.signup(user, this.props.history);
-   
   }
 
-  // renderErrors() {
-  //   return (
-  //     <ul className="render-errors">
-  //       {console.log("error", this.state.errors)}
-  //       {Object.keys(this.state.errors).map((error, i) => (
-  //         <li style={{ marginBottom: 5, fontSize: "20px" }} key={`error-${i}`}>
-  //           {this.state.errors[error]}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }
-
   render() {
-    const {errors, clearSessionErrors} = this.props
+    const { errors, clearSessionErrors } = this.props;
     return (
       <div className="form-container">
         <div className="form">
@@ -227,36 +235,69 @@ class SignupForm extends React.Component {
               <div>
                 <button className="button form__submit" type="submit">
                   <span className="button__text">SIGN UP NOW</span>
-                  <i>
+                  {/* <i>
                     <GrFormNextLink />
-                  </i>
+                  </i> */}
                 </button>
+                <div className="mic">
+                  {this.state.isListening ? (
+                    <div className="mic-on">
+                      <div
+                        className="button form__submit micro"
+                        onClick={this.setIsListening.bind(this)}
+                      >
+                        Stop Voice Input
+                      </div>
+                      <div className="loader">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <span id="mic">🎙️</span>
+                    </div>
+                  ) : (
+                    <div
+                      style={{ width: "100%" }}
+                      onEnded={this.setIsListening.bind(this)}
+                    >
+                      <audio id="myAudio">
+                        <source
+                          src="https://atb-photos.s3.amazonaws.com/session_form_intro.mp3"
+                          type="audio/mp3"
+                        />
+                      </audio>
+                      <div
+                        className="button form__submit micro"
+                        onClick={this.playAudio.bind(this)}
+                      >
+                        Sign Up with Voice
+                      </div>
+                      {this.state.isPlayingAudio ? (
+                        <div className="mic-on">
+                          <div className="loader">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                          <span id="mic">👂</span>
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
+                  )}
+                </div>
                 <br />
                 {/* {this.renderErrors()} */}
               </div>
+
               <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>
               </div>
             </form>
           </div>
-        </div>
-        <div className="mic">
-          {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
-          {this.state.isListening ? (
-            <button
-              className="button form__submit micro"
-              onClick={this.setIsListening.bind(this)}
-            >
-              Stop
-            </button>
-          ) : (
-            <button
-              className="button form__submit micro"
-              onClick={this.setIsListening.bind(this)}
-            >
-              Start
-            </button>
-          )}
         </div>
       </div>
     );

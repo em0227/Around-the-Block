@@ -2,8 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { GrFormNextLink} from "react-icons/gr";
-
+import { GrFormNextLink } from "react-icons/gr";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -37,7 +36,7 @@ class LoginForm extends React.Component {
   }
   // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
+    if (nextProps.currentUser) {
       // this.props.history.push("/events");
     }
 
@@ -55,7 +54,8 @@ class LoginForm extends React.Component {
 
       if (transcript.includes("submit")) {
         const email = this.state.email.replaceAll(" ", "");
-        const password = this.state.password.replace(" submit", "");
+        let password = this.state.password.replace(" submit", "");
+        password = password.replace(" something", "");
         const user = {
           email,
           password,
@@ -66,6 +66,7 @@ class LoginForm extends React.Component {
       } else if (transcript.includes("password")) {
         const last = transcript.indexOf("word is");
         let realTranscript = transcript.slice(last + 8);
+        realTranscript = realTranscript.replace(" something", "");
         realTranscript = realTranscript.replace(" submit", "");
         this.setState({ password: realTranscript });
       } else if (transcript.includes("email")) {
@@ -116,19 +117,19 @@ class LoginForm extends React.Component {
       password: this.state.password,
     };
 
-    this.props.login(user, this.props.history)
+    this.props.login(user, this.props.history);
   }
 
   loginDemo() {
     this.setState({
       email: "feifei.erhu@gmail.com",
-      password: "password"
+      password: "password",
     });
 
     this.props
       .login({
         email: "feifei.erhu@gmail.com",
-        password: "password"
+        password: "password",
       })
       .then(() => this.props.history.push("/profile"));
   }
@@ -148,7 +149,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
-     const { errors, clearSessionErrors } = this.props;
+    const { errors, clearSessionErrors } = this.props;
     return (
       <div className="form-container">
         <div className="form">
@@ -201,9 +202,9 @@ class LoginForm extends React.Component {
               <div className="button-container">
                 <button className="button form__submit" type="submit">
                   <span className="button__text">LOG IN NOW</span>
-                  <i>
+                  {/* <i>
                     <GrFormNextLink />
-                  </i>
+                  </i> */}
                 </button>
                 <br />
                 <button
@@ -212,32 +213,46 @@ class LoginForm extends React.Component {
                   onClick={this.loginDemo}
                 >
                   <span className="button__text">Demo User</span>
-                  <i>
+                  {/* <i>
                     <GrFormNextLink />
-                  </i>
+                  </i> */}
                 </button>
+
+                <div className="mic">
+                  {this.state.isListening ? (
+                    <div className="mic-on">
+                      <span
+                        className="button form__submit micro"
+                        onClick={this.setIsListening.bind(this)}
+                      >
+                        Stop Voice Input
+                      </span>
+                      <div className="loader">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <span id="mic">🎙️</span>
+                    </div>
+                  ) : (
+                    <div
+                      className="button form__submit micro"
+                      onClick={this.setIsListening.bind(this)}
+                      style={{ marginLeft: 0 }}
+                    >
+                      Log in with Voice
+                    </div>
+                  )}
+                </div>
+                {/* <br /> */}
               </div>
               <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>
               </div>
-
-              {/* <button
-                className="button form__submit"
-                type="submit"
-                onClick={this.loginDemo}
-              >
-                <span className="button__text">Demo User</span>
-                <i>
-                  <GrFormNextLink />
-                </i>
-              </button> */}
             </form>
           </div>
         </div>
-        {/* <div className="mic">
-          {this.state.isListening ? <span>🎙️</span> : <span>🛑🎙️</span>}
-          <button onClick={this.setIsListening.bind(this)}>Start/Stop</button>
-        </div> */}
       </div>
     );
   }

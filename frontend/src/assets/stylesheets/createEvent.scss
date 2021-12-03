@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kaushan+Script&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Kaushan+Script&family=Nunito:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pacifico&display=swap");
 $Courgette: "Courgette", cursive;
 $KaushanScript: "Kaushan Script", cursive;
 $Pacifico: "Pacifico", cursive;
-$Nunito: 'Nunito', sans-serif;
+$Nunito: "Nunito", sans-serif;
 
 * {
   box-sizing: border-box;
@@ -29,11 +29,12 @@ $Nunito: 'Nunito', sans-serif;
     border-radius: 20px;
     background: white;
     position: relative;
-    height: 80vh;
+    height: 100vh;
     width: 820px;
-    box-shadow: 0px 0px 24px #5E8B7E;
+    box-shadow: 0px 0px 24px #5e8b7e;
     .event__content {
       height: 100vh;
+      overflow-y: scroll;
     }
   }
 }
@@ -48,7 +49,6 @@ $Nunito: 'Nunito', sans-serif;
   clip-path: inset(0 0 0 0);
 }
 
-
 .event-inner {
   display: flex;
   flex-direction: column;
@@ -57,14 +57,12 @@ $Nunito: 'Nunito', sans-serif;
   width: 95%;
   padding-left: 40px;
   padding-top: 45px;
-
 }
 
 .input__field {
   padding: 20px 0px;
   position: relative;
 }
-
 
 .event__field {
   display: flex;
@@ -98,14 +96,14 @@ $Nunito: 'Nunito', sans-serif;
 .event__field:focus,
 .event__field:hover {
   outline: none;
-  border-bottom-color: #5E8B7E;
+  border-bottom-color: #5e8b7e;
 }
 
 .event__submit {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: #FF865E;
+  background: #ff865e;
   color: white;
   font-size: 30px;
   margin-top: 30px;
@@ -131,4 +129,19 @@ $Nunito: 'Nunito', sans-serif;
 }
 .button__text {
   z-index: 10;
+}
+
+.event-image-buttons {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .image-buttons {
+    height: 180px;
+    width: 240px;
+    background-size: 240px 180px;
+    background-repeat: no-repeat;
+  }
 }

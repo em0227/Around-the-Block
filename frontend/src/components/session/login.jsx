@@ -223,7 +223,7 @@ class LoginForm extends React.Component {
                     className="button form__submit micro"
                     onClick={this.setIsListening.bind(this)}
                   >
-                    Voice Input
+                    Log in with Voice
                   </span>
                 )}
               </div>

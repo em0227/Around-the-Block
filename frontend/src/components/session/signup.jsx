@@ -258,7 +258,7 @@ class SignupForm extends React.Component {
                         className="button form__submit micro"
                         onClick={this.playAudio.bind(this)}
                       >
-                        Voice Input
+                        Sign Up with Voice
                       </div>
                       {this.state.isPlayingAudio ? (
                         <div className="mic-on">

@@ -100,7 +100,7 @@ class NavBar extends React.Component {
           <div>
             <IoMdNotificationsOutline
               className="nav-icon bell"
-              style={{ width: 60, height: 60, marginRight: 0, color: "" }}
+              style={{ width: 40, height: 40, marginRight: 0, color: "" }}
               onClick={this.toggleDropdown}
             />
             <div className="counter">

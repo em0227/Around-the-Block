@@ -1,3 +1,4 @@
+import jwt_decode from "jwt-decode";
 import * as Session from "./session_actions";
 import * as UserAPIUtil from "../util/user_api_util";
 import * as SessionAPIUtil from "../util/session_api_util";
@@ -5,6 +6,7 @@ import {receiveUpdatedUser} from "./friend_request_actions"
 export const RECEIVE_USER_ERROR = "RECEIVE_USER_ERROR";
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_FILTERED_USERS = "RECEIVE_FILTERED_USERS";
+
 
 
 export const receiveUserErrors = (errors) => ({
@@ -45,8 +47,16 @@ export const fetchFilteredUsers = (name) => dispatch => (
       (users) => dispatch(receiveFilteredUsers(users.data)))
   )
 
-export const fetchDemoUser = () => (dispatch) =>
-  UserAPIUtil.getDemoUser().then(
-    (user) => dispatch(Session.receiveCurrentUser(user.data))  
-  );
+
+
+  export const fetchDemoUser = () => (dispatch) =>
+  UserAPIUtil.getDemoUser()
+    .then((res) => {
+      const { token } = res.data;
+      localStorage.setItem("jwtToken", token);
+      SessionAPIUtil.setAuthToken(token);
+      const decoded = jwt_decode(token);
+      dispatch(Session.receiveCurrentUser(decoded));
+    })
+    
 

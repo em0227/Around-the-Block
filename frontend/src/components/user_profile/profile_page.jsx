@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import debounce from 'lodash.debounce';
+import debounce from "lodash.debounce";
 import { FaUserCircle } from "react-icons/fa";
 
 class ProfilePage extends React.Component {
@@ -22,20 +22,24 @@ class ProfilePage extends React.Component {
     }
   }
 
-  debounce(){
-    const {name} = this.state
-    const {fetchFilteredUsers} = this.props
-    clearTimeout(this.timerId)
-   this.timerId = setTimeout(() => fetchFilteredUsers(name), 200)
-    
+  debounce() {
+    const { name } = this.state;
+    const { fetchFilteredUsers } = this.props;
+    clearTimeout(this.timerId);
+    this.timerId = setTimeout(() => fetchFilteredUsers(name), 200);
   }
 
   update(field) {
-    return (e) =>{
-      this.setState({
-        [field]: e.currentTarget.value,
-      }, () => {this.debounce()})
-    }
+    return (e) => {
+      this.setState(
+        {
+          [field]: e.currentTarget.value,
+        },
+        () => {
+          this.debounce();
+        }
+      );
+    };
   }
 
   submitFriendRequest() {
@@ -44,8 +48,7 @@ class ProfilePage extends React.Component {
     // const user = this.props.users.filter(user => user.name === name)[0];
     // if (user)
     // if (Object.values(this.props.filters).filter(user => user.name)
-    this.props.createFriendRequest({recipient: this.state.user})
-    
+    this.props.createFriendRequest({ recipient: this.state.user });
   }
 
   // handleApprove(requestId) {
@@ -54,10 +57,9 @@ class ProfilePage extends React.Component {
   //     status: "approved"
   //   });
   // }
- 
 
   // handleReject(requestId) {
-  //   this.props.updateFriend({ 
+  //   this.props.updateFriend({
   //     request: requestId,
   //     status: "denied"
   //   });
@@ -86,11 +88,8 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    
     const { events, errors, currentUser, invites, users, filters } = this.props;
-    const myEvents = events.filter(
-      (event) => event.hostId === currentUser.id
-    );
+    const myEvents = events.filter((event) => event.hostId === currentUser.id);
     const myJoinedEvents = events.filter((event) =>
       event.guests.includes(currentUser.id)
     );
@@ -114,21 +113,18 @@ class ProfilePage extends React.Component {
                   <div className="p-e-d">{event.description}</div>
                 </div>
 
-
-                    <div className="p-event-buttons">
-                      <Link className="p-e-l" to={`/events/update/${event._id}`}>
-                        Update
-                      </Link>
-                      <button
-                        className="p-e-l"
-                        onClick={() => this.deleteEvent(event._id)}
-                      >
-                        Cancel
-                      </button>
-                    </div>   
-
-
-                   </div>
+                <div className="p-event-buttons">
+                  <Link className="p-e-l" to={`/events/update/${event._id}`}>
+                    Update
+                  </Link>
+                  <button
+                    className="p-e-l"
+                    onClick={() => this.deleteEvent(event._id)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -170,14 +166,14 @@ class ProfilePage extends React.Component {
       );
     });
 
-return (
-  <div>
-    <div className="p-event-container-title" id="upcoming-event">
-      <Link className="session-titles" to="/">
-        UPCOMING EVENTS
-      </Link>
-      {displayMyJoinedEvents}
-    </div>
+    return (
+      <div>
+        <div className="p-event-container-title" id="upcoming-event">
+          <Link className="session-titles" to="/">
+            UPCOMING EVENTS
+          </Link>
+          {displayMyJoinedEvents}
+        </div>
 
     <div className="profile-event-page" id="friends">
       <div className="p-event-container-title" id="host-event">

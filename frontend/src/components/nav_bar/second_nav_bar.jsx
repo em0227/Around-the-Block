@@ -65,6 +65,7 @@ class SecondNavBar extends React.Component {
               <div className="text-and-icon">
                 <button
                   className="profile-button"
+                  
                   onClick={this.profileModalAppears.bind(this)}
                 >
                   <FontAwesomeIcon className="pen-icon" icon={faPen} />{" "}
@@ -75,44 +76,39 @@ class SecondNavBar extends React.Component {
               {/* <div className="modal-background" >
               <div className="modal-child">
            */}
-                  {this.state.showModal ? (
-                    <form
-                      className="modal"
-                      onSubmit={this.handleSubmit.bind(this)}
-                    >
-                      <div
-                        className="close-modal"
-                        onClick={this.clearModal.bind(this)}
-                      >
-                        X
-                      </div>
-                      <h2 className="update-profile-header">
-                        Update Your Profile
-                      </h2>
-                      <div className="name-and-email">
-                        <label className="name-header">Name</label>
-                        <input
-                          className="name-input"
-                          type="text"
-                          value={this.state.name}
-                          onChange={this.update("name")}
-                        />
-                        <label className="email-header">Email</label>
-                        <input
-                          className="email-input"
-                          type="text"
-                          value={this.state.email}
-                          onChange={this.update("email")}
-                        />
-                      </div>
-                      <button className="submit-updated-user" type="Submit">
-                        Submit
-                      </button>
-                    </form>
-                  ) : (
-                    ""
-                  )}
-              
+              {this.state.showModal ? (
+                <form className="modal" onSubmit={this.handleSubmit.bind(this)}>
+                  <div
+                    className="close-modal"
+                    onClick={this.clearModal.bind(this)}
+                  >
+                    X
+                  </div>
+                  <h2 className="update-profile-header">Update Your Profile</h2>
+                  <div className="name-and-email">
+                    <label className="name-header">Name</label>
+                    <input
+                      className="name-input"
+                      type="text"
+                      value={this.state.name}
+                      onChange={this.update("name")}
+                    />
+                    <label className="email-header">Email</label>
+                    <input
+                      className="email-input"
+                      type="text"
+                      value={this.state.email}
+                      onChange={this.update("email")}
+                    />
+                  </div>
+                  <button className="submit-updated-user" type="Submit">
+                    Submit
+                  </button>
+                </form>
+              ) : (
+                ""
+              )}
+
               {/* </div>
               </div> */}
             </div>

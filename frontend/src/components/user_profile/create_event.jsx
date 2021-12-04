@@ -40,6 +40,16 @@ class CreateEventForm extends React.Component {
       this.setState({
         [field]: e.currentTarget.value,
       });
+      if (
+        field === "imageUrl" &&
+        e.currentTarget.classList.value.includes("image-buttons")
+      ) {
+        let prevSelected = document.querySelector(".selected");
+        if (prevSelected) {
+          prevSelected.classList.remove("selected");
+        }
+        e.currentTarget.classList.add("selected");
+      }
     };
   }
 

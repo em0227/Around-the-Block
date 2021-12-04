@@ -143,5 +143,11 @@ $Nunito: "Nunito", sans-serif;
     width: 240px;
     background-size: 240px 180px;
     background-repeat: no-repeat;
+    border-radius: 0.3rem;
+    margin: 0 2px 0 2px;
+    &.selected {
+      border: 5px solid #1890ff;
+      border-radius: 0.3rem;
+    }
   }
 }

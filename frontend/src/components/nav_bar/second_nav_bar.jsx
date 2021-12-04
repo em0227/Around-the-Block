@@ -6,7 +6,7 @@ import { MdEventSeat } from "react-icons/md";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { Link as Link1 } from "react-scroll";
-import UserPhoto from "./user_photo";
+// import UserPhoto from "./user_photo";
 
 class SecondNavBar extends React.Component {
   constructor(props) {
@@ -98,7 +98,7 @@ class SecondNavBar extends React.Component {
                     value={this.state.email}
                     onChange={this.update("email")}
                   />
-                  <UserPhoto />
+                  {/* <UserPhoto /> */}
                 </div>
                 <button className="submit-updated-user" type="Submit">
                   Submit

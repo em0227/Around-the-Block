@@ -37,8 +37,8 @@ class MainPage extends React.Component {
             <img className="img" src={img[idx]} />
             <div className="event-content">
               <div className="inner-img">
-                {console.log(event.imageUrl)}
-                <img className="main-event-img" scr={event.imageUrl} />
+        
+                <img className="main-event-img" src={event.imageUrl} />
               </div>
               <div>
                 <div className="event-text">{event.time}</div>

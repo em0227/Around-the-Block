@@ -68,10 +68,9 @@ class EventShow extends React.Component {
     return (
       <div className="event-show-page">
         <div className="event-show-content">
-
           <div className="event-show-details">
             <div>
-              <img className="event-img" scr={this.props.event.imageUrl} />
+              <img className="event-img" src={this.props.event.imageUrl} />
             </div>
             <div>
               <div className="event-details">
@@ -88,7 +87,7 @@ class EventShow extends React.Component {
                 ))}
               </div> */}
               {guests.length === 0 ? (
-                <h1 className="event-guests">
+                <h1 className="description">
                   Be the first one join this event!!
                 </h1>
               ) : (

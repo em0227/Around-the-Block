@@ -140,7 +140,7 @@
     align-items: center;
     background-color: rgb(250, 229, 236);
     flex-direction: column;
-    height: 100vh;
+    height: 200vh;
     width: 100vw;
     
 
@@ -159,7 +159,9 @@
     border-radius: 10px;
     padding-left: 20px; 
     color: black; 
-    margin-right: 20px; 
+    margin-top: 40px;
+    // margin-right: 20px;
+    position: absolute; 
 }
 ::placeholder {
   color: rgb(160, 158, 158);
@@ -177,6 +179,8 @@
     outline: none; 
     border: 1px solid black; 
     border-radius: 3px; 
+    margin-top: 40px;
+    // position: absolute;
 }
 .friend-search-button:hover{
     color: black;
@@ -188,6 +192,8 @@
   overflow-y: scroll;
   overflow-x: hidden; 
   margin-bottom: 20px;
+  margin-top: 100px;
+
 }
 
 
@@ -246,6 +252,7 @@
     font-size: 25px;
     color: red;
     font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
 
 }
 

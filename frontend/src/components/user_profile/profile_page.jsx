@@ -190,7 +190,7 @@ class ProfilePage extends React.Component {
               >
                 FRIENDS
               </Link1>
-            
+
               {currentUser.friends.length > 0
                 ? currentUser.friends.map((friend) => (
                     <div>
@@ -214,10 +214,13 @@ class ProfilePage extends React.Component {
                       type="text"
                       onChange={this.update("name")}
                     />
+                    
                     <div className="entire-dropdown">
-                      {this.state.name.length > 0 && filters.length > 0 || !this.state.hideFilters
+                      {(this.state.name.length > 0 && filters.length > 0) ||
+                      !this.state.hideFilters
                         ? filters.map((user) => (
-                            <div tabindex="0"
+                            <div
+                              tabindex="0"
                               className="user-info-1"
                               onClick={this.changeSearchBar.bind(this, user)}
                             >
@@ -241,9 +244,9 @@ class ProfilePage extends React.Component {
                     Send
                   </button>
                 </form>
-                <div className="friend-search-bar-error">
+                {/* <div className="friend-search-bar-error">
                   {errors.recipient}
-                </div>
+                </div> */}
                 {/* </div> */}
 
                 {/* <div className="profile-friends-container"> */}

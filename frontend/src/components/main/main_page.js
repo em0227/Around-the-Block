@@ -33,18 +33,22 @@ class MainPage extends React.Component {
     const contents = this.props.events.map((event, idx) => {
       return (
         <div className="event-container" key={idx}>
-
           <div className="inner-container">
-          
             <img className="img" src={img[idx]} />
             <div className="event-content">
-              <div className="event-text">{event.time}</div>
-              <div className="event-text-name">{event.name}</div>
-              <div className="event-text">{event.description}</div>
+              <div className="inner-img">
+        
+                <img className="main-event-img" src={event.imageUrl} />
+              </div>
+              <div>
+                <div className="event-text">{event.time}</div>
+                <div className="event-text name">{event.name}</div>
+                <div className="event-text">{event.description}</div>
 
-              <Link className="join-button" to={`/events/${event._id}`}>
-                Show
-              </Link>
+                <Link className="join-button" to={`/events/${event._id}`}>
+                  Show
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -75,7 +79,7 @@ class MainPage extends React.Component {
       
         </div>
         {this.props.events ? (
-          <div className="img-background">
+          <div>
             <Carousel autoplay dots="arb-carousel" afterChange={this.onChange}>
               {contents}
             </Carousel>

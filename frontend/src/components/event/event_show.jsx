@@ -28,12 +28,17 @@ class EventShow extends React.Component {
   }
 
   handleClick() {
-    this.props.event.guests();
+    return (
+      <div className="description">
+        <span className="event-guests">Guests:</span> 
+           {this.props.event.guests.map((guest) => (
+         <li style={{ listStyleType: "none" }}>{guest}</li>
+       ))}
+      </div>
+    )  
   }
 
-  // toggleIsTruncated() {
-  //   setIsTruncated(!isTruncated);
-  // }
+ 
 
   render() {
     if (!this.props.event) return null;
@@ -63,32 +68,44 @@ class EventShow extends React.Component {
     return (
       <div className="event-show-page">
         <div className="event-show-content">
-          {/* <div className="img-and-button"> */}
-          <img
-            className="show-img"
-            src="https://atb-photos.s3.amazonaws.com/profile1.png"
-            alt="event"
-          />
-          {/* <div>{joinButton} </div>
-          </div> */}
-
-          <div className="event-show-detials">
-            <div className="event-details">
-              <p>{this.props.event.time}</p>
-              <br />
+          <div className="event-show-details">
+            <div>
+              <img className="event-img" src={this.props.event.imageUrl} />
             </div>
-            <div className="event-title">{this.props.event.name}</div>
-            <div className="description">{this.props.event.description}</div>
-            <div className="description">
-              <span className="event-guests">Guests: </span>
-              {guests.map((guest) => (
-                <li style={{ listStyleType: "none" }}>{guest}</li>
-              ))}
+            <div>
+              <div className="event-details">
+                <p>{this.props.event.time}</p>
+                <br />
+              </div>
+              <div className="event-title">{this.props.event.name}</div>
+              <div className="description">{this.props.event.description}</div>
+              {/* 
+              <div className="description">
+                <span className="event-guests">Guests: </span>
+                {guests.map((guest) => (
+                  <li style={{ listStyleType: "none" }}>{guest}</li>
+                ))}
+              </div> */}
+              {guests.length === 0 ? (
+                <h1 className="description">
+                  Be the first one join this event!!
+                </h1>
+              ) : (
+                <div className="description">
+                  <span className="event-guests">Guests: </span>
+                  {guests.map((guest) => (
+                    <span> {guest} -</span>
+                  ))}
+                  <button
+                    className="event-guests"
+                    onClick={() => this.handleClick()}
+                  >
+                    Read More...
+                  </button>
+                </div>
+              )}
+              {joinButton}
             </div>
-
-            {/* <div className="description"> <span className="event-guests">Guests: </span>{firstGuests.map(guest => ({guest} + ",  ")) }<span className="event-guests" onClick={() => this.handleClick()}>Read More...</span></div> */}
-
-            {joinButton}
           </div>
         </div>
       </div>

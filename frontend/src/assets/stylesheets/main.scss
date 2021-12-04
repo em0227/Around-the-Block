@@ -29,27 +29,29 @@ $Nunito: "Nunito", sans-serif;
 
  .event-content {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  // flex-direction: column;
+  // justify-content: center;
   color: black;
-  width: 70%;
-  height: 50%;
-  align-items: center;
+  width: 80%;
+  height: 80%;
+  // align-items: center;
   position: absolute;
   font-family: $Nunito;
   background: hsla(0, 16%, 96%, 0.5);
-  z-index: 1000;
+  // z-index: 1000;
   .event-text {
     font-size: 30px;
     font-family: $Nunito;
-  text-align: center;
+  text-align: left;
   width: 100%;
+      padding: 40px 20px 0 0;
+    // justify-content: flex-start;
 //   z-index: 1000;
   }
-  .event-text-name{
+  .name{
     font-size: 50px;
     font-family: $Nunito;
-    text-align: center;
+    text-align: left;
     width: 100%;
   }
 } 
@@ -72,8 +74,20 @@ $Nunito: "Nunito", sans-serif;
   width: 400px;
   margin-top: 30px;
 }
+.inner-img{
+  margin: 50px 20px 0 20px;
+  width: 40%;
+  height: 100%;
+  position: relative;
+}
+
 .img {
   width: 100vw;
   height: 100vh;
  
+}
+.main-event-img{
+  width: 100%;
+  height: 80%;
+  position: absolute;
 }

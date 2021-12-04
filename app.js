@@ -8,7 +8,7 @@ const events = require("./routes/api/events");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
-const cors = require("cors");
+// const cors = require("cors");
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
 //   );
 //   next();
 // });
-app.use(cors());
+// app.use(cors());
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB successfully"))
@@ -33,8 +33,8 @@ mongoose
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const sign_s3 = require("./controllers/sign_s3");
-app.use("/sign_s3", sign_s3.sign_s3);
+// const sign_s3 = require("./controllers/sign_s3");
+// app.use("/sign_s3", sign_s3.sign_s3);
 
 app.use(passport.initialize());
 require("./config/passport")(passport);

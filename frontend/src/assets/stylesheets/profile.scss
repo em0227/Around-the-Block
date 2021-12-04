@@ -11,6 +11,7 @@
     font-size: 60px;
     color: rgb(110, 110, 109);
     // padding-top: 50px;
+    border-top: 1px solid rgb(214, 211, 211);
     box-shadow: 3px 3px rgb(248, 246, 246), -1em 0 .4em #7ec1ff;
 }
 
@@ -19,12 +20,14 @@
     transition: all 0.1s ease-in-out;
     font-weight: bold;
     font-family: $Nunito;;
-    font-size: 70px;
+    font-size: 80px;
     margin-bottom: 10px;
 
 }
 .session-titles:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
+    cursor: pointer; 
+    color: #7ec1ff; 
 }
 
 
@@ -33,13 +36,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 0px;
+  
     padding-bottom: 1px solid gray;
 }
 
 .profile-event-content{
     background-color: rgb(250, 229, 236);
-    margin-top: 0px;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -59,7 +61,6 @@
 } 
 
 .profile-event-detials{
-    // margin-right: 100px;
     display: flex;
     flex-direction: column;
 }
@@ -149,13 +150,15 @@
     margin-top: 30px;
 }
 .friend-search-bar{
-    font-size: 50px;
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    width: 800px;
-    height: 100px;
+    width: 700px;
+    height: 60px;
     border: 1px solid rgb(163, 161, 161);
     border-radius: 10px;
+    padding-left: 20px; 
+    color: black; 
+    margin-right: 20px; 
 }
 ::placeholder {
   color: rgb(160, 158, 158);
@@ -163,32 +166,39 @@
 }
 
 .friend-search-button{
-    font-size: 50px;
-    width: 300px;
-    height: 100px;
+    font-size: 25px;
+    width: 100px;
+    height: 60px;
     color: white;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #C70A04;
+    outline: none; 
+    border: 1px solid black; 
+    border-radius: 3px; 
 }
 .friend-search-button:hover{
     color: black;
+    cursor: pointer; 
 }
 .entire-dropdown{
   height: 400px;
+  width: 700px; 
   overflow-y: scroll;
+  overflow-x: hidden; 
   margin-bottom: 20px;
 }
+
+
 
 
 .user-info-1 {
   display: flex;
   flex-direction: column;
   width: 800px;
-  height: 100px;
+  height: 80px;
   background-color: white;
   border: 1px solid rgb(214, 211, 211);
-  overflow-y: scroll;
   color: rgb(7, 0, 0);
   font-size: 40px;
 }
@@ -196,33 +206,45 @@
 .user-info- {
   display: flex;
   height: 120px;
+  width: 683px; 
+  padding-left: 20px; 
+  cursor: pointer;  
+  border-radius: 3px; 
 }
+
+.user-info-:focus{
+    outline: none;
+    border: 3px solid #1890FF; 
+    background-color: #d2e4e6;
+}
+
 .user-info-content{
     display: flex;
     flex-direction: column;
     margin-left: 20px;
     margin-top: 10px;
     font-size: 50px;
-    color: rgb(72, 71, 71);
+    color: black;
     
     // background-color: white;
 }
 
 .user-info-icon{
     margin-top: 10px;
-    width: 80px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     color: rgb(65, 64, 64);
 }
 .user-info-content-input{
     margin-bottom: 10px;
-    font-size: 40px;
+    font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
  
 }
 .friend-search-bar-error{
-    font-size: 50px;
+    font-size: 25px;
     color: red;
+    font-family: Arial, Helvetica, sans-serif;
 
 }
 

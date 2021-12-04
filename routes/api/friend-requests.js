@@ -45,10 +45,10 @@ router.post(
         errors.recipient = "You already sent a friend request to this person.";
         return res.status(400).json(errors);
       } 
-      // else if (record.requesterId === record.recipientId) {
-      //   errors.recipient = "This is you! You cannot friend yourself.";
-      //   return res.status(400).json(errors);
-      // }
+      else if (req.user.id === req.body.recipient.id) {
+        errors.recipient = "This is you! You cannot friend yourself.";
+        return res.status(400).json(errors);
+      }
       else {
         const newRequest = new FriendRequest({
           requesterId: req.user.id,

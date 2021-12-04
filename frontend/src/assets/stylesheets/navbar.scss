@@ -10,12 +10,16 @@ $Nunito: "Nunito", sans-serif;
   padding: 0 70px;
   background: #175245;
   align-items: center;
+<<<<<<< HEAD
   height: 200px;
+=======
+  height: 150px;
+>>>>>>> snigdha-friend-requests
   padding-left: 80px;
   padding-right: 10px;
 }
   .app-name {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;;
     text-transform: bold;
     font-size: 80px;
     color: #f2a07b;
@@ -33,7 +37,7 @@ $Nunito: "Nunito", sans-serif;
     }
     .app-name:hover{
       cursor: pointer;
-      transform: scale(1.2);
+      transform: scale(1.05);
       color: #f2a07b;
     }
    
@@ -107,7 +111,11 @@ $Nunito: "Nunito", sans-serif;
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
+<<<<<<< HEAD
   background-color:  #9dcac0;
+=======
+  margin-bottom: 15px; 
+>>>>>>> snigdha-friend-requests
 }
 
 .icons {
@@ -314,6 +322,8 @@ $Nunito: "Nunito", sans-serif;
 }
 .nav-icon:hover {
   transform: scale(1.05);
+  top: 40px;
+  right: 15px;
 }
 // .nav-icon:hover {
 //   transform: scale(1.05);

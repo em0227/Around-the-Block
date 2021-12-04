@@ -42,7 +42,7 @@ router.post(
       recipientId: req.body.recipient.id,
     }).then((record) => {
       if (record) {
-        errors.recipient = "Already sent friend request to this person";
+        errors.recipient = "You already sent a friend request to this person.";
         return res.status(400).json(errors);
       } 
       // else if (record.requesterId === record.recipientId) {
@@ -66,14 +66,14 @@ router.post(
             User.findOneAndUpdate(
               { _id: request.requesterId },
               {
-                $push: {
+                $addToSet: {
                   requestsSent: {
-                    $each: [{
+                    
                     recipientId: request.recipientId,
                     recipientName: request.recipientName,
                     recipientEmail: request.recipientEmail,
                     _id: request._id,
-                    status: "pending"}]
+                    status: "pending"
                   }
                   
                 },
@@ -87,14 +87,14 @@ router.post(
             User.findOneAndUpdate(
               { _id: request.recipientId },
               {
-                $push: {
+                $addToSet: {
                   requestsReceived: {
-                    $each: [{
+                    
                     requesterId: request.requesterId,
                     requesterName: request.requesterName,
                     requesterEmail: request.requesterEmail,
                     _id: request._id,
-                    status: "pending"}]
+                    status: "pending"
                   }
               }
             },
@@ -121,14 +121,14 @@ router.patch(
         User.findOneAndUpdate(
           { _id: record.recipientId },
           {
-            $push: {
+            $addToSet: {
               friends: {
-                $each: [{
+                
                 friendId: record.requesterId,
                 friendName: record.requesterName,
                 friendEmail: record.requesterEmail,
                 status: record.status
-                }]
+              
               }
             },
             $pull: {
@@ -144,14 +144,14 @@ router.patch(
         User.findOneAndUpdate(
           { _id: record.requesterId },
           {
-            $push: {
+            $addToSet: {
               friends: {
-                $each: [{
+                
                 friendId: record.recipientId,
                 friendName: record.recipientName,
                 friendEmail: record.recipientEmail,
                 status: record.status
-                }]
+                
               }
             },
             $pull: {

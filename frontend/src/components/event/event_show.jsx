@@ -30,15 +30,13 @@ class EventShow extends React.Component {
   handleClick() {
     return (
       <div className="description">
-        <span className="event-guests">Guests:</span> 
-           {this.props.event.guests.map((guest) => (
-         <li style={{ listStyleType: "none" }}>{guest}</li>
-       ))}
+        <span className="event-guests">Guests:</span>
+        {this.props.event.guests.map((guest) => (
+          <li style={{ listStyleType: "none" }}>{guest}</li>
+        ))}
       </div>
-    )  
+    );
   }
-
- 
 
   render() {
     if (!this.props.event) return null;
@@ -69,7 +67,7 @@ class EventShow extends React.Component {
       <div className="event-show-page">
         <div className="event-show-content">
           <div className="event-show-details">
-            <div>
+            <div className="event-show-img-container">
               <img className="event-img" src={this.props.event.imageUrl} />
             </div>
             <div>

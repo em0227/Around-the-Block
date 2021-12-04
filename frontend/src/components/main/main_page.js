@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "antd";
 import { Link } from "react-router-dom";
-import Typewriter from "typewriter-effect"
+import Typewriter from "typewriter-effect";
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -9,13 +9,13 @@ class MainPage extends React.Component {
   }
 
   componentDidMount() {
- 
     this.props.fetchEvents();
     // this.props.fetchUsers()
   }
 
   onChange(a, b, c) {
     // console.log(a, b, c);
+    setInterval(() => {}, 5000);
   }
   render() {
     const img = {
@@ -37,10 +37,9 @@ class MainPage extends React.Component {
             <img className="img" src={img[idx]} />
             <div className="event-content">
               <div className="inner-img-container">
-        
                 <img className="main-event-img" src={event.imageUrl} />
               </div>
-              <div>
+              <div className="event-info">
                 <div className="event-text">{event.time}</div>
                 <div className="event-text name">{event.name}</div>
                 <div className="event-text">{event.description}</div>
@@ -57,27 +56,29 @@ class MainPage extends React.Component {
     });
     return (
       <div>
-        <div className="app-description"> 
-        <Typewriter 
-        onInit={(typewriter) => {
-          typewriter
-            .typeString("We are here to help the elderly make friends!")
-            .pauseFor(500)
-            .deleteAll()
-            .typeString("Our voice recognition makes sign up easy. Try it now!")
-            .pauseFor(500)
-            .deleteAll()
-            .typeString("We are here to help the elderly make friends!")
-            .pauseFor(500)
-            .deleteAll()
-            .typeString("Our voice recognition makes sign up easy. Try it now!")
-            .pauseFor(1000)
-            .deleteAll()
-            .start();
-        }
-        } 
-        />
-      
+        <div className="app-description">
+          <Typewriter
+            onInit={(typewriter) => {
+              typewriter
+                .typeString("We are here to help the elderly make friends!")
+                .pauseFor(500)
+                .deleteAll()
+                .typeString(
+                  "Our voice recognition makes sign up easy. Try it now!"
+                )
+                .pauseFor(500)
+                .deleteAll()
+                .typeString("We are here to help the elderly make friends!")
+                .pauseFor(500)
+                .deleteAll()
+                .typeString(
+                  "Our voice recognition makes sign up easy. Try it now!"
+                )
+                .pauseFor(1000)
+                .deleteAll()
+                .start();
+            }}
+          />
         </div>
         {this.props.events ? (
           <div>

@@ -37,6 +37,10 @@ $Nunito: "Nunito", sans-serif;
   font-family: $Nunito;
   background: hsla(0, 16%, 96%, 0.5);
   // z-index: 1000;
+  padding-right: 30px;
+  .event-info {
+    width: 70%;
+  }
   .event-text {
     // display: flex;
     // flex-direction: column;
@@ -45,7 +49,7 @@ $Nunito: "Nunito", sans-serif;
     font-family: $Nunito;
     text-align: left;
     width: 100%;
-   margin: 20px 20px 0 0;
+    margin: 20px 20px 0 0;
     // align-items: center;
     //   z-index: 1000;
   }
@@ -77,9 +81,12 @@ $Nunito: "Nunito", sans-serif;
 }
 .inner-img-container {
   margin: 50px 20px 0 50px;
-  width: 45%;
+  width: 30%;
   height: 70%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .img {

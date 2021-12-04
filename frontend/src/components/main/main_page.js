@@ -36,7 +36,7 @@ class MainPage extends React.Component {
           <div className="inner-container">
             <img className="img" src={img[idx]} />
             <div className="event-content">
-              <div className="inner-img">
+              <div className="inner-img-container">
         
                 <img className="main-event-img" src={event.imageUrl} />
               </div>
@@ -44,6 +44,7 @@ class MainPage extends React.Component {
                 <div className="event-text">{event.time}</div>
                 <div className="event-text name">{event.name}</div>
                 <div className="event-text">{event.description}</div>
+                <div className="event-text">{event.location}</div>
 
                 <Link className="join-button" to={`/events/${event._id}`}>
                   Show
@@ -80,7 +81,7 @@ class MainPage extends React.Component {
         </div>
         {this.props.events ? (
           <div>
-            <Carousel autoplay dots="arb-carousel" afterChange={this.onChange}>
+            <Carousel dots="arb-carousel" afterChange={this.onChange}>
               {contents}
             </Carousel>
           </div>

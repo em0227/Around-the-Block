@@ -206,6 +206,9 @@ class ProfilePage extends React.Component {
                   className="friend-search-form"
                   onSubmit={this.submitFriendRequest.bind(this)}
                 >
+                  <div className="friend-search-bar-error">
+                  {errors.recipient}
+                </div>
                   <div>
                     <input
                       value={this.state.name}
@@ -214,7 +217,7 @@ class ProfilePage extends React.Component {
                       type="text"
                       onChange={this.update("name")}
                     />
-                    
+
                     <div className="entire-dropdown">
                       {(this.state.name.length > 0 && filters.length > 0) ||
                       !this.state.hideFilters

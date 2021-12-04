@@ -46,7 +46,7 @@ router.post("/register", (req, res) => {
                 eventsHosted: user.eventsHosted,
                 friends: user.friends,
                 requestsSent: user.requestsSent,
-                requestsReceived: user.requestsReceived
+                requestsReceived: user.requestsReceived,
               };
 
               jwt.sign(
@@ -94,7 +94,7 @@ router.post("/login", (req, res) => {
           eventsHosted: user.eventsHosted,
           friends: user.friends,
           requestsSent: user.requestsSent,
-          requestsReceived: user.requestsReceived
+          requestsReceived: user.requestsReceived,
         };
 
         jwt.sign(
@@ -131,29 +131,27 @@ router.get(
   }
 );
 
-router.post(
-  "/demoUser", (req, res) => {
-  
-    User.findOne({_id:"61a5313a1f71a2b478a0f829"}).then((user) => {
-        const payload = {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          eventsJoined: user.eventsJoined,
-          eventsHosted: user.eventsHosted,
-          friends: user.friends,
-          requestsSent: user.requestsSent,
-          requestsReceived: user.requestsReceived
-        };
-    
-      jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+router.post("/demoUser", (req, res) => {
+  User.findOne({ _id: "61a5313a1f71a2b478a0f829" }).then((user) => {
+    const payload = {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      eventsJoined: user.eventsJoined,
+      eventsHosted: user.eventsHosted,
+      friends: user.friends,
+      requestsSent: user.requestsSent,
+      requestsReceived: user.requestsReceived,
+    };
+
+    jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
       res.json({
         success: true,
         token: "Bearer " + token,
       });
     });
-  }
-  )})
+  });
+});
 
 router.get(
   "/",
@@ -192,6 +190,12 @@ router.patch(
       if (!isValid) {
         return res.status(400).json(errors);
       }
+      User.findOne({ email: req.body.email }).then((user) => {
+        if (user) {
+          errors.email = "User already exists";
+          return res.status(400).json(errors);
+        }
+      });
     }
 
     User.findOneAndUpdate(
@@ -201,23 +205,20 @@ router.patch(
           name: req.body.name,
           email: req.body.email,
         },
-        // $addToSet: {
-        //   friends: req.body.friends,
-        // },
       },
-      {new: true }
+      { new: true }
     )
-      .then((updatedUser) => 
-        // const user = {
-        //   id: updatedUser.id,
-        //   name: updatedUser.name,
-        //   email: updatedUser.email,
-        //   friends: updatedUser.friends,
-        //   requestsSent: req.user.requestsSent,
-        //   requestsReceived: req.user.requestsReceived
-        // };
-        res.json(updatedUser)
-      ).catch((err) => res.json(err));
+      .then((updatedUser) => {
+        const user = {
+          id: updatedUser.id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          requestsSent: updatedUser.requestsSent,
+          requestsReceived: updatedUser.requestsReceived,
+        };
+        res.json(user);
+      })
+      .catch((err) => res.json(err));
   }
 );
 
@@ -253,7 +254,7 @@ router.patch(
           email: updatedUser.email,
           friends: updatedUser.friends,
           requestsSent: req.user.requestsSent,
-          requestsReceived: req.user.requestsReceived
+          requestsReceived: req.user.requestsReceived,
         };
         res.json(user);
       })

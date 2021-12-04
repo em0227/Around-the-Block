@@ -43,8 +43,10 @@ class ProfilePage extends React.Component {
 
   submitFriendRequest(e) {
     e.preventDefault()
-    this.props.createFriendRequest({ recipient: this.state.user });
-    this.state.hideFilters = false; 
+    this.props.createFriendRequest({ recipient: this.state.user }).then(
+      this.setState({name: "", email: "", user: {}, hideFilters: true})
+    );
+    
   }
 
   // handleApprove(requestId) {
@@ -81,6 +83,7 @@ class ProfilePage extends React.Component {
   }
 
   render() {
+    console.log(this.state.hideFilters)
     const { events, errors, currentUser, invites, users, filters } = this.props;
     const myEvents = events.filter((event) => event.hostId === currentUser.id);
     const myJoinedEvents = events.filter((event) =>

@@ -81,7 +81,7 @@ class MainPage extends React.Component {
         </div>
         {this.props.events ? (
           <div>
-            <Carousel dots="arb-carousel" afterChange={this.onChange}>
+            <Carousel autoplay dots="arb-carousel" afterChange={this.onChange}>
               {contents}
             </Carousel>
           </div>

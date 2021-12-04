@@ -8,40 +8,49 @@ class UserPhoto extends React.Component {
       url: "",
       error: false,
       errorMessage: "",
+      image: null
     };
   }
 
   handleChange = (ev) => {
-    this.setState({ success: false, url: "" });
+    this.setState({ success: false, url: "", image: ev.currentTarget.files[0]});
   };
   // Perform the upload
   handleUpload = (ev) => {
-    let file = this.uploadInput.files[0];
+    console.log("this.uploadInput neeeee", this.state.image);
+    console.log("ev", ev);
+
+    let file = this.state.image;
+
     // Split the filename to get the name and type
-    let fileParts = this.uploadInput.files[0].name.split(".");
-    let fileName = fileParts[0];
-    let fileType = fileParts[1];
+    let fileParts = file.name.split(".");
+    let fileName = fileParts.slice(0, fileParts.length).join(".");
+    let fileType = fileParts[fileParts.length - 1];
     console.log("Preparing the upload");
+    //"http://localhost:5000/sign_s3" backend url (file app.js line 30)
+    // const sign_s3 = require("./controllers/sign_s3");
+    // app.use("/sign_s3", sign_s3.sign_s3);
     axios
       .post("http://localhost:5000/sign_s3", {
         fileName: fileName,
         fileType: fileType,
       })
       .then((response) => {
-        var returnData = response.data.data.returnData;
-        var signedRequest = returnData.signedRequest;
-        var url = returnData.url;
+        const returnData = response.data.data.returnData;
+        //returnData from sign_s3.js line 31
+        const signedRequest = returnData.signedRequest;
+        const url = returnData.url;
         this.setState({ url: url });
         console.log("Recieved a signed request " + signedRequest);
 
         // Put the fileType in the headers for the upload
-        var options = {
+        const options = {
           headers: {
             "Content-Type": fileType,
           },
         };
         axios
-          .put(signedRequest, file, options)
+          .put(signedRequest, file, options) //put: replace/insert
           .then((result) => {
             console.log("Response from s3");
             this.setState({ success: true });
@@ -80,13 +89,12 @@ class UserPhoto extends React.Component {
           <input
             className="photo-input"
             type="file"
-            value={this.state.url}
             onChange={this.handleChange}
             ref={(ref) => {
               this.uploadInput = ref;
             }}
           />
-          <button className="upload-picture-button" onClick={this.handleUpload}>
+          <button type="button" className="upload-picture-button" onClick={this.handleUpload}>
             Upload Profile
           </button>
         {/* </center> */}

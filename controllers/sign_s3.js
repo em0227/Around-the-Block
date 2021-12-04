@@ -1,18 +1,23 @@
-var aws = require("aws-sdk");
+const aws = require("aws-sdk");
 require("dotenv").config(); // Configure dotenv to load in the .env file
 // Configure aws with your accessKeyId and your secretAccessKey
-aws.config.update({
-  region: "us-east-1", // Put your aws region here
-  accessKeyId: process.env.AWSAccessKeyId,
-  secretAccessKey: process.env.AWSSecretKey,
-});
+// aws.config.update({
+//   region: "us-east-1", // Put your aws region here
+//   accessKeyId: process.env.AWSAccessKeyId,
+//   secretAccessKey: process.env.AWSSecretKey,
+// });
 
 const S3_BUCKET = process.env.bucket;
 // Now lets export this function so we can call it from somewhere else
 exports.sign_s3 = (req, res) => {
-  const s3 = new aws.S3(); // Create a new instance of S3
-  const fileName = req.body.fileName;
-  const fileType = req.body.fileType;
+  // const s3 = new aws.S3(); // Create a new instance of S3
+  const s3 = new aws.S3({
+    // region: "us-east-1", // Put your aws region here
+    accessKeyId: process.env.AWSAccessKeyId,
+    secretAccessKey: process.env.AWSSecretKey,
+  });
+  const fileName = req.body.fileName || "default";
+  const fileType = req.body.fileType || "png";
   // Set up the payload of what we are sending to the S3 api
   const s3Params = {
     Bucket: S3_BUCKET,
@@ -21,6 +26,13 @@ exports.sign_s3 = (req, res) => {
     ContentType: fileType,
     ACL: "public-read",
   };
+  console.log({
+    S3_BUCKET,
+    accessKeyId: process.env.AWSAccessKeyId,
+    secretAccessKey: process.env.AWSSecretKey,
+    s3Params,
+    request: req.body,
+  });
   // Make a request to the S3 API to get a signed URL which we can use to upload our file
   s3.getSignedUrl("putObject", s3Params, (err, data) => {
     if (err) {

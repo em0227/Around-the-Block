@@ -41,6 +41,7 @@ class MainPage extends React.Component {
               <div className="event-text">{event.time}</div>
               <div className="event-text-name">{event.name}</div>
               <div className="event-text">{event.description}</div>
+              <img className="event-img" scr={event.imageUrl}/>
 
               <Link className="join-button" to={`/events/${event._id}`}>
                 Show

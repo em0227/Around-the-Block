@@ -72,22 +72,26 @@ class EventShow extends React.Component {
           {/* <div>{joinButton} </div>
           </div> */}
 
-          <div className="event-show-detials">
+          <div className="event-show-details">
+            <div><img className="event-img" scr={this.props.event.imageUrl} /></div>
+            <div>
             <div className="event-details">
               <p>{this.props.event.time}</p>
               <br />
             </div>
             <div className="event-title">{this.props.event.name}</div>
             <div className="description">{this.props.event.description}</div>
-            <img className="event-img" scr={this.props.event.imageUrl} />
+
             <div className="description">
               <span className="event-guests">Guests: </span>
               {guests.map((guest) => (
                 <li style={{ listStyleType: "none" }}>{guest}</li>
               ))}
+             
             </div>
             {/* <div className="description"> <span className="event-guests">Guests: </span>{firstGuests.map(guest => ({guest} + ",  ")) }<span className="event-guests" onClick={() => this.handleClick()}>Read More...</span></div> */}
             {joinButton}
+            </div>
           </div>
         </div>
       </div>

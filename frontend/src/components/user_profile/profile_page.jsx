@@ -6,14 +6,12 @@ import { FaUserCircle } from "react-icons/fa";
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", user: {} };
+    this.state = { name: "", email: "", user: {}, hideFilters: true };
     this.timerId = 0;
   }
   componentDidMount() {
     this.props.fetchEvents();
-    // this.props.receiveInvites();
-    // this.props.fetchFriendRequests();
-    // this.props.fetchUsers();
+    
     if (this.props.preJoinedEvent !== "") {
       this.props.updateEvent({
         id: this.props.preJoinedEvent,
@@ -42,13 +40,10 @@ class ProfilePage extends React.Component {
     };
   }
 
-  submitFriendRequest() {
-    // return (e) => {e.preventDefault();
-
-    // const user = this.props.users.filter(user => user.name === name)[0];
-    // if (user)
-    // if (Object.values(this.props.filters).filter(user => user.name)
+  submitFriendRequest(e) {
+    e.preventDefault()
     this.props.createFriendRequest({ recipient: this.state.user });
+    this.state.hideFilters = false; 
   }
 
   // handleApprove(requestId) {
@@ -66,12 +61,10 @@ class ProfilePage extends React.Component {
   // }
 
   changeSearchBar(user) {
-    if (this.state.name !== user.name) {
-      console.log("changing state name");
-      this.setState({ name: user.name, user: user });
+    if (this.state.email !== user.email) {
+      this.setState({ name: user.name, user: user, email: user.email });
     } else {
-      console.log("clearing state name");
-      this.setState({ name: "", user: {} });
+      this.setState({ name: "", user: {}, email: "", hideFilters: false });
     }
   }
 
@@ -80,7 +73,6 @@ class ProfilePage extends React.Component {
       id: eventId,
       guests: this.props.currentUser.id,
     });
-    // this.props.fetchEvents();
   }
 
   deleteEvent(eventId) {
@@ -212,13 +204,13 @@ class ProfilePage extends React.Component {
                       onChange={this.update("name")}
                     />
                     <div className="entire-dropdown">
-                      {this.state.name.length > 0 && filters.length > 0
+                      {this.state.name.length > 0 && filters.length > 0 || !this.state.hideFilters
                         ? filters.map((user) => (
-                            <div
+                            <div tabindex="0"
                               className="user-info-1"
                               onClick={this.changeSearchBar.bind(this, user)}
                             >
-                              <div className="user-info-">
+                              <div tabindex="1" className="user-info-">
                                 <FaUserCircle className="user-info-icon" />
                                 <div className="user-info-content">
                                   <div className="user-info-content-input">

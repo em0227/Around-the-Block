@@ -209,9 +209,18 @@
 .user-info- {
   display: flex;
   height: 120px;
+  width: 683px; 
   padding-left: 20px; 
   cursor: pointer;  
+  border-radius: 3px; 
 }
+
+.user-info-:focus{
+    outline: none;
+    border: 3px solid #1890FF; 
+    background-color: #d2e4e6;
+}
+
 .user-info-content{
     display: flex;
     flex-direction: column;
@@ -236,8 +245,9 @@
  
 }
 .friend-search-bar-error{
-    font-size: 50px;
+    font-size: 25px;
     color: red;
+    font-family: Arial, Helvetica, sans-serif;
 
 }
 

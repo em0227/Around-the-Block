@@ -84,6 +84,10 @@ class ProfilePage extends React.Component {
     this.props.deleteEvent(eventId);
   }
 
+  handleUnfriend(friendId){
+      this.props.deleteFriend(friendId)
+  }
+
   render() {
     console.log(this.state.hideFilters);
     const { events, errors, currentUser, invites, users, filters } = this.props;
@@ -202,6 +206,7 @@ class ProfilePage extends React.Component {
                     <div key={idx}>
                       <li>{friend.friendName}</li>
                       <li>{friend.friendEmail}</li>
+                      <button onClick={this.handleUnfriend.bind(this, friend.friendId)}>Unfriend</button>
                     </div>
                   ))
                 : ""}

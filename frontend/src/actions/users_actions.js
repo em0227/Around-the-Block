@@ -47,6 +47,12 @@ export const fetchFilteredUsers = (name) => dispatch => (
       (users) => dispatch(receiveFilteredUsers(users.data)))
   )
 
+export const deleteFriend = (friendId) => (dispatch) => (
+  UserAPIUtil.deleteFriend(friendId).then(
+    user => dispatch(receiveUpdatedUser(user))
+  )
+)
+
 
 
   export const fetchDemoUser = () => (dispatch) =>

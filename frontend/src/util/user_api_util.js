@@ -15,3 +15,7 @@ export const getFilteredUsers = (name) => {
 export const getDemoUser = () => {
   return axios.post("/api/users/demoUser");
 };
+
+export const deleteFriend = (friendId) => {
+  return axios.patch(`/api/users/${friendId}/unfriend`)
+}

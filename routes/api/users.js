@@ -229,35 +229,25 @@ router.patch(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     User.findOneAndUpdate(
-      { _id: req.body.friends },
+      { _id: req.params.id },
       {
         $pull: {
-          friends: req.body.friends,
+          friends: {friendId: req.user.id},
         },
       },
       { new: true }
-    );
+    ).then((user) => console.log(""));
 
     User.findOneAndUpdate(
       { _id: req.user.id },
       {
         $pull: {
-          friends: req.body.friends,
+          friends: {friendId: req.params.id},
         },
       },
       { multi: true, new: true }
-    )
-      .then((updatedUser) => {
-        const user = {
-          id: updatedUser.id,
-          name: updatedUser.name,
-          email: updatedUser.email,
-          friends: updatedUser.friends,
-          requestsSent: req.user.requestsSent,
-          requestsReceived: req.user.requestsReceived,
-        };
-        res.json(user);
-      })
+    ).then((user) => 
+        res.json(user))
       .catch((err) => res.json(err));
   }
 );

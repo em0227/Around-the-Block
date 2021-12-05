@@ -9,17 +9,16 @@
     flex-direction: column;
     align-items: center;
     font-size: 60px;
-    color: rgb(110, 110, 109);
-    // padding-top: 50px;
+    color: #6e6e6d;
     border-top: 1px solid rgb(214, 211, 211);
-    box-shadow: 3px 3px rgb(248, 246, 246), -1em 0 .4em #7ec1ff;
+    // box-shadow: 3px 3px rgb(248, 246, 246), -1em 0 .4em #7ec1ff;
 }
 
 .session-titles {
     margin-top:  60px;
     transition: all 0.1s ease-in-out;
     font-weight: bold;
-    font-family: $Nunito;;
+    font-family: $Nunito;
     font-size: 80px;
     margin-bottom: 3px;
     filter: drop-shadow(1px 1px 1px rgba(5, 0, 0, 0.67));
@@ -72,14 +71,14 @@
     font-size: 30px;
     font-family: 'Nunito';
     color: rgb(104, 105, 105);
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 
 .p-e-n{
     font-size: 60px;
     font-family: 'Nunito';
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     font-weight: bold;
     width: 450px;
 
@@ -87,7 +86,7 @@
 
 .p-e-d{
     font-size: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     font-family: 'Nunito';
     color: rgb(104, 105, 105);
     width: 400px;
@@ -110,7 +109,7 @@
   font-size: 50px;
   font-family: $Nunito;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   height: 90px;
   width: 300px;
@@ -125,6 +124,7 @@
 .p-e-btn{
    
      filter: drop-shadow(3px 5px 2px rgba(68, 67, 67, 0.67));
+     
 }
 .rofile-friends-container{
     display: flex;
@@ -139,7 +139,7 @@
     margin-bottom: 10px;
     margin-left: 50px;
     margin-right: 50px;
-     box-shadow: 10px 10px 5px 12px grey;
+     box-shadow: 10px 10px 6px 4px rgb(90, 89, 89);
      border-radius: 50%;
 
 }
@@ -149,7 +149,7 @@
     align-items: center;
     background-color: rgb(250, 229, 236);
     flex-direction: column;
-    height: 200vh;
+    height: 120vh;
     width: 100vw;
     
 
@@ -163,7 +163,7 @@
     font-size: 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 700px;
-    height: 60px;
+    height: 80px;
     border: 1px solid rgb(163, 161, 161);
     border-radius: 10px;
     padding-left: 20px; 
@@ -174,16 +174,16 @@
 }
 ::placeholder {
   color: rgb(160, 158, 158);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: $Nunito;
 }
 
 .friend-search-button{
-    font-size: 25px;
-    width: 100px;
-    height: 60px;
+    font-size: 40px;
+    width: 130px;
+    height: 80px;
     color: white;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $Nunito;
     background-color: #C70A04;
     outline: none; 
     border: 1px solid black; 
@@ -192,21 +192,18 @@
     // position: absolute;
 }
 .friend-search-button:hover{
-    color: black;
+    color: #40aaff;
     cursor: pointer; 
 }
 .entire-dropdown{
-  height: 400px;
+  height: 320px;
   width: 700px; 
   overflow-y: scroll;
   overflow-x: hidden; 
-  margin-bottom: 20px;
-  margin-top: 100px;
+  margin-bottom: 30px;
+  margin-top: 120px;
 
 }
-
-
-
 
 .user-info-1 {
   display: flex;

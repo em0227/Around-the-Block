@@ -92,14 +92,14 @@ class EventShow extends React.Component {
                 <div className="description">
                   <span className="event-guests">Guests: </span>
                   {guests.map((guest) => (
-                    <span> {guest} -</span>
+                    <span> {guest}    |    </span>
                   ))}
-                  <button
+                  {/* <button
                     className="event-guests"
                     onClick={() => this.handleClick()}
                   >
                     Read More...
-                  </button>
+                  </button> */}
                 </div>
               )}
               {joinButton}

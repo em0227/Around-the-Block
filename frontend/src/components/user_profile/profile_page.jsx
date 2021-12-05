@@ -4,6 +4,7 @@ import debounce from "lodash.debounce";
 import { FaUserCircle } from "react-icons/fa";
 import { Link as Link1 } from "react-scroll";
 
+
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
@@ -97,7 +98,9 @@ class ProfilePage extends React.Component {
 
           <div className="profile-event-container">
             <div className="profile-event-content">
-              <img className="p-e-img" src={event.imageUrl} />
+              <Link  to={`/events/${event._id}`}>
+                <img className="p-e-img" src={event.imageUrl} />
+              </Link>
 
               <div className="profile-event-detials">
                 <div className="p-event-time">
@@ -135,7 +138,9 @@ class ProfilePage extends React.Component {
 
             <div className="profile-event-container">
               <div className="profile-event-content">
-                <img className="p-e-img" src={event.imageUrl} />
+                <Link to={`/events/${event._id}`}>
+                  <img className="p-e-img" src={event.imageUrl} />{" "}
+                </Link>
                 <div className="profile-event-detials">
                   <div className="p-event-time">
                     <div className="p-e-t">{event.time}</div>
@@ -184,7 +189,7 @@ class ProfilePage extends React.Component {
             <div className="p-event-container-title">
               {/* <div className="session-titles">FRIENDS</div> */}
               <Link1
-                to="upcoming-event"
+                to="around-the-block"
                 smooth={true}
                 duration={1000}
                 className="session-titles"

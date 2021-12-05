@@ -125,7 +125,7 @@ class NavBar extends React.Component {
     );
     return (
       <div>
-        <div className="nav-bar">
+        <div className="nav-bar" id="around-the-block">
           <Link to="/" className="app-name">
             Around the <span className="app-span">Block</span>
           </Link>

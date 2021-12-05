@@ -37,7 +37,10 @@ class MainPage extends React.Component {
             <img className="img" src={img[idx]} />
             <div className="event-content">
               <div className="inner-img-container">
-                <img className="main-event-img" src={event.imageUrl} />
+                <Link className="main-event-img"
+                  to={`/events/${event._id}`} >
+                  <img className="main-event-img" src={event.imageUrl} />{" "}
+                </Link>
               </div>
               <div className="event-info">
                 <div className="event-text">{event.time}</div>

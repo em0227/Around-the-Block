@@ -1,5 +1,7 @@
 import React from "react";
 import { RiDivideLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
   return (
@@ -39,11 +41,13 @@ const Footer = () => {
           </div>
         </div>
         <div className="member">
-          <img
-            className="footer-img"
-            src="https://atb-photos.s3.amazonaws.com/feifei_headshot.JPG"
-            alt=""
-          />
+          <a href="https://feifeiyang-swe.com/">
+            <img
+              className="footer-img"
+              src="https://atb-photos.s3.amazonaws.com/feifei_headshot.JPG"
+              alt=""
+            />
+          </a>
 
           <div className="footer-link">
             <a

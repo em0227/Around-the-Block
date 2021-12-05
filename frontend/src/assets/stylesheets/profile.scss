@@ -55,7 +55,7 @@
     height: 400px;
     width: 500px;
     margin-bottom: 10px;
-    margin-left: 200px;
+    margin-left: 150px;
     margin-right: 50px;
     border-radius: 10px;
     box-shadow: 10px 10px 6px 12px rgb(90, 89, 89);
@@ -198,7 +198,6 @@
 .entire-dropdown{
   height: 320px;
   width: 700px; 
-  overflow-y: scroll;
   overflow-x: hidden; 
   margin-bottom: 30px;
   margin-top: 120px;
@@ -248,6 +247,16 @@
     height: 60px;
     color: rgb(65, 64, 64);
 }
+
+.user-search-icon-notifs{
+    border-radius: 50%;
+    outline: 1px solid white; 
+    background-color: white; 
+    margin-right: 15px; 
+    margin-bottom: 15px; 
+
+}
+
 .user-info-content-input{
     margin-bottom: 10px;
     font-size: 20px;

@@ -114,6 +114,21 @@ $Nunito: "Nunito", sans-serif;
     // cursor: pointer;
   }
 
+  .user-icon{
+    border-radius: 50%; 
+    opacity: 1.0; 
+    outline: 1px solid white; 
+    background-color: white; 
+    padding-left: 3px; 
+  }
+
+  .user-icon:hover{
+    cursor: pointer;
+    transform: scale(1.1); 
+    background-color: blue;  
+
+  }
+
 
 .second-nav-bar {
   display: flex;
@@ -271,7 +286,8 @@ $Nunito: "Nunito", sans-serif;
 }
 .nav-icon-bell:hover{
   color: #40aaff;
-  transform: scale(1.2)
+  transform: scale(1.1);
+  cursor: pointer; 
 }
 
 .nav-icon-second-nav-bar{

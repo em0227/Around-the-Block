@@ -201,17 +201,7 @@ class ProfilePage extends React.Component {
                 FRIENDS
               </Link1>
 
-              {currentUser.friends
-                ? currentUser.friends.map((friend, idx) => (
-                    <div key={idx}>
-                      <li>{friend.friendName}</li>
-                      <li>{friend.friendEmail}</li>
-                      <button onClick={this.handleUnfriend.bind(this, friend.friendId)}>Unfriend</button>
-                    </div>
-                  ))
-                : ""}
-              {/* </div> */}
-              {/* friend's section end div*/}
+              
               <div className="friend-request-container">
                 <form
                   className="friend-search-form"
@@ -240,7 +230,10 @@ class ProfilePage extends React.Component {
                               onClick={this.changeSearchBar.bind(this, user)}
                             >
                               <div tabIndex="1" className="user-info-">
-                                <FaUserCircle className="user-info-icon" />
+                                {user.picture === "noPicture" || !user.picture ? 
+                                <FaUserCircle className="user-info-icon" /> : 
+                                <img className="user-search-icon" src={user.picture}></img>
+                              }
                                 <div className="user-info-content">
                                   <div className="user-info-content-input">
                                     {user.name}
@@ -259,13 +252,29 @@ class ProfilePage extends React.Component {
                     Send
                   </button>
                 </form>
+
+                {currentUser.friends
+                ? currentUser.friends.map((friend, idx) => (
+                    <div key={idx}>
+                      <li>{friend.friendName}</li>
+                      <li>{friend.friendEmail}</li>
+                      {friend.friendImage === "noPicture" || !friend.friendImage ? 
+                                <FaUserCircle className="user-info-icon" /> : 
+                                <img className="user-search-icon" src={friend.friendImage}></img>
+                      }
+                      <button onClick={this.handleUnfriend.bind(this, friend.friendId)}>Unfriend</button>
+                    </div>
+                  ))
+                : ""}
+              {/* </div> */}
+              {/* friend's section end div*/}
                 {/* <div className="friend-search-bar-error">
                   {errors.recipient}
                 </div> */}
                 {/* </div> */}
 
                 {/* <div className="profile-friends-container"> */}
-                <div className="profile-page-friends">
+                {/* <div className="profile-page-friends">
                   <img
                     className="p-e-i"
                     src="https://atb-photos.s3.amazonaws.com/emily.png"
@@ -282,7 +291,7 @@ class ProfilePage extends React.Component {
                     className="p-e-i"
                     src="https://atb-photos.s3.amazonaws.com/sigdha.png"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             {/* friend's section end div */}

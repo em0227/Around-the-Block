@@ -13,6 +13,36 @@ const keys = require("../../config/keys");
 //when user create an event, besides trigger event create action also trigger user update action
 //also, for friendsRequest, once the friendship is built, both User need to update their friends
 
+const lettersHash = {
+  "a": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_a.png?raw=true",
+  "b": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_b.png?raw=true",
+  "c": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_c.png?raw=true",
+  "d": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_d.png?raw=true",
+  "e": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_e.png?raw=true",
+  "f": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_f.png?raw=true",
+  "g": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_g.png?raw=true",
+  "h": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_h.png?raw=true",
+  "i": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_i.png?raw=true",
+  "j": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_j.png?raw=true",
+  "k": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_k.png?raw=true",
+  "l": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_l.png?raw=true",
+  "m": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_m.png?raw=true",
+  "n": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_n.png?raw=true",
+  "o": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_o.png?raw=true",
+  "p": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_p.png?raw=true",
+  "q": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_q.png?raw=true",
+  "r": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_r.png?raw=true",
+  "s": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_s.png?raw=true",
+  "t": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_t.png?raw=true",
+  "u": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_u.png?raw=true",
+  "v": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_v.png?raw=true",
+  "w": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_w.png?raw=true",
+  "x": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_x.png?raw=true",
+  "y": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_y.png?raw=true",
+  "z": "https://github.com/snigdhabanda/Hack/blob/main/app/assets/images/letter_z.png?raw=true"
+
+}
+
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -35,6 +65,8 @@ router.post("/register", (req, res) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
+          const pictureUrl = lettersHash[req.body.name[0].toLowerCase()] 
+          pictureUrl ? newUser.picture = pictureUrl : newUser.picture = "noPicture"
           newUser
             .save()
             .then((user) => {
@@ -42,6 +74,7 @@ router.post("/register", (req, res) => {
                 id: user.id,
                 name: user.name,
                 email: user.email,
+                picture: user.picture,
                 eventsJoined: user.eventsJoined,
                 eventsHosted: user.eventsHosted,
                 friends: user.friends,
@@ -90,6 +123,7 @@ router.post("/login", (req, res) => {
           id: user.id,
           email: user.email,
           name: user.name,
+          picture: user.picture,
           eventsJoined: user.eventsJoined,
           eventsHosted: user.eventsHosted,
           friends: user.friends,
@@ -124,6 +158,7 @@ router.get(
       id: req.user.id,
       name: req.user.name,
       email: req.user.email,
+      picture: req.user.picture,
       friends: req.user.friends,
       requestsSent: req.user.requestsSent,
       requestsReceived: req.user.requestsReceived,
@@ -137,6 +172,7 @@ router.post("/demoUser", (req, res) => {
       id: user.id,
       email: user.email,
       name: user.name,
+      picture: user.picture,
       eventsJoined: user.eventsJoined,
       eventsHosted: user.eventsHosted,
       friends: user.friends,
@@ -167,6 +203,7 @@ router.get(
             id: user.id,
             name: user.name,
             email: user.email,
+            picture: user.picture,
             friends: user.friends,
             requestsReceived: user.requestsReceived,
             requestsSent: user.requestsSent,
@@ -213,6 +250,7 @@ router.patch(
           id: updatedUser.id,
           name: updatedUser.name,
           email: updatedUser.email,
+          picture: updatedUser.picture,
           requestsSent: updatedUser.requestsSent,
           requestsReceived: updatedUser.requestsReceived,
         };
@@ -264,6 +302,7 @@ router.get(
           filteredUser.push({
             id: user.id,
             name: user.name,
+            picture: user.picture,
             email: user.email,
             friends: user.friends,
             requestsSent: user.requestsSent,

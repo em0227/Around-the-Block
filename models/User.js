@@ -8,6 +8,9 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    picture: {
+      type: String
+    },
     email: {
       type: String,
       required: true,
@@ -22,6 +25,7 @@ const UserSchema = new Schema(
         friendId: Schema.Types.ObjectId,
         friendName: String,
         friendEmail: String,
+        friendImage: String,
         status: String
       },
     ],
@@ -30,6 +34,7 @@ const UserSchema = new Schema(
         requesterId: Schema.Types.ObjectId,
         requesterName: String,
         requesterEmail: String,
+        requesterImage: String,
         status: String
       }
     ],
@@ -38,6 +43,7 @@ const UserSchema = new Schema(
         recipientId: Schema.Types.ObjectId,
         recipientName: String,
         recipientEmail: String,
+        recipientImage: String,
         status: String
       }
     ]

@@ -14,6 +14,10 @@ const FriendRequestSchema = new Schema({
     type: String,
     required: true
   },
+  requesterImage:{
+    type: String
+    
+  },
   recipientId: {
     type: Schema.Types.ObjectId,
     ref: "users",
@@ -25,6 +29,9 @@ const FriendRequestSchema = new Schema({
   recipientEmail: {
     type: String,
     required: true 
+  },
+  recipientImage: {
+    type: String
   },
   status: {
     type: String,

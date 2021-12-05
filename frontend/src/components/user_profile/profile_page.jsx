@@ -112,13 +112,13 @@ class ProfilePage extends React.Component {
 
                 <div className="p-event-buttons">
                   <Link className="p-e-l" to={`/events/update/${event._id}`}>
-                    Update
+                    <span className="p-e-btn">Update</span>
                   </Link>
                   <button
                     className="p-e-l"
                     onClick={() => this.deleteEvent(event._id)}
                   >
-                    Cancel
+                    <span className="p-e-btn">Cancel</span>
                   </button>
                 </div>
               </div>
@@ -152,7 +152,7 @@ class ProfilePage extends React.Component {
                       className="p-e-l"
                       onClick={() => this.leaveEvent(event._id)}
                     >
-                      Cancel
+                      <span className="p-e-btn">Cancel</span>
                     </button>
                   </div>
                 </div>

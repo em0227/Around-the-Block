@@ -42,11 +42,11 @@ class MainPage extends React.Component {
               <div className="event-info">
                 <div className="event-text">{event.time}</div>
                 <div className="event-text name">{event.name}</div>
-                <div className="event-text">{event.description}</div>
+                <div className="event-text-des">{event.description}</div>
                 <div className="event-text">{event.location}</div>
 
                 <Link className="join-button" to={`/events/${event._id}`}>
-                  Show
+                  <span className="join-button-show">Show</span>
                 </Link>
               </div>
             </div>
@@ -57,9 +57,25 @@ class MainPage extends React.Component {
     return (
       <div>
         <div className="app-description">
-          <Typewriter
+          <Typewriter className="app-description-words"
             onInit={(typewriter) => {
               typewriter
+                .typeString("We are here to help the elderly make friends!")
+                .pauseFor(500)
+                .deleteAll()
+                .typeString(
+                  "Our voice recognition makes sign up easy. Try it now!"
+                )
+                .pauseFor(500)
+                .deleteAll()
+                .typeString("We are here to help the elderly make friends!")
+                .pauseFor(500)
+                .deleteAll()
+                .typeString(
+                  "Our voice recognition makes sign up easy. Try it now!"
+                )
+                .pauseFor(1000)
+                .deleteAll()
                 .typeString("We are here to help the elderly make friends!")
                 .pauseFor(500)
                 .deleteAll()

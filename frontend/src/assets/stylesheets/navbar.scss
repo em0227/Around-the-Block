@@ -11,21 +11,25 @@ $Nunito: "Nunito", sans-serif;
   background: #175245;
   align-items: center;
   height: 170px;
-  padding-left: 50px;
+  padding-left: 20px;
   padding-right: 10px;
-}
+} 
   .app-name {
     font-family: 'Merriweather Sans', sans-serif;;
     text-transform: bold;
     font-size: 80px;
     color: #f2a07b;
     transition: all 0.2s ease-in-out;
+    filter: drop-shadow(5px 8px 4px rgba(0, 0, 0, 0.67));
+    
   }
     .app-span {
       font-family: $Pacifico;
       font-size: 90px;
       color: #ffd571;
-      transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out; 
+     
+      
     }
     .app-span:hover {
     cursor: pointer;
@@ -35,6 +39,7 @@ $Nunito: "Nunito", sans-serif;
       cursor: pointer;
       transform: scale(1.05);
       color: #f2a07b;
+     
     }
    
   
@@ -45,17 +50,20 @@ $Nunito: "Nunito", sans-serif;
     // justify-content: space-around;
     max-width: max-content;
     margin: 0 10px;
-    .logged-in-profile-icon {
+   
+  }
+ .logged-in-profile-icon {
       display: flex;
       // justify-content: space-between;
       align-items: center;
       padding-left: 20px;
       max-width: max-content;
+      
     }
-  }
+
   .btn {
     width: 130px;
-    height: 45px;
+    height: 49px;
     border-radius: 80px;
     margin-right: 30px;
     font-size: 45px;
@@ -66,14 +74,22 @@ $Nunito: "Nunito", sans-serif;
     text-decoration: none;
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
-    font-family: "Open Sans", sans-serif;
-    font-weight: 400px;
+    // font-family: "Open Sans", sans-serif;
+    // font-weight: bold;
     text-align: center;
     max-width: max-content;
     max-height: max-content;
-    color: rgb(27, 27, 27);
+    color: rgb(21, 17, 75);
     outline: none;
     border: none;
+    box-shadow: 0px 15px 20px -5px rgba(0, 0, 0, 0.67);
+  }
+  .btn-titles{
+    font-family: $Nunito;
+    font-weight: bold;
+    font-size: 25px;
+    // filter: drop-shadow(5px 7px 4px rgba(68, 67, 67, 0.67));
+
   }
 
   .btn:hover {
@@ -93,9 +109,9 @@ $Nunito: "Nunito", sans-serif;
   }
   .nav-button:hover {
     background-color: #f18867;
-    box-shadow: 1px 1px 1px #a19797;
-    // transform: scale(1.1);
-    cursor: pointer;
+    // box-shadow: 1px 1px 1px #a19797;
+    transform: scale(1.1);
+    // cursor: pointer;
   }
 
 
@@ -103,7 +119,7 @@ $Nunito: "Nunito", sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 120px;
+  height: 100px;
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
@@ -230,16 +246,39 @@ $Nunito: "Nunito", sans-serif;
 
 
 .nav-icon {
-  color: black;
+  color: white;
   margin-bottom: 3px;
+  margin-right: 2px;
   border: none;
   transition: all 0.2s ease-in-out;
+  width: 60px; 
+  height: 60px;   
+  filter: drop-shadow(4px 6px 3px rgba(0, 0, 0, 0.67));
+}
+.nav-icon:hover {
+  color: #40aaff;
+  transform: scale(1.2)
+}
+
+.nav-icon-bell{
+  width: 65px;
+  height: 65px;
+  color: white;
+  margin-bottom: 3px;
+  transition: all 0.2s ease-in-out;
+  filter: drop-shadow(4px 6px 3px rgba(0, 0, 0, 0.67));
+  
+}
+.nav-icon-bell:hover{
+  color: #40aaff;
+  transform: scale(1.2)
 }
 
 .nav-icon-second-nav-bar{
-  width: 80px; 
+  width: 70px; 
   height: 80px; 
-  color: black;
+  color: rgb(21, 17, 75);
+ 
 }
 
 .nav-icon-second-nav-bar:hover{
@@ -259,6 +298,7 @@ $Nunito: "Nunito", sans-serif;
   height: 120px;
   border: none;
   transition: all 0.2s ease-in-out;
+  filter: drop-shadow(5px 7px 4px rgba(5, 0, 0, 0.67));
 }
 .text-and-icon:hover{
   transform: scale(1.1);
@@ -271,22 +311,18 @@ $Nunito: "Nunito", sans-serif;
   text-align: center;
   width: 100px;
 }
-.nav-icon:hover {
-  // transform: scale(1.3);
-  // cursor: pointer;
-  color: #40aaff;
-  
-}
+
 .profile-button {
   outline: none;
   background-color: transparent;
   border: none;
 }
 .pen-icon {
-  font-size: 50px;
-  color: black;
+  font-size: 45px;
+  color: rgb(26, 20, 90);
   margin-bottom: 12px;
   margin-top: 19px;
+ 
 }
 
 .pen-icon:hover {
@@ -296,29 +332,28 @@ $Nunito: "Nunito", sans-serif;
   height: 50px;
   color: #40aaff;
   transition: all 0.1s ease-in-out;
-  margin-right: 20px;
+  
 }
 .bell {
   position: relative;
+  
 }
 .counter {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   background-color: red;
   border-radius: 50%;
   font-weight: 800;
   color: white;
   padding: 5px;
-  font-size: 15px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 21px;
-  right: 25px;
+  top: 43px;
+  right: 22px;
+  filter: drop-shadow(5px 7px 4px rgba(68, 67, 67, 0.67));
+ 
 }
-.nav-icon:hover {
-  transform: scale(1.05);
-  top: 40px;
-  right: 15px;
-}
+

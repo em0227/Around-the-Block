@@ -89,18 +89,18 @@ class NavBar extends React.Component {
       <div className="logged-in">
         <div className="logged-in-profile-icon">
           <button className="btn logout-button" onClick={this.logoutUser}>
-            Logout
+            <span className="btn-titles">Logout</span>
           </button>
           <Link className="btn create-button" to="/events/create">
-            Create Event
+            <span className="btn-titles"> Create Event</span>
           </Link>
           <Link className="link" to="/profile">
             <CgProfile className="nav-icon" />
           </Link>
           <div>
             <IoMdNotificationsOutline
-              className="nav-icon bell"
-              style={{ width: 40, height: 40, marginRight: 0, color: "" }}
+              className="nav-icon-bell"
+              // style={{ width: 60, height: 60, marginRight: 0, color: "" }}
               onClick={this.toggleDropdown}
             />
             <div className="counter">

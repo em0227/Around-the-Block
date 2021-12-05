@@ -4,6 +4,7 @@ $Pacifico: "Pacifico", cursive;
 $Nunito: "Nunito", sans-serif;
 
 .inner-container {
+  min-width: 1024px;
   display: flex;
   position: relative;
   align-items: center;
@@ -14,18 +15,21 @@ $Nunito: "Nunito", sans-serif;
 .app-description {
   // background-color:  #f2a07b;
   background-color: #9dcac0;
-  font-size: 55px;
+  font-size: 50px;
   font-family: $Nunito;
   font-weight: bold;
-  color: #175245;
-  height: 100px;
+  color: #17473d;
+  min-height: 100px;
   display: flex;
   align-items: center;
-  width: 100%;
-  padding-left: 80px;
+  min-width: 100%;
+  padding-left: 20px;
+  
 }
 
+
 .event-content {
+  margin-left: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,9 +41,10 @@ $Nunito: "Nunito", sans-serif;
   font-family: $Nunito;
   background: hsla(0, 16%, 96%, 0.5);
   // z-index: 1000;
-  padding-right: 30px;
+  padding-right: 1px;
   .event-info {
     width: 70%;
+    margin-left: 20px;
   }
   .event-text {
     // display: flex;
@@ -49,7 +54,8 @@ $Nunito: "Nunito", sans-serif;
     font-family: $Nunito;
     text-align: left;
     width: 100%;
-    margin: 20px 20px 0 0;
+    margin: 5px 5px 0 0;
+    
     // align-items: center;
     //   z-index: 1000;
   }
@@ -57,9 +63,11 @@ $Nunito: "Nunito", sans-serif;
     font-size: 50px;
     font-family: $Nunito;
     text-align: left;
-    // width: 100%;
+    font-weight: bold;
+    
   }
 }
+
 .join-button {
   background-color: #c70a04;
   border: none;
@@ -70,7 +78,7 @@ $Nunito: "Nunito", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
+  font-size: 45px;
   font-weight: bolder;
   margin: 4px 2px;
   border-radius: 5px;
@@ -78,6 +86,11 @@ $Nunito: "Nunito", sans-serif;
   height: 100px;
   width: 400px;
   margin-top: 30px;
+}
+.join-button-show{
+  filter: drop-shadow(2px 3px 2px rgba(5, 0, 0, 0.67));
+  font-size: 60px;
+  font-family: $Nunito;
 }
 .inner-img-container {
   margin: 50px 20px 0 50px;
@@ -97,4 +110,7 @@ $Nunito: "Nunito", sans-serif;
   width: 250px;
   height: 250px;
   position: absolute;
+  box-shadow: 10px 10px 6px 4px rgb(90, 89, 89);
+  margin-right: 10px;
+  border-radius: 10px;
 }

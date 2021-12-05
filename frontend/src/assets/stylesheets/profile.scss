@@ -21,7 +21,8 @@
     font-weight: bold;
     font-family: $Nunito;;
     font-size: 80px;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
+    filter: drop-shadow(1px 1px 1px rgba(5, 0, 0, 0.67));
 
 }
 .session-titles:hover{
@@ -57,7 +58,9 @@
     margin-bottom: 10px;
     margin-left: 200px;
     margin-right: 50px;
-     box-shadow: 10px 10px 5px 12px grey;
+    border-radius: 10px;
+    box-shadow: 10px 10px 6px 12px rgb(90, 89, 89);
+    
 } 
 
 .profile-event-detials{
@@ -93,6 +96,7 @@
 .p-event-buttons {
     display: flex;
     flex-direction: column;
+
    
 }
 .p-e-l {
@@ -103,20 +107,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 45px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bolder;
+  font-size: 50px;
+  font-family: $Nunito;
+  font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
   height: 90px;
   width: 300px;
   margin-top: 30px;
   margin-right: 30px;
+  border: none;
+//   filter: drop-shadow(5px 7px 4px rgba(68, 67, 67, 0.67));
 }
 .p-e-l:hover{
     color: #40aaff;
 }
-
+.p-e-btn{
+   
+     filter: drop-shadow(3px 5px 2px rgba(68, 67, 67, 0.67));
+}
 .rofile-friends-container{
     display: flex;
     flex-wrap: wrap;
@@ -160,7 +169,7 @@
     padding-left: 20px; 
     color: black; 
     margin-top: 40px;
-    // margin-right: 20px;
+ 
     position: absolute; 
 }
 ::placeholder {

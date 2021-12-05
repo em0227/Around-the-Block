@@ -36,6 +36,7 @@ class NavBar extends React.Component {
       request: requestId,
       status: "approved",
     });
+    this.props.history.push("/profile")
   }
 
   handleReject(requestId) {
@@ -43,6 +44,7 @@ class NavBar extends React.Component {
       request: requestId,
       status: "denied",
     });
+    this.props.history.push("/profile")
   }
 
   render() {
@@ -133,5 +135,4 @@ class NavBar extends React.Component {
     );
   }
 }
-
 export default NavBar;

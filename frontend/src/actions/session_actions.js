@@ -7,12 +7,11 @@ export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 
-
 // We'll dispatch this when our user signs in
 export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
   currentUser,
-}); 
+});
 
 // This will be used to redirect the user to the login page upon signup
 export const receiveUserSignIn = () => ({
@@ -24,7 +23,7 @@ export const receiveErrors = (errors) => ({
   type: RECEIVE_SESSION_ERRORS,
   errors,
 });
-export const clearSessionErrors = (errors) => ({
+export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS,
 });
 
@@ -35,17 +34,17 @@ export const logoutUser = () => ({
 
 // Upon signup, dispatch the approporiate action depending on which type of response we receieve from the backend
 export const signup = (user, history) => (dispatch) =>
-//login after sign up
+  //login after sign up
   APIUtil.signup(user).then(
     (res) => {
-       const { token } = res.data;
-       localStorage.setItem("jwtToken", token);
-       APIUtil.setAuthToken(token);
-       const decoded = jwt_decode(token);
-       dispatch(receiveCurrentUser(decoded));
-       history && history.push("/profile");
+      const { token } = res.data;
+      localStorage.setItem("jwtToken", token);
+      APIUtil.setAuthToken(token);
+      const decoded = jwt_decode(token);
+      dispatch(receiveCurrentUser(decoded));
+      history && history.push("/profile");
     },
-    
+
     (err) => dispatch(receiveErrors(err.response.data))
   );
 

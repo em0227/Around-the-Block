@@ -35,15 +35,15 @@ class LoginForm extends React.Component {
     this.handleListen();
     this.props.clearSessionErrors();
   }
-  // Once the user has been authenticated, redirect to the Tweets page
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser) {
-      // this.props.history.push("/events");
-    }
 
-    // Set or clear errors
-    this.setState({ errors: nextProps.errors });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.currentUser) {
+  //     // this.props.history.push("/events");
+  //   }
+
+  //   // Set or clear errors
+  //   this.setState({ errors: nextProps.errors });
+  // }
 
   handleListen() {
     mic.onresult = (event) => {
@@ -141,7 +141,6 @@ class LoginForm extends React.Component {
   renderErrors() {
     return (
       <ul>
-        {console.log("errors", this.state.errors)}
         {Object.keys(this.state.errors).map((error, i) => (
           <li style={{ marginBottom: 10 }} key={`error-${i}`}>
             {this.state.errors[error]}
@@ -164,7 +163,7 @@ class LoginForm extends React.Component {
                 </i>
                 <div className="input-container">
                   <input
-                    onClick={errors.email ? () => clearSessionErrors() : ""}
+                    // onClick={errors.email ? () => clearSessionErrors() : ""}
                     className="input-holder"
                     type="text"
                     name="email"
@@ -186,7 +185,7 @@ class LoginForm extends React.Component {
                 </i>
                 <div className="input-container">
                   <input
-                    onClick={errors.name ? () => clearSessionErrors() : ""}
+                    // onClick={errors.name ? () => clearSessionErrors() : ""}
                     className="input-holder"
                     type="text"
                     name="password"

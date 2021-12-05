@@ -38,13 +38,13 @@ class SignupForm extends React.Component {
     this.props.clearSessionErrors();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push("/login");
-    }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.signedIn === true) {
+  //     this.props.history.push("/login");
+  //   }
 
-    this.setState({ errors: nextProps.errors });
-  }
+  //   this.setState({ errors: nextProps.errors });
+  // }
 
   debounce(user) {
     // debugger;
@@ -173,7 +173,7 @@ class SignupForm extends React.Component {
                 </i>
                 <div className="input-container">
                   <input
-                    onClick={errors.name ? () => clearSessionErrors() : ""}
+                    // onClick={errors.name ? () => clearSessionErrors() : ""}
                     className="input-holder"
                     type="text"
                     name="name"
@@ -195,7 +195,7 @@ class SignupForm extends React.Component {
                 </i>
                 <div className="input-container">
                   <input
-                    onClick={errors.name ? () => clearSessionErrors() : ""}
+                    // onClick={errors.name ? () => clearSessionErrors() : ""}
                     className="input-holder"
                     type="text"
                     name="email"

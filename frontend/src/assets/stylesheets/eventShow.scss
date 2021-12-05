@@ -1,69 +1,71 @@
-.event-show-page{
-   
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0px;
-    
+.event-show-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0px;
 }
-.event-show-content{
-    background-color: rgb(219, 250, 250);
-    margin-top: 0px;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    // justify-content: space-between;
+.event-show-content {
+  background-color: rgb(219, 250, 250);
+  margin-top: 0px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  // justify-content: space-between;
 }
-.img-and-button{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.img-and-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.event-show-details{
-    display: flex;
-    width: 100%;
-    height: 100%;
-   
+.event-show-details {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
 }
-.event-details{
-    font-size: 30px;
-    font-family: 'Nunito';
-    color: rgb(104, 105, 105);
-    margin-top: 40px;
+.event-details {
+  font-size: 30px;
+  font-family: "Nunito";
+  color: rgb(104, 105, 105);
+  margin-top: 40px;
 }
-.event-title{
-    font-size: 60px;
-    font-family: 'Nunito';
-    margin-bottom: 30px;
-    font-weight: bold;
+.event-title {
+  font-size: 60px;
+  font-family: "Nunito";
+  margin-bottom: 30px;
+  font-weight: bold;
 }
-.description{
-    font-size: 30px;
-    margin-bottom: 50px;
-    font-family: 'Nunito';
-    color: rgb(104, 105, 105);
+.description {
+  font-size: 30px;
+  margin-bottom: 50px;
+  font-family: "Nunito";
+  color: rgb(104, 105, 105);
+}
+.event-guests {
+  font-size: 30px;
+  margin-bottom: 50px;
+  font-family: "Nunito";
+  color: rgb(3, 3, 3);
+  font-weight: bold;
+}
+.guests {
+  font-size: 30px;
+  margin-bottom: 50px;
+  font-family: "Nunito";
+  color: rgb(104, 105, 105);
+  padding-right: 30px;
+}
+.event-img {
+  height: 70%;
+  width: 500px;
+  margin-bottom: 10px;
+  margin: 40px 20px 0 20px;
+}
 
-}
-.event-guests{
-    font-size: 30px;
-    margin-bottom: 50px;
-    font-family: 'Nunito';
-    color: rgb(3, 3, 3);
-    font-weight: bold;
-    
-}
-.guests{
-    font-size: 30px;
-    margin-bottom: 50px;
-    font-family: 'Nunito';
-    color: rgb(104, 105, 105);
-    padding-right: 30px;
-}
-.event-img{
-    height: 70%;
-    width: 500px;
-    margin-bottom: 10px;
-    margin: 40px 20px 0 20px;
+.event-show-img-container {
+  margin: 20px;
 }

@@ -104,7 +104,9 @@ class NavBar extends React.Component {
               onClick={this.toggleDropdown}
             />
             <div className="counter">
-              {currentUser.user.requestsReceived.length}
+              {currentUser.user.requestsReceived
+                ? currentUser.user.requestsReceived.length
+                : ""}
             </div>
           </div>
           <div>{dropdownMenu}</div>

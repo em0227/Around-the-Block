@@ -12,7 +12,7 @@ class ProfilePage extends React.Component {
   }
   componentDidMount() {
     this.props.fetchEvents();
-    
+
     if (this.props.preJoinedEvent !== "") {
       this.props.updateEvent({
         id: this.props.preJoinedEvent,
@@ -42,11 +42,12 @@ class ProfilePage extends React.Component {
   }
 
   submitFriendRequest(e) {
-    e.preventDefault()
-    this.props.createFriendRequest({ recipient: this.state.user }).then(
-      this.setState({name: "", email: "", user: {}, hideFilters: true})
-    );
-    
+    e.preventDefault();
+    this.props
+      .createFriendRequest({ recipient: this.state.user })
+      .then(
+        this.setState({ name: "", email: "", user: {}, hideFilters: true })
+      );
   }
 
   // handleApprove(requestId) {
@@ -83,7 +84,7 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    console.log(this.state.hideFilters)
+    console.log(this.state.hideFilters);
     const { events, errors, currentUser, invites, users, filters } = this.props;
     const myEvents = events.filter((event) => event.hostId === currentUser.id);
     const myJoinedEvents = events.filter((event) =>
@@ -191,9 +192,9 @@ class ProfilePage extends React.Component {
                 FRIENDS
               </Link1>
 
-              {currentUser.friends.length > 0
-                ? currentUser.friends.map((friend) => (
-                    <div>
+              {currentUser.friends
+                ? currentUser.friends.map((friend, idx) => (
+                    <div key={idx}>
                       <li>{friend.friendName}</li>
                       <li>{friend.friendEmail}</li>
                     </div>
@@ -207,8 +208,8 @@ class ProfilePage extends React.Component {
                   onSubmit={this.submitFriendRequest.bind(this)}
                 >
                   <div className="friend-search-bar-error">
-                  {errors.recipient}
-                </div>
+                    {errors.recipient}
+                  </div>
                   <div>
                     <input
                       value={this.state.name}
@@ -221,13 +222,14 @@ class ProfilePage extends React.Component {
                     <div className="entire-dropdown">
                       {(this.state.name.length > 0 && filters.length > 0) ||
                       !this.state.hideFilters
-                        ? filters.map((user) => (
+                        ? filters.map((user, idx) => (
                             <div
-                              tabindex="0"
+                              tabIndex="0"
                               className="user-info-1"
+                              key={idx}
                               onClick={this.changeSearchBar.bind(this, user)}
                             >
-                              <div tabindex="1" className="user-info-">
+                              <div tabIndex="1" className="user-info-">
                                 <FaUserCircle className="user-info-icon" />
                                 <div className="user-info-content">
                                   <div className="user-info-content-input">
@@ -279,7 +281,7 @@ class ProfilePage extends React.Component {
         {/* // </div> */}
       </div>
     );
-  
-}}
+  }
+}
 
 export default ProfilePage;

@@ -37,8 +37,7 @@ class MainPage extends React.Component {
             <img className="img" src={img[idx]} />
             <div className="event-content">
               <div className="inner-img-container">
-                <Link className="main-event-img"
-                  to={`/events/${event._id}`} >
+                <Link className="main-event-img" to={`/events/${event._id}`}>
                   <img className="main-event-img" src={event.imageUrl} />{" "}
                 </Link>
               </div>
@@ -60,53 +59,65 @@ class MainPage extends React.Component {
     return (
       <div>
         <div className="app-description">
-          <Typewriter className="app-description-words"
+          <Typewriter
+            className="app-description-words"
             onInit={(typewriter) => {
               typewriter
-                .typeString("We are here to help senior citizens make friends!")
+                .typeString("We are here to help the elderly meet new friends!")
                 .pauseFor(500)
                 .deleteAll()
                 .typeString(
-                  "Our larger fonts and designs accommodate visual impairments."
-                ).deleteAll()
+                  // "Our larger fonts and designs accommodate visual impairments."
+                  "Our large font size and simple design is user-friendly."
+                )
+                .deleteAll()
                 .typeString(
-                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
+                  // "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
+                  "Our voice recognition makes sign up easy for users. Try it now! "
                 )
                 .pauseFor(500)
                 .deleteAll()
-                .typeString("We are here to help senior citizens make friends!")
-                .pauseFor(500)
-                .deleteAll()
                 .typeString(
-                  "Our larger fonts and designs accommodate visual impairments."
-                ).deleteAll()
-                .typeString(
-                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
+                  // "We are here to help senior citizens make friends!"
+                  "We are here to help the elderly meet new friends!"
                 )
                 .pauseFor(500)
                 .deleteAll()
-                .typeString("We are here to help senior citizens make friends!")
-                .pauseFor(500)
+                .typeString(
+                  // "Our larger fonts and designs accommodate visual impairments."
+                  "Our large font size and simple design is user-friendly."
+                )
                 .deleteAll()
                 .typeString(
-                  "Our larger fonts and designs accommodate visual impairments."
-                ).deleteAll()
-                .typeString(
-                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
+                  // "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
+                  "Our voice recognition makes sign up easy for users. Try it now! "
                 )
                 .pauseFor(500)
-                .deleteAll()
-                .typeString("We are here to help senior citizens make friends!")
-                .pauseFor(500)
-                .deleteAll()
-                .typeString(
-                  "Our larger fonts and design choices accommodate visual impairments."
-                ).deleteAll()
-                .typeString(
-                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
-                )
-                .pauseFor(1000)
-                .deleteAll()
+                // .deleteAll()
+                // .typeString("We are here to help senior citizens make friends!")
+                // .pauseFor(500)
+                // .deleteAll()
+                // .typeString(
+                //   "Our larger fonts and designs accommodate visual impairments."
+                // )
+                // .deleteAll()
+                // .typeString(
+                //   "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
+                // )
+                // .pauseFor(500)
+                // .deleteAll()
+                // .typeString("We are here to help senior citizens make friends!")
+                // .pauseFor(500)
+                // .deleteAll()
+                // .typeString(
+                //   "Our larger fonts and design choices accommodate visual impairments."
+                // )
+                // .deleteAll()
+                // .typeString(
+                //   "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
+                // )
+                // .pauseFor(1000)
+                // .deleteAll()
                 .start();
             }}
           />

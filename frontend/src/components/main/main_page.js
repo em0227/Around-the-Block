@@ -67,10 +67,32 @@ class MainPage extends React.Component {
                 .pauseFor(500)
                 .deleteAll()
                 .typeString(
-                  "Our larger fonts and design choices accommodate visual impairments."
+                  "Our larger fonts and designs accommodate visual impairments."
                 ).deleteAll()
                 .typeString(
-                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now by clicking sign up!"
+                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
+                )
+                .pauseFor(500)
+                .deleteAll()
+                .typeString("We are here to help senior citizens make friends!")
+                .pauseFor(500)
+                .deleteAll()
+                .typeString(
+                  "Our larger fonts and designs accommodate visual impairments."
+                ).deleteAll()
+                .typeString(
+                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
+                )
+                .pauseFor(500)
+                .deleteAll()
+                .typeString("We are here to help senior citizens make friends!")
+                .pauseFor(500)
+                .deleteAll()
+                .typeString(
+                  "Our larger fonts and designs accommodate visual impairments."
+                ).deleteAll()
+                .typeString(
+                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
                 )
                 .pauseFor(500)
                 .deleteAll()
@@ -81,29 +103,7 @@ class MainPage extends React.Component {
                   "Our larger fonts and design choices accommodate visual impairments."
                 ).deleteAll()
                 .typeString(
-                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now by clicking sign up!"
-                )
-                .pauseFor(500)
-                .deleteAll()
-                .typeString("We are here to help senior citizens make friends!")
-                .pauseFor(500)
-                .deleteAll()
-                .typeString(
-                  "Our larger fonts and design choices accommodate visual impairments."
-                ).deleteAll()
-                .typeString(
-                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now by clicking sign up!"
-                )
-                .pauseFor(500)
-                .deleteAll()
-                .typeString("We are here to help senior citizens make friends!")
-                .pauseFor(500)
-                .deleteAll()
-                .typeString(
-                  "Our larger fonts and design choices accommodate visual impairments."
-                ).deleteAll()
-                .typeString(
-                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now by clicking sign up!"
+                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now!"
                 )
                 .pauseFor(1000)
                 .deleteAll()

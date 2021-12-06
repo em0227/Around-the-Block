@@ -61,7 +61,7 @@ class NavBar extends React.Component {
             {currentUser.requestsReceived.map((request) => (
               <div className="drop-down-list">
                 {request.requesterImage === "noPicture" || !request.requesterImage ? 
-                    <FaUserCircle className="user-info-icon" /> : 
+                    <FaUserCircle className="user-info-icon notifs" /> : 
                      <img className="user-search-icon-notifs" src={request.requesterImage} ></img>
                 }
                 <p>

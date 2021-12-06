@@ -47,6 +47,13 @@
       font-size: 19px;
       margin-right: 5px;
     }
+
+    .notifs{
+      width: 50px; 
+      margin-right: 15px; 
+      margin-bottom: 15px; 
+    }
+
     .button-container{
       display: flex;
       .button{
@@ -55,11 +62,13 @@
       }
       .button:hover{
         background-color: greenyellow;
+        cursor: pointer; 
       }
       .approve{
         background-color:#71EFA3 ;
         margin-right: 20px;
       }
+      
     }
      .link {
       text-decoration: none;

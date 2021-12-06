@@ -226,7 +226,7 @@ router.patch(
         return res.status(400).json(errors);
       }
       User.findOne({ email: req.body.email }).then((user) => {
-        if (user) {
+        if (user && req.user.email !== user.email) {
           errors.email = "This user already exists";
           return res.status(400).json(errors);
         }

@@ -51,7 +51,7 @@ class LoginForm extends React.Component {
         .map((result) => result[0])
         .map((result) => result.transcript)
         .join("");
-      console.log(transcript);
+      // console.log(transcript);
 
       if (transcript.includes("submit")) {
         const email = this.state.email.replaceAll(" ", "");
@@ -85,7 +85,7 @@ class LoginForm extends React.Component {
       }
 
       mic.onerror = (event) => {
-        console.log(event.error);
+        // console.log(event.error);
       };
     };
   }

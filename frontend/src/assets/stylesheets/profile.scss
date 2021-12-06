@@ -234,7 +234,7 @@ left: 400px;
 .user-search-icon{
     border-radius: 50%; 
     outline: white; 
-    
+
 }
 
 .user-info-:focus{
@@ -295,13 +295,12 @@ left: 400px;
 }
 
 .friends-container{
-    margin-top: 100px; 
+    margin-top: 220px; 
     display: flex;
     flex-direction: row; 
-    top: 900px; 
+    top: 800px; 
     width: 1400px; 
     height: 200px;
-    position: absolute; 
     flex-wrap: wrap; 
     padding-left: 150px; 
     overflow-y: auto; 

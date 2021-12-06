@@ -7,7 +7,7 @@ class MainPage extends React.Component {
   constructor(props) {
     super(props);
   }
-
+ 
   componentDidMount() {
     this.props.fetchEvents();
     // this.props.fetchUsers()

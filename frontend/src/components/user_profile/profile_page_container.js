@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { fetchCurrentUser } from "../../actions/users_actions";
 import {
   fetchEvents,
   updateEvent,
@@ -12,8 +11,10 @@ import {
   updateFriend,
 } from "../../actions/friend_request_actions";
 import {
+  fetchCurrentUser,
   fetchFilteredUsers,
   updateCurrentUser,
+  deleteFriend
 } from "../../actions/users_actions";
 import ProfilePage from "./profile_page";
 
@@ -37,6 +38,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchFilteredUsers: (filter) => dispatch(fetchFilteredUsers(filter)),
   deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
   leaveEvent: (event) => dispatch(leaveEvent(event)),
+  deleteFriend: (friendId) => dispatch(deleteFriend(friendId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

@@ -83,13 +83,19 @@ $Nunito: "Nunito", sans-serif;
     outline: none;
     border: none;
     box-shadow: 0px 15px 20px -5px rgba(0, 0, 0, 0.67);
+    font-family: $Nunito, sans-serif;
+
   }
   .btn-titles{
-    font-family: $Nunito;
+    font-family: $Nunito, sans-serif;
     font-weight: bold;
     font-size: 25px;
     // filter: drop-shadow(5px 7px 4px rgba(68, 67, 67, 0.67));
 
+  }
+
+  .create{
+    margin-top: 3px; 
   }
 
   .btn:hover {
@@ -98,6 +104,7 @@ $Nunito: "Nunito", sans-serif;
     color: #1890ff; 
   }
   .create-button {
+    padding-bottom: 2px; 
     width: 180px;
   }
   .logout-button {
@@ -112,6 +119,21 @@ $Nunito: "Nunito", sans-serif;
     // box-shadow: 1px 1px 1px #a19797;
     transform: scale(1.1);
     // cursor: pointer;
+  }
+
+  .user-icon{
+    border-radius: 50%; 
+    opacity: 1.0; 
+    outline: 1px solid white; 
+    background-color: white; 
+    padding-left: 3px; 
+  }
+
+  .user-icon:hover{
+    cursor: pointer;
+    transform: scale(1.1); 
+    background-color: blue;  
+
   }
 
 
@@ -157,11 +179,11 @@ $Nunito: "Nunito", sans-serif;
  font-family: "Open Sans", sans-serif;
   position: absolute;
   justify-content: center;
-  width: 30%;
-  height: 90%;
+  width: 450px;
+  height: 500px;
   top: 50%;
   left: 50%;
-  padding: 10px 15px 15px 40px;
+  padding: 20px 15px 15px 40px;
   border-radius: 5px;
   border: 1px solid black;
   transform: translate(-50%, -50%);
@@ -236,7 +258,8 @@ $Nunito: "Nunito", sans-serif;
   margin-top: 30px;
   font-size: 25px;
   width: 130px;
-  height: 35px
+  height: 35px;
+  margin-right: 200px; 
 }
 
 .submit-updated-user:hover {
@@ -271,7 +294,8 @@ $Nunito: "Nunito", sans-serif;
 }
 .nav-icon-bell:hover{
   color: #40aaff;
-  transform: scale(1.2)
+  transform: scale(1.1);
+  cursor: pointer; 
 }
 
 .nav-icon-second-nav-bar{

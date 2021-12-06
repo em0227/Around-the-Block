@@ -55,7 +55,7 @@
     height: 400px;
     width: 500px;
     margin-bottom: 10px;
-    margin-left: 200px;
+    margin-left: 150px;
     margin-right: 50px;
     border-radius: 10px;
     box-shadow: 10px 10px 6px 12px rgb(90, 89, 89);
@@ -149,7 +149,7 @@
     align-items: center;
     background-color: rgb(250, 229, 236);
     flex-direction: column;
-    height: 120vh;
+    height: 80vh;
     width: 100vw;
     
 
@@ -161,6 +161,7 @@
 }
 .friend-search-bar{
     font-size: 40px;
+    position: absolute; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 700px;
     height: 80px;
@@ -169,8 +170,9 @@
     padding-left: 20px; 
     color: black; 
     margin-top: 40px;
+    left: 400px; 
  
-    position: absolute; 
+    
 }
 ::placeholder {
   color: rgb(160, 158, 158);
@@ -189,6 +191,8 @@
     border: 1px solid black; 
     border-radius: 3px; 
     margin-top: 40px;
+    position: absolute; 
+    right: 200px; 
     // position: absolute;
 }
 .friend-search-button:hover{
@@ -196,12 +200,15 @@
     cursor: pointer; 
 }
 .entire-dropdown{
+position: absolute; 
+left: 400px; 
   height: 320px;
   width: 700px; 
-  overflow-y: scroll;
   overflow-x: hidden; 
   margin-bottom: 30px;
   margin-top: 120px;
+  z-index: 10; 
+
 }
 
 .user-info-1 {
@@ -222,6 +229,12 @@
   padding-left: 20px; 
   cursor: pointer;  
   border-radius: 3px; 
+}
+
+.user-search-icon{
+    border-radius: 50%; 
+    outline: white; 
+    
 }
 
 .user-info-:focus{
@@ -247,6 +260,16 @@
     height: 60px;
     color: rgb(65, 64, 64);
 }
+
+.user-search-icon-notifs{
+    border-radius: 50%;
+    outline: 1px solid white; 
+    background-color: white; 
+    margin-right: 15px; 
+    margin-bottom: 15px; 
+
+}
+
 .user-info-content-input{
     margin-bottom: 10px;
     font-size: 20px;
@@ -258,6 +281,7 @@
     color: red;
     font-family: Arial, Helvetica, sans-serif;
     position: absolute;
+    left: 400px; 
 
 }
 
@@ -269,4 +293,76 @@
     flex-wrap: wrap;
     
 }
+
+.friends-container{
+    margin-top: 100px; 
+    display: flex;
+    flex-direction: row; 
+    top: 900px; 
+    width: 1400px; 
+    height: 200px;
+    position: absolute; 
+    flex-wrap: wrap; 
+    padding-left: 150px; 
+    overflow-y: auto; 
+    box-sizing: border-box; 
+
+    .friends-flex{
+        display: flex; 
+        flex-direction: row; 
+        align-items: center; 
+        width: 400px; 
+        flex-wrap: wrap;
+        margin-bottom: 50px; 
+        overflow-x: auto; 
+
+        .friends{
+            width: 90px; 
+        }
+        
+    
+        .details-flex{
+            display: flex;
+            flex-direction: column; 
+           
+    
+            .friend-details{
+                list-style-type: none; 
+                color: black; 
+                font-size: 20px;
+                font-family: $Nunito, sans-serif; 
+    
+            }
+    
+            .unfriend{
+                font-size: 10px; 
+                outline: none; 
+                border: 1px solid black;
+                border-radius: 3px;
+                color: white; 
+                font-family: $Nunito, sans-serif; 
+                background-color: #3013af; 
+                width: 80px; 
+                padding: 4px 4px 4px 4px; 
+                margin-top: 5px;
+            }
+    
+            .unfriend:hover{
+                cursor: pointer; 
+            }
+        }
+    
+        .friend-icon{
+            border-radius: 50%; 
+            opacity: 1.0; 
+            outline: 1px solid white; 
+            background-color: white; 
+            padding-left: 3px; 
+            margin-right: 10px; 
+        }
+    }
+}
+
+
+
 

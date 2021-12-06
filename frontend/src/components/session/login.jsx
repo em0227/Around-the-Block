@@ -122,17 +122,7 @@ class LoginForm extends React.Component {
   }
 
   loginDemo(e) {
-    // this.setState({
-    //   email: "feifei.erhu@gmailom",
-    //   password: "password"
-    // });
-
-    // this.props
-    //   .login({
-    //     email: "feifei.erhu@gmail.com",
-    //     password: "password"
-    //   })
-    // .then(() => this.props.history.push("/profile"));
+    
     e.preventDefault();
     this.props.fetchDemoUser().then(() => this.props.history.push("/profile"));
   }

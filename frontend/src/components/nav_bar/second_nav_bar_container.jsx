@@ -5,6 +5,7 @@ import SecondNavBar from "./second_nav_bar";
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.user,
+  errors: state.errors.users.email
 });
 
 const mapDispatchToProps = () => (dispatch) => ({

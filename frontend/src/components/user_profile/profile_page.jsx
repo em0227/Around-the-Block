@@ -8,11 +8,13 @@ import { Link as Link1 } from "react-scroll";
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", user: {}, hideFilters: true };
+    this.state = { name: "", email: "", user: {}, hideFilters: true, submissionMessage: "" };
     this.timerId = 0;
   }
   componentDidMount() {
     this.props.fetchEvents();
+    this.props.fetchCurrentUser()
+    this.setState({submissionMessage: ""})
 
     if (this.props.preJoinedEvent !== "") {
       this.props.updateEvent({
@@ -44,26 +46,16 @@ class ProfilePage extends React.Component {
 
   submitFriendRequest(e) {
     e.preventDefault();
+    this.setState({submissionMessage: ""})
     this.props
       .createFriendRequest({ recipient: this.state.user })
       .then(
-        this.setState({ name: "", email: "", user: {}, hideFilters: true })
+        this.setState({ name: "", email: "", user: {}, hideFilters: true, 
+        submissionMessage: `You have successfully sent a request.` })
       );
   }
 
-  // handleApprove(requestId) {
-  //   this.props.updateFriend({
-  //     request: requestId,
-  //     status: "approved"
-  //   });
-  // }
-
-  // handleReject(requestId) {
-  //   this.props.updateFriend({
-  //     request: requestId,
-  //     status: "denied"
-  //   });
-  // }
+  
 
   changeSearchBar(user) {
     if (this.state.email !== user.email) {
@@ -84,8 +76,11 @@ class ProfilePage extends React.Component {
     this.props.deleteEvent(eventId);
   }
 
+  handleUnfriend(friendId){
+      this.props.deleteFriend(friendId)
+  }
+
   render() {
-    console.log(this.state.hideFilters);
     const { events, errors, currentUser, invites, users, filters } = this.props;
     const myEvents = events.filter((event) => event.hostId === currentUser.id);
     const myJoinedEvents = events.filter((event) =>
@@ -157,7 +152,7 @@ class ProfilePage extends React.Component {
                       className="p-e-l"
                       onClick={() => this.leaveEvent(event._id)}
                     >
-                      <span className="p-e-btn">Cancel</span>
+                      <span className="p-e-btn">Leave</span>
                     </button>
                   </div>
                 </div>
@@ -197,16 +192,7 @@ class ProfilePage extends React.Component {
                 FRIENDS
               </Link1>
 
-              {currentUser.friends
-                ? currentUser.friends.map((friend, idx) => (
-                    <div key={idx}>
-                      <li>{friend.friendName}</li>
-                      <li>{friend.friendEmail}</li>
-                    </div>
-                  ))
-                : ""}
-              {/* </div> */}
-              {/* friend's section end div*/}
+              
               <div className="friend-request-container">
                 <form
                   className="friend-search-form"
@@ -214,6 +200,8 @@ class ProfilePage extends React.Component {
                 >
                   <div className="friend-search-bar-error">
                     {errors.recipient}
+                    {errors.recipient ? "" : this.state.submissionMessage}
+                    
                   </div>
                   <div>
                     <input
@@ -223,6 +211,7 @@ class ProfilePage extends React.Component {
                       type="text"
                       onChange={this.update("name")}
                     />
+                    
 
                     <div className="entire-dropdown">
                       {(this.state.name.length > 0 && filters.length > 0) ||
@@ -235,7 +224,10 @@ class ProfilePage extends React.Component {
                               onClick={this.changeSearchBar.bind(this, user)}
                             >
                               <div tabIndex="1" className="user-info-">
-                                <FaUserCircle className="user-info-icon" />
+                                {user.picture === "noPicture" || !user.picture ? 
+                                <FaUserCircle className="user-info-icon" /> : 
+                                <img width= "75px" height="75px" className="user-search-icon" src={user.picture}></img>
+                              }
                                 <div className="user-info-content">
                                   <div className="user-info-content-input">
                                     {user.name}
@@ -254,13 +246,37 @@ class ProfilePage extends React.Component {
                     Send
                   </button>
                 </form>
+                <div className= "friends-container">
+                {currentUser.friends
+                ? currentUser.friends.map((friend, idx) => (
+                  
+                    
+                    <div className= "friends-flex" key={idx}>
+                      {friend.friendImage === "noPicture" || !friend.friendImage ? 
+                                <FaUserCircle className="user-info-icon friends" /> : 
+                                <img className="friend-icon" width="75px" src={friend.friendImage}></img>
+                      }
+                      
+                       <div className="details-flex">
+                        <li className="friend-details">{friend.friendName}</li>
+                        <li className="friend-details">{friend.friendEmail}</li>
+                        <button className="unfriend" onClick={this.handleUnfriend.bind(this, friend.friendId)}>Unfriend</button>
+                      </div>
+                      
+                    </div>
+                   
+                  ))
+                : ""}
+               </div>
+              {/* </div> */}
+              {/* friend's section end div*/}
                 {/* <div className="friend-search-bar-error">
                   {errors.recipient}
                 </div> */}
                 {/* </div> */}
 
                 {/* <div className="profile-friends-container"> */}
-                <div className="profile-page-friends">
+                {/* <div className="profile-page-friends">
                   <img
                     className="p-e-i"
                     src="https://atb-photos.s3.amazonaws.com/emily.png"
@@ -277,7 +293,7 @@ class ProfilePage extends React.Component {
                     className="p-e-i"
                     src="https://atb-photos.s3.amazonaws.com/sigdha.png"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             {/* friend's section end div */}

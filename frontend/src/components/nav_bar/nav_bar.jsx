@@ -7,6 +7,7 @@ import { GrNotes } from "react-icons/gr";
 import { RiBluetoothConnectLine } from "react-icons/ri";
 import CreateEventForm from "../user_profile/create_event";
 import { ReactDOM } from "react";
+import { FaUserCircle } from "react-icons/fa";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class NavBar extends React.Component {
       request: requestId,
       status: "approved",
     });
+    this.props.history.push("/profile")
   }
 
   handleReject(requestId) {
@@ -43,6 +45,7 @@ class NavBar extends React.Component {
       request: requestId,
       status: "denied",
     });
+    this.props.history.push("/profile")
   }
 
   render() {
@@ -54,9 +57,13 @@ class NavBar extends React.Component {
       dropdownMenu = (
         <div className="loggedin-drop-down">
           <div className="drop-down-profile">
-            <h3>Notification</h3>
-            {currentUser.user.requestsReceived.map((request) => (
+            <h3>Notifications</h3>
+            {currentUser.requestsReceived.map((request) => (
               <div className="drop-down-list">
+                {request.requesterImage === "noPicture" || !request.requesterImage ? 
+                    <FaUserCircle className="user-info-icon notifs" /> : 
+                     <img className="user-search-icon-notifs" src={request.requesterImage} ></img>
+                }
                 <p>
                   <span className="requester-text">
                     {request.requesterName}
@@ -92,10 +99,14 @@ class NavBar extends React.Component {
             <span className="btn-titles">Logout</span>
           </button>
           <Link className="btn create-button" to="/events/create">
-            <span className="btn-titles"> Create Event</span>
+            <span className="btn-titles create"> Create Event</span>
           </Link>
           <Link className="link" to="/profile">
-            <CgProfile className="nav-icon" />
+          {/* <CgProfile className="nav-icon" /> */}
+            {currentUser.picture === "noPicture" ? 
+            <CgProfile className="nav-icon" /> : 
+            <img className="user-icon" src={currentUser.picture} width="65px" ></img>
+          }
           </Link>
           <div>
             <IoMdNotificationsOutline
@@ -104,8 +115,8 @@ class NavBar extends React.Component {
               onClick={this.toggleDropdown}
             />
             <div className="counter">
-              {currentUser.user.requestsReceived
-                ? currentUser.user.requestsReceived.length
+              {currentUser.requestsReceived
+                ? currentUser.requestsReceived.length
                 : ""}
             </div>
           </div>
@@ -135,5 +146,4 @@ class NavBar extends React.Component {
     );
   }
 }
-
 export default NavBar;

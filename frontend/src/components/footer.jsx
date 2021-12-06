@@ -11,16 +11,19 @@ const Footer = () => {
           id="developer"
           style={{ textAlign: "center", paddingTop: 20, fontSize: "16px" }}
         >
-          © 2021 Designed and Developed by Around the Block Team
+          Designed and Developed by Around the Block Team © 2021 
         </p>
       </div>
       <div className="footer-member">
+      
         <div className="member">
+        <a href="http://emilywu.me/">
           <img
             className="footer-img"
             src="https://atb-photos.s3.amazonaws.com/emily.png"
             alt=""
           />
+        </a>
 
           <div className="footer-link">
             <a
@@ -69,11 +72,13 @@ const Footer = () => {
         </div>
 
         <div className="member">
+       
           <img
             className="footer-img"
             src="https://atb-photos.s3.amazonaws.com/sigdha.png"
             alt=""
           />
+      
 
           <div className="footer-link">
             <a
@@ -95,11 +100,13 @@ const Footer = () => {
         </div>
 
         <div className="member">
+        <a href="https://meeke198.github.io" >
           <img
             className="footer-img"
             src="https://atb-photos.s3.amazonaws.com/hien.png"
             alt=""
           />
+          </a>
 
           <div className="footer-link">
             <a

@@ -53,10 +53,12 @@ router.post(
         const newRequest = new FriendRequest({
           requesterId: req.user.id,
           requesterName: req.user.name,
+          requesterImage: req.user.picture,
           requesterEmail: req.user.email,
           recipientId: req.body.recipient.id,
           recipientName: req.body.recipient.name,
           recipientEmail: req.body.recipient.email,
+          recipientImage: req.body.recipient.image,
           status: "pending"
         });
         newRequest
@@ -72,6 +74,7 @@ router.post(
                     recipientId: request.recipientId,
                     recipientName: request.recipientName,
                     recipientEmail: request.recipientEmail,
+                    recipientImage: request.recipientImage,
                     _id: request._id,
                     status: "pending"
                   }
@@ -93,6 +96,7 @@ router.post(
                     requesterId: request.requesterId,
                     requesterName: request.requesterName,
                     requesterEmail: request.requesterEmail,
+                    requesterImage: request.requesterImage,
                     _id: request._id,
                     status: "pending"
                   }
@@ -127,6 +131,7 @@ router.patch(
                 friendId: record.requesterId,
                 friendName: record.requesterName,
                 friendEmail: record.requesterEmail,
+                friendImage: record.requesterImage,
                 status: record.status
               
               }
@@ -150,6 +155,7 @@ router.patch(
                 friendId: record.recipientId,
                 friendName: record.recipientName,
                 friendEmail: record.recipientEmail,
+                friendImage: record.recipientImage,
                 status: record.status
                 
               }
@@ -162,6 +168,9 @@ router.patch(
           },
           { new: true }
         ).then(user => console.log(""))
+
+        FriendRequest.deleteOne({ _id: record._id })
+          .then((res) => console.log(""))
        
       } else {
         //delete this record

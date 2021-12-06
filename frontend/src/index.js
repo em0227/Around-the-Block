@@ -44,9 +44,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);
 
-  window.store = store;
-  window.fetchEvent = fetchEvent;
-  window.fetchEvents = fetchEvents;
-  window.fetchFilteredUsers = fetchFilteredUsers;
-  window.fetchDemoUser = fetchDemoUser;
+  
 });

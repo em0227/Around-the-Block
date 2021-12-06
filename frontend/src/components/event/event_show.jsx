@@ -76,7 +76,9 @@ class EventShow extends React.Component {
                 <br />
               </div>
               <div className="event-title">{this.props.event.name}</div>
+
               <div className="description">{this.props.event.description}</div>
+              <div className="description">{this.props.event.location}</div>
               {/* 
               <div className="description">
                 <span className="event-guests">Guests: </span>
@@ -91,8 +93,8 @@ class EventShow extends React.Component {
               ) : (
                 <div className="description">
                   <span className="event-guests">Guests: </span>
-                  {guests.map((guest) => (
-                    <span> {guest}    |    </span>
+                  {guests.map((guest, idx) => (
+                    <span key={idx}> {guest} | </span>
                   ))}
                   {/* <button
                     className="event-guests"

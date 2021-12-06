@@ -8,7 +8,7 @@ import { Link as Link1 } from "react-scroll";
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", user: {}, hideFilters: true, submissionMessage: "" };
+    this.state = { name: "", email: "", user: {}, hideFilters: true, submissionMessage: "", showSubmit: false };
     this.timerId = 0;
   }
   componentDidMount() {
@@ -36,6 +36,7 @@ class ProfilePage extends React.Component {
       this.setState(
         {
           [field]: e.currentTarget.value,
+          showSubmit: false
         },
         () => {
           this.debounce();
@@ -59,9 +60,9 @@ class ProfilePage extends React.Component {
 
   changeSearchBar(user) {
     if (this.state.email !== user.email) {
-      this.setState({ name: user.name, user: user, email: user.email });
+      this.setState({ name: user.name, user: user, email: user.email, showSubmit: true });
     } else {
-      this.setState({ name: "", user: {}, email: "", hideFilters: false });
+      this.setState({ name: "", user: {}, email: "", hideFilters: false, showSubmit: false });
     }
   }
 
@@ -242,9 +243,11 @@ class ProfilePage extends React.Component {
                         : ""}
                     </div>
                   </div>
+                  {this.state.showSubmit ? 
                   <button className="friend-search-button" type="submit">
                     Send
-                  </button>
+                  </button> : ""
+                  }
                 </form>
                 <div className= "friends-container">
                 {currentUser.friends

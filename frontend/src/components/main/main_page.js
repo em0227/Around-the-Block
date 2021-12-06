@@ -15,7 +15,7 @@ class MainPage extends React.Component {
 
   onChange(a, b, c) {
     // console.log(a, b, c);
-    setInterval(() => {}, 5000);
+    setTimeout(() => {}, 2000);
   }
   render() {
     const img = {

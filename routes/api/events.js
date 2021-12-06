@@ -19,7 +19,6 @@ router.get("/allEvents", (req, res) => {
         results[event._id.toString()] = event;
       });
       res.send(results);
-      
     })
     .catch((error) => {
       res.status(400).json({ error });
@@ -31,7 +30,11 @@ router.get("/:id", (req, res) => {
     .then((event) => {
       const promises = [];
       event.guests.forEach((guest) => {
-        promises.push(User.findOne({ _id: guest }).then((user) => user.name)).catch((error) => console.log(""));
+        promises.push(
+          User.findOne({ _id: guest }).then((user) => {
+            return user.name;
+          })
+        );
       });
       Promise.all(promises).then((guestNames) => {
         event._doc.guests = guestNames;
@@ -70,7 +73,9 @@ router.post(
                 },
               },
               { new: true }
-            ).then((user) => res.json(newEvent)).catch((errors => console.log("")));
+            )
+              .then((user) => res.json(newEvent))
+              .catch((errors) => console.log(""));
           })
           .catch((errors) => {
             res.status(400).json(error);

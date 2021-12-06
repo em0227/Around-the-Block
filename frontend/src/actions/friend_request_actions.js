@@ -56,7 +56,7 @@ export const fetchFriendRequests = () => dispatch => (
 export const updateFriend = (request) => dispatch => (
     FriendRequestAPIUtil.updateFriendRequest(request).then(
         (user) => dispatch(receiveUpdatedUser(user)),
-        (err) => dispatch(receiveFriendErrors(err.response.data))
+        (err) => dispatch(receiveFriendErrors(err))
     )
 )
 

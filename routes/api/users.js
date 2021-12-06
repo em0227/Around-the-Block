@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
+const FriendRequest = require("../../models/FriendRequest")
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 const validateUserUpdate = require("../../validations/user-update");
@@ -94,7 +95,7 @@ router.post("/register", (req, res) => {
                 }
               );
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(""));
         });
       });
     }
@@ -167,7 +168,7 @@ router.get(
 );
 
 router.post("/demoUser", (req, res) => {
-  User.findOne({ _id: "61a5313a1f71a2b478a0f829" }).then((user) => {
+  User.findOne({ _id: "61ae3ec63bd0ba6acb992d0f" }).then((user) => {
     const payload = {
       id: user.id,
       email: user.email,
@@ -229,7 +230,7 @@ router.patch(
       }
       User.findOne({ email: req.body.email }).then((user) => {
         if (user) {
-          errors.email = "User already exists";
+          errors.email = "This user already exists";
           return res.status(400).json(errors);
         }
       });
@@ -287,6 +288,7 @@ router.patch(
     ).then((user) => 
         res.json(user))
       .catch((err) => res.json(err));
+      
   }
 );
 

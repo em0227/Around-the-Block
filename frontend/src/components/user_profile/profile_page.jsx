@@ -8,11 +8,13 @@ import { Link as Link1 } from "react-scroll";
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", user: {}, hideFilters: true };
+    this.state = { name: "", email: "", user: {}, hideFilters: true, submissionMessage: "" };
     this.timerId = 0;
   }
   componentDidMount() {
     this.props.fetchEvents();
+    this.props.fetchCurrentUser()
+    this.setState({submissionMessage: ""})
 
     if (this.props.preJoinedEvent !== "") {
       this.props.updateEvent({
@@ -44,26 +46,16 @@ class ProfilePage extends React.Component {
 
   submitFriendRequest(e) {
     e.preventDefault();
+    this.setState({submissionMessage: ""})
     this.props
       .createFriendRequest({ recipient: this.state.user })
       .then(
-        this.setState({ name: "", email: "", user: {}, hideFilters: true })
+        this.setState({ name: "", email: "", user: {}, hideFilters: true, 
+        submissionMessage: `You have successfully sent a request.` })
       );
   }
 
-  // handleApprove(requestId) {
-  //   this.props.updateFriend({
-  //     request: requestId,
-  //     status: "approved"
-  //   });
-  // }
-
-  // handleReject(requestId) {
-  //   this.props.updateFriend({
-  //     request: requestId,
-  //     status: "denied"
-  //   });
-  // }
+  
 
   changeSearchBar(user) {
     if (this.state.email !== user.email) {
@@ -89,7 +81,6 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    console.log(this.state.hideFilters);
     const { events, errors, currentUser, invites, users, filters } = this.props;
     const myEvents = events.filter((event) => event.hostId === currentUser.id);
     const myJoinedEvents = events.filter((event) =>
@@ -161,7 +152,7 @@ class ProfilePage extends React.Component {
                       className="p-e-l"
                       onClick={() => this.leaveEvent(event._id)}
                     >
-                      <span className="p-e-btn">Cancel</span>
+                      <span className="p-e-btn">Leave</span>
                     </button>
                   </div>
                 </div>
@@ -209,6 +200,8 @@ class ProfilePage extends React.Component {
                 >
                   <div className="friend-search-bar-error">
                     {errors.recipient}
+                    {errors.recipient ? "" : this.state.submissionMessage}
+                    
                   </div>
                   <div>
                     <input
@@ -218,6 +211,7 @@ class ProfilePage extends React.Component {
                       type="text"
                       onChange={this.update("name")}
                     />
+                    
 
                     <div className="entire-dropdown">
                       {(this.state.name.length > 0 && filters.length > 0) ||
@@ -232,7 +226,7 @@ class ProfilePage extends React.Component {
                               <div tabIndex="1" className="user-info-">
                                 {user.picture === "noPicture" || !user.picture ? 
                                 <FaUserCircle className="user-info-icon" /> : 
-                                <img className="user-search-icon" src={user.picture}></img>
+                                <img width= "75px" height="75px" className="user-search-icon" src={user.picture}></img>
                               }
                                 <div className="user-info-content">
                                   <div className="user-info-content-input">

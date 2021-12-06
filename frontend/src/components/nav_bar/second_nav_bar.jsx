@@ -11,7 +11,6 @@ import { Link as Link1 } from "react-scroll";
 class SecondNavBar extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.currentUser);
     this.state = {
       showModal: false,
       name: this.props.currentUser.name,
@@ -31,13 +30,24 @@ class SecondNavBar extends React.Component {
     return (e) => this.setState({ [field]: e.currentTarget.value });
   }
 
+  componentDidUpdate(prevProps){
+    if (prevProps.currentUser !== this.props.currentUser) {
+    this.setState({showModal: false,
+      name: this.props.currentUser.name,
+      email: this.props.currentUser.email})}
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.updateCurrentUser({
       name: this.state.name,
       email: this.state.email,
+    }).then(() =>
+    {let show; 
+    this.props.errors ? show = true : show = false 
+    show ? this.setState({showModal: show}) :
+    this.setState({showModal: show, name: `${this.props.currentUser.name}`, email: `${this.props.currentUser.email}` })
     });
-    this.setState({ showModal: false, name: "", email: "" });
   }
 
   render() {
@@ -98,8 +108,8 @@ class SecondNavBar extends React.Component {
                     value={this.state.email}
                     onChange={this.update("email")}
                   />
-                  {/* <UserPhoto /> */}
                 </div>
+                <div className="update-errors">{this.props.errors}</div>
                 <button className="submit-updated-user" type="Submit">
                   Submit
                 </button>

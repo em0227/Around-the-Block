@@ -63,35 +63,47 @@ class MainPage extends React.Component {
           <Typewriter className="app-description-words"
             onInit={(typewriter) => {
               typewriter
-                .typeString("We are here to help the elderly make friends!")
+                .typeString("We are here to help senior citizens make friends!")
                 .pauseFor(500)
                 .deleteAll()
                 .typeString(
-                  "Our voice recognition makes sign up easy. Try it now!"
+                  "Our larger fonts and design choices accommodate visual impairments."
+                ).deleteAll()
+                .typeString(
+                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now by clicking sign up!"
                 )
                 .pauseFor(500)
                 .deleteAll()
-                .typeString("We are here to help the elderly make friends!")
+                .typeString("We are here to help senior citizens make friends!")
                 .pauseFor(500)
                 .deleteAll()
                 .typeString(
-                  "Our voice recognition makes sign up easy. Try it now!"
-                )
-                .pauseFor(1000)
-                .deleteAll()
-                .typeString("We are here to help the elderly make friends!")
-                .pauseFor(500)
-                .deleteAll()
+                  "Our larger fonts and design choices accommodate visual impairments."
+                ).deleteAll()
                 .typeString(
-                  "Our voice recognition makes sign up easy. Try it now!"
+                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now by clicking sign up!"
                 )
                 .pauseFor(500)
                 .deleteAll()
-                .typeString("We are here to help the elderly make friends!")
+                .typeString("We are here to help senior citizens make friends!")
                 .pauseFor(500)
                 .deleteAll()
                 .typeString(
-                  "Our voice recognition makes sign up easy. Try it now!"
+                  "Our larger fonts and design choices accommodate visual impairments."
+                ).deleteAll()
+                .typeString(
+                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now by clicking sign up!"
+                )
+                .pauseFor(500)
+                .deleteAll()
+                .typeString("We are here to help senior citizens make friends!")
+                .pauseFor(500)
+                .deleteAll()
+                .typeString(
+                  "Our larger fonts and design choices accommodate visual impairments."
+                ).deleteAll()
+                .typeString(
+                  "Our voice recognition makes sign up easy for the hearing-impaired. Try it now by clicking sign up!"
                 )
                 .pauseFor(1000)
                 .deleteAll()

@@ -99,7 +99,7 @@ class NavBar extends React.Component {
             <span className="btn-titles">Logout</span>
           </button>
           <Link className="btn create-button" to="/events/create">
-            <span className="btn-titles"> Create Event</span>
+            <span className="btn-titles create"> Create Event</span>
           </Link>
           <Link className="link" to="/profile">
           {/* <CgProfile className="nav-icon" /> */}

@@ -168,6 +168,9 @@ router.patch(
           },
           { new: true }
         ).then(user => console.log(""))
+
+        FriendRequest.deleteOne({ _id: record._id })
+          .then((res) => console.log(""))
        
       } else {
         //delete this record

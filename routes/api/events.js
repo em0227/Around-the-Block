@@ -31,7 +31,7 @@ router.get("/:id", (req, res) => {
     .then((event) => {
       const promises = [];
       event.guests.forEach((guest) => {
-        promises.push(User.findOne({ _id: guest }).then((user) => user.name));
+        promises.push(User.findOne({ _id: guest }).then((user) => user.name)).catch((error) => console.log(""));
       });
       Promise.all(promises).then((guestNames) => {
         event._doc.guests = guestNames;
@@ -70,7 +70,7 @@ router.post(
                 },
               },
               { new: true }
-            ).then((user) => res.json(newEvent));
+            ).then((user) => res.json(newEvent)).catch((errors => console.log("")));
           })
           .catch((errors) => {
             res.status(400).json(error);

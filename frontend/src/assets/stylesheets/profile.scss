@@ -231,6 +231,12 @@ left: 400px;
   border-radius: 3px; 
 }
 
+.user-search-icon{
+    border-radius: 50%; 
+    outline: white; 
+    
+}
+
 .user-info-:focus{
     outline: none;
     border: 3px solid #1890FF; 
@@ -289,22 +295,26 @@ left: 400px;
 }
 
 .friends-container{
-    margin-top: 180px; 
+    margin-top: 100px; 
     display: flex;
     flex-direction: row; 
     top: 900px; 
-    width: 1500px; 
+    width: 1400px; 
+    height: 200px;
     position: absolute; 
     flex-wrap: wrap; 
-    padding-left: 200px; 
+    padding-left: 150px; 
+    overflow-y: auto; 
+    box-sizing: border-box; 
 
     .friends-flex{
         display: flex; 
         flex-direction: row; 
         align-items: center; 
-        width: 500px; 
+        width: 400px; 
         flex-wrap: wrap;
         margin-bottom: 50px; 
+        overflow-x: auto; 
 
         .friends{
             width: 90px; 

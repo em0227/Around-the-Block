@@ -19,7 +19,9 @@ class SecondNavBar extends React.Component {
   }
 
   profileModalAppears() {
-    this.setState({ showModal: true });
+    this.setState({ showModal: true, 
+      name: this.props.currentUser.name,
+      email: this.props.currentUser.email });
   }
 
   clearModal() {

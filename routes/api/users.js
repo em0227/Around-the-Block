@@ -65,6 +65,12 @@ router.post("/register", (req, res) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
+          let i = 0; 
+          while (req.body.name[i] === " ") {
+            req.body.name = req.body.name.slice(1)
+            i += 1; 
+          }
+
           const pictureUrl = lettersHash[req.body.name[0].toLowerCase()];
           pictureUrl
             ? (newUser.picture = pictureUrl)

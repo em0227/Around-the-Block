@@ -58,7 +58,7 @@ router.post(
           recipientId: req.body.recipient.id,
           recipientName: req.body.recipient.name,
           recipientEmail: req.body.recipient.email,
-          recipientImage: req.body.recipient.image,
+          recipientImage: req.body.recipient.picture,
           status: "pending"
         });
         newRequest
@@ -167,7 +167,7 @@ router.patch(
               }
           },
           { new: true }
-        ).then(user => console.log(""))
+        ).then(user => console.log("user"))
 
         FriendRequest.deleteOne({ _id: record._id })
           .then((res) => console.log(""))

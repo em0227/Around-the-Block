@@ -41,13 +41,14 @@ class EventShow extends React.Component {
   render() {
     if (!this.props.event) return null;
     const joinButton = this.props.isAuthenticated ? (
+      (!this.props.event.guests.includes(this.props.currentUser.name) ? 
       <Link
         className="join-button"
         to="/profile"
         onClick={this.handleJoin.bind(this)}
       >
         JOIN!
-      </Link>
+      </Link> : "")
     ) : (
       <Link
         className="join-button"

@@ -68,7 +68,7 @@ class NavBar extends React.Component {
                   <span className="requester-text">
                     {request.requesterName}
                   </span>
-                  send you a friend request
+                  sent you a friend request
                 </p>
                 <div className="button-container">
                   {/* <li>{request.requesterEmail}</li> */}

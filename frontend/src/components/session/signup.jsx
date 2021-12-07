@@ -63,10 +63,10 @@ class SignupForm extends React.Component {
         .map((result) => result[0])
         .map((result) => result.transcript)
         .join("");
-      // console.log(transcript);
+      console.log(transcript);
 
       if (transcript.includes("submit")) {
-        const email = this.state.email.replaceAll(" ", "");
+        const email = this.state.email.replaceAll(" ", "").toLowerCase();
         let password = this.state.password.replace("submit", "");
         password = password.replace(" something", "");
         const user = {
@@ -89,16 +89,18 @@ class SignupForm extends React.Component {
 
         if (realTranscript.includes("at")) {
           realTranscript = realTranscript.replace("at", "@");
-          this.setState({ email: realTranscript });
+          this.setState({
+            email: realTranscript.replaceAll(" ", "").toLowerCase(),
+          });
+        } else if (realTranscript.includes("dot")) {
+          realTranscript = realTranscript.replace("dot", ".");
+          this.setState({
+            email: realTranscript.replaceAll(" ", "").toLowerCase(),
+          });
         } else {
-          this.setState({ email: realTranscript });
-        }
-
-        if (realTranscript.includes("dot")) {
-          realTranscript = realTranscript.replace("at", ".");
-          this.setState({ email: realTranscript });
-        } else {
-          this.setState({ email: realTranscript });
+          this.setState({
+            email: realTranscript.replaceAll(" ", "").toLowerCase(),
+          });
         }
       } else if (transcript.includes("name")) {
         let realTranscript = transcript;
@@ -111,7 +113,7 @@ class SignupForm extends React.Component {
       }
 
       mic.onerror = (event) => {
-        // console.log(event.error);
+        console.log(event.error);
       };
     };
   }

@@ -51,10 +51,10 @@ class LoginForm extends React.Component {
         .map((result) => result[0])
         .map((result) => result.transcript)
         .join("");
-      // console.log(transcript);
+      console.log(transcript);
 
       if (transcript.includes("submit")) {
-        const email = this.state.email.replaceAll(" ", "");
+        const email = this.state.email.replaceAll(" ", "").toLowerCase();
         let password = this.state.password.replace(" submit", "");
         password = password.replace(" something", "");
         const user = {
@@ -62,8 +62,10 @@ class LoginForm extends React.Component {
           password,
         };
 
-        this.props.login(user);
-        mic.stop();
+        this.props.login(user, this.props.history);
+        if (this.props.history === "/profile") {
+          mic.stop();
+        }
       } else if (transcript.includes("password")) {
         const last = transcript.indexOf("word is");
         let realTranscript = transcript.slice(last + 8);
@@ -78,14 +80,23 @@ class LoginForm extends React.Component {
 
         if (realTranscript.includes("at")) {
           realTranscript = realTranscript.replace("at", "@");
-          this.setState({ email: realTranscript });
+          this.setState({
+            email: realTranscript.replaceAll(" ", "").toLowerCase(),
+          });
+        } else if (realTranscript.includes("dot")) {
+          realTranscript = realTranscript.replace("dot", ".");
+          this.setState({
+            email: realTranscript.replaceAll(" ", "").toLowerCase(),
+          });
         } else {
-          this.setState({ email: realTranscript });
+          this.setState({
+            email: realTranscript.replaceAll(" ", "").toLowerCase(),
+          });
         }
       }
 
       mic.onerror = (event) => {
-        // console.log(event.error);
+        console.log(event.error);
       };
     };
   }
@@ -122,7 +133,6 @@ class LoginForm extends React.Component {
   }
 
   loginDemo(e) {
-    
     e.preventDefault();
     this.props.fetchDemoUser().then(() => this.props.history.push("/profile"));
   }

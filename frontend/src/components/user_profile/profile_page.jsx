@@ -4,17 +4,23 @@ import debounce from "lodash.debounce";
 import { FaUserCircle } from "react-icons/fa";
 import { Link as Link1 } from "react-scroll";
 
-
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", user: {}, hideFilters: true, submissionMessage: "", showSubmit: false };
+    this.state = {
+      name: "",
+      email: "",
+      user: {},
+      hideFilters: true,
+      submissionMessage: "",
+      showSubmit: false,
+    };
     this.timerId = 0;
   }
   componentDidMount() {
     this.props.fetchEvents();
-    this.props.fetchCurrentUser()
-    this.setState({submissionMessage: ""})
+    this.props.fetchCurrentUser();
+    this.setState({ submissionMessage: "" });
 
     if (this.props.preJoinedEvent !== "") {
       this.props.updateEvent({
@@ -36,7 +42,7 @@ class ProfilePage extends React.Component {
       this.setState(
         {
           [field]: e.currentTarget.value,
-          showSubmit: false
+          showSubmit: false,
         },
         () => {
           this.debounce();
@@ -47,22 +53,36 @@ class ProfilePage extends React.Component {
 
   submitFriendRequest(e) {
     e.preventDefault();
-    this.setState({submissionMessage: ""})
+    this.setState({ submissionMessage: "" });
     this.props
       .createFriendRequest({ recipient: this.state.user })
       .then(
-        this.setState({ name: "", email: "", user: {}, hideFilters: true, 
-        submissionMessage: `You have successfully sent a request.` })
+        this.setState({
+          name: "",
+          email: "",
+          user: {},
+          hideFilters: true,
+          submissionMessage: `You have successfully sent a request.`,
+        })
       );
   }
 
-  
-
   changeSearchBar(user) {
     if (this.state.email !== user.email) {
-      this.setState({ name: user.name, user: user, email: user.email, showSubmit: true });
+      this.setState({
+        name: user.name,
+        user: user,
+        email: user.email,
+        showSubmit: true,
+      });
     } else {
-      this.setState({ name: "", user: {}, email: "", hideFilters: false, showSubmit: false });
+      this.setState({
+        name: "",
+        user: {},
+        email: "",
+        hideFilters: false,
+        showSubmit: false,
+      });
     }
   }
 
@@ -77,8 +97,8 @@ class ProfilePage extends React.Component {
     this.props.deleteEvent(eventId);
   }
 
-  handleUnfriend(friendId){
-      this.props.deleteFriend(friendId)
+  handleUnfriend(friendId) {
+    this.props.deleteFriend(friendId);
   }
 
   render() {
@@ -94,7 +114,7 @@ class ProfilePage extends React.Component {
 
           <div className="profile-event-container">
             <div className="profile-event-content">
-              <Link  to={`/events/${event._id}`}>
+              <Link to={`/events/${event._id}`}>
                 <img className="p-e-img" src={event.imageUrl} />
               </Link>
 
@@ -193,7 +213,6 @@ class ProfilePage extends React.Component {
                 FRIENDS
               </Link1>
 
-              
               <div className="friend-request-container">
                 <form
                   className="friend-search-form"
@@ -202,7 +221,6 @@ class ProfilePage extends React.Component {
                   <div className="friend-search-bar-error">
                     {errors.recipient}
                     {errors.recipient ? "" : this.state.submissionMessage}
-                    
                   </div>
                   <div>
                     <input
@@ -212,7 +230,6 @@ class ProfilePage extends React.Component {
                       type="text"
                       onChange={this.update("name")}
                     />
-                    
 
                     <div className="entire-dropdown">
                       {(this.state.name.length > 0 && filters.length > 0) ||
@@ -225,10 +242,17 @@ class ProfilePage extends React.Component {
                               onClick={this.changeSearchBar.bind(this, user)}
                             >
                               <div tabIndex="1" className="user-info-">
-                                {user.picture === "noPicture" || !user.picture ? 
-                                <FaUserCircle className="user-info-icon" /> : 
-                                <img width= "75px" height="75px" className="user-search-icon" src={user.picture}></img>
-                              }
+                                {user.picture === "noPicture" ||
+                                !user.picture ? (
+                                  <FaUserCircle className="user-info-icon" />
+                                ) : (
+                                  <img
+                                    width="75px"
+                                    height="75px"
+                                    className="user-search-icon"
+                                    src={user.picture}
+                                  ></img>
+                                )}
                                 <div className="user-info-content">
                                   <div className="user-info-content-input">
                                     {user.name}
@@ -243,36 +267,56 @@ class ProfilePage extends React.Component {
                         : ""}
                     </div>
                   </div>
-                  {this.state.showSubmit ? 
-                  <button className="friend-search-button" type="submit">
-                    Send
-                  </button> : ""
-                  }
+                  {this.state.showSubmit ? (
+                    <button className="friend-search-button" type="submit">
+                      Send
+                    </button>
+                  ) : (
+                    ""
+                  )}
                 </form>
-                <div className= "friends-container">
-                {currentUser.friends
-                ? currentUser.friends.map((friend, idx) => (
-                  
-                    
-                    <div className= "friends-flex" key={idx}>
-                      {friend.friendImage === "noPicture" || !friend.friendImage ? 
-                                <FaUserCircle className="user-info-icon friends" /> : 
-                                <img className="friend-icon" width="75px" src={friend.friendImage}></img>
-                      }
-                      
-                       <div className="details-flex">
-                        <li className="friend-details">{friend.friendName}</li>
-                        <li className="friend-details">{friend.friendEmail}</li>
-                        <button className="unfriend" onClick={this.handleUnfriend.bind(this, friend.friendId)}>Unfriend</button>
-                      </div>
-                      
-                    </div>
-                   
-                  ))
-                : ""}
-               </div>
-              {/* </div> */}
-              {/* friend's section end div*/}
+                <div className="friends-container">
+                  {currentUser.friends
+                    ? currentUser.friends.map((friend, idx) => (
+                        <div className="friends-flex" key={idx}>
+                          {friend.friendImage === "noPicture" ||
+                          !friend.friendImage ? (
+                            <FaUserCircle className="user-info-icon friends" />
+                          ) : (
+                            <img
+                              className="friend-icon"
+                              width="75px"
+                              src={friend.friendImage}
+                            ></img>
+                          )}
+
+                          <div className="details-flex">
+                            <li
+                              className="friend-details"
+                              key={friend.friendName}
+                            >
+                              {friend.friendName}
+                            </li>
+                            <li className="friend-details">
+                              {friend.friendEmail}
+                              key={friend.friendEmail}
+                            </li>
+                            <button
+                              className="unfriend"
+                              onClick={this.handleUnfriend.bind(
+                                this,
+                                friend.friendId
+                              )}
+                            >
+                              Unfriend
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    : ""}
+                </div>
+                {/* </div> */}
+                {/* friend's section end div*/}
                 {/* <div className="friend-search-bar-error">
                   {errors.recipient}
                 </div> */}

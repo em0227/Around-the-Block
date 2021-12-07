@@ -2,8 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { GrFormNextLink } from "react-icons/gr";
-import { fetchDemoUser } from "../../actions/users_actions";
+import { BsInfoCircle } from "react-icons/bs";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -202,29 +201,23 @@ class LoginForm extends React.Component {
               </div>
               <br />
               <div className="button-container">
-                <button className="button form__submit" type="submit">
+                <button className="form_submit" type="submit">
                   <span className="button__text">LOG IN NOW</span>
-                  {/* <i>
-                    <GrFormNextLink />
-                  </i> */}
                 </button>
                 <br />
                 <button
-                  className="button form__submit"
+                  className="form_submit"
                   type="submit"
                   onClick={this.loginDemo}
                 >
                   <span className="button__text">Demo User</span>
-                  {/* <i>
-                    <GrFormNextLink />
-                  </i> */}
                 </button>
 
                 <div className="mic">
                   {this.state.isListening ? (
                     <div className="mic-on">
                       <span
-                        className="button form__submit micro"
+                        className="form_submit micro"
                         onClick={this.setIsListening.bind(this)}
                       >
                         Stop Voice Input
@@ -238,19 +231,24 @@ class LoginForm extends React.Component {
                       <span id="mic">🎙️</span>
                     </div>
                   ) : (
-                    <span
-                      className="button form__submit micro"
-                      onClick={this.setIsListening.bind(this)}
-                      style={{ marginLeft: 0 }}
-                    >
-                      Log in with Voice
-                    </span>
+                    <div className="micro-container">
+                      <span
+                        className="form_submit micro"
+                        onClick={this.setIsListening.bind(this)}
+                        style={{ marginLeft: 0 }}
+                      >
+                        Log in with Voice
+                      </span>
+                      <span
+                        style={{ color: "gray", marginTop: 15, marginLeft: 10 }}
+                      >
+                        {" "}
+                        <BsInfoCircle />
+                      </span>
+                    </div>
                   )}
                 </div>
                 {/* <br /> */}
-              </div>
-              <div className="form__background">
-                <span className="form__background__shape form__background__shape2"></span>
               </div>
             </form>
           </div>

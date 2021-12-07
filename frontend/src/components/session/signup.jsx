@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { GrFormNextLink } from "react-icons/gr";
+import { BsInfoCircle } from "react-icons/bs";
 import { HiOutlineClipboardList } from "react-icons/hi";
 
 const SpeechRecognition =
@@ -232,18 +232,15 @@ class SignupForm extends React.Component {
                 </div>
               </div>
               <br />
-              <div>
-                <button className="button form__submit" type="submit">
+              <div className="button-container">
+                <button className="form_submit" type="submit">
                   <span className="button__text">SIGN UP NOW</span>
-                  {/* <i>
-                    <GrFormNextLink />
-                  </i> */}
                 </button>
                 <div className="mic">
                   {this.state.isListening ? (
                     <div className="mic-on">
                       <span
-                        className="button form__submit micro"
+                        className="form_submit micro"
                         onClick={this.setIsListening.bind(this)}
                       >
                         Stop Voice Input
@@ -258,6 +255,7 @@ class SignupForm extends React.Component {
                     </div>
                   ) : (
                     <div
+                      className="mic"
                       style={{ width: "100%" }}
                       onEnded={this.setIsListening.bind(this)}
                     >
@@ -267,12 +265,25 @@ class SignupForm extends React.Component {
                           type="audio/mp3"
                         />
                       </audio>
-                      <span
-                        className="button form__submit micro"
-                        onClick={this.playAudio.bind(this)}
-                      >
-                        Sign Up with Voice
-                      </span>
+                      <div className="micro-container">
+                        <span
+                          className="form_submit micro"
+                          onClick={this.setIsListening.bind(this)}
+                          style={{ marginLeft: 0 }}
+                        >
+                          Sign in with Voice
+                        </span>
+                        <span
+                          style={{
+                            color: "gray",
+                            marginTop: 15,
+                            marginLeft: 10,
+                          }}
+                        >
+                          {" "}
+                          <BsInfoCircle />
+                        </span>
+                      </div>
                       {this.state.isPlayingAudio ? (
                         <div className="mic-on">
                           <div className="loader">
@@ -293,9 +304,9 @@ class SignupForm extends React.Component {
                 {/* {this.renderErrors()} */}
               </div>
 
-              <div className="form__background">
+              {/* <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

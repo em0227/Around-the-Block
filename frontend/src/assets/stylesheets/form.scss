@@ -40,11 +40,12 @@ $Nunito: "Nunito", sans-serif;
   .mic {
     font-size: 50px;
     display: flex;
-    justify-content: space-around;
+    // justify-content: space-around;
+    flex-direction: column;
     align-items: center;
     // padding: 0 50px;
     z-index: 1000;
-    margin-top: 30px;
+    margin-top: 20px;
     width: 100%;
 
     button {
@@ -52,11 +53,12 @@ $Nunito: "Nunito", sans-serif;
       padding: 5px;
     }
     .micro {
-      width: 75%;
+      width: 85%;
       // margin-top: 5%;
       background-color: #f48d18;
       border-radius: 20px;
       // padding: 8px 10px 8px 15px;
+      text-align: center;
       color: white;
       border-radius: 26px;
       justify-content: center;
@@ -83,20 +85,20 @@ $Nunito: "Nunito", sans-serif;
   width: 220px;
 }
 
-.form__background__shape2 {
-  height: 220px;
-  width: 220px;
-  background: #175245;
-  top: -172px;
-  right: 0;
-  border-radius: 32px;
-  margin-right: 450px;
-}
+// .form__background__shape2 {
+//   height: 220px;
+//   width: 220px;
+//   background: #175245;
+//   top: -172px;
+//   right: 0;
+//   border-radius: 32px;
+//   margin-right: 450px;
+// }
 
 .form-inner {
   width: 90%;
   padding-left: 60px;
-  padding-top: 140px;
+  padding-top: 100px;
 }
 
 .input__field {
@@ -123,12 +125,7 @@ $Nunito: "Nunito", sans-serif;
   width: 100%;
   transition: 0.2s;
   background-color: transparent;
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 100px;
-  }
+  
   .input-container {
     display: flex;
     flex-direction: column;
@@ -158,47 +155,50 @@ $Nunito: "Nunito", sans-serif;
   border-bottom-color: #5e8b7e;
 }
 
-.form__submit {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: #fff;
-  font-size: 30px;
-  margin: 0 0 0 80px;
-  // padding: 0 15px;
-  padding: 8px 10px 8px 15px;
-  border-radius: 26px;
-  border: 1px solid #d4d3e8;
-  text-transform: uppercase;
-  font-weight: 700;
-  width: 75%;
-  color: #4c489d;
-  box-shadow: 0px 2px 2px #5c5696;
-  cursor: pointer;
-  transition: 0.2s;
-  z-index: 10;
-  position: relative;
+// .form__submit {
+  // display: flex;
+  // justify-content: space-around;
+  // align-items: center;
+  // background: #fff;
+  // font-size: 30px;
+  // margin: 0 0 0 80px;
+  // // padding: 0 15px;
+  // padding: 8px 10px 8px 15px;
+  // border-radius: 26px;
+  // border: 1px solid #d4d3e8;
+  // text-transform: uppercase;
+  // font-weight: 700;
+  // width: 75%;
+  // color: #4c489d;
+  // box-shadow: 0px 2px 2px #5c5696;
+  // cursor: pointer;
+  // transition: 0.2s;
+  // z-index: 10;
+  // position: relative;
   // padding-top: 20px;
-}
+// }
 
-.form__submit:active,
-.form__submit:focus,
-.form__submit:hover {
-  border-color: #6a679e;
-  outline: none;
-}
+// .form__submit:active,
+// .form__submit:focus,
+// .form__submit:hover {
+//   border-color: #6a679e;
+//   outline: none;
+// }
 .button__text {
   z-index: 10;
 }
 
 .mic-on {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
 .loader {
   position: relative;
   top: 30px;
-  left: 50%;
+  // left: 50%;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -234,7 +234,7 @@ $Nunito: "Nunito", sans-serif;
 #mic {
   position: relative;
   top: -40px;
-  left: 53%;
+  // left: 23%;
 }
 
 .loader span:nth-child(4) {
@@ -256,3 +256,35 @@ $Nunito: "Nunito", sans-serif;
   border: solid white 3px;
   border-radius: 50%;
 }
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // margin-left: 100px;
+  }
+
+  .form_submit{
+background: #fff;
+  font-size: 30px;
+  // margin: 0 0 0 80px;
+  // padding: 0 15px;
+  padding: 8px 10px 8px 15px;
+  border-radius: 26px;
+  border: 1px solid #d4d3e8;
+  text-transform: uppercase;
+  font-weight: 700;
+  width: 85%;
+  color: #4c489d;
+  box-shadow: 0px 2px 2px #5c5696;
+  cursor: pointer;
+  transition: 0.2s;
+  z-index: 10;
+  position: relative;
+  }
+  .micro-container{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // padding: 8px 10px 8px 15px;
+  }

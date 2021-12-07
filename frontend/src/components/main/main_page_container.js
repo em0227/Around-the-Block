@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
     fetchFriendRequests: () => dispatch(fetchFriendRequests()),
     fetchUsers: () => dispatch(fetchUsers())
     // fetchEvent: (eventId) => dispatch(fetchEvent(eventId))
-
+ 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

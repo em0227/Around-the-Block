@@ -47,11 +47,9 @@ class SignupForm extends React.Component {
   // }
 
   debounce(user) {
-    // debugger;
     clearTimeout(this.state.timerId);
 
     const timerId = setTimeout(() => {
-      // debugger;
       this.props.signup(user, this.props.history);
       mic.stop();
     }, 100);
@@ -68,7 +66,7 @@ class SignupForm extends React.Component {
       console.log(transcript);
 
       if (transcript.includes("submit")) {
-        const email = this.state.email.replaceAll(" ", "");
+        const email = this.state.email.replaceAll(" ", "").toLowerCase();
         let password = this.state.password.replace("submit", "");
         password = password.replace(" something", "");
         const user = {
@@ -91,16 +89,18 @@ class SignupForm extends React.Component {
 
         if (realTranscript.includes("at")) {
           realTranscript = realTranscript.replace("at", "@");
-          this.setState({ email: realTranscript });
+          this.setState({
+            email: realTranscript.replaceAll(" ", "").toLowerCase(),
+          });
+        } else if (realTranscript.includes("dot")) {
+          realTranscript = realTranscript.replace("dot", ".");
+          this.setState({
+            email: realTranscript.replaceAll(" ", "").toLowerCase(),
+          });
         } else {
-          this.setState({ email: realTranscript });
-        }
-
-        if (realTranscript.includes("dot")) {
-          realTranscript = realTranscript.replace("at", ".");
-          this.setState({ email: realTranscript });
-        } else {
-          this.setState({ email: realTranscript });
+          this.setState({
+            email: realTranscript.replaceAll(" ", "").toLowerCase(),
+          });
         }
       } else if (transcript.includes("name")) {
         let realTranscript = transcript;

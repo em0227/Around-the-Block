@@ -21,6 +21,7 @@ class LoginForm extends React.Component {
       password: "",
       errors: {},
       isListening: false,
+      isPlayingAudio: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -102,11 +103,29 @@ class LoginForm extends React.Component {
 
   setIsListening(e) {
     // e.preventDefault();
+    const audio = document.getElementById("myAudio");
     this.setState({ isListening: !this.state.isListening }, () => {
       if (this.state.isListening) {
+        this.setState({ isPlayingAudio: false });
+        audio.pause();
         mic.start();
       } else {
         mic.stop();
+      }
+    });
+  }
+
+  playAudio(e) {
+    this.setState({ isPlayingAudio: !this.state.isPlayingAudio }, () => {
+      const audio = document.getElementById("myAudio");
+      if (this.state.isPlayingAudio) {
+        this.setState({ isListening: false });
+        mic.stop();
+        audio.play();
+      } else {
+        this.setState({ isListening: false });
+        mic.stop();
+        audio.pause();
       }
     });
   }
@@ -214,14 +233,32 @@ class LoginForm extends React.Component {
                 </button>
 
                 <div className="mic">
+                  <audio id="myAudio">
+                    <source
+                      src="https://atb-photos.s3.amazonaws.com/session_form_intro.mp3"
+                      type="audio/mp3"
+                    />
+                  </audio>
                   {this.state.isListening ? (
                     <div className="mic-on">
-                      <span
-                        className="form_submit micro"
-                        onClick={this.setIsListening.bind(this)}
-                      >
-                        Stop Voice Input
-                      </span>
+                      <div className="micro-container" style={{ width: "90%" }}>
+                        <span
+                          className="form_submit micro"
+                          onClick={this.setIsListening.bind(this)}
+                        >
+                          Stop Voice Input
+                        </span>
+                        <span
+                          style={{
+                            color: "orange",
+                            marginTop: 15,
+                            marginLeft: 20,
+                          }}
+                        >
+                          {" "}
+                          <BsInfoCircle onClick={this.playAudio.bind(this)} />
+                        </span>
+                      </div>
                       <div className="loader">
                         <span></span>
                         <span></span>
@@ -231,20 +268,39 @@ class LoginForm extends React.Component {
                       <span id="mic">🎙️</span>
                     </div>
                   ) : (
-                    <div className="micro-container">
-                      <span
-                        className="form_submit micro"
-                        onClick={this.setIsListening.bind(this)}
-                        style={{ marginLeft: 0 }}
-                      >
-                        Log in with Voice
-                      </span>
-                      <span
-                        style={{ color: "orange", marginTop: 15, marginLeft: 10 }}
-                      >
-                        {" "}
-                        <BsInfoCircle />
-                      </span>
+                    <div style={{ width: "90%" }}>
+                      <div className="micro-container">
+                        <span
+                          className="form_submit micro"
+                          onClick={this.setIsListening.bind(this)}
+                          style={{ marginLeft: 0 }}
+                        >
+                          Log in with Voice
+                        </span>
+                        <span
+                          style={{
+                            color: "orange",
+                            marginTop: 15,
+                            marginLeft: 20,
+                          }}
+                        >
+                          {" "}
+                          <BsInfoCircle onClick={this.playAudio.bind(this)} />
+                        </span>
+                      </div>
+                      {this.state.isPlayingAudio ? (
+                        <div className="mic-on">
+                          <div className="loader">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                          <span id="mic">👂</span>
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
                     </div>
                   )}
                 </div>

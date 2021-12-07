@@ -161,6 +161,9 @@ class SignupForm extends React.Component {
 
   render() {
     const { errors, clearSessionErrors } = this.props;
+    const signUpText = this.state.isPlayingAudio
+      ? "Pause Instruction"
+      : "Sign Up with Voice";
     return (
       <div className="form-container">
         <div className="form">
@@ -268,20 +271,10 @@ class SignupForm extends React.Component {
                       <div className="micro-container">
                         <span
                           className="form_submit micro"
-                          onClick={this.setIsListening.bind(this)}
+                          onClick={this.playAudio.bind(this)}
                           style={{ marginLeft: 0 }}
                         >
-                          Sign Up With Voice
-                        </span>
-                        <span
-                          style={{
-                            color: "orange",
-                            marginTop: 15,
-                            marginLeft: 10,
-                          }}
-                        >
-                          {" "}
-                          <BsInfoCircle />
+                          {signUpText}
                         </span>
                       </div>
                       {this.state.isPlayingAudio ? (

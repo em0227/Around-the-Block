@@ -297,9 +297,12 @@ class ProfilePage extends React.Component {
                             >
                               {friend.friendName}
                             </li>
-                            <li className="friend-details">
-                              {friend.friendEmail}
+                            <li
+                              className="friend-details"
                               key={friend.friendEmail}
+                            >
+                              {friend.friendEmail}
+                             
                             </li>
                             <button
                               className="unfriend"

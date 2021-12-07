@@ -275,7 +275,7 @@ class SignupForm extends React.Component {
                         </span>
                         <span
                           style={{
-                            color: "gray",
+                            color: "orange",
                             marginTop: 15,
                             marginLeft: 10,
                           }}

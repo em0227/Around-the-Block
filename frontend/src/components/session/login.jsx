@@ -240,7 +240,7 @@ class LoginForm extends React.Component {
                         Log in with Voice
                       </span>
                       <span
-                        style={{ color: "gray", marginTop: 15, marginLeft: 10 }}
+                        style={{ color: "orange", marginTop: 15, marginLeft: 10 }}
                       >
                         {" "}
                         <BsInfoCircle />

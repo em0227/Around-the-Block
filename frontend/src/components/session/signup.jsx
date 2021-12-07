@@ -271,7 +271,7 @@ class SignupForm extends React.Component {
                           onClick={this.setIsListening.bind(this)}
                           style={{ marginLeft: 0 }}
                         >
-                          Sign in with Voice
+                          Sign Up With Voice
                         </span>
                         <span
                           style={{

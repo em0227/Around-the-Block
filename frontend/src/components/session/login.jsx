@@ -192,15 +192,12 @@ class LoginForm extends React.Component {
               </div>
               <br />
               <div className="button-container">
-                <button className="button form__submit" type="submit">
+                <button className="form_submit" type="submit">
                   <span className="button__text">LOG IN NOW</span>
-                  {/* <i>
-                    <GrFormNextLink />
-                  </i> */}
                 </button>
                 <br />
                 <button
-                  className="button form__submit"
+                  className="form_submit"
                   type="submit"
                   onClick={this.loginDemo}
                 >
@@ -214,7 +211,7 @@ class LoginForm extends React.Component {
                   {this.state.isListening ? (
                     <div className="mic-on">
                       <span
-                        className="button form__submit micro"
+                        className="form_submit micro"
                         onClick={this.setIsListening.bind(this)}
                       >
                         Stop Voice Input
@@ -229,7 +226,7 @@ class LoginForm extends React.Component {
                     </div>
                   ) : (
                     <span
-                      className="button form__submit micro"
+                      className="form_submit micro"
                       onClick={this.setIsListening.bind(this)}
                       style={{ marginLeft: 0 }}
                     >
@@ -239,9 +236,9 @@ class LoginForm extends React.Component {
                 </div>
                 {/* <br /> */}
               </div>
-              <div className="form__background">
+              {/* <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

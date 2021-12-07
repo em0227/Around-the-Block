@@ -230,18 +230,15 @@ class SignupForm extends React.Component {
                 </div>
               </div>
               <br />
-              <div>
-                <button className="button form__submit" type="submit">
+              <div className="button-container">
+                <button className="form_submit" type="submit">
                   <span className="button__text">SIGN UP NOW</span>
-                  {/* <i>
-                    <GrFormNextLink />
-                  </i> */}
                 </button>
                 <div className="mic">
                   {this.state.isListening ? (
                     <div className="mic-on">
                       <span
-                        className="button form__submit micro"
+                        className="form_submit micro"
                         onClick={this.setIsListening.bind(this)}
                       >
                         Stop Voice Input
@@ -255,7 +252,7 @@ class SignupForm extends React.Component {
                       <span id="mic">🎙️</span>
                     </div>
                   ) : (
-                    <div
+                    <div className="mic"
                       style={{ width: "100%" }}
                       onEnded={this.setIsListening.bind(this)}
                     >
@@ -266,7 +263,7 @@ class SignupForm extends React.Component {
                         />
                       </audio>
                       <span
-                        className="button form__submit micro"
+                        className="form_submit micro"
                         onClick={this.playAudio.bind(this)}
                       >
                         Sign Up with Voice
@@ -291,9 +288,9 @@ class SignupForm extends React.Component {
                 {/* {this.renderErrors()} */}
               </div>
 
-              <div className="form__background">
+              {/* <div className="form__background">
                 <span className="form__background__shape form__background__shape2"></span>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

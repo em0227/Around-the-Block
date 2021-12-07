@@ -235,7 +235,7 @@ class LoginForm extends React.Component {
                 <div className="mic">
                   <audio id="myAudio">
                     <source
-                      src="https://atb-photos.s3.amazonaws.com/session_form_intro.mp3"
+                      src="https://atb-photos.s3.amazonaws.com/login_intro.mp3"
                       type="audio/mp3"
                     />
                   </audio>

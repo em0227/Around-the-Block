@@ -68,3 +68,108 @@ mic.onresult = (event) => {
       }
 }
 ```
+
+### Feature: Friends Search & Friend Requests 
+
+---
+
+We built a search bar using debounce() that efficiently retrieves user emails and names from the backend and renders their information on the frontend dynamically. A user can dispatch friend requests through this search bar and must wait for another user to approve their friend request for the friends list to update. Errors such as "You cannot send a friend request to yourself or you already sent a friend request" will inform a user of limitations. 
+
+```javascript
+debounce() {
+    const { name } = this.state;
+    const { fetchFilteredUsers } = this.props;
+    clearTimeout(this.timerId);
+    this.timerId = setTimeout(() => fetchFilteredUsers(name), 200);
+  }
+
+  update(field) {
+    return (e) => {
+      this.setState(
+        {
+          [field]: e.currentTarget.value,
+          showSubmit: false,
+        },
+        () => {
+          this.debounce();
+        }
+      );
+    };
+  }
+
+  submitFriendRequest(e) {
+    e.preventDefault();
+    this.setState({ submissionMessage: "" });
+    this.props
+      .createFriendRequest({ recipient: this.state.user })
+      .then(
+        this.setState({
+          name: "",
+          email: "",
+          user: {},
+          hideFilters: true,
+          submissionMessage: `You have successfully sent a request.`,
+        })
+      );
+  }
+  
+             <form className="friend-search-form" onSubmit={this.submitFriendRequest.bind(this)}>
+                  <div className="friend-search-bar-error">
+                    {errors.recipient}
+                    {errors.recipient ? "" : this.state.submissionMessage}
+                  </div>
+                  <div>
+                    <input
+                      value={this.state.name}
+                      className="friend-search-bar"
+                      placeholder="Enter Friend's Name"
+                      type="text"
+                      onChange={this.update("name")}
+                    />
+
+                    <div className="entire-dropdown">
+                      {(this.state.name.length > 0 && filters.length > 0) ||
+                      !this.state.hideFilters
+                        ? filters.map((user, idx) => (
+                            <div
+                              tabIndex="0"
+                              className="user-info-1"
+                              key={idx}
+                              onClick={this.changeSearchBar.bind(this, user)}
+                            >
+                              <div tabIndex="1" className="user-info-">
+                                {user.picture === "noPicture" ||
+                                !user.picture ? (
+                                  <FaUserCircle className="user-info-icon" />
+                                ) : (
+                                  <img
+                                    width="75px"
+                                    height="75px"
+                                    className="user-search-icon"
+                                    src={user.picture}
+                                  ></img>
+                                )}
+                                <div className="user-info-content">
+                                  <div className="user-info-content-input">
+                                    {user.name}
+                                  </div>
+                                  <div className="user-info-content-input">
+                                    {user.email}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        : ""}
+                    </div>
+                  </div>
+                  {this.state.showSubmit ? (
+                    <button className="friend-search-button" type="submit">
+                      Send
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                </form>
+```
+

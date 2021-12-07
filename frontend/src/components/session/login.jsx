@@ -2,8 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { GrFormNextLink } from "react-icons/gr";
-import { fetchDemoUser } from "../../actions/users_actions";
+import { BsInfoCircle } from "react-icons/bs";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -212,9 +211,6 @@ class LoginForm extends React.Component {
                   onClick={this.loginDemo}
                 >
                   <span className="button__text">Demo User</span>
-                  {/* <i>
-                    <GrFormNextLink />
-                  </i> */}
                 </button>
 
                 <div className="mic">
@@ -235,20 +231,25 @@ class LoginForm extends React.Component {
                       <span id="mic">🎙️</span>
                     </div>
                   ) : (
-                    <span
-                      className="form_submit micro"
-                      onClick={this.setIsListening.bind(this)}
-                      style={{ marginLeft: 0 }}
-                    >
-                      Log in with Voice
-                    </span>
+                    <div className="micro-container">
+                      <span
+                        className="form_submit micro"
+                        onClick={this.setIsListening.bind(this)}
+                        style={{ marginLeft: 0 }}
+                      >
+                        Log in with Voice
+                      </span>
+                      <span
+                        style={{ color: "gray", marginTop: 15, marginLeft: 10 }}
+                      >
+                        {" "}
+                        <BsInfoCircle />
+                      </span>
+                    </div>
                   )}
                 </div>
                 {/* <br /> */}
               </div>
-              {/* <div className="form__background">
-                <span className="form__background__shape form__background__shape2"></span>
-              </div> */}
             </form>
           </div>
         </div>

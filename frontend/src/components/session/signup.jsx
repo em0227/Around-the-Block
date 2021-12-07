@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { GrFormNextLink } from "react-icons/gr";
+import { BsInfoCircle } from "react-icons/bs";
 import { HiOutlineClipboardList } from "react-icons/hi";
 
 const SpeechRecognition =
@@ -254,7 +254,8 @@ class SignupForm extends React.Component {
                       <span id="mic">🎙️</span>
                     </div>
                   ) : (
-                    <div className="mic"
+                    <div
+                      className="mic"
                       style={{ width: "100%" }}
                       onEnded={this.setIsListening.bind(this)}
                     >
@@ -264,12 +265,25 @@ class SignupForm extends React.Component {
                           type="audio/mp3"
                         />
                       </audio>
-                      <span
-                        className="form_submit micro"
-                        onClick={this.playAudio.bind(this)}
-                      >
-                        Sign Up with Voice
-                      </span>
+                      <div className="micro-container">
+                        <span
+                          className="form_submit micro"
+                          onClick={this.setIsListening.bind(this)}
+                          style={{ marginLeft: 0 }}
+                        >
+                          Sign in with Voice
+                        </span>
+                        <span
+                          style={{
+                            color: "gray",
+                            marginTop: 15,
+                            marginLeft: 10,
+                          }}
+                        >
+                          {" "}
+                          <BsInfoCircle />
+                        </span>
+                      </div>
                       {this.state.isPlayingAudio ? (
                         <div className="mic-on">
                           <div className="loader">
